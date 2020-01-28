@@ -44,11 +44,13 @@ end
 
 	"att_bonus"
 	{
-	"BaseClass"		"ability_lua"
-	"ScriptFile"		"att_bonus"
-	"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"FightRecapLevel"	"1"
-	"MaxLevel"		"6"
+	"BaseClass"			"ability_lua"
+	"ScriptFile"			"att_bonus"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"FightRecapLevel"		"1"
+	"MaxLevel"			"6"
+	"RequiredLevel"        		"1"
+	"LevelsBetweenUpgrades"    	"3"
 
 
 	"AbilitySpecial"
