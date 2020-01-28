@@ -1,8 +1,17 @@
-﻿modifier_att_bonus = Class({})
+LinkLuaModifier("modifier_att_bonus", LUA_MODIFIER_MOTION_NONE)
+
+att_bonus = class({})
+
+function att_bonus:GetIntrinsicModifierName()
+	local caster = self:GetCaster();
+	caster:AddNewModifier(caster, self, "modifier_att_bonus", {duration = -1});
+end
+
+modifier_att_bonus = Class({})
 
 function modifier_att_bonus:DeclareFunctions()
-
 	local	att_array = {
+
 	MODIFIER_PROPERTY_STATS_STRENGTH_BONUS;
 	MODIFIER_PROPERTY_STATS_AGILITY_BONUS;
 	MODIFIER_PROPERTY_STATS_INTELLECT_BONUS;
@@ -13,33 +22,18 @@ end
 
 
 function modifier_att_bonus:GetModifierBonusStats_Strength(params)
-	return 7;
+	return self:GetAbility():GetSpecialValueFor("special_one");
 end
 
 function modifier_att_bonus:GetModifierBonusStats_Agility(params)
-	return 7;
+	return self:GetAbility():GetSpecialValueFor("special_one");
 end
 
 function modifier_att_bonus:GetModifierBonusStats_Intellect(params)
-	return 7;
+	return self:GetAbility():GetSpecialValueFor("special_one");
 end
 
-
-
-
-
-att_bonus = class({})
-LinkLuaModifier("modifier_att_bonus", LUA_MODIFIER_MOTION_NONE)
-
-function att_bonus:OnUpgrade()
-	local caster = self:GetCaster();
-	caster:AddNewModifier(caster, self, "modifier_att_bonus", {duration = -1});
-end
-
-
-
-
-
+--[[
 "DOTAAbilities"
 {
 	"Version"	"1"
@@ -68,3 +62,4 @@ end
 		}
 	}
 }
+--]]
