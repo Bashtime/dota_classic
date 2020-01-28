@@ -6,7 +6,7 @@ function att_bonus:GetIntrinsicModifierName()
 	return "modifier_att_bonus"
 end
 
-modifier_att_bonus = Class({})
+modifier_att_bonus = class({})
 
 function modifier_att_bonus:DeclareFunctions()
 	local	att_array = {
