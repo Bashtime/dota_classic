@@ -3,8 +3,7 @@ LinkLuaModifier("modifier_att_bonus", LUA_MODIFIER_MOTION_NONE)
 att_bonus = class({})
 
 function att_bonus:GetIntrinsicModifierName()
-	local caster = self:GetCaster();
-	caster:AddNewModifier(caster, self, "modifier_att_bonus", {duration = -1});
+	return "modifier_att_bonus"
 end
 
 modifier_att_bonus = Class({})
