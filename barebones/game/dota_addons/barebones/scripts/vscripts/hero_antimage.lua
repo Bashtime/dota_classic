@@ -62,6 +62,8 @@ function modifier_am_mana_break_passive:OnAttackStart(keys)
 	if IsServer() then
 		local attacker = keys.attacker
 		local target = keys.target
+		local has_purity = attacker:HasAbility("am_purity")
+
 
 		-- If caster has break, do nothing
 		if attacker:PassivesDisabled() then
@@ -83,11 +85,15 @@ function modifier_am_mana_break_passive:OnAttackStart(keys)
 
 			-- Calculate mana to burn, considering "Purity of Will" Level
 			local target_mana_burn = target:GetMana()
+			 
 			
-			if attacker:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") ~= nil  and attacker:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") > 0.0 then
+			if has_purity then
 
-				if (target_mana_burn > self.base_mana_burn + (target:GetMaxMana() * self:GetAbility():GetSpecialValueFor("manabreak_perc_adjust") * 0.01)) then
-					target_mana_burn = self.base_mana_burn + (target:GetMaxMana() * self:GetAbility():GetSpecialValueFor("manabreak_perc_adjust") * 0.01)
+				local percentage_mana_burn = target:GetMaxMana() * self:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") * 0.01
+				local overall_mana_burn = self.base_mana_burn + percentage_mana_burn
+
+				if (target_mana_burn > overall_mana_burn) then
+					target_mana_burn = overall_mana_burn
 				
 				else if (target_mana_burn > self.base_mana_burn) then target_mana_burn = self.base_mana_burn
 					 end
