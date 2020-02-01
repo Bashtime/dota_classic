@@ -141,16 +141,18 @@ function modifier_am_mana_break_passive:OnAttackLanded(keys)
 			local target_mana_burn = target:GetMana()
 
 
-			if attacker:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") ~= nil  and attacker:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") > 0.0 then
+			if has_purity then
 
-				if (target_mana_burn > self.base_mana_burn + (target:GetMaxMana() * self:GetAbility():GetSpecialValueFor("manabreak_perc_adjust") * 0.01)) then
-					target_mana_burn = self.base_mana_burn + (target:GetMaxMana() * self:GetAbility():GetSpecialValueFor("manabreak_perc_adjust") * 0.01)
-				
+				local percentage_mana_burn = target:GetMaxMana() * self:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") * 0.01
+				local overall_mana_burn = self.base_mana_burn + percentage_mana_burn
+
+				if (target_mana_burn > overall_mana_burn) then
+					target_mana_burn = overall_mana_burn
+
 				else if (target_mana_burn > self.base_mana_burn) then target_mana_burn = self.base_mana_burn
 					 end
 				end
-			
-			
+						
 				if self:GetParent():IsIllusion() then
 					target_mana_burn = target_mana_burn * self:GetAbility():GetSpecialValueFor("illusion_percentage") * 0.01
 				end
@@ -191,12 +193,13 @@ function am_blink:IsNetherWardStealable() return false end
 function am_blink:OnAbilityPhaseStart()
 	if IsServer() then
 		local caster = self:GetCaster()
+		local has_purity = caster:HasAbility("am_purity")
 
-		if ( caster:HasAbility("am_purity") ) and (not self.cast_point) then
+		if ( has_purity ) and (not self.cast_point) then
 			self.cast_point = true
 			local cast_point = self:GetCastPoint()
-
-			cast_point = cast_point - caster:FindAbilityByName("am_purity"):GetSpecialValueFor("blink_castpoint_reduction")
+			local cp_red = caster:FindAbilityByName("am_purity"):GetSpecialValueFor("blink_castpoint_reduction")
+			cast_point = cast_point - cp_red
 			self:SetOverrideCastPoint(cast_point)
 		end
 		return true
@@ -206,11 +209,14 @@ end
 
 
 -- Purity of Will modifying CD and CastRange
-
 function am_blink:GetCooldown( nLevel )
-	-- #1 Talent: Blink becomes charges (no CD needed)
-	if self:GetCaster():HasAbility("am_purity") then
-		return self.BaseClass.GetCooldown( self, nLevel ) - self:GetCaster():FindAbilityByName("am_purity"):GetSpecialValueFor("blink_cooldown_reduction")
+	
+	-- Check Purity of Will Level to reduce CD
+	local has_purity = self:GetCaster():HasAbility("am_purity")
+
+	if has_purity then
+		local blink_cd_red = self:GetCaster():FindAbilityByName("am_purity"):GetSpecialValueFor("blink_cooldown_reduction") 
+		return self.BaseClass.GetCooldown( self, nLevel ) - blink_cd_red
 	else
 		return self.BaseClass.GetCooldown( self, nLevel )
 	end
@@ -218,6 +224,7 @@ end
 
 function am_blink:OnSpellStart()
 	if IsServer() then
+
 		-- Declare variables
 		local caster = self:GetCaster()
 		local caster_position = caster:GetAbsOrigin()
@@ -227,7 +234,8 @@ function am_blink:OnSpellStart()
 
 		-- Check and apply Purity Range Bonus
 		if caster:HasAbility("am_purity") then
-			cast_range = cast_range + caster:FindAbilityByName("am_purity"):GetSpecialValueFor("blink_range_adjust")
+			local cast_range_bonus = caster:FindAbilityByName("am_purity"):GetSpecialValueFor("blink_range_adjust")
+			cast_range = cast_range + cast_range_bonus
 		end
 
 		-- Range-check
@@ -243,7 +251,6 @@ function am_blink:OnSpellStart()
 		ParticleManager:ReleaseParticleIndex(blink_pfx)
 		caster:EmitSound("Hero_Antimage.Blink_out")
 
-		
 		-- Adding an extreme small timer for the particles, else they will only appear at the dest
 		Timers:CreateTimer(0.01, function()
 			-- Move hero
@@ -324,7 +331,7 @@ function am_spellshield:IsHiddenWhenStolen()
 	return false
 end
 
-local function SpellReflect(parent, params)
+function SpellReflect(parent, params)
 	-- If some spells shouldn't be reflected, enter it into this spell-list
 	local exception_spell =
 		{
@@ -623,183 +630,174 @@ function modifier_am_spellshield_scepter_recharge:RemoveOnDeath() return false e
 -------------------------------------------
 --      MANA VOID
 -------------------------------------------
--- Visible Modifiers:
-MergeTables(LinkedModifiers,{
-	["modifier_imba_mana_void_stunned"] = LUA_MODIFIER_MOTION_NONE,
-})
-am_mana_void = am_mana_void or class({})
 
-function am_mana_void:OnAbilityPhaseStart()
-	if IsServer() then
-		self:GetCaster():EmitSound("Hero_Antimage.ManaVoidCast")
-		return true
-	end
+am_mana_void = class({})
+LinkLuaModifier( "modifier_generic_stunned_lua", "components/abilities/heroes/hero_antimage", LUA_MODIFIER_MOTION_NONE )
+
+--------------------------------------------------------------------------------
+-- AOE Radius
+function am_mana_void:GetAOERadius()
+	return self:GetSpecialValueFor( "mana_void_aoe_radius" )
 end
 
--- Talent reducing CD + CDR
-function am_mana_void:GetCooldown( nLevel )
+--------------------------------------------------------------------------------
+-- Ability Phase Start
+function am_mana_void:OnAbilityPhaseStart( kv )
+	local target = self:GetCursorTarget()
+	self:PlayEffects1( true )
+
+	return true -- if success
+end
+function am_mana_void:OnAbilityPhaseInterrupted()
+	self:PlayEffects1( false )
+end
+
+--------------------------------------------------------------------------------
+-- Ability Start
+function am_mana_void:OnSpellStart()
+	-- unit identifier
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+
+	-- cancel if got linken
+	if target == nil or target:IsInvulnerable() or target:TriggerSpellAbsorb( self ) then
+		return
+	end
+
+	-- load data
+	local mana_damage_pct = self:GetSpecialValueFor("mana_void_damage_per_mana")
+	local mana_stun = self:GetSpecialValueFor("mana_void_ministun")
+	local radius = self:GetSpecialValueFor( "mana_void_aoe_radius" )
+
+	-- Add modifier
+	target:AddNewModifier(
+		caster, -- player source
+		self, -- ability source
+		"modifier_generic_stunned_lua", -- modifier name
+		{ duration = mana_stun } -- kv
+	)
+
+	-- Get damage value
+	local mana_damage_pct = (target:GetMaxMana() - target:GetMana()) * mana_damage_pct
+
+	-- Apply Damage	 
+	local damageTable = {
+		victim = target,
+		attacker = caster,
+		damage = mana_damage_pct,
+		damage_type = DAMAGE_TYPE_MAGICAL,
+		ability = self, --Optional.
+	}
+	-- ApplyDamage(damageTable)
+
+	-- Find Units in Radius
+	local enemies = FindUnitsInRadius(
+		self:GetCaster():GetTeamNumber(),	-- int, your team number
+		target:GetOrigin(),	-- point, center point
+		nil,	-- handle, cacheUnit. (not known)
+		radius,	-- float, radius. or use FIND_UNITS_EVERYWHERE
+		DOTA_UNIT_TARGET_TEAM_ENEMY,	-- int, team filter
+		DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC,	-- int, type filter
+		0,	-- int, flag filter
+		0,	-- int, order filter
+		false	-- bool, can grow cache
+	)
+
+	for _,enemy in pairs(enemies) do
+		damageTable.victim = enemy
+		ApplyDamage(damageTable)
+	end
+
+	-- Play Effects
+	self:PlayEffects2( target, radius )
+
+	-- Purity of Will reducing cooldown
+	function am_mana_void:GetCooldown( nLevel )
 	local cooldown = self.BaseClass.GetCooldown( self, nLevel )
 	local caster = self:GetCaster()
-	local void_cd_red = caster:FindAbilityByName("am_purity"):GetSpecialValueFor("void_cd_reduction")
-
-	if caster:HasAbility("am_purity") then
-		cooldown = cooldown - void_cd_red
-	end
-
-	return cooldown
-end
-
-function am_mana_void:GetAOERadius()
-	return self:GetSpecialValueFor("mana_void_aoe_radius")
-end
-
-function am_mana_void:IsHiddenWhenStolen()
-	return false
-end
-
-function am_mana_void:OnSpellStart()
-	if IsServer() then
-		local caster = self:GetCaster()
-		local target = self:GetCursorTarget()
-		local ability = self
-		local modifier_ministun = "modifier_imba_mana_void_stunned"
-
-
-		-- Parameters
-		local damage_per_mana = ability:GetSpecialValueFor("mana_void_damage_per_mana")
-		local radius = ability:GetSpecialValueFor("mana_void_aoe_radius")
-		local mana_burn_pct = ability:GetSpecialValueFor("mana_void_mana_burn_pct")
-		local mana_void_ministun = ability:GetSpecialValueFor("mana_void_ministun")
-		local damage = 0
-
-
-		-- If the target possesses a ready Linken's Sphere, do nothing
-		if target:GetTeam() ~= caster:GetTeam() then
-			if target:TriggerSpellAbsorb(ability) then
-				return nil
-			end
+	
+		if caster:HasAbility("am_purity") then
+			local void_cd_red = caster:FindAbilityByName("am_purity"):GetSpecialValueFor("void_cd_reduction")
+			cooldown = cooldown - void_cd_red
 		end
 
-		local time_to_wait = 0
-
-
-		Timers:CreateTimer(time_to_wait, function()
-			-- Apply ministun
-				target:AddNewModifier(caster, ability, modifier_ministun, {duration = mana_void_ministun})
-
-			-- Find all enemies in the area of effect
-			local nearby_enemies = FindUnitsInRadius(caster:GetTeamNumber(), target:GetAbsOrigin(), nil, radius, DOTA_UNIT_TARGET_TEAM_ENEMY, DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_BASIC, DOTA_UNIT_TARGET_FLAG_NONE, FIND_ANY_ORDER, false)
-			for _,enemy in pairs(nearby_enemies) do
-
-				-- Calculate this enemy's damage contribution
-				local this_enemy_damage = 0
-
-				-- Talent 8, all missing mana pools added to damage
-				if ( caster:HasTalent("special_bonus_imba_antimage_8") ) or (enemy == target) then
-					this_enemy_damage = (enemy:GetMaxMana() - enemy:GetMana()) * damage_per_mana
-				end
-				-- Add this enemy's contribution to the damage tally
-				damage = damage + this_enemy_damage
-			end
-
-			
-			-- Damage all enemies in the area for the total damage tally
-			for _,enemy in pairs(nearby_enemies) do
-				if caster:HasScepter() and enemy:IsHero() then
-					enemy:AddNewModifier(caster, self, "modifier_imba_mana_void_scepter", {})
-
-					Timers:CreateTimer(mana_void_ministun, function()
-						if enemy:IsAlive() then
-							enemy:RemoveModifierByName("modifier_imba_mana_void_scepter")
-						end
-					end)
-				end
-			
-				ApplyDamage({attacker = caster, victim = enemy, ability = ability, damage = damage, damage_type = DAMAGE_TYPE_PURE})
-				SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, enemy, damage, nil)
-			end
-
-			-- Shake screen due to excessive PURITY OF WILL
-			ScreenShake(target:GetOrigin(), 10, 0.1, 1, 500, 0, true)
-
-			local void_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_manavoid.vpcf", PATTACH_POINT_FOLLOW, target)
-			ParticleManager:SetParticleControlEnt(void_pfx, 0, target, PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetOrigin(), true)
-			ParticleManager:SetParticleControl(void_pfx, 1, Vector(radius,0,0))
-			ParticleManager:ReleaseParticleIndex(void_pfx)
-			target:EmitSound("Hero_Antimage.ManaVoid")
-		end)
+	return cooldown
 	end
+end
+
+--------------------------------------------------------------------------------
+function am_mana_void:PlayEffects1( bStart )
+	local sound_cast = "Hero_Antimage.ManaVoidCast"
+
+	if bStart then
+		self.target = self:GetCursorTarget()
+		EmitSoundOn( sound_cast, self.target )
+	else
+		StopSoundOn(sound_cast, self.target)
+		self.target = nil
+	end
+end
+
+function am_mana_void:PlayEffects2( target, radius )
+	-- Get Resources
+	local particle_target = "particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"
+	local sound_target = "Hero_Antimage.ManaVoid"
+
+	-- Create Particle
+	-- local effect_target = ParticleManager:CreateParticle( particle_target, PATTACH_POINT_FOLLOW, target )
+	local effect_target = assert(loadfile("lua_abilities/rubick_spell_steal_lua/rubick_spell_steal_lua_arcana"))(self, particle_target, PATTACH_POINT_FOLLOW, target )
+	ParticleManager:SetParticleControl( effect_target, 1, Vector( radius, 0, 0 ) )
+	ParticleManager:ReleaseParticleIndex( effect_target )
+
+	-- Create Sound
+	EmitSoundOn( sound_target, target )
 end
 
 
 
+modifier_generic_stunned_lua = class({})
+--------------------------------------------------------------------------------
 
-		-- local affected_ability = self:GetParent():FindAbilityWithHighestCooldown()
-		-- affected_ability:StartCooldown(affected_ability:GetCooldownTimeRemaining() + self:GetAbility():GetSpecialValueFor("scepter_cooldown_increase"))
-	
+function modifier_generic_stunned_lua:IsDebuff()
+	return true
+end
 
--------------------------------------------
--- Stun modifier
-modifier_imba_mana_void_stunned = modifier_imba_mana_void_stunned or class({})
-function modifier_imba_mana_void_stunned:CheckState()
-	local state =
-		{[MODIFIER_STATE_STUNNED] = true}
+function modifier_generic_stunned_lua:IsStunDebuff()
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:CheckState()
+	local state = {
+	[MODIFIER_STATE_STUNNED] = true,
+	}
+
 	return state
 end
 
-function modifier_imba_mana_void_stunned:IsPurgable() return false end
-function modifier_imba_mana_void_stunned:IsPurgeException() return true end
-function modifier_imba_mana_void_stunned:IsStunDebuff() return true end
-function modifier_imba_mana_void_stunned:IsHidden() return false end
-function modifier_imba_mana_void_stunned:GetEffectName() return "particles/generic_gameplay/generic_stunned.vpcf" end
-function modifier_imba_mana_void_stunned:GetEffectAttachType() return PATTACH_OVERHEAD_FOLLOW end
--------------------------------------------
-for LinkedModifier, MotionController in pairs(LinkedModifiers) do
-	LinkLuaModifier(LinkedModifier, "components/abilities/heroes/hero_antimage", MotionController)
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+
+	return funcs
 end
 
-
--- #6 Talent Delay counter
-modifier_imba_mana_void_delay_counter = modifier_imba_mana_void_delay_counter or class({})
-
-
----------------------
--- TALENT HANDLERS --
----------------------
-
-LinkLuaModifier("modifier_special_bonus_imba_antimage_10", "components/abilities/heroes/hero_antimage", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_special_bonus_imba_antimage_11", "components/abilities/heroes/hero_antimage", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_special_bonus_imba_antimage_blink_range", "components/abilities/heroes/hero_antimage", LUA_MODIFIER_MOTION_NONE)
-
-
-modifier_special_bonus_imba_antimage_10		= class({})
-modifier_special_bonus_imba_antimage_11		= class({})
-modifier_special_bonus_imba_antimage_blink_range	= modifier_special_bonus_imba_antimage_blink_range or class({})
-
-function modifier_special_bonus_imba_antimage_10:IsHidden() 		return true end
-function modifier_special_bonus_imba_antimage_10:IsPurgable() 		return false end
-function modifier_special_bonus_imba_antimage_10:RemoveOnDeath() 	return false end
-
-function modifier_special_bonus_imba_antimage_11:IsHidden() 		return true end
-function modifier_special_bonus_imba_antimage_11:IsPurgable() 		return false end
-function modifier_special_bonus_imba_antimage_11:RemoveOnDeath() 	return false end
-
-function modifier_special_bonus_imba_antimage_blink_range:IsHidden() 		return true end
-function modifier_special_bonus_imba_antimage_blink_range:IsPurgable() 		return false end
-function modifier_special_bonus_imba_antimage_blink_range:RemoveOnDeath() 	return false end
-
-function imba_antimage_blink:OnOwnerSpawned()
-	if self:GetCaster():HasTalent("special_bonus_imba_antimage_10") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_antimage_10") then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_antimage_10"), "modifier_special_bonus_imba_antimage_10", {})
-	end
-	
-	if self:GetCaster():HasTalent("special_bonus_imba_antimage_blink_range") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_antimage_blink_range") then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_antimage_blink_range"), "modifier_special_bonus_imba_antimage_blink_range", {})
-	end
+function modifier_generic_stunned_lua:GetOverrideAnimation( params )
+	return ACT_DOTA_DISABLED
 end
 
-function imba_antimage_spell_shield:OnOwnerSpawned()
-	if self:GetCaster():HasTalent("special_bonus_imba_antimage_11") and not self:GetCaster():HasModifier("modifier_special_bonus_imba_antimage_11") then
-		self:GetCaster():AddNewModifier(self:GetCaster(), self:GetCaster():FindAbilityByName("special_bonus_imba_antimage_11"), "modifier_special_bonus_imba_antimage_11", {})
-	end
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:GetEffectName()
+	return "particles/generic_gameplay/generic_stunned.vpcf"
 end
+
+function modifier_generic_stunned_lua:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
+--------------------------------------------------------------------------------
