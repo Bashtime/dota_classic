@@ -1,0 +1,20 @@
+Start HP: 200
+HP / str: 19		(default 20)
+
+Start Mana: 50		(defautt 75)
+Mana / int: 13		(default 12)
+
+Start Armor: -1 or 0 for most heros
+7 agi / armor point
+
+HP Regen Base: 0,4	(default now for majority 0; 6.88: 0,25)
+HP regen / str: 0,05	(default now 0,1 / str;  6.88: 0,03)
+
+
+Mana Regen Base: 0	
+Mana Regen / int: 0,05	(6.88: 0,04)
+
+14 int / 1% spell amp
+
+
+
