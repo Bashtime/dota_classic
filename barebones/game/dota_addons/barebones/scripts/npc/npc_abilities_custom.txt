@@ -203,7 +203,7 @@
 	{
 		// General
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
 		"BaseClass"						"ability_lua"
 		"AbilityTextureName"			"antimage_spell_shield"
 		"ScriptFile"					"hero_antimage"
@@ -214,7 +214,7 @@
 
 		"AbilityCooldown"				"60 45 30 15"
 		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"9999"
+		"AbilityManaCost"				"80"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 -- Editors:
 --     AtroCty,  04.07.2017
 --	   Bashtime, 28.01.2020
---	   Credits: Cykada, EmberCookies, dota2MODcommunity
+--	   Credits: Cykada, EmberCookies, Silaah, Perry, the whole dota2MODcommunity
 
 local LinkedModifiers = {}
 -------------------------------------------
@@ -626,11 +626,6 @@ function modifier_am_spellshield_scepter_recharge:IsDebuff() return true end
 function modifier_am_spellshield_scepter_recharge:RemoveOnDeath() return false end
 
 
---TO DO: I want Spellshield change behavior from passive to 
---active by learning purity of will lvl 2, or reduce its Manacost as a bandaid solution
---Active Duration will be influenced by purity, CD by spellshield level  
-
-
 -------------------------------------------
 --      MANA VOID
 -------------------------------------------
@@ -758,10 +753,8 @@ function am_mana_void:PlayEffects2( target, radius )
 end
 
 
-
 modifier_generic_stunned_lua = class({})
 --------------------------------------------------------------------------------
-
 function modifier_generic_stunned_lua:IsDebuff()
 	return true
 end
