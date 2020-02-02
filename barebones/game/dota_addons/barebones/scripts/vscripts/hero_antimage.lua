@@ -291,11 +291,15 @@ function am_spellshield:GetAbilityTextureName()
 end
 
 function am_spellshield:GetBehavior()
-	if self:GetCaster():HasTalent("special_bonus_imba_antimage_2") then
-		return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
+	local has_purity = self:GetCaster():HasAbility("am_purity")
+
+	if has_purity then
+		local pur_lvl = self:GetCaster():FindAbilityByName("am_purity"):GetLevel()
+		if pur_lvl > 1 then return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE
+		end
 	end
 
-	return DOTA_ABILITY_BEHAVIOR_IMMEDIATE + DOTA_ABILITY_BEHAVIOR_NO_TARGET + DOTA_ABILITY_BEHAVIOR_AUTOCAST
+	return DOTA_ABILITY_BEHAVIOR_PASSIVE
 end
 
 -- Declare active skill + visuals
@@ -412,7 +416,7 @@ function SpellReflect(parent, params)
 	return false
 end
 
-local function SpellAbsorb(parent, params)
+function SpellAbsorb(parent, params)
 	if params.ability:GetCaster():GetTeamNumber() == parent:GetTeamNumber() then
 		return nil
 	end
