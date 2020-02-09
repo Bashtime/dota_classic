@@ -38,6 +38,22 @@
     GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_7] = "#c7e40d;";
     GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_8] = "#8c2af4;";
 
+
+    //Fuck Scanner
+     var newUI = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
+     newUI.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
+
+    var hudElements = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements");
+    var newUI = hudElements.FindChildTraverse("center_block");
+
+    newUI.FindChildTraverse("StatBranch").style.visibility = "collapse";                //you are not spawning the talent UI, fuck off (Disabling mouseover and onactivate)
+                                                                                        //We also don't want to crash, valve plz
+    newUI.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
+    newUI.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", function(){});    //Fuck that levelup button
+    newUI.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
+
+
+
   </script> 
 
   <Panel>
