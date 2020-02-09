@@ -144,6 +144,53 @@ function GameMode:InitGameMode()
   DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
 end
 
+
+function GameMode:SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 19.0)
+	-- body
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local str_hp = DOTA_ATTRIBUTE_STRENGTH_HP
+	local hp_value = 19.0
+	return (str_hp,hp_value)
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local str_regen = DOTA_ATTRIBUTE_STRENGTH_HP_REGEN
+	local regen_value = 0.05
+	return (str_regen, regen_value)
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local str_mr = DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT
+	local mr_value = 0.0
+	return (str_mr, mr_value)
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local int_mana = DOTA_ATTRIBUTE_INTELLIGENCE_MANA
+	local mana_value = 13.0
+	return (int_mana, mana_value)
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local int_amp = DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT
+	local amp_value = 0.07143
+	return (int_amp, amp_value)
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local agi_armor = DOTA_ATTRIBUTE_AGILITY_ARMOR
+	local armor_value = 0.1667
+	return (agi_armor, armor_value)
+end
+
+function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
+	local agi_ms = DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT
+	local ms_value = 0.0
+	return (agi_ms, ms_value)
+end
+
 -- This is an example console command
 function GameMode:ExampleConsoleCommand()
   print( '******* Example Console Command ***************' )
