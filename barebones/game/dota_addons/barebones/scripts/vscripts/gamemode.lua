@@ -145,93 +145,18 @@ function GameMode:InitGameMode()
 end
 
 
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local str_hp = DOTA_ATTRIBUTE_STRENGTH_HP
-	local hp_value = 19.0
-	return (str_hp,hp_value)
-end
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 19)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0.05)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT, 0.04)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.1429)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 1)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.025)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 13)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0.05)
+GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.07143)
 
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local str_regen = DOTA_ATTRIBUTE_STRENGTH_HP_REGEN
-	local regen_value = 0.05
-	return (str_regen, regen_value)
-end
-
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local str_mr = DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT
-	local mr_value = 0.04
-	return (str_mr, mr_value)
-end
-
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local int_mana = DOTA_ATTRIBUTE_INTELLIGENCE_MANA
-	local mana_value = 13.0
-	return (int_mana, mana_value)
-end
-
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local int_amp = DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT
-	local amp_value = 0.07143
-	return (int_amp, amp_value)
-end
-
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local agi_armor = DOTA_ATTRIBUTE_AGILITY_ARMOR
-	local armor_value = 0.1429
-	return (agi_armor, armor_value)
-end
-
-function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
-	local agi_ms = DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT
-	local ms_value = 0.025
-	return (agi_ms, ms_value)
-end
-
-function GameMode:GetGameModeEntity()
-	local gm = self.GetGameModeEntity()
-
-	local agi_ms = DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT
-	local ms_value = 0.025
-
-	local agi_as = DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED
-	local as_value = 1	   -- 1=100% increase or 1% increase ???
-
-	local agi_armor = DOTA_ATTRIBUTE_AGILITY_ARMOR
-	local armor_value = 0.1429
-
-	local int_amp = DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT
-	local amp_value = 0.07143
-
-	local int_mana = DOTA_ATTRIBUTE_INTELLIGENCE_MANA
-	local mana_value = 13.0
-
-	local int_regen = DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN
-	local manareg_value = 0.05
-
-	local str_mr = DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT
-	local mr_value = 0.04
-
-	local str_regen = DOTA_ATTRIBUTE_STRENGTH_HP_REGEN
-	local regen_value = 0.05
-
-	local str_hp = DOTA_ATTRIBUTE_STRENGTH_HP
-	local hp_value = 19.0
-
-	local rules = {
-		gm:SetCustomAttributeDerivedStatValue(str_hp,hp_value),
-		gm:SetCustomAttributeDerivedStatValue(str_regen,regen_value),
-		gm:SetCustomAttributeDerivedStatValue(str_mr,mr_value),
-		gm:SetCustomAttributeDerivedStatValue(agi_armor,armor_value),
-		gm:SetCustomAttributeDerivedStatValue(agi_ms,ms_value),
-		gm:SetCustomAttributeDerivedStatValue(agi_as,as_value),
-		gm:SetCustomAttributeDerivedStatValue(int_mana,mana_value),
-		gm:SetCustomAttributeDerivedStatValue(int_regen,manareg_value),
-		gm:SetCustomAttributeDerivedStatValue(int_amp,amp_value),
-	}
-	return rules
-end
-
-
+-- Example: 100 int give 7,14% Spell Amp, 100 Str give 4% MR and thus on the whole 28% MR standard, Magic Damage = 1,0714 * 0.72 = 0.7714 
+-- Without MR and SA: 1,00 * 0.75 = 0.75 , 0.7714 / 0.75 = overall 2.85% more damage for spells 
 
 
 -- This is an example console command
