@@ -1,6 +1,6 @@
-# Barebones Starter Mod Kit
+# DotA Classic Mod
 
-### Version 1.01c
+### Version 0.1 (adapted from barebones)
 ### [Change Log](https://github.com/bmddota/barebones/blob/source2/ChangeLog.md)
 
 ## Introduction
