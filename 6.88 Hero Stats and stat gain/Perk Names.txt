@@ -50,9 +50,29 @@ DK:	Dragon unleashed
 Dazzle:	Rite of Shades
 Clock:	Overclocking
 Lesh:	Eternal Torment	
-
-
+NP:	Spring Blossoms
+Naix:	Breaker of Chains
+Ds:	Universal Power
+Clinkz:	Burnout
+Omni:	Omniscience
+Ench:	Charming Smile
+Husk:	Ultimate Sacrifice
+NS:	Light Nihilation
+Brood:	Spider Senses
+Bh:	Dead or Alive!
+Weaver:	New Patterns
+Jakiro:	Fire-Ice Duality
+Bat:	Pyromania
+Chen: Obelis Guidance
+Spec:	Doppler Effect
 AA:		Ice Age
+Doom:	Doomsday
+Ursa:	Fuzzy Wuzzy
+Sb:	Bulldoze
+
+
+
+
 
 
 
