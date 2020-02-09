@@ -49,7 +49,7 @@ Luna:	Blood Moon
 DK:	Dragon unleashed
 Dazzle:	Rite of Shades
 Clock:	Overclocking
-Lesh:	
+Lesh:	Eternal Torment	
 
 
 AA:		Ice Age

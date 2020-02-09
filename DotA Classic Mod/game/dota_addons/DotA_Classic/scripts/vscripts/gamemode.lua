@@ -1,12 +1,12 @@
 -- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
-BAREBONES_VERSION = "1.00"
+DOTACLASSIC_VERSION = "0.10"
 
 -- Set this to true if you want to see a complete debug output of all events/processes done by barebones
 -- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
-BAREBONES_DEBUG_SPEW = false 
+DOTACLASSIC_DEBUG_SPEW = false 
 
 if GameMode == nil then
-    DebugPrint( '[BAREBONES] creating barebones game mode' )
+    DebugPrint( '[DOTA CLASSIX] creating DotA Classic game mode' )
     _G.GameMode = class({})
 end
 
@@ -66,7 +66,7 @@ end
   This function should generally only be used if the Precache() function in addon_game_mode.lua is not working.
 ]]
 function GameMode:PostLoadPrecache()
-  DebugPrint("[BAREBONES] Performing Post-Load precache")    
+  DebugPrint("[DOTA CLASSIX] Performing Post-Load precache")    
   --PrecacheItemByNameAsync("item_example_item", function(...) end)
   --PrecacheItemByNameAsync("example_ability", function(...) end)
 
@@ -79,7 +79,7 @@ end
   It can be used to initialize state that isn't initializeable in InitGameMode() but needs to be done before everyone loads in.
 ]]
 function GameMode:OnFirstPlayerLoaded()
-  DebugPrint("[BAREBONES] First Player has loaded")
+  DebugPrint("[DOTA CLASSIX] First Player has loaded")
 end
 
 --[[
@@ -87,7 +87,7 @@ end
   It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
 ]]
 function GameMode:OnAllPlayersLoaded()
-  DebugPrint("[BAREBONES] All Players have loaded into the game")
+  DebugPrint("[DOTA CLASSIX] All Players have loaded into the game")
 end
 
 --[[
@@ -98,7 +98,7 @@ end
   The hero parameter is the hero entity that just spawned in
 ]]
 function GameMode:OnHeroInGame(hero)
-  DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
+  DebugPrint("[DOTA CLASSIX] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
   -- This line for example will set the starting gold of every hero to 500 unreliable gold
   --hero:SetGold(500, false)
@@ -121,7 +121,7 @@ end
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
 ]]
 function GameMode:OnGameInProgress()
-  DebugPrint("[BAREBONES] The game has officially begun")
+  DebugPrint("[DOTA CLASSIX] The game has officially begun")
 
   Timers:CreateTimer(30, -- Start this timer 30 game-time seconds later
     function()
@@ -136,12 +136,12 @@ end
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
   GameMode = self
-  DebugPrint('[BAREBONES] Starting to load Barebones gamemode...')
+  DebugPrint('[DOTA CLASSIX] Starting to load Barebones gamemode...')
 
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
 
-  DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
+  DebugPrint('[DOTA CLASSIX] Done loading Barebones gamemode!\n\n')
 end
 
 
