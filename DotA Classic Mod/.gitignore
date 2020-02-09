@@ -1,3 +1,42 @@
+# Cache crap that Valve autogenerates
+*.bin
+*.cfg
+*.soc
+*.tmp
+
+# Compiled formats
+*.vmat_c
+*.vagrp_c
+*.vmesh_c
+
+# Map files
+
+# Map overviews
+resource/overviews/*
+
+#Github dump
+*.stackdump
+
+game/dota_addons/dota_imba_reborn/scripts/vscripts/components/statcollection/settings.kv
+game/dota_addons/dota_imba_reborn/scripts/vscripts/components/api/backend_key.kv
+
+game/dota_addons/dota_imba_reborn/network_measurement\.txt
+game/dota_addons/dota_imba_reborn/rich_presence_persistent_data\.txt
+
+game/dota_addons/dota_imba_reborn/server_log\.txt
+
+# Roshan
+content/dota_addons/dota_imba/models/rosh*
+game/dota_addons/dota_imba/models/rosh*
+
+# eclipse
+.project
+.settings
+.DS_Store
+.idea
+
+
+
 #################
 ## Eclipse
 #################
