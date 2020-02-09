@@ -156,7 +156,7 @@ GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_
 GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.07143)
 
 -- Example: 100 int give 7,14% Spell Amp, 100 Str give 4% MR and thus on the whole 28% MR standard, Magic Damage = 1,0714 * 0.72 = 0.7714 
--- Without MR and SA: 1,00 * 0.75 = 0.75 , 0.7714 / 0.75 = overall 2.85% more damage for spells 
+-- Without addtional MR and SA: 1,00 * 0.75 = 0.75 , 0.7714 / 0.75 = overall 2.85% more damage for spells 
 
 
 -- This is an example console command
