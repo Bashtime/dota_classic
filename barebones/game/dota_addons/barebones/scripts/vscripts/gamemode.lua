@@ -145,10 +145,6 @@ function GameMode:InitGameMode()
 end
 
 
-function GameMode:SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 19.0)
-	-- body
-end
-
 function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
 	local str_hp = DOTA_ATTRIBUTE_STRENGTH_HP
 	local hp_value = 19.0
@@ -163,7 +159,7 @@ end
 
 function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
 	local str_mr = DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT
-	local mr_value = 0.0
+	local mr_value = 0.04
 	return (str_mr, mr_value)
 end
 
@@ -181,15 +177,62 @@ end
 
 function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
 	local agi_armor = DOTA_ATTRIBUTE_AGILITY_ARMOR
-	local armor_value = 0.1667
+	local armor_value = 0.1429
 	return (agi_armor, armor_value)
 end
 
 function GameMode:SetCustomAttributeDerivedStatValue(nStatType, flNewValue)
 	local agi_ms = DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT
-	local ms_value = 0.0
+	local ms_value = 0.025
 	return (agi_ms, ms_value)
 end
+
+function GameMode:GetGameModeEntity()
+	local gm = self.GetGameModeEntity()
+
+	local agi_ms = DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT
+	local ms_value = 0.025
+
+	local agi_as = DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED
+	local as_value = 1	   -- 1=100% increase or 1% increase ???
+
+	local agi_armor = DOTA_ATTRIBUTE_AGILITY_ARMOR
+	local armor_value = 0.1429
+
+	local int_amp = DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT
+	local amp_value = 0.07143
+
+	local int_mana = DOTA_ATTRIBUTE_INTELLIGENCE_MANA
+	local mana_value = 13.0
+
+	local int_regen = DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN
+	local manareg_value = 0.05
+
+	local str_mr = DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT
+	local mr_value = 0.04
+
+	local str_regen = DOTA_ATTRIBUTE_STRENGTH_HP_REGEN
+	local regen_value = 0.05
+
+	local str_hp = DOTA_ATTRIBUTE_STRENGTH_HP
+	local hp_value = 19.0
+
+	local rules = {
+		gm:SetCustomAttributeDerivedStatValue(str_hp,hp_value),
+		gm:SetCustomAttributeDerivedStatValue(str_regen,regen_value),
+		gm:SetCustomAttributeDerivedStatValue(str_mr,mr_value),
+		gm:SetCustomAttributeDerivedStatValue(agi_armor,armor_value),
+		gm:SetCustomAttributeDerivedStatValue(agi_ms,ms_value),
+		gm:SetCustomAttributeDerivedStatValue(agi_as,as_value),
+		gm:SetCustomAttributeDerivedStatValue(int_mana,mana_value),
+		gm:SetCustomAttributeDerivedStatValue(int_regen,manareg_value),
+		gm:SetCustomAttributeDerivedStatValue(int_amp,amp_value),
+	}
+	return rules
+end
+
+
+
 
 -- This is an example console command
 function GameMode:ExampleConsoleCommand()
