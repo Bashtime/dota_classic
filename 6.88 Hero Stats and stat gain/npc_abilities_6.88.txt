@@ -981,34 +981,34 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_increase_outgoing_pct"		"12 18 24 30"
+				"damage_increase_outgoing_pct"		"25 30 35 40"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage_increase_incoming_pct"		"10 14 18 22"
+				"damage_increase_incoming_pct"	"18 22 26 30"	//6.88 "25 30 35 40"
 				"CalculateSpellDamageTooltip"	"0"
 			}
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_bonus_pct"			"13 17 21 25"
+				"health_bonus_pct"			"19 21 23 25"
 			}
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_bonus_creep_pct"	"13 17 21 25"
+				"health_bonus_creep_pct"	"19 21 23 25"
 			}
 			"06"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_bonus_aoe"	"300"
+				"health_bonus_aoe"	"0"						// perk gives 300 AoE
 			}
 			"07"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"health_bonus_share_percent"	"50"
+				"health_bonus_share_percent"	"0"			// perk gives 15/30/45/60%
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
@@ -1031,15 +1031,15 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"1500"
-		"AbilityCastPoint"				"0.3"
+		"AbilityCastPoint"				"0.4"		//Perk to give 0.1 CPreduction
 		
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"12"
+		"AbilityCooldown"				"25 21 17 13"	//Perk to give CDred of 1 3 5 7
 	
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"70 80 90 100"
+		"AbilityManaCost"				"100"
 
 
 		// Special
@@ -1059,8 +1059,7 @@
 			"03"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"damage"					"125 175 225 275"
-				"LinkedSpecialBonus"		"special_bonus_unique_bloodseeker_2"
+				"damage"					"120 160 200 240"
 			}
 			"04"
 			{
@@ -1070,7 +1069,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"delay_plus_castpoint_tooltip"						"2.9"
+				"delay_plus_castpoint_tooltip"						"3.0"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_2"
@@ -1099,13 +1098,12 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_movement_speed"		"12 24 36 48"
-				"LinkedSpecialBonus"		"special_bonus_unique_bloodseeker_4"
+				"bonus_movement_speed"		"16 24 32 40"		//Perk to give "2 4 6 8" %
 			}			
-			"03"
+			"03"  //Old BS gives attack_damage "16 24 32 40", AS could be perk "10 15 20 25"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"bonus_attack_speed"		"30 45 60 75"
+				"bonus_attack_speed"		"30 45 60 75"	
 			}		
 			"04"
 			{
@@ -1115,7 +1113,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"visibility_threshold_pct"	"25"
+				"visibility_threshold_pct"	"25"	//perk to increase pct to "25 30 35 40"
 			}
 			"06"
 			{
@@ -1125,7 +1123,7 @@
 			"07"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"linger_duration"			"4.0"
+				"linger_duration"			"3.5"		//6.88 "0"
 			}
 		}
 		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
@@ -1159,15 +1157,15 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"70"
+		"AbilityCooldown"				"60"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityManaCost"				"200 225 250"		
+		"AbilityManaCost"				"150 200 250"		
 		
 		// Cast Range
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"800"
+		"AbilityCastRange"				"1000"
 			
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -1180,7 +1178,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"duration"					"10 11 12"
+				"duration"					"12"
 			}
 			"02"
 			{

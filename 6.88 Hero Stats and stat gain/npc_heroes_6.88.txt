@@ -813,7 +813,7 @@
 
 		"Ability1"		"bloodseeker_bloodrage"
 		"Ability2"		"bloodseeker_blood_bath"
-		"Ability3"		"bloodseeker_thirst"
+		"Ability3"		"bloodseeker_thirst"		// will require lua version
 		"Ability4"		"generic_hidden"
 		"Ability5"		"generic_hidden"
 		"Ability6"		"bloodseeker_rupture"
