@@ -44,7 +44,7 @@ if IsServer() then
         self.checkArmor = true
         local armor = self:GetParent():GetPhysicalArmorValue()
         self.checkArmor = false
-        local physicalResistance = 0.05*armor/(1+0.05*math.abs(armor)) * 100
+        local physicalResistance = 0.06*armor/(1+0.06*math.abs(armor)) * 100
         --print("common_custom_armor.lua | Physical resistance of: "..tostring(physicalResistance).." for unit with: "..tostring(armor).." armor")
         return -physicalResistance
     end

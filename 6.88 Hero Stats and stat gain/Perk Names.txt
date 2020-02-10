@@ -102,7 +102,13 @@ Sky:
 Abba:	Mist Fields
 ET:	
 LC:	
-Ember:	
-Kaolin:	
+Techies:			
+Ember:			
+Kaolin:			
+
+TB:			
+Phoe:			
+Oracle:	Orakyle		
+WW:	
 
 
