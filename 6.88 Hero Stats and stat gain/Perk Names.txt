@@ -105,10 +105,12 @@ LC:
 Techies:			
 Ember:			
 Kaolin:			
-
+UL:	
 TB:			
 Phoe:			
 Oracle:	Orakyle		
 WW:	
+ArcW:	
+MK:			//Adaptations and new heroes from here
 
 
