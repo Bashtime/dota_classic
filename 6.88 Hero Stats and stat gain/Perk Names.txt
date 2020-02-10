@@ -40,7 +40,7 @@ QoP:	Safe Word
 Veno:	Concentrated Toxins
 Void:	Illusion of Time
 WK:	COMMANDING PRESENCE
-DP:	Last Will
+DP:	Witchcraft
 PA:	Sisters of the Veil
 Pugna:	Arts of Oblivion
 TA:	Veil of Ignorance
@@ -69,14 +69,36 @@ AA:		Ice Age
 Doom:	Doomsday
 Ursa:	Fuzzy Wuzzy
 Sb:	Bulldoze
-
-
-
-
-
-
-
-
+Gyro:	Side Gunner
+Alch:	Breaking Bad
+Invo:	Beacon of Knowledge
+Sile:	Vow of Silence
+OD:	Impending Doom
+Lycan:	
+Brew:	Cinder Brew
+SD:	Puppet Master
+LD:	Synergy
+CK:	Ragnarök
+Meepo:	
+Roof:	Force of Nature	
+Ogre:	
+UD:	Last Will
+Rubick:	Arcane Supremecy / Rubick's Cube
+Disruptor:	
+Nyx:	
+Naga:	Slithereen Oath
+Kotl:	Will-O-Wisp
+Wisp:	
+Visage:	
+Slark:	
+Dusa:	
+Troll:	Blow Up
+Cent:	Great Foritude
+Magnus:	
+Timber:	
+BB:	
+Tusk:	
+Sky:	
 
 
 
