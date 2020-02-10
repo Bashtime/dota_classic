@@ -80,6 +80,9 @@ end
 ]]
 function GameMode:OnFirstPlayerLoaded()
   DebugPrint("[DOTA CLASSIX] First Player has loaded")
+  
+  -- Apply a modifier that makes it obey our armour formula
+  LinkLuaModifier("modifier_common_custom_armor", "abilities/common_custom_armor.lua", LUA_MODIFIER_MOTION_NONE)
 end
 
 --[[

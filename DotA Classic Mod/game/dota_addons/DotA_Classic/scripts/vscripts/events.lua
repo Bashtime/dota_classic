@@ -336,3 +336,8 @@ function GameMode:OnPlayerChat(keys)
 
   local text = keys.text
 end
+
+function GameMode:OnNPCSpawned(keys)
+  -- Apply a modifier that makes it obey our armour formula
+  npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
+end

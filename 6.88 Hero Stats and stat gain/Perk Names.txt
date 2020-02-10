@@ -95,13 +95,14 @@ Dusa:
 Troll:	Blow Up
 Cent:	Great Foritude
 Magnus:	
-Timber:	
+Timber:	Shredder
 BB:	
-Tusk:	
+Tusk:	Art of Brawling
 Sky:	
-
-
-
-
+Abba:	Mist Fields
+ET:	
+LC:	
+Ember:	
+Kaolin:	
 
 
