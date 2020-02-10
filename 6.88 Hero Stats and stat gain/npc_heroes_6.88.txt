@@ -172,7 +172,7 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"		"antimage_mana_break"
 		"Ability2"		"antimage_blink"
-		"Ability3"		"antimage_counterspell"
+		"Ability3"		"antimage_spell_shield"
 		"Ability4"		"generic_hidden"
 		"Ability5"		"generic_hidden"
 		"Ability6"		"antimage_mana_void"
@@ -595,7 +595,7 @@
 
 		"Ability1"		"bane_nightmare"
 		"Ability2"		"bane_brain_sap"
-		"Ability3"		"bane_enfeeble"
+		"Ability3"		"bane_enfeeble_old"
 		"Ability4"		"generic_hidden"
 		"Ability5"		"generic_hidden"
 		"Ability6"		"bane_fiends_grip"
