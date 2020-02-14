@@ -1,4 +1,4 @@
-AM: 	Purity of Will
+﻿AM: 	Purity of Will
 Axe: 	One Man Army
 Bane: 	Essence of Fear
 BS: 	Bloodbath
@@ -45,7 +45,7 @@ PA:	Sisters of the Veil
 Pugna:	Arts of Oblivion
 TA:	Veil of Ignorance
 Viper:	Toxic Environment
-Luna:	Blood Moon	
+Luna:	Full Moon	
 DK:	Dragon unleashed
 Dazzle:	Rite of Shades
 Clock:	Overclocking
@@ -74,17 +74,17 @@ Alch:	Breaking Bad
 Invo:	Beacon of Knowledge
 Sile:	Vow of Silence
 OD:	Impending Doom
-Lycan:	
+Lycan:	Blood Moon
 Brew:	Cinder Brew
 SD:	Puppet Master
 LD:	Synergy
 CK:	Ragnarök
-Meepo:	
+Meepo:	Dig it!
 Roof:	Force of Nature	
-Ogre:	
+Ogre:	Lucklord
 UD:	Last Will
 Rubick:	Arcane Supremecy / Rubick's Cube
-Disruptor:	
+Disruptor: 	
 Nyx:	
 Naga:	Slithereen Oath
 Kotl:	Will-O-Wisp
@@ -106,11 +106,13 @@ Techies:
 Ember:			
 Kaolin:			
 UL:	
-TB:			
-Phoe:			
+TB:	Demonic Conversion		
+Phoe:	Ashes to ashes		
 Oracle:	Orakyle		
 WW:	
 ArcW:	
 MK:			//Adaptations and new heroes from here
+Pango:
+Granny:
 
 
