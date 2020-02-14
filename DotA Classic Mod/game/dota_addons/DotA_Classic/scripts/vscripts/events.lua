@@ -2,8 +2,8 @@
 
 -- Cleanup a player when they leave
 function GameMode:OnDisconnect(keys)
-  DebugPrint('[BAREBONES] Player Disconnected ' .. tostring(keys.userid))
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] Player Disconnected ' .. tostring(keys.userid))
+  --DebugPrintTable(keys)
 
   local name = keys.name
   local networkid = keys.networkid
@@ -13,18 +13,19 @@ function GameMode:OnDisconnect(keys)
 end
 -- The overall game state has changed
 function GameMode:OnGameRulesStateChange(keys)
-  DebugPrint("[BAREBONES] GameRules State Changed")
-  DebugPrintTable(keys)
+  --DebugPrint("[BAREBONES] GameRules State Changed")
+  --DebugPrintTable(keys)
 
   local newState = GameRules:State_Get()
 end
 
 -- An NPC has spawned somewhere in game.  This includes heroes
 function GameMode:OnNPCSpawned(keys)
-  DebugPrint("[BAREBONES] NPC Spawned")
-  DebugPrintTable(keys)
+  --DebugPrint("[BAREBONES] NPC Spawned")
+  --DebugPrintTable(keys)
 
   local npc = EntIndexToHScript(keys.entindex)
+
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
@@ -49,8 +50,8 @@ end
 
 -- An item was picked up off the ground
 function GameMode:OnItemPickedUp(keys)
-  DebugPrint( '[BAREBONES] OnItemPickedUp' )
-  DebugPrintTable(keys)
+  --DebugPrint( '[BAREBONES] OnItemPickedUp' )
+  --DebugPrintTable(keys)
 
   local unitEntity = nil
   if keys.UnitEntitIndex then
@@ -67,14 +68,14 @@ end
 -- A player has reconnected to the game.  This function can be used to repaint Player-based particles or change
 -- state as necessary
 function GameMode:OnPlayerReconnect(keys)
-  DebugPrint( '[BAREBONES] OnPlayerReconnect' )
-  DebugPrintTable(keys) 
+  --DebugPrint( '[BAREBONES] OnPlayerReconnect' )
+ -- DebugPrintTable(keys) 
 end
 
 -- An item was purchased by a player
 function GameMode:OnItemPurchased( keys )
-  DebugPrint( '[BAREBONES] OnItemPurchased' )
-  DebugPrintTable(keys)
+  --DebugPrint( '[BAREBONES] OnItemPurchased' )
+  --DebugPrintTable(keys)
 
   -- The playerID of the hero who is buying something
   local plyID = keys.PlayerID
@@ -90,8 +91,8 @@ end
 
 -- An ability was used by a player
 function GameMode:OnAbilityUsed(keys)
-  DebugPrint('[BAREBONES] AbilityUsed')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] AbilityUsed')
+  --DebugPrintTable(keys)
 
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local abilityname = keys.abilityname
@@ -99,16 +100,16 @@ end
 
 -- A non-player entity (necro-book, chen creep, etc) used an ability
 function GameMode:OnNonPlayerUsedAbility(keys)
-  DebugPrint('[BAREBONES] OnNonPlayerUsedAbility')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnNonPlayerUsedAbility')
+  --DebugPrintTable(keys)
 
   local abilityname=  keys.abilityname
 end
 
 -- A player changed their name
 function GameMode:OnPlayerChangedName(keys)
-  DebugPrint('[BAREBONES] OnPlayerChangedName')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnPlayerChangedName')
+  --DebugPrintTable(keys)
 
   local newName = keys.newname
   local oldName = keys.oldName
@@ -116,8 +117,8 @@ end
 
 -- A player leveled up an ability
 function GameMode:OnPlayerLearnedAbility( keys)
-  DebugPrint('[BAREBONES] OnPlayerLearnedAbility')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnPlayerLearnedAbility')
+  --DebugPrintTable(keys)
 
   local player = EntIndexToHScript(keys.player)
   local abilityname = keys.abilityname
@@ -125,8 +126,8 @@ end
 
 -- A channelled ability finished by either completing or being interrupted
 function GameMode:OnAbilityChannelFinished(keys)
-  DebugPrint('[BAREBONES] OnAbilityChannelFinished')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnAbilityChannelFinished')
+  --DebugPrintTable(keys)
 
   local abilityname = keys.abilityname
   local interrupted = keys.interrupted == 1
@@ -134,8 +135,8 @@ end
 
 -- A player leveled up
 function GameMode:OnPlayerLevelUp(keys)
-  DebugPrint('[BAREBONES] OnPlayerLevelUp')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnPlayerLevelUp')
+  --DebugPrintTable(keys)
 
   local player = EntIndexToHScript(keys.player)
   local level = keys.level
@@ -143,8 +144,8 @@ end
 
 -- A player last hit a creep, a tower, or a hero
 function GameMode:OnLastHit(keys)
-  DebugPrint('[BAREBONES] OnLastHit')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnLastHit')
+  --DebugPrintTable(keys)
 
   local isFirstBlood = keys.FirstBlood == 1
   local isHeroKill = keys.HeroKill == 1
@@ -155,8 +156,8 @@ end
 
 -- A tree was cut down by tango, quelling blade, etc
 function GameMode:OnTreeCut(keys)
-  DebugPrint('[BAREBONES] OnTreeCut')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnTreeCut')
+  --DebugPrintTable(keys)
 
   local treeX = keys.tree_x
   local treeY = keys.tree_y
@@ -164,8 +165,8 @@ end
 
 -- A rune was activated by a player
 function GameMode:OnRuneActivated (keys)
-  DebugPrint('[BAREBONES] OnRuneActivated')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnRuneActivated')
+  --DebugPrintTable(keys)
 
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local rune = keys.rune
@@ -187,8 +188,8 @@ end
 
 -- A player took damage from a tower
 function GameMode:OnPlayerTakeTowerDamage(keys)
-  DebugPrint('[BAREBONES] OnPlayerTakeTowerDamage')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnPlayerTakeTowerDamage')
+  --DebugPrintTable(keys)
 
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local damage = keys.damage
@@ -196,8 +197,8 @@ end
 
 -- A player picked a hero
 function GameMode:OnPlayerPickHero(keys)
-  DebugPrint('[BAREBONES] OnPlayerPickHero')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnPlayerPickHero')
+  --DebugPrintTable(keys)
 
   local heroClass = keys.hero
   local heroEntity = EntIndexToHScript(keys.heroindex)
@@ -206,8 +207,8 @@ end
 
 -- A player killed another player in a multi-team context
 function GameMode:OnTeamKillCredit(keys)
-  DebugPrint('[BAREBONES] OnTeamKillCredit')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnTeamKillCredit')
+  --DebugPrintTable(keys)
 
   local killerPlayer = PlayerResource:GetPlayer(keys.killer_userid)
   local victimPlayer = PlayerResource:GetPlayer(keys.victim_userid)
@@ -217,8 +218,8 @@ end
 
 -- An entity died
 function GameMode:OnEntityKilled( keys )
-  DebugPrint( '[BAREBONES] OnEntityKilled Called' )
-  DebugPrintTable( keys )
+  --DebugPrint( '[BAREBONES] OnEntityKilled Called' )
+  --DebugPrintTable( keys )
   
 
   -- The Unit that was Killed
@@ -247,14 +248,14 @@ end
 -- This function is called 1 to 2 times as the player connects initially but before they 
 -- have completely connected
 function GameMode:PlayerConnect(keys)
-  DebugPrint('[BAREBONES] PlayerConnect')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] PlayerConnect')
+  --DebugPrintTable(keys)
 end
 
 -- This function is called once when the player fully connects and becomes "Ready" during Loading
 function GameMode:OnConnectFull(keys)
-  DebugPrint('[BAREBONES] OnConnectFull')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnConnectFull')
+  --DebugPrintTable(keys)
   
   local entIndex = keys.index+1
   -- The Player entity of the joining user
@@ -266,16 +267,16 @@ end
 
 -- This function is called whenever illusions are created and tells you which was/is the original entity
 function GameMode:OnIllusionsCreated(keys)
-  DebugPrint('[BAREBONES] OnIllusionsCreated')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnIllusionsCreated')
+  --DebugPrintTable(keys)
 
   local originalEntity = EntIndexToHScript(keys.original_entindex)
 end
 
 -- This function is called whenever an item is combined to create a new item
 function GameMode:OnItemCombined(keys)
-  DebugPrint('[BAREBONES] OnItemCombined')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnItemCombined')
+  --DebugPrintTable(keys)
 
   -- The playerID of the hero who is buying something
   local plyID = keys.PlayerID
@@ -291,8 +292,8 @@ end
 
 -- This function is called whenever an ability begins its PhaseStart phase (but before it is actually cast)
 function GameMode:OnAbilityCastBegins(keys)
-  DebugPrint('[BAREBONES] OnAbilityCastBegins')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnAbilityCastBegins')
+  --DebugPrintTable(keys)
 
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local abilityName = keys.abilityname
@@ -300,8 +301,8 @@ end
 
 -- This function is called whenever a tower is killed
 function GameMode:OnTowerKill(keys)
-  DebugPrint('[BAREBONES] OnTowerKill')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnTowerKill')
+  --DebugPrintTable(keys)
 
   local gold = keys.gold
   local killerPlayer = PlayerResource:GetPlayer(keys.killer_userid)
@@ -310,8 +311,8 @@ end
 
 -- This function is called whenever a player changes there custom team selection during Game Setup 
 function GameMode:OnPlayerSelectedCustomTeam(keys)
-  DebugPrint('[BAREBONES] OnPlayerSelectedCustomTeam')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnPlayerSelectedCustomTeam')
+  --DebugPrintTable(keys)
 
   local player = PlayerResource:GetPlayer(keys.player_id)
   local success = (keys.success == 1)
@@ -320,8 +321,8 @@ end
 
 -- This function is called whenever an NPC reaches its goal position/target
 function GameMode:OnNPCGoalReached(keys)
-  DebugPrint('[BAREBONES] OnNPCGoalReached')
-  DebugPrintTable(keys)
+  --DebugPrint('[BAREBONES] OnNPCGoalReached')
+  --DebugPrintTable(keys)
 
   local goalEntity = EntIndexToHScript(keys.goal_entindex)
   local nextGoalEntity = EntIndexToHScript(keys.next_goal_entindex)
@@ -339,5 +340,7 @@ end
 
 function GameMode:OnNPCSpawned(keys)
   -- Apply a modifier that makes it obey our armour formula
+  local npc = EntIndexToHScript(keys.entindex)
   npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
+  npc:AddNewModifier(npc, nil, "modifier_nerf_cancer_regen", {})
 end

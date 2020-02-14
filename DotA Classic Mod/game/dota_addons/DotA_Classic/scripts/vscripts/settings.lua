@@ -2,13 +2,13 @@ ENABLE_HERO_RESPAWN = true
 UNIVERSAL_SHOP_MODE = false             
 ALLOW_SAME_HERO_SELECTION = false       
 
-HERO_SELECTION_TIME = 30.0              -- How long should we let people select their hero?
-PRE_GAME_TIME = 60.0                    -- How long after people select their heroes should the horn blow and the game start?
+HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
+PRE_GAME_TIME = 10.0                    -- How long after people select their heroes should the horn blow and the game start?
 POST_GAME_TIME = 60.0                   
 TREE_REGROW_TIME = 300.0                 
 
 GOLD_PER_TICK = 1                    
-GOLD_TICK_TIME = 0.6                      
+GOLD_TICK_TIME = 1                      
 
 RECOMMENDED_BUILDS_DISABLED = false     
 CAMERA_DISTANCE_OVERRIDE = -1           
@@ -45,24 +45,26 @@ USE_CUSTOM_HERO_LEVELS = true
 MAX_LEVEL = 25                         
 USE_CUSTOM_XP_VALUES = true             
 
--- Fill this table up with the required XP per level if you want to change it
+-- 6.88 XP Values Table
 XP_PER_LEVEL_TABLE = {}
-for i=1,6 do
-  XP_PER_LEVEL_TABLE[i] = i * 100
-end
 
-XP_PER_LEVEL_TABLE[7] = 600
-XP_PER_LEVEL_TABLE[8] = 800
-XP_PER_LEVEL_TABLE[9] = 1000
-XP_PER_LEVEL_TABLE[10] = 1000
-XP_PER_LEVEL_TABLE[11] = 600
-XP_PER_LEVEL_TABLE[12] = 2200
+XP_PER_LEVEL_TABLE[1] = 0
+XP_PER_LEVEL_TABLE[2] = 200
+XP_PER_LEVEL_TABLE[3] = 500
+XP_PER_LEVEL_TABLE[4] = 900
+XP_PER_LEVEL_TABLE[5] = 1400
+XP_PER_LEVEL_TABLE[6] = 2000
+XP_PER_LEVEL_TABLE[7] = 2600
+XP_PER_LEVEL_TABLE[8] = 3400
+XP_PER_LEVEL_TABLE[9] = 4400
+XP_PER_LEVEL_TABLE[10] = 5400
+XP_PER_LEVEL_TABLE[11] = 6000
+XP_PER_LEVEL_TABLE[12] = 8200
+XP_PER_LEVEL_TABLE[13] = 9000
 
 for i=14,MAX_LEVEL do
-  XP_PER_LEVEL_TABLE[i] = i * 100
+  XP_PER_LEVEL_TABLE[i] = 50 * (i-13) * (i-13) + 1350 * (i-13) + 9000
 end
-
-
 
 
 
@@ -84,7 +86,7 @@ MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum at
 
 GAME_END_DELAY = -1                     -- How long should we wait after the game winner is set to display the victory banner and End Screen?  Use -1 to keep the default (about 10 seconds)
 VICTORY_MESSAGE_DURATION = 3            -- How long should we wait after the victory message displays to show the End Screen?  Use 
-STARTING_GOLD = 825                     -- How much starting gold should we give to each player?
+STARTING_GOLD = 625                     -- How much starting gold should we give to each player?
 DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
 DISABLE_KILLING_SPREE_ANNOUNCER = false -- Shuold we disable the killing spree announcer?
 DISABLE_STICKY_ITEM = false             -- Should we disable the sticky item button in the quick buy area?
@@ -106,11 +108,11 @@ ENABLED_RUNES[DOTA_RUNE_ARCANE] = true
 
 
 MAX_NUMBER_OF_TEAMS = 2                -- How many potential teams can be in this game mode?
-USE_CUSTOM_TEAM_COLORS = true           -- Should we use custom team colors?
+USE_CUSTOM_TEAM_COLORS = false           -- Should we use custom team colors?
 USE_CUSTOM_TEAM_COLORS_FOR_PLAYERS = false          -- Should we use custom team colors to color the players/minimap?
 
 TEAM_COLORS = {}                        -- If USE_CUSTOM_TEAM_COLORS is set, use these colors.
-TEAM_COLORS[DOTA_TEAM_GOODGUYS] = { 0, 90, 10 }  --    Dark Red
+TEAM_COLORS[DOTA_TEAM_GOODGUYS] = { 38, 136, 0 }  --    Dark Red
 TEAM_COLORS[DOTA_TEAM_BADGUYS]  = { 220, 0, 20 }   --    Dark Green
 
 USE_AUTOMATIC_PLAYERS_PER_TEAM = true   
@@ -118,3 +120,10 @@ USE_AUTOMATIC_PLAYERS_PER_TEAM = true
 --CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
 --CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 5
 --CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
+
+--Test XP_PER_LEVEL_TABLE for fast leveling and more gold
+for i=2,MAX_LEVEL do
+  XP_PER_LEVEL_TABLE[i] = (i-1)*65
+end
+
+STARTING_GOLD = 62500

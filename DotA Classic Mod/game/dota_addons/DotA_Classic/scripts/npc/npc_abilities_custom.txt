@@ -1,4 +1,4 @@
-?"DOTAAbilities"
+"DOTAAbilities"
 {
 	"Version"	"1"
 
@@ -15,8 +15,8 @@
 	"AbilityTextureName"	"attribute_bonus"
 	"FightRecapLevel"		"1"
 	"MaxLevel"				"6"
-	"RequiredLevel"        		"2"
-	"LevelsBetweenUpgrades"    	"3"
+	"RequiredLevel"        		"1"
+	"LevelsBetweenUpgrades"    	"1"
 
 
 	"AbilitySpecial"
@@ -40,11 +40,11 @@
 	"BaseClass"					"ability_lua"
 	"ScriptFile"				"am_purity"
 	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-	"AbilityTextureName"				"antimage_purityofwill"
+	"AbilityTextureName"		"antimage_purity_of_will"
 	"FightRecapLevel"	"1"
-	"MaxLevel"			"3"
-	"RequiredLevel"        		"10"
-	"LevelsBetweenUpgrades"    	"5"
+	"MaxLevel"			"4"
+	"RequiredLevel"        		"13"
+	"LevelsBetweenUpgrades"    	"4"
 
 	"AbilitySpecial"
 		{
@@ -63,13 +63,13 @@
 			"03"
 			{
 				"var_type"							"FIELD_FLOAT"
-				"spellshield_duration"				"0.0 1.6 2.2 2.8"
+				"spellshield_duration"				"0.8 1.4 2.0 2.6"
 			}
 
 			"04"
 			{
 				"var_type"							"FIELD_INTEGER"
-				"spellshield_manacost_adjust"		"0 -9919 -9919 -9919"
+				"spellshield_manacost_adjust"		"80"
 			}
 
 			"05"
@@ -106,7 +106,7 @@
 		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"				"DAMAGE_TYPE_PHYSICAL"
 		"AbilityTextureName"				"antimage_mana_break"
-		"ScriptFile"						"hero_antimage"
+		"ScriptFile"						"am_mana_break"
 
 		// Precache
 		//---------------------------------------------------------------------------------------
@@ -131,7 +131,7 @@
 			"02"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"base_mana_burn"			"28 40 52 64"				
+				"base_mana_burn"			"128 40 52 64"				
 			}
 				
 			"03"
@@ -159,8 +159,6 @@
 		
 		"BaseClass"						"ability_lua"
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
 		"FightRecapLevel"				"1"
 		"AbilityTextureName"			"antimage_blink"
@@ -173,9 +171,6 @@
 			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
 			"particle"		"particles/units/heroes/hero_antimage/antimage_blink_end.vpcf"
 			"particle"		"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf"
-			"particle"		"particles/hero/antimage/blink_manaburn_basher_ti_5.vpcf"
-			"particle"		"particles/hero/antimage/blink_basher_manaburn_impact_lightning.vpcf"
-			"particle"		"particles/hero/antimage/blink_spellguard_immunity.vpcf"
 		}
 
 		// Stats
@@ -212,9 +207,9 @@
 		// Casting
 		//-------------------------------------------------------------------------------------------
 
-		"AbilityCooldown"				"60 45 30 15"
-		"AbilityCastPoint"				"0.0"
-		"AbilityManaCost"				"80"
+		// "AbilityCooldown"				"60 45 30 15"
+		// "AbilityCastPoint"				"0.0"
+		// "AbilityManaCost"				"0"
 
 		// Precache
 		//-------------------------------------------------------------------------------------------------------------
@@ -265,8 +260,8 @@
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"components/abilities/heroes/hero_antimage"
-		"AbilityTextureName"			"antimage_mana_void_lua"
+		"ScriptFile"					"hero_antimage"
+		"AbilityTextureName"			"antimage_mana_void"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
 		"RequiredLevel"        			"6"
@@ -325,3 +320,4 @@
 			}
 		}
 	}
+}

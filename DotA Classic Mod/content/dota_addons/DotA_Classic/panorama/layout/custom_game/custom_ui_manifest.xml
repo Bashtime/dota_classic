@@ -39,30 +39,30 @@
     GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_CUSTOM_8] = "#8c2af4;";
 
 
-    //Fuck Scanner
+    //Fuck Scanner 
      var newUI = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("minimap_container");
      newUI.FindChildTraverse("GlyphScanContainer").style.visibility = "collapse";
 
-    var hudElements = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements");
-    var newUI = hudElements.FindChildTraverse("center_block");
+     var hudElements = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements");
+     var newUI = hudElements.FindChildTraverse("center_block");
 
-    newUI.FindChildTraverse("StatBranch").style.visibility = "collapse";                //you are not spawning the talent UI, fuck off (Disabling mouseover and onactivate)
+     newUI.FindChildTraverse("StatBranch").style.visibility = "collapse";                //you are not spawning the talent UI, fuck off (Disabling mouseover and onactivate)
     //We also don't want to crash, valve plz
-    newUI.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
-    newUI.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", function(){});    //Fuck that levelup button
-    newUI.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
+     newUI.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
+     newUI.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", function(){});    //Fuck that levelup button
+     newUI.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
 
 
-    const dotaHud = (() => {
-        let panel = $.GetContextPanel();
-        while (panel) {
-        if (panel.id === 'DotaHud') return panel;
-        panel = panel.GetParent();
-        }
-    })();
+//    const dotaHud = (() => {
+//        let panel = $.GetContextPanel();
+//        while (panel) {
+//        if (panel.id === 'DotaHud') return panel;
+//        panel = panel.GetParent();
+//        }
+//    })();
 
-const findDotaHudElement = (id) => dotaHud.FindChildTraverse(id);
-findDotaHudElement('id_of_your_element').style.preTransformScale2d = 2
+// const findDotaHudElement = (id) => dotaHud.FindChildTraverse(id);
+// findDotaHudElement('id_of_your_element').style.preTransformScale2d = 2
 
 
 

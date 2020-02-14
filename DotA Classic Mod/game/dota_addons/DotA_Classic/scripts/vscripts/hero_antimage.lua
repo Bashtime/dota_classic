@@ -9,11 +9,7 @@ local LinkedModifiers = {}
 -------------------------------------------
 -- Hidden Modifiers:
 
-MergeTables(LinkedModifiers,{
-	["modifier_am_mana_break_passive"] = LUA_MODIFIER_MOTION_NONE,
-})
-
-am_mana_break = am_mana_break or class({})
+am_mana_break = class({})
 
 function am_mana_break:GetAbilityTextureName()
 	return "antimage_mana_break"
@@ -62,6 +58,8 @@ function modifier_am_mana_break_passive:OnAttackStart(keys)
 	if IsServer() then
 		local attacker = keys.attacker
 		local target = keys.target
+
+		
 		local has_purity = attacker:HasAbility("am_purity")
 
 
@@ -86,26 +84,25 @@ function modifier_am_mana_break_passive:OnAttackStart(keys)
 			-- Calculate mana to burn, considering "Purity of Will" Level
 			local target_mana_burn = target:GetMana()
 			 
-			
 			if has_purity then
 
 				local percentage_mana_burn = target:GetMaxMana() * self:FindAbilityByName("am_purity"):GetSpecialValueFor("manabreak_perc_adjust") * 0.01
 				local overall_mana_burn = self.base_mana_burn + percentage_mana_burn
 
-				if (target_mana_burn > overall_mana_burn) then
-					target_mana_burn = overall_mana_burn
+					if (target_mana_burn > overall_mana_burn) then
+						target_mana_burn = overall_mana_burn
 				
-				else if (target_mana_burn > self.base_mana_burn) then target_mana_burn = self.base_mana_burn
-					 end
-				end
-				
+					else if (target_mana_burn > self.base_mana_burn) then target_mana_burn = self.base_mana_burn
+					 	end
+					end
+			end
+
 			if self:GetParent():IsIllusion() then
 				target_mana_burn = target_mana_burn * self:GetAbility():GetSpecialValueFor("illusion_percentage") * 0.01
 			end
 
 						-- Decide how much damage should be added
 			self.add_damage = target_mana_burn * self.damage_per_burn
-
 		end
 	end
 end
@@ -161,11 +158,10 @@ function modifier_am_mana_break_passive:OnAttackLanded(keys)
 			SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_LOSS, target, target_mana_burn, nil)
 
 			-- If the target is magic immune, this is it for us.
-			if target:IsMagicImmune() then
-				return nil
+				if target:IsMagicImmune() then
+					return nil
+				end
 			end
-
-			
 		end
 	end
 end
@@ -181,7 +177,6 @@ end
 -------------------------------------------
 
 am_blink = am_blink or class({})
-MergeTables(LinkedModifiers,{})
 
 function am_blink:GetAbilityTextureName()
 	return "antimage_blink"
@@ -232,7 +227,7 @@ function am_blink:OnSpellStart()
 		local distance = target_point - caster_position
 		local cast_range = caster:GetAbility():GetSpecialValueFor("blink_range")
 
-		-- Check and apply Purity Range Bonus
+		-- Check and apply Purity Range Bonus, Rework!
 		if caster:HasAbility("am_purity") then
 			local cast_range_bonus = caster:FindAbilityByName("am_purity"):GetSpecialValueFor("blink_range_adjust")
 			cast_range = cast_range + cast_range_bonus
@@ -261,6 +256,8 @@ function am_blink:OnSpellStart()
 			local blink_end_pfx = ParticleManager:CreateParticle("particles/units/heroes/hero_antimage/antimage_blink_end.vpcf", PATTACH_ABSORIGIN, caster)
 			ParticleManager:ReleaseParticleIndex(blink_end_pfx)
 			caster:EmitSound("Hero_Antimage.Blink_in")
+		end)
+	end
 end
 
 function am_blink:IsHiddenWhenStolen()
@@ -273,16 +270,16 @@ end
 -------------------------------------------
 
 -- Visible Modifiers:
-MergeTables(LinkedModifiers,{
-	["modifier_am_spellshield_buff_reflect"] = LUA_MODIFIER_MOTION_NONE,
-	["modifier_am_spellshield_scepter_ready"] = LUA_MODIFIER_MOTION_NONE,
-	["modifier_am_spellshield_scepter_recharge"] = LUA_MODIFIER_MOTION_NONE,
-})
+-- MergeTables(LinkedModifiers,{
+--	["modifier_am_spellshield_buff_reflect"] = LUA_MODIFIER_MOTION_NONE,
+--	["modifier_am_spellshield_scepter_ready"] = LUA_MODIFIER_MOTION_NONE,
+--	["modifier_am_spellshield_scepter_recharge"] = LUA_MODIFIER_MOTION_NONE,
+-- })
 
 -- Hidden Modifiers:
-MergeTables(LinkedModifiers,{
-	["modifier_am_spellshield_buff_passive"] = LUA_MODIFIER_MOTION_NONE,
-})
+-- MergeTables(LinkedModifiers,{
+--	["modifier_am_spellshield_buff_passive"] = LUA_MODIFIER_MOTION_NONE,
+-- })
 
 am_spellshield = am_spellshield or class({})
 
@@ -301,6 +298,16 @@ function am_spellshield:GetBehavior()
 
 	return DOTA_ABILITY_BEHAVIOR_PASSIVE
 end
+
+
+
+
+
+
+
+
+
+
 
 -- Declare active skill + visuals
 function am_spellshield:OnSpellStart()

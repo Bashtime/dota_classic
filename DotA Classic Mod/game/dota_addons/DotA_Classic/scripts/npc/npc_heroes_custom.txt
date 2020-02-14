@@ -3,10 +3,9 @@
 	//=================================================================================================================
 	// HERO: Antimage
 	//=================================================================================================================
-	"npc_dota_hero_antimage_classic"
+	"npc_dota_hero_antimage"
 	{
-
-        "override_hero"    	"npc_dota_hero_antimage"
+   
 
 		// General
 		//-------------------------------------------------------------------------------------------------------------
@@ -14,11 +13,11 @@
 		// Abilities
 		//-------------------------------------------------------------------------------------------------------------
 		"Ability1"		"am_mana_break"
-		"Ability2"		"am_blink"
-		"Ability3"		"am_spellshield"
+	//	"Ability2"		"am_blink"
+	//	"Ability3"		"am_spellshield"
 		"Ability4"		"att_bonus"
-		"Ability5"		"am_purity_of_will"
-		"Ability6"		"am_mana_void"
+		"Ability5"		"am_purity"
+	//	"Ability6"		"am_mana_void"
 		"Ability10"		"generic_hidden"
 		"Ability11"		"generic_hidden"
 		"Ability12"		"generic_hidden"
@@ -46,13 +45,13 @@
 		// Attributes
 		//-------------------------------------------------------------------------------------------------------------
 		"AttributePrimary"		"DOTA_ATTRIBUTE_AGILITY"
-		"AttributeBaseStrength"		"22"
+		"AttributeBaseStrength"		"22"		
 		"AttributeStrengthGain"		"1.300000"
 		"AttributeBaseIntelligence"		"12"
 		"AttributeIntelligenceGain"		"1.800000"
 		"AttributeBaseAgility"		"23"
 		"AttributeAgilityGain"		"3.200000"
-		"StatusHealthRegen"		"0.25"
+		"StatusHealthRegen"			"0.15"
 
 		// Movement
 		//-------------------------------------------------------------------------------------------------------------

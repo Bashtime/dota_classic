@@ -6,9 +6,8 @@ DOTACLASSIC_VERSION = "0.10"
 DOTACLASSIC_DEBUG_SPEW = false 
 
 if GameMode == nil then
-    DebugPrint( '[DOTA CLASSIX] creating DotA Classic game mode' )
     _G.GameMode = class({})
-end
+end 
 
 -- This library allow for easily delayed/timed actions
 require('libraries/timers')
@@ -66,7 +65,7 @@ end
   This function should generally only be used if the Precache() function in addon_game_mode.lua is not working.
 ]]
 function GameMode:PostLoadPrecache()
-  DebugPrint("[DOTA CLASSIX] Performing Post-Load precache")    
+  --DebugPrint("[DOTA CLASSIX] Performing Post-Load precache")    
   --PrecacheItemByNameAsync("item_example_item", function(...) end)
   --PrecacheItemByNameAsync("example_ability", function(...) end)
 
@@ -79,10 +78,14 @@ end
   It can be used to initialize state that isn't initializeable in InitGameMode() but needs to be done before everyone loads in.
 ]]
 function GameMode:OnFirstPlayerLoaded()
-  DebugPrint("[DOTA CLASSIX] First Player has loaded")
+  --DebugPrint("[DOTA CLASSIX] First Player has loaded")
   
   -- Apply a modifier that makes it obey our armour formula
   LinkLuaModifier("modifier_common_custom_armor", "abilities/common_custom_armor.lua", LUA_MODIFIER_MOTION_NONE)
+
+  -- Apply a modifier that makes STR HP REGEN obey our will. Current Valve Constant does nothing. Fuck that cancer
+  LinkLuaModifier("modifier_nerf_cancer_regen", "abilities/nerf_cancer_regen.lua", LUA_MODIFIER_MOTION_NONE)
+
 end
 
 --[[
@@ -90,7 +93,7 @@ end
   It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
 ]]
 function GameMode:OnAllPlayersLoaded()
-  DebugPrint("[DOTA CLASSIX] All Players have loaded into the game")
+  --DebugPrint("[DOTA CLASSIX] All Players have loaded into the game")
 end
 
 --[[
@@ -101,14 +104,15 @@ end
   The hero parameter is the hero entity that just spawned in
 ]]
 function GameMode:OnHeroInGame(hero)
-  DebugPrint("[DOTA CLASSIX] Hero spawned in game for first time -- " .. hero:GetUnitName())
+  --DebugPrint("[DOTA CLASSIX] Hero spawned in game for first time -- " .. hero:GetUnitName())
 
-  -- This line for example will set the starting gold of every hero to 500 unreliable gold
-  --hero:SetGold(500, false)
+  -- This line for example will set the starting gold of every hero to 625 unreliable gold
+  -- hero:SetGold(625, false)
 
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
-  local item = CreateItem("item_example_item", hero, hero)
-  hero:AddItem(item)
+  --local item = CreateItem("item_example_item", hero, hero)
+ -- hero:AddItem(item)
+    
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability
@@ -124,11 +128,11 @@ end
   is useful for starting any game logic timers/thinkers, beginning the first round, etc.
 ]]
 function GameMode:OnGameInProgress()
-  DebugPrint("[DOTA CLASSIX] The game has officially begun")
+  --DebugPrint("[DOTA CLASSIX] The game has officially begun")
 
   Timers:CreateTimer(30, -- Start this timer 30 game-time seconds later
     function()
-      DebugPrint("This function is called 30 seconds after the game begins, and every 30 seconds thereafter")
+      --DebugPrint("This function is called 30 seconds after the game begins, and every 30 seconds thereafter")
       return 30.0 -- Rerun this timer every 30 game-time seconds 
     end)
 end
@@ -139,26 +143,13 @@ end
 -- It can be used to pre-initialize any values/tables that will be needed later
 function GameMode:InitGameMode()
   GameMode = self
-  DebugPrint('[DOTA CLASSIX] Starting to load Barebones gamemode...')
+  --DebugPrint('[DOTA CLASSIX] Starting to load Barebones gamemode...')
 
   -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
   Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
 
-  DebugPrint('[DOTA CLASSIX] Done loading Barebones gamemode!\n\n')
+  --DebugPrint('[DOTA CLASSIX] Done loading Barebones gamemode!\n\n')
 end
-
-
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 19)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0.05)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT, 0.00)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.1429)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 1)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 13)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0.05)
-GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.07143)
-
--- From 16 int per 1% spell amp to 14 int 
 
 
 -- This is an example console command

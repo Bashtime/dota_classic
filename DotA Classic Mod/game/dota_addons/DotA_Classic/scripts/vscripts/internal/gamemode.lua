@@ -21,6 +21,7 @@ function GameMode:_InitGameMode()
   GameRules:SetHeroMinimapIconScale( MINIMAP_ICON_SIZE )
   GameRules:SetCreepMinimapIconScale( MINIMAP_CREEP_ICON_SIZE )
   GameRules:SetRuneMinimapIconScale( MINIMAP_RUNE_ICON_SIZE )
+  --GameRules:SetFreeCourierModeEnabled(true)
 
   GameRules:SetFirstBloodActive( ENABLE_FIRST_BLOOD )
   GameRules:SetHideKillMessageHeaders( HIDE_KILL_BANNERS )
@@ -28,6 +29,24 @@ function GameMode:_InitGameMode()
   GameRules:SetCustomGameEndDelay( GAME_END_DELAY )
   GameRules:SetCustomVictoryMessageDuration( VICTORY_MESSAGE_DURATION )
   GameRules:SetStartingGold( STARTING_GOLD )
+
+  -- Custom Attribute Stats
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 19.0)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0.05)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT, 0.00)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.1429)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 1.0)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.00)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 13)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0.05)
+  GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.07143)  -- From 16 int per 1% spell amp to 14 int
+
+ 
+  
+
+
+
+
 
   if SKIP_TEAM_SETUP then
     GameRules:SetCustomGameSetupAutoLaunchDelay( 0 )
@@ -69,7 +88,7 @@ function GameMode:_InitGameMode()
       SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
     end
   end
-  DebugPrint('[BAREBONES] GameRules set')
+  --DebugPrint('[BAREBONES] GameRules set')
 
   --InitLogFile( "log/barebones.txt","")
 
@@ -139,7 +158,7 @@ function GameMode:_InitGameMode()
   self.bSeenWaitForPlayers = false
   self.vUserIds = {}
 
-  DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
+  --DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
   GameMode._reentrantCheck = true
   GameMode:InitGameMode()
   GameMode._reentrantCheck = false
@@ -183,6 +202,8 @@ function GameMode:_CaptureGameMode()
     mode:SetMaximumAttackSpeed( MAXIMUM_ATTACK_SPEED )
     mode:SetMinimumAttackSpeed( MINIMUM_ATTACK_SPEED )
     mode:SetStashPurchasingDisabled ( DISABLE_STASH_PURCHASING )
+
+    mode:SetFreeCourierModeEnabled(true)
 
     for rune, spawn in pairs(ENABLED_RUNES) do
       mode:SetRuneEnabled(rune, spawn)
