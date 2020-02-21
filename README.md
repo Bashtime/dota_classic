@@ -9,6 +9,7 @@ QoL: UI Improvements
 
 
 Now Implemented:
+
 -XP per level required as in 6.88
 
 -Stats from attributes slightly altered to be a mix between 6.8 era and modern dota, i.e.
@@ -18,7 +19,6 @@ Now Implemented:
   13 mana / int (6.88: 12 mana)  0.05 Mana / sec / int (6.88: 0.04)  Base Mana: 50 (6.88: 75)
   
   mana regen item like in modern dota (stronger early, worse late)
-  
   
   1 armor / 7 agi, old armor formula (slightly stronger than current)
   1% spell amp / 14 int
@@ -31,20 +31,25 @@ Now Implemented:
 
 -approx. 15% of items have gold prices and recipes now reverted to 6.88 (work in progress)
 
--NO neutral drops
+-neutral drops reduced to 10. Most are only sweet consumables
 
 -NO Talenttrees but perks and attribute bonus (+3 / lvl)
+
+-XP and Gold bounties as in 6.88 
+
+-Death Times as in 6.88 but more death time if killer is neutral ot tower for first levels to prevent suicide abuse
+
 
 
 To Do:
 
 -Rework all boots to give constant ms instead of percentage, recode some items
 
--Adapt gold gain to 6.88
+-Adapt assist gold gain to 6.88
 
--Kill gold and xp gain (also neutrals and creeps, also their other stats)
+-XP assist gain as in 6.88
 
--Revert the huge rosh buffs and xp nerf
+-Revert the huge rosh buffs and xp nerf (done)
 
 -revert some ability changes, adapt CD, Castpoints, everything
 
@@ -60,7 +65,7 @@ To Do:
 
 Bugs:
 
--can only spend 20 instead of 25 skill points
+-can only spend 20 instead of 25 skill points (solved)
 
 
   
