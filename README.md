@@ -3,7 +3,7 @@ Restoring DotA's old glory with some QOL elements and tweaks
 
 
 
-Tweaks contain hero specific perks (think of 1-branched talents), 
+Tweaks contain hero specific perks (think of 1-branched talents that become stronger with each levelup), 
 old kill and gold mechanics before the introduction of "comeback mechanic",
 non-linear XP Progress as it used to be.
 
@@ -20,11 +20,11 @@ Now Implemented:
 
 -Stats from attributes slightly altered to be a mix between 6.8 era and modern dota, i.e.
 
-  19 HP / str   0.05 Hp / sec / str (6.88: 0.03/sec and 20 HP)  default base reg: 0.15 (6.88: 0.25)   Base HP: 225 (6.88: 200)
+  19 HP / str   0.05 Hp / sec / str (6.88: 0.03/sec and 20 HP)  default base reg: 0.15 (6.88: 0.25)   Base HP: 180 (6.88: 200)
   
   13 mana / int (6.88: 12 mana)  0.05 Mana / sec / int (6.88: 0.04)  Base Mana: 50 (6.88: 75)
   
-  mana regen item like in modern dota (stronger early, worse late)
+  mana regen item like in modern dota (stronger early, worse ultra late)
   
   1 armor / 7 agi, old armor formula (slightly stronger than current)
   1% spell amp / 14 int
