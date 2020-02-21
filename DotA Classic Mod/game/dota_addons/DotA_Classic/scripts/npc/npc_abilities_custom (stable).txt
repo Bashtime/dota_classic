@@ -1,0 +1,465 @@
+"DOTAAbilities"
+{
+	"Version"	"1"
+
+
+	//===============================
+	// Generic: Attribute Bonus
+	//===============================
+
+	"att_bonus"
+	{
+	"BaseClass"				"ability_lua"
+	"ScriptFile"			"att_bonus"
+	"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"	"attribute_bonus"
+	"FightRecapLevel"		"1"
+	"MaxLevel"				"6"
+	"RequiredLevel"        		"2"
+	"LevelsBetweenUpgrades"    	"3"
+
+
+	"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"plus_stats"		"3 6 9 12 15 18"
+			}
+		}
+	}
+
+
+
+	//===========================================================
+	// Antimage: Purity of Will
+	//===========================================================
+
+	"am_purity"
+	{
+	"BaseClass"					"ability_lua"
+	"ScriptFile"				"am_purity"
+	"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	"AbilityTextureName"		"antimage_purity_of_will"
+	"FightRecapLevel"	"1"
+	"MaxLevel"			"4"
+	"RequiredLevel"        		"13"
+	"LevelsBetweenUpgrades"    	"4"
+
+	"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"blink_range_adjust"				"70 130 190 250"
+			}
+
+			"02"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"blink_cooldown_reduction"			"0.0 0.0 0.5 1.0"
+			}
+
+			"03"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"spellshield_duration"				"0.8 1.4 2.0 2.6"
+			}
+
+			"04"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"spellshield_manacost_adjust"		"80"
+			}
+
+			"05"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"manabreak_perc_adjust"				"0.0 1.0 2.0 4.0"
+			}
+
+			"06"
+			{
+				"var_type"							"FIELD_FLOAT"
+				"blink_castpoint_reduction"			"0.01 0.03 0.05 0.07"
+			}
+
+			"07"
+			{
+				"var_type"							"FIELD_INTEGER"
+				"void_cd_reduction"					"0 5 10 20"
+			}
+		}
+	}
+
+	//==============================================================================================
+	// Antimage Mana Break
+	//==============================================================================================
+	
+	"am_mana_break"
+	{
+		// General
+		//----------------------------------------------------------------------------------------
+		"BaseClass"							"ability_lua"
+		"AbilityBehavior"					"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitTargetTeam"				"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"				"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"				"DAMAGE_TYPE_PHYSICAL"
+		"AbilityTextureName"				"antimage_mana_break"
+		"ScriptFile"						"am_mana_break"
+
+		// Precache
+		//---------------------------------------------------------------------------------------
+		
+		"precache"
+		{
+			"particle"  					"particles/generic_gameplay/generic_manaburn.vpcf"
+			"soundfile" 					"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		}
+
+		// Special
+		//----------------------------------------------------------------------------------------
+		
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"damage_per_burn"				"0.5"
+				"CalculateSpellDamageTooltip"   "0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"base_mana_burn"			"128 40 52 64"				
+			}
+				
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusions_efficiency_pct"	"80"
+			}
+			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"illusion_percentage"		"80"
+			}
+		}
+	}
+
+	//============================================================================================
+	// Antimage Blink
+	//============================================================================================
+	
+	"am_blink"
+	{
+		// General
+		//-------------------------------------------------------------------------------------
+		
+		"BaseClass"						"ability_lua"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
+		"AbilityTextureName"			"antimage_blink"
+		"ScriptFile"					"hero_antimage"
+
+		// Precache
+		//-------------------------------------------------------------------------------------
+		"precache"
+		{
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"particle"		"particles/units/heroes/hero_antimage/antimage_blink_end.vpcf"
+			"particle"		"particles/units/heroes/hero_antimage/antimage_blink_start.vpcf"
+		}
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.4"
+		"AbilityCooldown"				"12 9 7 5"
+		"AbilityManaCost"				"60"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"blink_range"				"925 1000 1075 1150"
+			}
+		}
+	}
+
+	//==============================================================================================
+	// Antimage Spell Shield
+	//==============================================================================================
+	"am_spellshield"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"ability_lua"
+		"AbilityTextureName"			"antimage_spell_shield"
+		"ScriptFile"					"hero_antimage"
+		"HasScepterUpgrade"				"1"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------
+
+		// "AbilityCooldown"				"60 45 30 15"
+		// "AbilityCastPoint"				"0.0"
+		// "AbilityManaCost"				"0"
+
+		// Precache
+		//-------------------------------------------------------------------------------------------------------------
+		"precache"
+		{
+			"particle"		"particles/units/heroes/hero_antimage/antimage_blink_end_glow.vpcf"
+			"particle"		"particles/units/heroes/hero_antimage/antimage_spellshield.vpcf"
+			"particle"		"particles/units/heroes/hero_antimage/antimage_spellshield_reflect.vpcf"
+			"soundfile"		"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+		}
+
+		// Special
+		//-------------------------------------------------------------------------------------------
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"magic_resistance"		"26 34 42 50"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"active_duration"		"0"	
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"internal_cooldown"		"15"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"spellshield_max_distance"	"3000"
+			}
+		}
+	}
+
+	
+	//=================================================================================================================
+	// Anti-mage: Mana Void
+	//=================================================================================================================
+	"am_mana_void"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"hero_antimage"
+		"AbilityTextureName"			"antimage_mana_void"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"RequiredLevel"        			"6"
+		"LevelsBetweenUpgrades"    		"5"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_antimage.vsndevts"
+			"particle"	"particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"  
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES_STRONG"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70"
+		"AbilityManaCost"				"125 200 275"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"mana_void_damage_per_mana"		"0.8 0.95 1.1"
+			}
+			
+			"02"
+			{
+				"var_type"						"FIELD_FLOAT"
+				"mana_void_ministun"			"0.3"
+			}
+			
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"mana_void_aoe_radius"			"500"
+			}
+		}
+	}
+
+
+//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_antimage"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6012"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"4"
+				
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"value"				"0.0 0.4 0.8 1.2"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_antimage_2"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6353"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"4"		
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"0 5 10 20"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_antimage_3"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6606"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"						"4"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"70 130 190 250"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_antimage_4"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6607"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"value"				"25"
+			}
+		}
+	}
+
+	//=================================================================================================================
+	// Ability: Special Bonus
+	//=================================================================================================================
+	"special_bonus_unique_antimage_5"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"6800"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityType"					"DOTA_ABILITY_TYPE_ATTRIBUTES"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"outgoing_damage"			"-75"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"incoming_damage"			"250"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"illusion_duration"			"10"
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+}

@@ -8,4 +8,11 @@
   "npc_dota_hero_ancient_apparition" "1"
   "npc_dota_hero_antimage" "1"
   "npc_dota_hero_axe" "1"
+  "npc_dota_hero_rubick" "1"
+  "npc_dota_hero_morph" "1"
+  "npc_dota_hero_templar_assasin" "1"
+  "npc_dota_hero_zuus" "1"
+  "npc_dota_hero_juggernaut" "1"
+  "npc_dota_hero_medusa"	"1"
+  "npc_dota_hero_ursa"	"1"
 }

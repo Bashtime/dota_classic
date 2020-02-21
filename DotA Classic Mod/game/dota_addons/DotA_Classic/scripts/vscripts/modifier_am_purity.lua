@@ -1,18 +1,18 @@
--- Attribute Bonus Modifier
+-- Obsolete PURITY OF WILL Modifier
 
 modifier_am_purity = class({})
 
 function modifier_am_purity:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		--MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+		--MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+		--MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 	}
 	return funcs
 end
 
 function modifier_am_purity:IsHidden()
-	return true
+	return false
 end
 
 function modifier_am_purity:IsPurgable()
@@ -24,7 +24,7 @@ function modifier_am_purity:RemoveOnDeath()
 end
 
 
-function modifier_am_purity:GetModifierBonusStats_Strength(params)
+--[[function modifier_am_purity:GetModifierBonusStats_Strength(params)
 	return self:GetAbility():GetSpecialValueFor("blink_range_adjust");
 end
 
@@ -34,5 +34,5 @@ end
 
 function modifier_am_purity:GetModifierBonusStats_Intellect(params)
 	return self:GetAbility():GetSpecialValueFor("blink_range_adjust");
-end
+end]]
 

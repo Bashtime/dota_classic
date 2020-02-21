@@ -1,22 +1,10 @@
 "AddonInfo"
 {
-  "TeamCount" "10"
-  "maps"      "template_map playground"
+  "TeamCount" "2"
+  "maps"      "cdota"
   "IsPlayable"  "1"
-  "template_map"
+  "classic"
   {
           "MaxPlayers"                    "10"
   }
-  "playground"
-  {
-          "MaxPlayers"                    "10"
-  }
-//  "desert_duo"
-//  {
-//          "MaxPlayers"                    "10"
-//  }
-//  "forest_solo"
-//  {
-//          "MaxPlayers"                    "10"
-//  }
 }

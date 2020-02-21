@@ -63,9 +63,9 @@ Bh:	Dead or Alive!
 Weaver:	New Patterns
 Jakiro:	Fire-Ice Duality
 Bat:	Pyromania
-Chen: Obelis Guidance
+Chen:	Obelis Guidance
 Spec:	Doppler Effect
-AA:		Ice Age
+AA:	Ice Age
 Doom:	Doomsday
 Ursa:	Fuzzy Wuzzy
 Sb:	Bulldoze
@@ -84,17 +84,17 @@ Roof:	Force of Nature
 Ogre:	Lucklord
 UD:	Last Will
 Rubick:	Arcane Supremecy / Rubick's Cube
-Disruptor: 	
-Nyx:	
+Rapt:	Thunderdome	 	
+Nyx:	Nyx Nyx Nyx!
 Naga:	Slithereen Oath
 Kotl:	Will-O-Wisp
-Wisp:	
-Visage:	
-Slark:	
-Dusa:	
+Wisp:	Beep Boop!
+Visage:	Face it!
+Slark:	Slippery fish
+Dusa:	Real Beauty
 Troll:	Blow Up
 Cent:	Great Foritude
-Magnus:	
+Magnus:	Impaling horn
 Timber:	Shredder
 BB:	
 Tusk:	Art of Brawling
@@ -102,7 +102,7 @@ Sky:
 Abba:	Mist Fields
 ET:	
 LC:	
-Techies:			
+Cancer:	9/11			
 Ember:			
 Kaolin:			
 UL:	
@@ -110,7 +110,9 @@ TB:	Demonic Conversion
 Phoe:	Ashes to ashes		
 Oracle:	Orakyle		
 WW:	
-ArcW:	
+ArcW:
+
+	
 MK:			//Adaptations and new heroes from here
 Pango:
 Granny:

@@ -2,8 +2,8 @@ ENABLE_HERO_RESPAWN = true
 UNIVERSAL_SHOP_MODE = false             
 ALLOW_SAME_HERO_SELECTION = false       
 
-HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
-PRE_GAME_TIME = 10.0                    -- How long after people select their heroes should the horn blow and the game start?
+HERO_SELECTION_TIME = 30.0              -- How long should we let people select their hero?
+PRE_GAME_TIME = 60.0                    -- How long after people select their heroes should the horn blow and the game start?
 POST_GAME_TIME = 60.0                   
 TREE_REGROW_TIME = 300.0                 
 
@@ -39,7 +39,14 @@ DISABLE_GOLD_SOUNDS = false
 END_GAME_ON_KILLS = false                
 
 
-USE_CUSTOM_HERO_LEVELS = true           
+USE_CUSTOM_HERO_LEVELS = true
+
+SKILL_POINTS_AT_EVERY_LEVEL = true			-- Should there be more than 20 skill points?
+HERO_KILL_GOLD_PER_STREAK = 125				-- Gold you gain for killing heroes with streaks >3 
+HERO_KILL_GOLD_PER_LEVEL = 9				-- IceFrog called this VictimLevel
+
+
+
 
 
 MAX_LEVEL = 25                         
@@ -66,12 +73,21 @@ for i=14,MAX_LEVEL do
   XP_PER_LEVEL_TABLE[i] = 50 * (i-13) * (i-13) + 1350 * (i-13) + 9000
 end
 
+USE_CUSTOM_RESPAWN_TIMES = true
+
+CUSTOM_RESPAWN_TIME = {}
+for i=1,MAX_LEVEL do
+ CUSTOM_RESPAWN_TIME[i] = 5 + 3.8 * i
+end
+
+CUSTOM_BUYBACK_COOLDOWN_TIME = 360.0
+MAX_RESPAWN_TIME = 140
 
 
 
 ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?
 HIDE_KILL_BANNERS = false               -- Should we hide the kill banners that show when a player is killed?
-LOSE_GOLD_ON_DEATH = true               -- Should we have players lose the normal amount of dota gold on death?
+LOSE_GOLD_ON_DEATH = false               -- Should we have players lose the normal amount of dota gold on death?
 SHOW_ONLY_PLAYER_INVENTORY = false      -- Should we only allow players to see their own inventory even when selecting other units?
 DISABLE_STASH_PURCHASING = false        -- Should we prevent players from being able to buy items into their stash when not at a shop?
 DISABLE_ANNOUNCER = false               -- Should we disable the announcer from working in the game?
@@ -117,13 +133,24 @@ TEAM_COLORS[DOTA_TEAM_BADGUYS]  = { 220, 0, 20 }   --    Dark Green
 
 USE_AUTOMATIC_PLAYERS_PER_TEAM = true   
 
---CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
---CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 5
---CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
+CUSTOM_TEAM_PLAYER_COUNT = {}           -- If we're not automatically setting the number of players per team, use this table
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 5
+CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
+
+
+
+CUSTOM_DEATH_GOLD_COST = {}
+for i=1,MAX_LEVEL do
+ CUSTOM_DEATH_GOLD_COST[i] = 35 * i
+end
 
 --Test XP_PER_LEVEL_TABLE for fast leveling and more gold
 for i=2,MAX_LEVEL do
-  XP_PER_LEVEL_TABLE[i] = (i-1)*65
+  XP_PER_LEVEL_TABLE[i] = (i-1)*50
 end
 
 STARTING_GOLD = 62500
+UNIVERSAL_SHOP_MODE = true
+HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
+PRE_GAME_TIME = 0.0                    -- How long after people select their heroes should the horn blow and the game start?
+

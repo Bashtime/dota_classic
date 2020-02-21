@@ -83,8 +83,8 @@
     "item"    "item_ghost"   
 
     "item"    "item_stout_shield"
+    "item"    "item_blight_stone"    
     "item"    "item_orb_of_venom"
-    "item"    "item_blight_stone"
     "item"    "item_gem" 
 
     "item"    "item_shadow_amulet"
@@ -155,48 +155,50 @@
         
   "magics"      
   {
-    "item"    "item_ring_of_basilius"
+    "item"    "item_iron_talon" 
+    "item"    "item_ring_of_basilius_classic"
+    "item"    "item_ring_of_aquila"    
     "item"    "item_vladmir"
-    "item"    "item_medallion_of_courage"
-    "item"    "item_solar_crest"
 
+    "item"    "item_poor_mans_shield"
     "item"    "item_buckler"
     "item"    "item_vanguard"
     "item"    "item_crimson_guard"
-    "item"    "item_assault"
+
 
     "item"    "item_blade_mail"
     "item"    "item_shivas_guard"
+    "item"    "item_assault"    
     "item"    "item_lotus_orb"
+
+    "item"    "item_medallion_of_courage"
+    "item"    "item_solar_crest"
     "item"    "item_armlet"
 
-    "item"    "item_poor_mans_shield"
-    "item"    "item_iron_talon" 
-    "item"    "item_ring_of_aquila"
   }
     
   // Level 3 - Purple Recipes 
   "defense"
   {
-    "item"    "item_dagon"
-    "item"    "item_rod_of_atos"
-    "item"    "item_veil_of_discord"
-    "item"    "item_aeon_disk"
-
+    "item"    "item_glimmer_cape"
     "item"    "item_aether_lens"
     "item"    "item_necronomicon"
     "item"    "item_meteor_hammer"
-    "item"    "item_glimmer_cape"
 
     "item"    "item_hood_of_defiance"
     "item"    "item_pipe"
     "item"    "item_holy_locket"
-    "item"    "item_black_king_bar"
+    "item"    "item_vambrace"
 
+    "item"    "item_black_king_bar"
     "item"    "item_refresher"
     "item"    "item_cyclone"
-    "item"    "item_vambrace"
-     
+    "item"    "item_aeon_disk"
+
+    "item"    "item_veil_of_discord"
+    "item"    "item_rod_of_atos"
+    "item"    "item_dagon"
+    
   }
       
   "weapons"
@@ -232,8 +234,8 @@
     "item"    "item_mjollnir"
 
     "item"    "item_heavens_halberd"
-    "item"    "item_diffusal_blade" 
     "item"    "item_manta"
+    "item"    "item_diffusal_blade" 
     "item"    "item_rapier"
 
     "item"    "item_sange_and_yasha"
