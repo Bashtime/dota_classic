@@ -504,16 +504,13 @@ function GameMode:OnEntityKilled(keys)
   -- Killed Unit is a hero (not an illusion) and he is not reincarnating
   if killed_unit:IsRealHero() and (not killed_unit:IsReincarnating()) then
 
-        --[[ Adjust Gold Lost on Death
+        --Calculate Gold Lost on Death
         local playerID = killed_unit:GetPlayerID()
-        local unreliable_gold = killed_unit:GetUnreliableGold(playerID)
-        local deathcost = CUSTOM_DEATH_GOLD_COST[killed_unit:GetLevel()]
+        local herolvl = killed_unit:GetLevel()
+        local deathcost = CUSTOM_DEATH_GOLD_COST[herolvl]
 
-        local new_gold = unreliable_gold - deathcost
-        new_gold = math.max(0, new_gold)
-
-        -- Set Gold after Death
-        killed_unit:SetGold(new_gold, false)]]
+        --Modify Gold after Death
+        killed_unit:ModifyGold(-deathcost, false, DOTA_ModifyGold_Death)
 
     -- Hero gold bounty update for the killer
     if USE_CUSTOM_HERO_GOLD_BOUNTY then
@@ -552,12 +549,6 @@ function GameMode:OnEntityKilled(keys)
         respawn_time = killed_unit:GetRespawnTime()
       end
 
-      -- Fixing respawn time after level 25, this is usually bugged in custom games, not a problem since max lvl is 25
-      --[[local respawn_time_after_25 = 100 + (killed_unit_level-25)*5
-      if killed_unit_level > 25 and respawn_time < respawn_time_after_25  then
-        respawn_time = respawn_time_after_25
-      end]]
-
       -- Bloodstone reduction (bloodstone can't be in backpack)
       -- for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
         -- local item = killed_unit:GetItemInSlot(i)
@@ -586,7 +577,7 @@ function GameMode:OnEntityKilled(keys)
       -- Killer is a neutral creep
       if killer_unit:IsNeutralUnitType() or killer_unit:IsAncient() then
         -- If a hero is killed by a neutral creep, respawn time can be modified here
-        respawn_time = math.max(respawn_time,22)
+        respawn_time = math.max(respawn_time,24)
       end
 
       if (killer_unit:IsTower() ) and (not (killer_unit:IsNeutralUnitType() or killer_unit:IsAncient())) then
@@ -609,6 +600,11 @@ function GameMode:OnEntityKilled(keys)
         respawn_time = MAX_RESPAWN_TIME
       end
 
+
+
+
+
+
       if not killed_unit:IsReincarnating() then
         killed_unit:SetTimeUntilRespawn(respawn_time)
       end
@@ -616,7 +612,7 @@ function GameMode:OnEntityKilled(keys)
     end
 
     --Buyback Cooldown
-    if CUSTOM_BUYBACK_COOLDOWN_ENABLED then
+    if CUSTOM_BUYBACK_COOLDOWN_ENABLED and (killed_unit:GetDeaths() > 1) then
       PlayerResource:SetCustomBuybackCooldown(killed_unit:GetPlayerID(), CUSTOM_BUYBACK_COOLDOWN_TIME)
     end 
 

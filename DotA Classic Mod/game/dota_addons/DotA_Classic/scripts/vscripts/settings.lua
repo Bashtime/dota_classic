@@ -3,6 +3,7 @@ UNIVERSAL_SHOP_MODE = false
 ALLOW_SAME_HERO_SELECTION = false       
 
 HERO_SELECTION_TIME = 30.0              -- How long should we let people select their hero?
+TIME_BEFORE_FORCED_RANDOM = 8			-- How long can people pick after the time has run out before getting a random hero? 
 PRE_GAME_TIME = 60.0                    -- How long after people select their heroes should the horn blow and the game start?
 POST_GAME_TIME = 60.0                   
 TREE_REGROW_TIME = 300.0                 
@@ -141,7 +142,7 @@ CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
 
 CUSTOM_DEATH_GOLD_COST = {}
 for i=1,MAX_LEVEL do
- CUSTOM_DEATH_GOLD_COST[i] = 35 * i
+ CUSTOM_DEATH_GOLD_COST[i] = 30 * i + 50
 end
 
 --Test XP_PER_LEVEL_TABLE for fast leveling and more gold
@@ -153,4 +154,4 @@ STARTING_GOLD = 62500
 UNIVERSAL_SHOP_MODE = true
 HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
 PRE_GAME_TIME = 0.0                    -- How long after people select their heroes should the horn blow and the game start?
-
+TIME_BEFORE_FORCED_RANDOM = 3

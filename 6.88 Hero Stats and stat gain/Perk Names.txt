@@ -90,31 +90,34 @@ Naga:	Slithereen Oath
 Kotl:	Will-O-Wisp
 Wisp:	Beep Boop!
 Visage:	Face it!
-Slark:	Slippery fish
+Slark:	Dark Reef Flashbacks
 Dusa:	Real Beauty
 Troll:	Blow Up
 Cent:	Great Foritude
 Magnus:	Impaling horn
 Timber:	Shredder
-BB:	
+BB:	Back Up
 Tusk:	Art of Brawling
-Sky:	
+Sky:	Eloquence
 Abba:	Mist Fields
-ET:	
-LC:	
+ET:	Worldsmith
+LC:	Bronze Legion Leadership
 Cancer:	9/11			
-Ember:			
-Kaolin:			
-UL:	
+Ember:	Balance in all things		
+Kaolin:	Nerfbat resistance		
+UL:	Dust and Ashes
 TB:	Demonic Conversion		
 Phoe:	Ashes to ashes		
 Oracle:	Orakyle		
-WW:	
-ArcW:
+WW:	Winter is coming!
+ArcW:	Harmonization
 
 	
-MK:			//Adaptations and new heroes from here
-Pango:
-Granny:
-
+MK:				//Adaptations and new heroes from here
+Pango:	
+Granny:	
+Willow:	The biggest oversight
+Grim:	Happy little accident
+Inai:	
+Mars:	Gladiator
 
