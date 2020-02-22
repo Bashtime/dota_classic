@@ -14,7 +14,7 @@ QoL: UI Improvements
 
 
 
-Now Implemented:
+**Now Implemented:
 
 -XP per level required as in 6.88
 
@@ -39,17 +39,17 @@ Now Implemented:
 
 -neutral drops reduced to 10. Most are only sweet consumables
 
--NO Talenttrees but perks and attribute bonus (+3 / lvl)
+-NO Talenttrees but perks (can be learned at 13,17,21,25) and attribute bonus (+3 / lvl; 6 levels, can be skilled at 2,5,8,11,14,17)
 
 -XP and Gold bounties as in 6.88 
 
 -Death Times as in 6.88 but more death time if killer is neutral ot tower for first levels to prevent suicide abuse
 
+-Death Cost dependant on lvl instead of NW (30 times lvl + 50)
 
 
 
-
-To Do:
+**To Do:
 
 -Rework all boots to give constant ms instead of percentage, recode some items
 
@@ -74,10 +74,13 @@ To Do:
 
 
 
-Bugs:
+**Bugs:
 
 -can only spend 20 instead of 25 skill points (solved)
 
+-Respawn time after buyback is not increased
+
+-Heroes are not randomed after penalty time
 
   
 
