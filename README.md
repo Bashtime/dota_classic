@@ -14,7 +14,7 @@ QoL: UI Improvements
 
 
 
-**Now Implemented:
+**Now Implemented:**
 
 -XP per level required as in 6.88
 
@@ -49,7 +49,7 @@ QoL: UI Improvements
 
 
 
-**To Do:
+**To Do:**
 
 -Rework all boots to give constant ms instead of percentage, recode some items
 
@@ -74,7 +74,7 @@ QoL: UI Improvements
 
 
 
-**Bugs:
+**Bugs:**
 
 -can only spend 20 instead of 25 skill points (solved)
 
