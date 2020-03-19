@@ -65,11 +65,13 @@ QoL: UI Improvements
 
 -make centerBG panorama bigger
 
--Show HP/Mana of allies all the time
+-Show HP/Mana of allies all the time in the top bar instead of pressing ALT
 
 -Remove Outposts and add sideshops
 
+-Show XP in portrait all the time
 
+-Make older maps work, rework current map
 
 
 
@@ -80,7 +82,7 @@ QoL: UI Improvements
 
 -Respawn time after buyback is not increased
 
--Heroes are not randomed after penalty time
+-Heroes are not randomed after penalty time (solved) 
 
   
 
