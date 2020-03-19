@@ -37,7 +37,7 @@ QoL: UI Improvements
 
 -approx. 15% of items have gold prices and recipes now reverted to 6.88 (work in progress)
 
--neutral drops reduced to 10. Most are only sweet consumables
+-neutral drops reduced to be deterministic. The only randomness is the order.
 
 -NO Talenttrees but perks (can be learned at 13,17,21,25) and attribute bonus (+3 / lvl; 6 levels, can be skilled at 2,5,8,11,14,17)
 
@@ -47,6 +47,7 @@ QoL: UI Improvements
 
 -Death Cost dependant on lvl instead of NW (30 times lvl + 50)
 
+-Buyback Cost slightly increased from what it used to be (time and level-based) 
 
 
 **To Do:**
@@ -65,12 +66,15 @@ QoL: UI Improvements
 
 -make centerBG panorama bigger
 
--Show HP/Mana of allies all the time
+-Show HP/Mana of allies all the time in the top bar instead of pressing ALT
 
 -Remove Outposts and add sideshops
 
+-Show XP in portrait all the time
 
+-Make older maps work, rework current map
 
+-Vanilla rune system (Powerrune min 4, Bounties every 5)
 
 
 
@@ -80,7 +84,7 @@ QoL: UI Improvements
 
 -Respawn time after buyback is not increased
 
--Heroes are not randomed after penalty time
+-Heroes are not randomed after penalty time (solved) 
 
   
 
