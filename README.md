@@ -37,7 +37,7 @@ QoL: UI Improvements
 
 -approx. 15% of items have gold prices and recipes now reverted to 6.88 (work in progress)
 
--neutral drops reduced to 10. Most are only sweet consumables
+-neutral drops reduced to be deterministic. Only randomness is the order.
 
 -NO Talenttrees but perks (can be learned at 13,17,21,25) and attribute bonus (+3 / lvl; 6 levels, can be skilled at 2,5,8,11,14,17)
 
@@ -73,6 +73,7 @@ QoL: UI Improvements
 
 -Make older maps work, rework current map
 
+-Vanilla rune system (Powerrune min 4, Bounties every 5)
 
 
 
