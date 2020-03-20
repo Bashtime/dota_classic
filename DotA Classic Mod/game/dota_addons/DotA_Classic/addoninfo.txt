@@ -1,10 +1,40 @@
 "AddonInfo"
 {
-  "TeamCount" "2"
-  "maps"      "cdota"
-  "IsPlayable"  "1"
-  "classic"
-  {
-          "MaxPlayers"                    "10"
-  }
+	"addonSteamAppID"				"570"
+	"addontitle"					"Dota Classic"
+	"addon_game_name"				"Dota Classic"
+	"addonversion"					"7.19c"
+	"addontagline"					"IMBA"
+	"addonauthor"					"Bashtime"
+	"addonSteamGroupName"			""
+	"addonContent_Campaign"			"0"
+	"addonDescription"				"A modified version of Dota, which combines the best of the 6.8 era with some modern elements."
+	"HeroGuidesSupported"			"1"
+	"PenaltiesEnabled"				"1"
+	"CheckAFKPlayers"				"1"
+	"EnablePickRules"				"1"
+
+	"maps"							"cdota dota_685 dota_688 dota_683"
+
+	"IsPlayable"					"1"
+
+	"cdota"
+	{
+		"MaxPlayers"				"10"
+	}
+
+	"dota_685"
+	{
+		"MaxPlayers"				"10"
+	}
+
+	"dota_683"
+	{
+		"MaxPlayers"				"10"
+	}
+
+	"dota_688"
+	{
+		"MaxPlayers"				"10"
+	}
 }

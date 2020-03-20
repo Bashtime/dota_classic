@@ -612,7 +612,7 @@ function GameMode:OnEntityKilled(keys)
     end
 
     --Buyback Cooldown
-    if CUSTOM_BUYBACK_COOLDOWN_ENABLED and (killed_unit:GetDeaths() > 1) then
+    if CUSTOM_BUYBACK_COOLDOWN_ENABLED then
       PlayerResource:SetCustomBuybackCooldown(killed_unit:GetPlayerID(), CUSTOM_BUYBACK_COOLDOWN_TIME)
     end 
 
@@ -620,7 +620,7 @@ function GameMode:OnEntityKilled(keys)
     if CUSTOM_BUYBACK_COST_ENABLED then
       local victimlvl = killed_unit:GetLevel()
       local time = GameRules:GetGameTime()
-      local bbcost = 150 + time * 0.25 + victimlvl * victimlvl * 1.5
+      local bbcost = 150 + (time - PRE_GAME_TIME) * 0.25 + victimlvl * victimlvl * 1.5
       PlayerResource:SetCustomBuybackCost(killed_unit:GetPlayerID(), bbcost)
     end
 
@@ -632,7 +632,7 @@ function GameMode:OnEntityKilled(keys)
       -- Put stuff here that you want to happen if a hero is killed by a creep, tower or fountain.
       local victimlvl = killed_unit:GetLevel()
       local time = GameRules:GetGameTime()
-      local bbcost = 150 + time * 0.25 + victimlvl * victimlvl * 1.5
+      local bbcost = 150 + (time - PRE_GAME_TIME) * 0.25 + victimlvl * victimlvl * 1.5
       PlayerResource:SetCustomBuybackCost(killed_unit:GetPlayerID(), bbcost)
     end
 

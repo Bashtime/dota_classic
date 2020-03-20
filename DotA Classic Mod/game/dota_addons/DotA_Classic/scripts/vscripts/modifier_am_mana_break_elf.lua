@@ -71,6 +71,11 @@ function modifier_am_mana_break_elf:GetModifierProcAttack_BonusDamage_Physical( 
 			if purity_lvl ~= nil then
 				-- add percentage mana burn
 				local percbonus = purity_of_will:GetLevelSpecialValueFor("mana_burn_perc", purity_lvl)
+
+				if attacker:IsIllusion() then
+					percbonus = percbonus / 2
+				end
+
 				local new_mana_burn = self.mana_break + (percbonus * target:GetMaxMana() / 100) 
 				mana_burn = math.min(target:GetMana(), new_mana_burn )
 			end
