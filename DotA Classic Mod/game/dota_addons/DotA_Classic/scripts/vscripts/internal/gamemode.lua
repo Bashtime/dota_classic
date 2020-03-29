@@ -16,8 +16,6 @@ function GameMode:_InitGameMode()
 	GameRules:SetUseCustomHeroXPValues ( USE_CUSTOM_XP_VALUES )
 	GameRules:SetGoldPerTick(GOLD_PER_TICK)
 	GameRules:SetGoldTickTime(GOLD_TICK_TIME)
-	GameRules:SetBountyRuneSpawnInterval(BOUNTY_RUNE_SPAWN_TIME)
-	GameRules:SetPowerRuneSpawnInterval(POWER_RUNE_SPAWN_TIME)
 	GameRules:SetUseBaseGoldBountyOnHeroes(USE_STANDARD_HERO_GOLD_BOUNTY)
 	GameRules:SetHeroMinimapIconScale( MINIMAP_ICON_SIZE )
 	GameRules:SetCreepMinimapIconScale( MINIMAP_CREEP_ICON_SIZE )
@@ -44,12 +42,8 @@ function GameMode:_InitGameMode()
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0.05)
 	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.07143)  -- From 16 int per 1% spell amp to 14 int
 
- 
-	
-
-
-
-
+	GameRules:GetGameModeEntity():SetBountyRuneSpawnInterval(BOUNTY_RUNE_SPAWN_TIME)
+	GameRules:GetGameModeEntity():SetPowerRuneSpawnInterval(POWER_RUNE_SPAWN_TIME)
 
 	if SKIP_TEAM_SETUP then
 		GameRules:SetCustomGameSetupAutoLaunchDelay( 0 )
