@@ -7,9 +7,9 @@
 			"1:00"
 			{
 				"0" "5"
-				"1" "5"
-				"2" "5"
-				"3" "5"
+				"1" "4"
+				"2" "4"
+				"3" "3"
 			}
 		}
 		
@@ -46,36 +46,42 @@
 	{
 		"drop_rates"
 		{
-			"90:00"
+			"35:00"
 			{
-				"0" "0"
-				"1" "0"
-				"2" "0"
-				"3" "0"
+				"0" "10"
+				"1" "10"
+				"2" "10"
+				"3" "10"
 			}
 		}
 
 		"items"
 		{
-
+			"item_paladin_sword"			  "0"
+			"item_the_leveller"				  "0"
+			"item_spy_gadget"				  "0"
+			"item_timeless_relic"			"0"
 		}
 	}
 	"4"
 	{	
 		"drop_rates"
 		{
-			"120:00"
+			"45:00"
 			{
-				"0" "0"
-				"1" "0"
-				"2" "0"
-				"3" "0"
+				"0" "10"
+				"1" "10"
+				"2" "10"
+				"3" "10"
 			}
 		}
 
 		"items"
 		{
-
+			"item_spell_prism"			  "0"
+			"item_flicker"				  "0"
+			"item_princes_knife"				  "0"
+			"item_orb_of_destruction"			"0"
 		}
 	}
 	"5"

@@ -292,7 +292,7 @@
 			"08"
 			{
 				"var_type"						"FIELD_INTEGER"
-				"culling_threshold_bonus"		"0 75 150 225"
+				"bonus_as"						"20 30 40 50"
 			}
 		}
 	}
@@ -364,94 +364,21 @@
 	}
 
 
-	//=================================================================================================================
-	// Axe: Battle Hunger (Lua version)
-	//=================================================================================================================
-	"axe_battle_hunger_lua"
-	{
-		// Ability Technical Aspect
-		// base script folder	: scripts/vscripts
-		// base texture folder	: resource/flash3/images/spellicons
-		//-------------------------------------------------------------------------------------------------------------
-		"BaseClass"						"ability_lua"
-		"ScriptFile"					"axe_battle_hunger_elf"
-		"AbilityTextureName"			"axe_battle_hunger"
-		"FightRecapLevel"				"1"
-		"MaxLevel"						"4"
-		"precache"
-		{
-			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
-			"particle"	"particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
-		}
-		
-		// Ability General
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
-		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
-		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
 
-		// Ability Casting
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCastRange"				"600"
-		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
-
-		// Ability Resource
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"20.0 15.0 10.0 5.0"
-		"AbilityManaCost"				"50 60 70 80"		
-
-		// Damage
-		//-------------------------------------------------------------------------------------------------------------
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"					"FIELD_FLOAT"
-				"duration"					"12.0"
-			}
-			"02"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"slow"						"-12"
-			}
-			"03"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"speed_bonus"						"12"
-			}
-			"04"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_per_second"			"16 24 32 40"
-			}
-			"05"
-			{
-				"var_type"					"FIELD_INTEGER"
-				"damage_reduction_scepter"	"30"
-			}
-		}
-	}
 
 
 
 	//=================================================================================================================
 	// Axe: Counter Helix (Lua version)
 	//=================================================================================================================
-	"axe_counter_helix_elf"
+	"axe_counter_helix_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"axe_counter_helix_elf"
+		"ScriptFile"					"lua_abilities/axe_counter_helix_lua/axe_counter_helix_lua"
 		"AbilityTextureName"			"axe_counter_helix"
 		"FightRecapLevel"				"1"
 		"MaxLevel"						"4"
@@ -471,6 +398,7 @@
 		// Ability Casting
 		//-------------------------------------------------------------------------------------------------------------
 		"AbilityCastRange"				"275"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
 
 		// Ability Resource
 		//-------------------------------------------------------------------------------------------------------------
@@ -504,16 +432,94 @@
 
 
 	//=================================================================================================================
-	// Axe: Culling Blade (Lua version)
+	// Axe: Battle Hunger (Lua version)
 	//=================================================================================================================
-	"axe_culling_blade_elf"
+	"axe_battle_hunger_lua"
 	{
 		// Ability Technical Aspect
 		// base script folder	: scripts/vscripts
 		// base texture folder	: resource/flash3/images/spellicons
 		//-------------------------------------------------------------------------------------------------------------
 		"BaseClass"						"ability_lua"
-		"ScriptFile"					"axe_culling_blade_elf"
+		"ScriptFile"					"lua_abilities/axe_battle_hunger_lua/axe_battle_hunger_lua"
+		"AbilityTextureName"			"axe_battle_hunger"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"particle"	"particles/units/heroes/hero_axe/axe_battle_hunger.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellDispellableType"			"SPELL_DISPELLABLE_YES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.3 0.3 0.3 0.3"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_2"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"20.0 15.0 10.0 5.0"
+		"AbilityManaCost"				"50 60 70 80"		
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"duration"					"12.0"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow"						"-10"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"speed_bonus"						"10"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_per_second"			"16 24 32 40"
+			}
+			"05"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage_reduction_scepter"	"30"
+			}
+		}
+	}
+
+
+
+	//=================================================================================================================
+	// Axe: Culling Blade (Lua version)
+	//=================================================================================================================
+	"axe_culling_blade_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/axe_culling_blade_lua/axe_culling_blade_lua"
 		"AbilityTextureName"			"axe_culling_blade"
 		"FightRecapLevel"				"2"
 		"MaxLevel"						"3"
@@ -572,7 +578,7 @@
 			"04"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"atk_speed_bonus_tooltip"	"30"
+				"atk_speed_bonus_tooltip"				"30"
 			}
 			"05"
 			{
@@ -596,6 +602,70 @@
 
 
 
+	//=================================================================================================================
+	// Axe: Berserker's Call (Lua version)
+	//=================================================================================================================
+	"axe_berserkers_call_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/axe_berserkers_call_lua/axe_berserkers_call_lua"
+		"AbilityTextureName"			"axe_berserkers_call"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_axe.vsndevts"
+			"particle"	"particles/status_fx/status_effect_beserkers_call.vpcf"
+			"particle"	"particles/units/heroes/hero_axe/axe_beserkers_call.vpcf"
+			"particle"	"particles/units/heroes/hero_axe/axe_beserkers_call_owner.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_MOVEMENT"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"300"
+		"AbilityCastPoint"				"0.4"
+		"AbilityCastAnimation"			"ACT_DOTA_OVERRIDE_ABILITY_1"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"16 14 12 10"
+		"AbilityManaCost"				"80 90 100 110"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"300"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_armor"			"30"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"duration"				"2.0 2.4 2.8 3.2"
+			}
+		}
+	}
 
 
 
@@ -633,7 +703,7 @@
 			"01"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"evasion_chance_pct"	"25"
+				"evasion_chance_pct"	"22"
 			}
 		}
 	}
@@ -1076,7 +1146,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"kill_threshold"			"250 325 400"
+				"kill_threshold"			"275 400 525"
 			}
 			"02"
 			{

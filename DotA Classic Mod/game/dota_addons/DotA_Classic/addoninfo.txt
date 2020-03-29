@@ -1,7 +1,7 @@
 "AddonInfo"
 {
 	"TeamCount"			"2"
-	"maps"				"dota_688"
+	"maps"				"dota6_88"
 	"IsPlayable"		"1"
 
 //	"dota_688"

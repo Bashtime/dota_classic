@@ -9,6 +9,11 @@ if GameMode == nil then
     _G.GameMode = class({})
 end 
 
+
+--filters.lua
+require('filters')
+
+
 -- This library allow for easily delayed/timed actions
 require('libraries/timers')
 -- This library can be used for advancted physics/motion/collision of units.  See PhysicsReadme.txt for more information.
@@ -94,6 +99,31 @@ end
 ]]
 function GameMode:OnAllPlayersLoaded()
   --DebugPrint("[DOTA CLASSIX] All Players have loaded into the game")
+
+ -- Force Random a hero for every play that didnt pick a hero when time runs out
+  local delay = HERO_SELECTION_TIME + PENALTY_TIME -0.1 --+ STRATEGY_TIME - 0.1
+  if ENABLE_BANNING_PHASE then
+    delay = delay + BANNING_PHASE_TIME
+  end
+  Timers:CreateTimer(delay, function()
+    for playerID = 0, 9 do
+      local player = PlayerResource:GetPlayer(playerID)
+      if PlayerResource:IsValidPlayerID(playerID) then
+        -- If this player still hasn't picked a hero, random one
+        -- PlayerResource:IsConnected(index) is custom-made; can be found in 'player_resource.lua' library
+        if not PlayerResource:HasSelectedHero(playerID) and player ~= nil and (not PlayerResource:IsBroadcaster(playerID)) then
+          PlayerResource:GetPlayer(playerID):MakeRandomHeroSelection() -- this will cause an error if player is disconnected
+          PlayerResource:SetHasRandomed(playerID)
+          PlayerResource:SetCanRepick(playerID, false)
+          --DebugPrint("[BAREBONES] Randomed a hero for a player number "..playerID)
+        end
+      end
+    end
+  end)
+
+
+
+
 end
 
 --[[
@@ -112,7 +142,33 @@ function GameMode:OnHeroInGame(hero)
   -- These lines will create an item and add it to the player, effectively ensuring they start with the item
   local item = CreateItem("item_bfury", hero, hero)
   hero:AddItem(item)
-    
+  
+  local playerID = hero:GetPlayerID()    
+
+     if PlayerResource:HasRandomed(playerID) then
+
+        Timers:CreateTimer(0.1, function()
+        local mango = hero:FindItemInInventory("item_enchanted_mango")
+        local faerie = hero:FindItemInInventory("item_faerie_fire")
+        print(mango)
+        print(faerie)
+
+          if mango ~= nil then 
+            hero:RemoveItem(mango)
+          end
+
+          if faerie ~= nil then 
+            hero:RemoveItem(faerie)
+          end
+        end)
+          
+        hero:ModifyGold(200,false,DOTA_ModifyGold_Unspecified)
+     end
+
+     Timers:CreateTimer(0.1, function()
+     local tp = hero:FindItemInInventory("item_tpscroll")
+     hero:RemoveItem(tp)
+     end)
 
   --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
     --with the "example_ability" ability]]
@@ -135,6 +191,27 @@ function GameMode:OnGameInProgress()
       --DebugPrint("This function is called 30 seconds after the game begins, and every 30 seconds thereafter")
       return 30.0 -- Rerun this timer every 30 game-time seconds 
     end)
+
+  -- A timer running every 4 seconds that starts 60 seconds in the future, respects pauses
+  Timers:CreateTimer(PRE_GAME_TIME, function()
+        --Add additional Gold so it's 1 gold / 0.6 seconds over all, update buybackcost every 4 seconds
+        for i=0,9 do
+          PlayerResource:ModifyGold(i,1,false,DOTA_ModifyGold_GameTick)
+
+          local lvl = PlayerResource:GetLevel(i)
+          local time = GameRules:GetGameTime()
+          if lvl ~= nil then
+            local bbcost = 150 + (time-PRE_GAME_TIME) * 0.25 + lvl * lvl * 1.5
+            PlayerResource:SetCustomBuybackCost(i,bbcost)
+          end
+        end 
+      return 4.0
+    end
+  )
+
+
+
+
 end
 
 

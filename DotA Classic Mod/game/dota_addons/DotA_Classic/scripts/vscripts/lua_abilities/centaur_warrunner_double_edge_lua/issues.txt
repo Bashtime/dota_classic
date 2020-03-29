@@ -1,0 +1,2 @@
+Effects:
+- Particle Effects not properly displayed

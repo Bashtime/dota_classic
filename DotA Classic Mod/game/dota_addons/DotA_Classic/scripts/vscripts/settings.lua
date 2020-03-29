@@ -2,11 +2,17 @@ ENABLE_HERO_RESPAWN = true
 UNIVERSAL_SHOP_MODE = false             
 ALLOW_SAME_HERO_SELECTION = false       
 
+
+ENABLE_BANNING_PHASE = true				--Should we enable a banning phase?
+BANNING_PHASE_TIME = 0
+
 HERO_SELECTION_TIME = 30.0              -- How long should we let people select their hero?
 TIME_BEFORE_FORCED_RANDOM = 8			-- How long can people pick after the time has run out before getting a random hero? 
 PRE_GAME_TIME = 60.0                    -- How long after people select their heroes should the horn blow and the game start?
 POST_GAME_TIME = 60.0                   
-TREE_REGROW_TIME = 300.0                 
+PENALTY_TIME = 10.0
+STRATEGY_TIME = 20.0                 
+TREE_REGROW_TIME = 300.0
 
 GOLD_PER_TICK = 1                    
 GOLD_TICK_TIME = 1                      
@@ -48,7 +54,7 @@ HERO_KILL_GOLD_PER_STREAK = 125				-- Gold you gain for killing heroes with stre
 HERO_KILL_GOLD_PER_LEVEL = 9				-- IceFrog called this VictimLevel
 
 
-
+TELEPORT_SCROLL_ON_START = false         -- Should the heroes have a teleport scroll in their inventory right at the start of the game?
 
 
 MAX_LEVEL = 25                         
@@ -114,6 +120,9 @@ AUTO_LAUNCH_DELAY = 0                  -- How long should the default team selec
 LOCK_TEAM_SETUP = true                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
 
 
+
+RUNE_SPAWN_TIME = 120
+
 -- NOTE: You always need at least 2 non-bounty type runes to be able to spawn or your game will crash!
 ENABLED_RUNES = {}                      -- Which runes should be enabled to spawn in our game mode?
 ENABLED_RUNES[DOTA_RUNE_DOUBLEDAMAGE] = true
@@ -123,6 +132,11 @@ ENABLED_RUNES[DOTA_RUNE_INVISIBILITY] = true
 ENABLED_RUNES[DOTA_RUNE_REGENERATION] = true
 ENABLED_RUNES[DOTA_RUNE_BOUNTY] = true
 ENABLED_RUNES[DOTA_RUNE_ARCANE] = true
+
+BOUNTY_RUNE_SPAWN_INTERVAL = 300
+POWER_RUNE_SPAWN_INTERVAL = 120
+
+USE_DEFAULT_RUNE_SYSTEM = true 
 
 
 MAX_NUMBER_OF_TEAMS = 2                -- How many potential teams can be in this game mode?
@@ -153,6 +167,8 @@ end
 
 STARTING_GOLD = 62500
 UNIVERSAL_SHOP_MODE = true
-HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
-PRE_GAME_TIME = 0.0                    -- How long after people select their heroes should the horn blow and the game start?
+HERO_SELECTION_TIME = 18.0              -- How long should we let people select their hero?
+PRE_GAME_TIME = 5.0                    -- How long after people select their heroes should the horn blow and the game start?
 TIME_BEFORE_FORCED_RANDOM = 3
+PENALTY_TIME = 2.0
+STRATEGY_TIME = 5.0  

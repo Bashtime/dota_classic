@@ -15,4 +15,5 @@
   "npc_dota_hero_juggernaut" "1"
   "npc_dota_hero_medusa"	"1"
   "npc_dota_hero_ursa"	"1"
+  "npc_dota_hero_morphling"	"1"
 }
