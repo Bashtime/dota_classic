@@ -1,0 +1,67 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Enchantress: Impetus (Lua version)
+	//=================================================================================================================
+	"enchantress_impetus_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/enchantress_impetus_lua/enchantress_impetus_lua"
+		"AbilityTextureName"			"enchantress_impetus_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"3"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_enchantress.vsndevts"
+			"particle"	"particles/units/heroes/hero_enchantress/enchantress_impetus.vpcf.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AUTOCAST | DOTA_ABILITY_BEHAVIOR_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PURE"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_YES"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"550"
+		"AbilityCastPoint"				"0"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"0"
+		"AbilityManaCost"				"40 55 70"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"distance_damage_pct"	"16 20 24"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"distance_cap"			"1750"
+			}
+			"03"
+			{
+				"var_type"						"FIELD_INTEGER"
+				"bonus_attack_range_scepter"	"190 190 190"
+			}
+		}
+	}
+}

@@ -1,0 +1,76 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Lina: Dragon Slave (Lua version)
+	//=================================================================================================================
+	"lina_dragon_slave_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/lina_dragon_slave_lua/lina_dragon_slave_lua"
+		"AbilityTextureName"			"lina_dragon_slave_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"	"particles/units/heroes/hero_lina/lina_spell_dragon_slave.vpcf"
+			"particle"	"particles/units/heroes/hero_lina/lina_spell_dragon_slave_impact.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1075"
+		"AbilityCastPoint"				"0.45 0.45 0.45 0.45"
+		"AbilityDuration"				"0.6875 0.6875 0.6875 0.6875"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"8.0"
+		"AbilityManaCost"				"10"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityDamage"					"85 160 235 310"
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_speed"		"1200"
+			}
+			
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_width_initial"	"275"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_width_end"		"200"
+			}
+			
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dragon_slave_distance"			"1075"
+			}
+		}
+	}
+}

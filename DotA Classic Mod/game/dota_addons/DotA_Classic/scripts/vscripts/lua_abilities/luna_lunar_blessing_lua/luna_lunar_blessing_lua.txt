@@ -1,0 +1,59 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Luna: Lunar Blessings (Lua version)
+	//=================================================================================================================
+	"luna_lunar_blessing_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/luna_lunar_blessing_lua/luna_lunar_blessing_lua"
+		"AbilityTextureName"			"luna_lunar_blessing_lua"
+		"FightRecapLevel"				"1"
+		"MaxLevel"						"4"
+//		"precache"
+//		{
+//			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_<hero>.vsndevts"
+//			"particle"	"particles/units/heroes/hero_<hero>/<hero>_<ability>.vpcf"
+//		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"1200"
+
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"radius"					"1200"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"primary_attribute"			"6 12 18 24"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_night_vision"		"200 400 600 800"
+			}
+		}
+	}
+}

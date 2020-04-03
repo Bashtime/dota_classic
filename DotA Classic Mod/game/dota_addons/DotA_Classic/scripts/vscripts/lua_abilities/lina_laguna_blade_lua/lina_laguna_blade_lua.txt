@@ -1,0 +1,68 @@
+"DOTAAbilities"
+{
+	//=================================================================================================================
+	// Lina: Laguna Blade (Lua version)
+	//=================================================================================================================
+	"lina_laguna_blade_lua"
+	{
+		// Ability Technical Aspect
+		// base script folder	: scripts/vscripts
+		// base texture folder	: resource/flash3/images/spellicons
+		//-------------------------------------------------------------------------------------------------------------
+		"BaseClass"						"ability_lua"
+		"ScriptFile"					"lua_abilities/lina_laguna_blade_lua/lina_laguna_blade_lua"
+		"AbilityTextureName"			"lina_laguna_blade_lua"
+		"FightRecapLevel"				"2"
+		"MaxLevel"						"3"
+		"HasScepterUpgrade"			"1"
+
+		"precache"
+		{
+			"soundfile"	"soundevents/game_sounds_heroes/game_sounds_lina.vsndevts"
+			"particle"	"particles/units/heroes/hero_lina/lina_spell_laguna_blade.vpcf"
+		}
+		
+		// Ability General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ENEMIES_NO"
+
+		// Ability Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"600"
+		"AbilityCastPoint"				"0.45 0.45 0.45"
+		// Ability Resource
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"70 60 50"
+		"AbilityManaCost"				"280 420 680"
+
+		// Damage
+		//-------------------------------------------------------------------------------------------------------------
+
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"damage"					"450 650 850"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"cast_range_scepter"		"600"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"damage_delay"				"0.25"
+			}
+		}
+	}
+}
