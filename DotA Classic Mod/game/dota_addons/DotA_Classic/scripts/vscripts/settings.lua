@@ -125,37 +125,6 @@ CUSTOM_TEAM_PLAYER_COUNT = {}
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 5
 CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 5
 
-if GetMapName() == Map1v1() then
-	IMBA_PLAYERS_ON_GAME = 2
-	CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 1
-	CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 1
-	IMBA_1V1_SCORE = 3
-	PRE_GAME_TIME = 30.0 + AP_GAME_TIME
-elseif string.find(GetMapName(), "10v10") then
-	IMBA_PLAYERS_ON_GAME = 20
-	CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 10
-	CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 10
-
-	PLAYER_COLORS[10] = { 255, 0, 255 }
-	PLAYER_COLORS[11]  = { 128, 128, 0 }
-	PLAYER_COLORS[12] = { 100, 255, 255 }
-	PLAYER_COLORS[13] = { 0, 190, 0 }
-	PLAYER_COLORS[14] = { 170, 110, 40 }
-	PLAYER_COLORS[15] = { 0, 0, 128 }
-	PLAYER_COLORS[16] = { 230, 190, 255 }
-	PLAYER_COLORS[17] = { 128, 0, 0 }
-	PLAYER_COLORS[18] = { 144, 144, 144 }
-	PLAYER_COLORS[19] = { 254, 254, 254 }
-	PLAYER_COLORS[20] = { 166, 166, 166 }
-	PLAYER_COLORS[21] = { 255, 89, 255 }
-	PLAYER_COLORS[22] = { 203, 255, 89 }
-	PLAYER_COLORS[23] = { 108, 167, 255 }
-elseif GetMapName() == "imba_demo" then
-	IMBA_PLAYERS_ON_GAME = 2
-	CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_GOODGUYS] = 1
-	CUSTOM_TEAM_PLAYER_COUNT[DOTA_TEAM_BADGUYS]  = 1
-end
-
 -------------------------------------------------------------------------------------------------
 -- IMBA: game mode globals
 -------------------------------------------------------------------------------------------------
@@ -175,51 +144,12 @@ MAX_LEVEL = 25
 HERO_INITIAL_GOLD = 600
 GOLD_TICK_TIME = 0.6
 
-BANNED_ITEMS = {}
-BANNED_ITEMS[Map1v1()] = {
-	"item_bottle",
-	"item_infused_raindrop",
-	"item_soul_ring",
-	"item_tome_of_knowledge",
-}
-TOWER_ABILITIES = {}
-TOWER_ABILITIES["tower1"] = {
-	"imba_tower_secondary_resistance",
-	"imba_tower_tenacity",
-	-- "imba_tower_thorns",
-	"imba_tower_multishot"
-}
-TOWER_ABILITIES["tower2"] = {
-	"imba_tower_secondary_resistance",
-	"imba_tower_tenacity",
-	-- "imba_tower_thorns",
-	"imba_tower_regeneration",
-	"imba_tower_multishot"
-}
-TOWER_ABILITIES["tower3"] = {
-	"imba_tower_secondary_resistance",
-	"imba_tower_tenacity",
-	-- "imba_tower_thorns",
-	"imba_tower_regeneration",
-	"imba_tower_toughness",
-	"imba_tower_multishot"
-}
-TOWER_ABILITIES["tower4"] = {
-	"imba_tower_secondary_resistance",
-	"imba_tower_tenacity",
-	-- "imba_tower_thorns",
-	"imba_tower_regeneration",
-	"imba_tower_toughness",
-	-- "imba_tower_splash_fire",
-	"imba_tower_multishot"
-}
-
 -- Update game mode net tables
 CustomNetTables:SetTableValue("game_options", "all_pick", {IMBA_PICK_MODE_ALL_PICK})
 CustomNetTables:SetTableValue("game_options", "all_random", {IMBA_PICK_MODE_ALL_RANDOM})
 CustomNetTables:SetTableValue("game_options", "all_random_same_hero", {IMBA_PICK_MODE_ALL_RANDOM_SAME_HERO})
-CustomNetTables:SetTableValue("game_options", "gold_tick", {GOLD_TICK_TIME[GetMapName()]})
-CustomNetTables:SetTableValue("game_options", "max_level", {MAX_LEVEL[GetMapName()]})
+CustomNetTables:SetTableValue("game_options", "gold_tick", {GOLD_TICK_TIME})
+CustomNetTables:SetTableValue("game_options", "max_level", {MAX_LEVEL})
 
 USE_CUSTOM_HERO_LEVELS = false	-- Should we allow heroes to have custom levels?
 
