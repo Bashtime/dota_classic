@@ -1,2 +1,0 @@
-Effects:
-- Effect did not appear during Shadow Dance
