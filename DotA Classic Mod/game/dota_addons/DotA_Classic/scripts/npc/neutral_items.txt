@@ -4,7 +4,7 @@
 	{
 		"drop_rates"
 		{
-			"1:00"
+			"0:00"
 			{
 				"0" "5"
 				"1" "4"
@@ -79,29 +79,29 @@
 		"items"
 		{
 			"item_spell_prism"			  "0"
-			"item_flicker"				  "0"
-			"item_princes_knife"				  "0"
+			"item_spider_legs"				  "0"
+			"item_titan_sliver"				  "0"
 			"item_orb_of_destruction"			"0"
 		}
 	}
-	"5"
-	{
-		"drop_rates"
-		{
-			"180:00"
-			{
-				"0" "0"
-				"1" "0"
-				"2" "0"
-				"3" "0"
-			}
-		}
+	//"5"
+	//{
+	//	"drop_rates"
+	//	{
+	//		"180:00"
+	//		{
+	//			"0" "0"
+	//			"1" "0"
+	//			"2" "0"
+	//			"3" "0"
+	//		}
+	//	}
 
-		"items"
-		{
-
-		}
-	}
+	//	"items"
+	//	{
+//
+//		}
+//	}
 }
 
 

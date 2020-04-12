@@ -5,13 +5,21 @@ am_blink_elf = class({})
 --------------------------------------------------------------------------------
 -- Ability Start
 function am_blink_elf:OnSpellStart()
+
+	if IsServer() then
+
 	-- unit identifier
 	local caster = self:GetCaster()
 	local point = self:GetCursorPosition()
 	local origin = caster:GetOrigin()
 
+	local range_enhancement = caster:GetCastRangeBonus()
+
+	if range_enhancement == nil then range_enhancement = 0 end
+
 	-- load data
 	local max_range = self:GetSpecialValueFor("blink_range")
+	
 
 	-- purity of will range bonus 
 	local purity_of_will = caster:FindAbilityByName("antimage_counterspell") 
@@ -25,7 +33,10 @@ function am_blink_elf:OnSpellStart()
 		-- adapt max max_range
 		local rangebonus = self:GetLevelSpecialValueFor("bonus_range", purity_lvl)
 		max_range = max_range + rangebonus
+		
 	end
+
+	max_range = max_range + range_enhancement
 
 
 	-- determine target position
@@ -39,6 +50,11 @@ function am_blink_elf:OnSpellStart()
 
 	-- Play effects
 	self:PlayEffects( origin, direction )
+
+	-- Disjointing everything
+	ProjectileManager:ProjectileDodge(caster)
+
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -69,6 +85,8 @@ end
 -- Purity of Will reducing cooldown
 function am_blink_elf:GetCooldown(nLevel)
 
+	if IsServer() then
+
 	local caster = self:GetCaster()
 	local lvl = self:GetLevel() - 1
 
@@ -92,11 +110,16 @@ function am_blink_elf:GetCooldown(nLevel)
 	else
 		return new_cd
 	end
+
+	end
 end
 
 
 -- Purity of Will reducing cast point
 function am_blink_elf:GetCastPoint()
+
+	if IsServer() then
+
     local caster = self:GetCaster()
     local cp_reduction = 0
     local purity_of_will = caster:FindAbilityByName("antimage_counterspell") 
@@ -109,6 +132,8 @@ function am_blink_elf:GetCastPoint()
         cp_reduction = self:GetLevelSpecialValueFor("cp_reduction", purity_lvl)
     end
     return self.BaseClass.GetCastPoint(self) - cp_reduction
+
+	end
 end
 
 

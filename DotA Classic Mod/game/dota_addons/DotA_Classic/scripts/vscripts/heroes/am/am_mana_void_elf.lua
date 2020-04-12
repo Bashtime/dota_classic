@@ -1,7 +1,7 @@
 --Credits go to Elfansoer; Edited by Bashtime
 
 am_mana_void_elf = class({})
-LinkLuaModifier( "modifier_generic_stunned_lua", "modifier_generic_stunned", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_generic_stunned_lua", "heroes/am/am_mana_void_elf", LUA_MODIFIER_MOTION_NONE )
 
 --------------------------------------------------------------------------------
 -- AOE Radius
@@ -112,6 +112,8 @@ end
 -- Purity of Will reducing cooldown
 function am_mana_void_elf:GetCooldown(nLevel)
 
+	if IsServer() then
+
 	local caster = self:GetCaster()
 	local lvl = self:GetLevel() - 1
 
@@ -135,5 +137,65 @@ function am_mana_void_elf:GetCooldown(nLevel)
 	else
 		return new_cd
 	end
+
+	end
+
 end
+
+
+
+
+----------------------------
+----------------------------
+--Stun effect modifier
+
+modifier_generic_stunned_lua = class({})
+
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:IsDebuff()
+	return true
+end
+
+function modifier_generic_stunned_lua:IsStunDebuff()
+	return true
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:CheckState()
+	local state = {
+	[MODIFIER_STATE_STUNNED] = true,
+	}
+
+	return state
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+	}
+
+	return funcs
+end
+
+function modifier_generic_stunned_lua:GetOverrideAnimation( params )
+	return ACT_DOTA_DISABLED
+end
+
+--------------------------------------------------------------------------------
+
+function modifier_generic_stunned_lua:GetEffectName()
+	return "particles/generic_gameplay/generic_stunned.vpcf"
+end
+
+function modifier_generic_stunned_lua:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
+--------------------------------------------------------------------------------
+
+
 
