@@ -1,0 +1,210 @@
+Items:
+-All Boots to give constant ms instead of %
+-Yasha and all yasha related items to give %ms (Done; except for Manta Style)
+-all Sange items to give Maim and greater Maim instead of status resistance + heal amp (Done)
+-Restore Mana regen items to give their orginal %mana regen (Deprecated)
+-Bloodstone with modern active and modern charge lose but old buildup and old effects: Each charge to give flat bonus mana and hp regen, no spell amp, reduces spawntime by 10.
+-Drum to give 10 bonus ms and 5 as to wearer and 10 bonus ms 15 bonus as aura, No charges but longer CD and slightly weaker,  +6 +3 +9 str agi int, Buildup: Bracer, Robe of Magi, Gloves of haste, Wind Lace, Recipe (600)
+-Trident (Done)
+-item that combines kaya and aether lense (Done; Ex Machina)
+-item giving knockback and ministun for range (Done; Ballista from Pike and Hyperstone)
+
+-Old Iron Talon (Done)
+-Old QB deward function (Done)
+
+-Old MoM: take 30% extra damage
+-Holy Locket being useable on allies (Magic Wand Effect has to be coded; Passive Bonuses done)
+
+-BF old pure damage cleave mechanic and quell effect (+60% damage [from base damage] against creeps)
+
+
+
+
+
+
+Gameplay:
+
+-AoE XP Table for Kills: 
+ 
+1 Hero: XP = 120 + 20 × VictimLevel 
+2 Heroes: XP = 90 + 15 × VictimLevel 
+3 Heroes: XP = 30 + 7 × VictimLevel 
+4 Heroes: XP = 20 + 5 × VictimLevel 
+5 Heroes: XP = 15 + 4 × VictimLevel 
+ 
+-AoE Assist Gold Table for Kills:
+ 
+1 Assist: Gold = 125 + 12 × VictimLevel 
+2 Assist: Gold = 40 + 10 × VictimLevel 
+3 Assist: Gold = 10 + 6 × VictimLevel 
+4+ Assist: Gold = 6 + 6 × VictimLevel  
+
+-Rule1: If noone is in AoE around victim and no hero killer, use 75% of the 5 heroes value for each hero. 
+
+-Rule2: If noone is in AoE around victom and have killer, Grant 1 hero AoE XP to the killer, gold same like in rule1.
+
+-Courier mechanics time based: 5 couriers (240 ms, +10 ms/min ; 390 ms MAX ; Speed Unlocked at 7 min ; Shield available at min 10, Automatically Crow at 3:30)
+
+-Sideshops available
+
+-Outposts to give no XP, only vision and cannot be captured before 40:00 (deprecated)
+
+-Shrines only as heal buildings but not as TP buildings available at min 25:00+ reuseable every 3:30 min (deprecated)
+
+-No Innate damage block for melees
+
+-No neutral gold and xp increase over time
+
+
+Heroes: (every hero gets a 4-lvl perk ability available at 13,17,21,25)
+-Old Troll Whirling Axe as One Toogle instead of 2 Abilities, Old troll Ult (global AS + troll unkillable for the duration + self purge)
+-Toogle for Pucks Illusionary Orb and his Jaunt instead of 2 Abilities
+-Morphling Old Adaptive Strike only 1 Ability and Old  
+-Drow old precision Aura, multishot as Perk
+-Old Chen with Divine Favor as Perk
+-Old Kotol with WilloWisp as Perk
+-7.22 Nature's Guise, Tree Walking as Perk
+-Old Damage Block Living armor, that still provides regen when damage charges are used up.
+-Call of the wild with a controllable Hawk, Perk gives this ability chance to spawn one of the Neutral creeps like in 7.07 version
+-Old Brewmaster
+-Old Clinkz with Burning Army as Perk
+-Old Curse of Avernus (Perk allows 4 hit counter with additional slow and silence effect)
+
+[ less important
+
+Map layout:
+Main Jungles like in 6.8 DotA
+Secondary Jungles like in 7.19 (Farm triangle)
+Old Rosh position right to Dire T1
+
+Ingame Shop to show basic and upgrades in 1 tab ]
+
+
+
+Classic AM:
+At lvl 25 blink creates a uncontrollable illusion where you blink to.
+
+Classic Kotl:
+Illuminate (as it is)
+Blinding Light (as it is)
+Chakra Magic (only castable on allies)
+[Mana Leak]
+[Recall]
+Spirit Form active (lvl 13 Perk, passive with agha)
+Will-o-Wisp as ult
+Attribute Bonus
+
+In Spirit form:
+Illuminate (Spirit form, the current agha version), a ghost channels Illuminate (kotl can move), heals teammates during the day and gives kotl flying vision if he has agha
+Spirit form gives "Recall" ability and "mana leak" while it's active
+
+Other Effects of the kotol perk:
+Increases ms by 10/15/20/25
+Increases castrange by 100/150/200/250
+Blinding Light CD reduction: 0/1/2/3
+Chakra Magic Mana increase by: 0/150/225/300
+
+Lvl 25 Effect increases Will-o-Wisp AoE
+
+ 
+Classic Omni:
+Purification (as it is)
+Repel (Duration 4/5/6/7, CD: 22/20/18/16, Cast Range: 500) 
+Degen Aura (as it is)
+Heavenly Grace (lvl 13 Perk)
+Attribute Bonus
+Guardian Angel (as it is)
+
+Agha Change: Doesnt affect Buildings anymore. Heal from 40 to 30.
+Level 25 Perk: Also buffs buildings and every friendly unit in the AoE.
+
+Other Effects of the Omni Perk:
+Guardian Angel bonus HP regen: 0/5/15/25
+Purification AoE Increase: 70/90/110/130
+Purification Heal/Damage Bonus: 30/60/90/120
+Purification Cast Range Bonus: 75/125/175/225
+Bonus ms: 5/10/15/20
+Degen Aura additional slow: 0/4/8/12
+
+
+
+Classic Storm:
+All abilities as they are now
+Perk Name: Storm Warning!
+
+Bonus HP: 250/300/350/400
+Bonus Mana Regen: 3/3.5/4/4.5
+Overload Bonus Damage: 15/20/25/30
+Static Remnant Bonus Damage: 35/45/55/65
+Vortex stun increase: 0/0.2/0.4/0.6
+Bonus AS: 15/20/25/30
+
+Ball Lightning Talent at 25.
+Remnant Vision Increase: 25/50/75/100
+Ult vision increase: 50/150/250/350
+
+
+
+Classic Huskar:
+Inner Vitality
+Burnin Spears
+Berserkers Blood (gives no regen but increased status resistance)
+Inner Fire (lvl 13 perk)
+Attribute Bonus
+Life Break
+
+Other Effects of the Huskar Perk:
+Burning Spear Bonus Damage: 3/5/7/9
+Attack Range Bonus: 0/40/80/160
+Lifesteal: 5/10/15/20%
+Life Break Cast Range Bonus: 50/100/200/400
+Inner Vitality Mana Cost Reduction: 0/0/60/120
+
+Lvl 25: Burning Spear Pure Damage
+
+
+
+Classic Sniper:
+
+6.83 PTSD Perk: 
+Shrapnel lands faster and faster
+CD Red: 10/15/20/25%
+Shrapnel Bonus Slow: 3/6/9/12%
+Shrapnel Bonus DPS: 0/4/7/10
+Shrapnel damages buildings for 0/0/5/10% of the damage
+Bonus AS: 0/0/10/20
+Take Aim: Gets 0/1/2/3 Bonus attacks for the active.
+
+lvl 25: +80 Range and Headshot gives true strike on the proc
+
+ 
+
+
+
+Bugs:
+-Having multiple items that have the same effect that doesnt stack, you will lose that effect when you drop one of these items.
+E.g. Basilius and Aquila have same aura with different numbers. Dropping one of them make you lose that aura, unless you drop both and pick one up again.
+
+-CD of CD-Manipulated Skills through talents/perks are not shown in tooltips anymore. Same for manacost.
+
+
+UI Improvements:
+-Player Color Glow on ground below hero (DotA 1)
+-Assists shown in Kill Feed
+-Visible Aura Particle Effects (DotA 1 like)
+-Show Attack Speed and Magic Resistance with symbols in the HUD without hovering
+-Show yellow circle around the main attribute
+
+
+Balance Improvements:
+-Only main creeps of a camp can drop neutral items, higher chance for ancient main creeps.
+-Only one neutral item can be carried but in normal slots. 
+-Bounty runes reduced to 2.
+-No Shrines, outposts.
+-Neutral items can be sold for small injection of money.
+
+
+
+
+   
+
