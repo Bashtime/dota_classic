@@ -20,13 +20,13 @@ end
 AUTO_LAUNCH_DELAY = 10.0
 HERO_SELECTION_TIME = 60.0
 SELECT_PENALTY_TIME = 0.0
-STRATEGY_TIME = 10.0					-- How long should strategy time last?
+STRATEGY_TIME = 15.0					-- How long should strategy time last?
 SHOWCASE_TIME = 0.0					-- How long should showcase time last?
 AP_BAN_TIME = 10.0
 
 AP_GAME_TIME = 60.0
-PRE_GAME_TIME = 90.0						-- How long after people select their heroes should the horn blow and the game start?
-TREE_REGROW_TIME = 180.0					-- How long should it take individual trees to respawn after being cut down/destroyed?
+PRE_GAME_TIME = 70.0						-- How long after people select their heroes should the horn blow and the game start?
+TREE_REGROW_TIME = 300.0					-- How long should it take individual trees to respawn after being cut down/destroyed?
 if IsInToolsMode() then
 	POST_GAME_TIME = 60000.0				-- How long should we let people look at the scoreboard before closing the server automatically?
 else
@@ -141,7 +141,7 @@ IMBA_ALL_RANDOM_HERO_SELECTION_TIME = 5.0									-- Time we need to wait before
 CUSTOM_GOLD_BONUS = 100
 CUSTOM_XP_BONUS = 100
 MAX_LEVEL = 25
-HERO_INITIAL_GOLD = 600
+HERO_INITIAL_GOLD = 625
 GOLD_TICK_TIME = 0.6
 
 -- Update game mode net tables
@@ -243,3 +243,68 @@ USE_TEAM_COURIER = true -- Should we use vanilla couriers? -- nil to use none of
 SAME_HERO_SELECTION = false
 
 -- if IsInToolsMode() then SAME_HERO_SELECTION = true end
+
+
+
+
+---------------------------------------------------------
+-- Stuff from old Settings
+---------------------------------------------------------
+
+-- 6.88 XP Values Table
+XP_PER_LEVEL_TABLE = {}
+
+XP_PER_LEVEL_TABLE[1] = 0
+XP_PER_LEVEL_TABLE[2] = 200
+XP_PER_LEVEL_TABLE[3] = 500
+XP_PER_LEVEL_TABLE[4] = 900
+XP_PER_LEVEL_TABLE[5] = 1400
+XP_PER_LEVEL_TABLE[6] = 2000
+XP_PER_LEVEL_TABLE[7] = 2600
+XP_PER_LEVEL_TABLE[8] = 3400
+XP_PER_LEVEL_TABLE[9] = 4400
+XP_PER_LEVEL_TABLE[10] = 5400
+XP_PER_LEVEL_TABLE[11] = 6000
+XP_PER_LEVEL_TABLE[12] = 8200
+XP_PER_LEVEL_TABLE[13] = 9000
+
+for i=14,MAX_LEVEL do
+  XP_PER_LEVEL_TABLE[i] = 50 * (i-13) * (i-13) + 1350 * (i-13) + 9000
+end
+
+
+CUSTOM_DEATH_GOLD_COST = {}
+for i=1,MAX_LEVEL do
+ CUSTOM_DEATH_GOLD_COST[i] = 30 * i + 50
+end
+
+
+CUSTOM_RESPAWN_TIME = {}
+for i=1,MAX_LEVEL do
+ CUSTOM_RESPAWN_TIME[i] = 5 + 3.8 * i
+end
+
+--Formula: bbcost = 120 + (time - PRE_GAME_TIME) * 0.25 + victimlvl * victimlvl * 1.5
+BUYBACK_BASE_COST_TABLE = {}
+for i=1,MAX_LEVEL do
+	BUYBACK_BASE_COST_TABLE[i] = 120 + i * i * 1.5
+end
+
+BUYBACK_COST_PER_SECOND = 0.25  --4 sec periodic timer increasing bbcost by 1
+
+
+NEUTRAL_SUICIDE_DEATH_TIME_EARLY_GAME = 22
+TOWER_SUICIDE_ADDITIONAL_DEATH_TIME_EARLY_GAME = 5
+
+
+CUSTOM_BUYBACK_COOLDOWN_TIME = 360.0
+
+
+MAXIMUM_ATTACK_SPEED = 700              -- What should we use for the maximum attack speed?
+MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum attack speed?
+
+HERO_KILL_GOLD_BASE = 200
+HERO_KILL_GOLD_PER_STREAK = 125				-- Gold you gain for killing heroes with streaks >3 
+HERO_KILL_GOLD_PER_LEVEL = 9				-- IceFrog called this VictimLevel
+
+SKILL_POINTS_AT_EVERY_LEVEL = true			-- Should there be more than 20 skill points?

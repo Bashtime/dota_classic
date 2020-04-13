@@ -77,3 +77,143 @@ function GameMode:SetupFountains()
 	end
 --]]
 end
+
+
+
+--#########################################################
+--##  Stuff from the Old GameMode/Events Files down here
+--#########################################################
+
+
+-------------------------------------------------------------
+--Bonus Gold for Randoming and Free TPs removed at GameStart
+
+function GameMode:OnHeroInGame(hero)
+  
+  local playerID = hero:GetPlayerID()    
+
+     if PlayerResource:HasRandomed(playerID) then
+   
+        hero:ModifyGold(200,false,DOTA_ModifyGold_Unspecified)
+     end
+
+     Timers:CreateTimer(0.1, function()
+
+     local tp = hero:FindItemInInventory("item_tpscroll")
+     hero:RemoveItem(tp)
+     
+     end)
+
+end
+
+
+--------------------------------------------------------------------------
+-- Timer updating BBcost and adds Gold, to make 0.7 ticks become 0.6 ticks
+
+function GameMode:OnGameInProgress()
+
+  -- A timer running every 4 seconds that starts after the Pregame, respects pauses
+  Timers:CreateTimer(PRE_GAME_TIME, function()
+
+        --Add additional Gold so it's 1 gold / 0.6 seconds over all, update buybackcost every 4 seconds
+        for i=0,9 do
+          
+          PlayerResource:ModifyGold(i,1,false,DOTA_ModifyGold_GameTick)
+
+          local lvl = PlayerResource:GetLevel(i)
+          local time = GameRules:GetGameTime()
+
+          if lvl ~= nil then
+
+            local bb_base = BUYBACK_BASE_COST_TABLE[lvl]
+            local bb_timecost = (time-PRE_GAME_TIME) * BUYBACK_COST_PER_SECOND
+            
+            local bbcost = bb_base + bb_timecost
+            PlayerResource:SetCustomBuybackCost(i,bbcost)
+          end
+
+        end 
+      return 4.0
+	end
+  )
+end
+
+
+--------------------------------------------------------------------------
+-- Normal Death time and death time penalty for suicides, Gold Loss
+
+function GameMode:OnEntityKilled(keys)
+
+  local killed_unit = EntIndexToHScript(keys.entindex_killed)
+  local killer_unit = nil
+
+  if keys.entindex_attacker ~= nil then
+    killer_unit = EntIndexToHScript(keys.entindex_attacker)
+  end
+
+  local killing_ability = nil
+
+  if keys.entindex_inflictor ~= nil then
+    killing_ability = EntIndexToHScript(keys.entindex_inflictor)
+  end
+
+  -- For Meepo clones, find the original
+  if killed_unit:IsClone() then
+    if killed_unit:GetCloneSource() then
+      killed_unit = killed_unit:GetCloneSource()
+    end
+  end
+
+  if killed_unit:IsRealHero() and (not killed_unit:IsReincarnating()) then
+
+        --Calculate Gold Lost on Death
+        local playerID = killed_unit:GetPlayerID()
+        local herolvl = killed_unit:GetLevel()
+        local deathcost = CUSTOM_DEATH_GOLD_COST[herolvl]
+
+        --Modify Gold after Death
+        killed_unit:ModifyGold(-deathcost, false, DOTA_ModifyGold_Death)
+
+        --Calculate Respawntime
+  		local respawn_time = 1
+
+        -- Get respawn time from the table that we defined
+        respawn_time = CUSTOM_RESPAWN_TIME[herolvl]
+
+
+      	-- Bloodstone reduction (bloodstone can't be in backpack)
+        for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+         		local item = killed_unit:GetItemInSlot(i)
+        	if item then
+          		if item:GetName() == "item_bloodstone" then
+             		local respawn_reduction = 10
+             		respawn_time = math.max(1, respawn_time-respawn_reduction)
+             		break -- break the for loop, to prevent multiple bloodstones granting respawn reduction
+          		end
+        	end
+        end
+
+     	-- Reaper's Scythe respawn time increase
+      	if killing_ability then
+        	if killing_ability:GetAbilityName() == "necrolyte_reapers_scythe" then
+                local respawn_extra_time = killing_ability:GetLevelSpecialValueFor("respawn_constant", killing_ability:GetLevel() - 1)
+          		respawn_time = respawn_time + respawn_extra_time
+        	end
+      	end
+
+      	-- Neutral Suicide Penalty
+      	if ( killer_unit:IsNeutralUnitType() or killer_unit:IsAncient() ) then
+        	respawn_time = math.max(respawn_time , NEUTRAL_SUICIDE_DEATH_TIME_EARLY_GAME)
+      	end
+
+      	-- Tower Suicide / Tower Death Penalty in Early Game
+      	if ( killer_unit:IsTower() ) and (not (killer_unit:IsNeutralUnitType() or killer_unit:IsAncient())) then
+        	if respawn_time < 25 then 
+          		respawn_time = respawn_time + TOWER_SUICIDE_ADDITIONAL_DEATH_TIME_EARLY_GAME
+        	end
+      	end
+
+      	--Final Result
+        killed_unit:SetTimeUntilRespawn(respawn_time)
+    end
+end

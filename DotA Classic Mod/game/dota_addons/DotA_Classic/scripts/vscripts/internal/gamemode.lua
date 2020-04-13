@@ -17,7 +17,7 @@ function GameMode:_InitGameMode()
 	GameRules:SetSameHeroSelectionEnabled( SAME_HERO_SELECTION ) -- Let server handle hero duplicates
 	GameRules:SetHeroSelectionTime( HERO_SELECTION_TIME )
 	GameRules:SetHeroSelectPenaltyTime( SELECT_PENALTY_TIME )
-	GameRules:SetPreGameTime( 90 ) -- Some variable SOMEWHERE is messing this up and constantly forcing it to 60 seconds so I'm overriding it here
+	GameRules:SetPreGameTime( PRE_GAME_TIME ) -- Should be 70
 	GameRules:SetPostGameTime( POST_GAME_TIME )
 	GameRules:SetShowcaseTime( SHOWCASE_TIME )
 	GameRules:SetStrategyTime( STRATEGY_TIME )
@@ -40,7 +40,20 @@ function GameMode:_InitGameMode()
 	GameRules:GetGameModeEntity():SetRuneEnabled(DOTA_RUNE_ARCANE, true) --Arcane
 --	GameRules:GetGameModeEntity():SetRuneEnabled(DOTA_RUNE_BOUNTY, false) --Bounty
 
-	GameRules:SetStartingGold(600)
+
+  	-- Custom Attribute Stats
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP, 19.0)
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_HP_REGEN, 0.05)
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_STRENGTH_MAGIC_RESISTANCE_PERCENT, 0.000625) -- From 12.5 Str per 1% MR to 16 Str per 1% MR
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ARMOR, 0.1429)
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_ATTACK_SPEED, 1.0)
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_AGILITY_MOVE_SPEED_PERCENT, 0.0004) -- From 20 agi per 1% ms to 25 agi
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA, 13)
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_MANA_REGEN, 0.05)
+  	GameRules:GetGameModeEntity():SetCustomAttributeDerivedStatValue(DOTA_ATTRIBUTE_INTELLIGENCE_SPELL_AMP_PERCENT, 0.07143)  -- Exactly 1% spell amp for 14 int
+
+
+	GameRules:SetStartingGold( HERO_INITIAL_GOLD )
 
 	GameRules:LockCustomGameSetupTeamAssignment(not IsInToolsMode())
 

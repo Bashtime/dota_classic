@@ -154,12 +154,13 @@ end
 
 
 USE_CUSTOM_HERO_GOLD_BOUNTY = true
-HERO_KILL_GOLD_BASE = 200
+
 
 
 USE_CUSTOM_HERO_LEVELS = true
 
 SKILL_POINTS_AT_EVERY_LEVEL = true			-- Should there be more than 20 skill points?
+HERO_KILL_GOLD_BASE = 200
 HERO_KILL_GOLD_PER_STREAK = 125				-- Gold you gain for killing heroes with streaks >3 
 HERO_KILL_GOLD_PER_LEVEL = 9				-- IceFrog called this VictimLevel
 
