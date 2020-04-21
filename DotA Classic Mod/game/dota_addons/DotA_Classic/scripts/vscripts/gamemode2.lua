@@ -91,6 +91,18 @@ function GameMode:OnFirstPlayerLoaded()
   -- Apply a modifier that makes STR HP REGEN obey our will. Current Valve Constant does nothing. Fuck that cancer
   LinkLuaModifier("modifier_nerf_cancer_regen", "abilities/nerf_cancer_regen.lua", LUA_MODIFIER_MOTION_NONE)
 
+  -- Apply a modifier that allows us to keep track of the Talent lvl
+  LinkLuaModifier("modifier_talent_lvl", "abilities/talent_lvl.lua", LUA_MODIFIER_MOTION_NONE) 
+
+  -- Apply a modifier that allows us to give Spell Amp
+  LinkLuaModifier("modifier_spell_amp_int", "abilities/spell_amp_int", LUA_MODIFIER_MOTION_NONE) 
+
+  -- Apply a modifier that allows us to adapt ms from travels
+  LinkLuaModifier("modifier_bots_and_botsii", "abilities/bots_and_botsii", LUA_MODIFIER_MOTION_NONE) 
+
+  --Apply a modifier that allows us to give mana regen items percentage mana regen instead of constant
+  LinkLuaModifier("modifier_perc_mana_reg", "abilities/perc_mana_reg", LUA_MODIFIER_MOTION_NONE)
+
 end
 
 --[[
@@ -146,23 +158,12 @@ function GameMode:OnHeroInGame(hero)
   
   local playerID = hero:GetPlayerID()    
 
+      --Random Gold when the PreGame Starts
      if PlayerResource:HasRandomed(playerID) then
-
-        --Timers:CreateTimer(0.1, function()
-        --[[local mango = hero:FindItemInInventory("item_enchanted_mango")
-        local faerie = hero:FindItemInInventory("item_faerie_fire")
-
-          if mango ~= nil then 
-            hero:RemoveItem(mango)
-          end
-
-          if faerie ~= nil then 
-            hero:RemoveItem(faerie)
-          end
-        end)]]
-          
+         
         hero:ModifyGold(200,false,DOTA_ModifyGold_Unspecified)
      end
+
 
      Timers:CreateTimer(0.1, function()
 
@@ -171,8 +172,19 @@ function GameMode:OnHeroInGame(hero)
      
      end)
 
+      Timers:CreateTimer(0.1, function()
+        local mango = hero:FindItemInInventory("item_enchanted_mango")
+
+          if mango ~= nil then 
+            hero:RemoveItem(mango)
+          end
+
+        end)
+
+
+
     --local item = CreateItem("item_princes_knife", hero, hero)
-   -- hero:AddItem(item)
+    -- hero:AddItem(item)
 
 
 

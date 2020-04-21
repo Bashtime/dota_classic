@@ -154,13 +154,12 @@ end
 
 
 USE_CUSTOM_HERO_GOLD_BOUNTY = true
-
+HERO_KILL_GOLD_BASE = 200
 
 
 USE_CUSTOM_HERO_LEVELS = true
 
 SKILL_POINTS_AT_EVERY_LEVEL = true			-- Should there be more than 20 skill points?
-HERO_KILL_GOLD_BASE = 200
 HERO_KILL_GOLD_PER_STREAK = 125				-- Gold you gain for killing heroes with streaks >3 
 HERO_KILL_GOLD_PER_LEVEL = 9				-- IceFrog called this VictimLevel
 
@@ -174,7 +173,7 @@ end
 
 
 
-STARTING_GOLD = 62500
+STARTING_GOLD = 20000
 UNIVERSAL_SHOP_MODE = true
 HERO_SELECTION_TIME = 18.0              -- How long should we let people select their hero?
 PRE_GAME_TIME = 4.0                    -- How long after people select their heroes should the horn blow and the game start?

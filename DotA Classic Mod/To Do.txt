@@ -194,14 +194,16 @@ UI Improvements:
 -Visible Aura Particle Effects (DotA 1 like)
 -Show Attack Speed and Magic Resistance with symbols in the HUD without hovering
 -Show yellow circle around the main attribute
+-Shop Ally HP/Mana bars without holding alt
 
 
 Balance Improvements:
 -Only main creeps of a camp can drop neutral items, higher chance for ancient main creeps.
 -Only one neutral item can be carried but in normal slots. 
--Bounty runes reduced to 2.
--No Shrines, outposts.
+-Bounty runes reduced to 2, spawning at each others secret shop every 5 min.
+-No Shrines, no outposts.
 -Neutral items can be sold for small injection of money.
+-Neutral creeps camps spawning at 0:30 instead 1:00 after PRE_GAME
 
 
 

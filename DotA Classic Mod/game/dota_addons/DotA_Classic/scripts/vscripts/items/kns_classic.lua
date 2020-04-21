@@ -38,7 +38,7 @@ function modifier_kns_classic:OnCreated( kv )
 	self.maim_duration = self:GetAbility():GetSpecialValueFor( "maim_duration" ) -- special value
 
 	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
-	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
+	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
 
 end
 
@@ -51,7 +51,7 @@ function modifier_kns_classic:OnRefresh( kv )
 	self.maim_duration = self:GetAbility():GetSpecialValueFor( "maim_duration" ) -- special value
 
 	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
-	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
+	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
 
 end
 
@@ -76,7 +76,7 @@ function modifier_kns_classic:DeclareFunctions()
 		MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,		
-
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 	}
 
 	return funcs
@@ -132,7 +132,9 @@ function modifier_kns_classic:GetModifierSpellAmplify_Percentage()
 	return self.spell_amp
 end
 
-
+function modifier_kns_classic:GetModifierPercentageCooldown()
+	return self.cdr
+end
 
 
 

@@ -45,6 +45,25 @@ end
 
 
 
+
+---------------------------------------
+---------------------------------------
+-- Magic Wand Logic
+
+
+
+function item_holy_locket_classic:OnSpellStart(keys)
+
+end
+
+
+
+
+
+
+
+
+
 ---------------------------------------
 ---------------------------------------
 -- Locket Non-Stackable Bonuses

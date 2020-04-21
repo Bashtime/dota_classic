@@ -94,7 +94,7 @@ function modifier_ballista_classic_passive:DeclareFunctions()
 
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE,
-		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS_PERCENTAGE,
+		MODIFIER_PROPERTY_PROJECTILE_SPEED_BONUS,
 
 	}
 
@@ -128,8 +128,8 @@ function modifier_ballista_classic_passive:GetModifierConstantHealthRegen()
 	return self.regen
 end
 
-function modifier_ballista_classic_passive:GetModifierProjectileSpeedBonusPercentage()
-	return self.speed
+function modifier_ballista_classic_passive:GetModifierProjectileSpeedBonus()
+	return self:GetAbility():GetSpecialValueFor( "projectile_speed" )
 end
 
 
@@ -156,6 +156,8 @@ function modifier_ballista_classic_passive:GetModifierProcAttack_BonusDamage_Pur
 					-- effects
 					local sound_cast = "Hero_Sniper.AssassinateDamage"
 					EmitSoundOn( sound_cast, target )
+					SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, self.stun_damage, nil)
+
 					return self.stun_damage
 				end
 			end

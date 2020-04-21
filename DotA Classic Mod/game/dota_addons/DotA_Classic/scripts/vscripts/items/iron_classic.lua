@@ -85,6 +85,10 @@ function item_iron_classic:OnSpellStart()
 	-- unit identifier
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	print(target)
+
+	
+
 
 	self.isTree = target:IsInstance(CDOTA_MapTree) --Checks if the target is a tree
 		
@@ -95,6 +99,29 @@ function item_iron_classic:OnSpellStart()
 	local anc_pct = self:GetSpecialValueFor("anc_pct")
 	
 	if (not self.isTree) then
+
+		local stillTree = (target:GetClassname() == "dota_temp_tree") --Checks again if it's still a tree, LOL
+		
+		if stillTree then 					
+				--local teamnumber = target:GetTeamNumber()
+				--target:CutDown(teamnumber)	--Cannot cutdown these trees, OK
+
+				--Let's try to murder them
+				target:Kill()
+
+				self.cd = self:GetSpecialValueFor("alternative_cooldown")
+				self:EndCooldown()
+				self:StartCooldown(self.cd)
+				self.cd = self:GetSpecialValueFor("normal_cooldown")
+
+				-- effects
+				local sound_cast = "DOTA_Item.QuellingBlade.Activate"
+				EmitSoundOn( sound_cast, target )
+		
+				return
+		end
+
+
 
 		-- cancel if linken
 		if target:TriggerSpellAbsorb( self ) then return end
@@ -116,11 +143,10 @@ function item_iron_classic:OnSpellStart()
 
 		ApplyDamage(self.damageTable)
 
-
 		-- effects
 		local sound_cast = "DOTA_Item.IronTalon.Activate"
 		EmitSoundOn( sound_cast, target )
-
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE  , target, damage, nil)
 
 		--Kill obs
 		local name = target:GetUnitName()  

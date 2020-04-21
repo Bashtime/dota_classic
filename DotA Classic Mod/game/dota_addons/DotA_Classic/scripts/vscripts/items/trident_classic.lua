@@ -45,24 +45,8 @@ function modifier_trident_classic:OnCreated( kv )
 	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "movement_speed_percent_bonus" ) -- special value
 
 	self.frost_duration = self:GetAbility():GetSpecialValueFor( "frost_slow_duration" )
-
-end
-
-function modifier_trident_classic:OnRefresh( kv )
-
-	-- references
-	self.bonus_dmg = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) -- special value
-	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor( "bonus_all_stats" ) -- special value
-	self.maim_chance = self:GetAbility():GetSpecialValueFor( "maim_chance" ) -- special value
-	self.maim_duration = self:GetAbility():GetSpecialValueFor( "maim_duration" ) -- special value
-
-	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
-	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
-
-	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_attack_speed" ) -- special value
-	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "movement_speed_percent_bonus" ) -- special value
-
-	self.frost_duration = self:GetAbility():GetSpecialValueFor( "frost_slow_duration" )
+	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" )
+	self.bonus_range = self:GetAbility():GetSpecialValueFor( "bonus_range" )
 
 end
 
@@ -91,8 +75,10 @@ function modifier_trident_classic:DeclareFunctions()
 
 		MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,		
+		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 
+		MODIFIER_PROPERTY_ATTACK_RANGE_BONUS_UNIQUE,		
 	}
 
 	return funcs
@@ -148,6 +134,9 @@ function modifier_trident_classic:GetModifierSpellAmplify_Percentage()
 	return self.spell_amp
 end
 
+function modifier_trident_classic:GetModifierPercentageCooldown()
+	return self.cdr
+end
 
 
 
@@ -163,7 +152,11 @@ function modifier_trident_classic:GetModifierMoveSpeedBonus_Percentage_Unique()
 	return self.bonus_ms
 end
 
-
+--Extra: Bonus Attack Range
+function modifier_trident_classic:GetModifierAttackRangeBonusUnique()
+	local caster = self:GetParent()
+	if not caster:IsRangedAttacker() then return self.bonus_range end
+end		
 
 
 

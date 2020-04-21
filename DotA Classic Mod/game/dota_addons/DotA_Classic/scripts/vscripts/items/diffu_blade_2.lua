@@ -177,6 +177,8 @@ end
 --------------------------------------------------------------------------------
 -- Status Effects
 function modifier_diffu_purge_active:CheckState()
+		if self.i == nil then self.i = 0 end
+
 		if ( not self:GetParent():IsHero() and self.i < 3) then
 			local state = {
 				[MODIFIER_STATE_ROOTED] = true,

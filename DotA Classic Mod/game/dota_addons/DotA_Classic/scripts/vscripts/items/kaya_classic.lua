@@ -8,7 +8,7 @@ end
 
 
 
--- Yasha Bonuses Modifier
+-- Kaya Bonuses Modifier
 modifier_kaya_classic = class({})
 
 --------------------------------------------------------------------------------
@@ -31,7 +31,7 @@ function modifier_kaya_classic:OnCreated( kv )
 	-- references
 	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_intellect" ) -- special value
 	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
-	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
+	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
 
 	--end
 
@@ -44,7 +44,7 @@ function modifier_kaya_classic:OnRefresh( kv )
 	-- references
 	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_intellect" ) -- special value
 	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
-	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
+	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
 
 	--end
 end
@@ -67,8 +67,7 @@ function modifier_kaya_classic:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 	}
 
 	return funcs
@@ -82,11 +81,8 @@ function modifier_kaya_classic:GetModifierPercentageManacost()
 	return self.manacost_reduction
 end
 
-function modifier_kaya_classic:GetModifierSpellAmplify_Percentage()
-	return self.spell_amp
+function modifier_kaya_classic:GetModifierPercentageCooldown()
+	return self.cdr
 end
 
---[[function modifier_kaya_classic:GetModifierStatusResistanceCaster()
-	return -100
-end]]
 

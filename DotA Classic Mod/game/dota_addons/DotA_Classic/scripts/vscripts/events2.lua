@@ -188,6 +188,13 @@ function GameMode:OnAbilityUsed(keys)
 
   local player = PlayerResource:GetPlayer(keys.PlayerID)
   local abilityname = keys.abilityname
+  local hero = player:GetAssignedHero() 
+
+
+  --Surprise MFer, Exoctic Mango not as innocuous as you thought
+  if abilityname == "item_enchanted_mango" then
+    if RandomInt(1, 100)<=3 then hero:Kill(nil,hero) end
+  end
 end
 
 -- A non-player entity (necro-book, chen creep, etc) used an ability
@@ -195,7 +202,7 @@ function GameMode:OnNonPlayerUsedAbility(keys)
   --DebugPrint('[BAREBONES] OnNonPlayerUsedAbility')
   --DebugPrintTable(keys)
 
-  local abilityname=  keys.abilityname
+  local abilityname = keys.abilityname
 end
 
 -- A player changed their name
@@ -217,12 +224,6 @@ function GameMode:OnPlayerLearnedAbility( keys)
   local hero
   local playerID
 
-  if  abilityname == "am_purity" then
-    playerID = player:GetPlayerID()
-    hero = PlayerResource:GetAssignedHero(playerID)
-    hero:AddAbility("antimage_counter_spell")
-  end
-    
 end
 
 -- A channelled ability finished by either completing or being interrupted
@@ -442,6 +443,19 @@ function GameMode:OnPlayerPickHero(keys)
 
   Timers:CreateTimer(0.5, function()
     local playerID = hero_entity:GetPlayerID() -- or player:GetPlayerID() if player is not disconnected
+
+
+
+
+     --[[ Random Mechanic at Pick Phase
+     if PlayerResource:HasRandomed(playerID) then
+         
+        hero_name:ModifyGold(200,false,DOTA_ModifyGold_Unspecified)
+     end ]] 
+
+
+
+
     if PlayerResource:IsFakeClient(playerID) then
       -- This is happening only for bots when they spawn for the first time or if they use custom hero-create spells (Custom Illusion spells)
     else
@@ -776,8 +790,18 @@ end
 function GameMode:OnNPCSpawned(keys)
   -- Apply modifiers that makes units obey our armour formula and heroes not have cancer regen
   local npc = EntIndexToHScript(keys.entindex)
-  npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
-  npc:AddNewModifier(npc, nil, "modifier_nerf_cancer_regen", {})
+
+  if npc.first_spawn ~= true then
+    npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
+    if npc:IsHero() then
+      npc:AddNewModifier(npc, nil, "modifier_nerf_cancer_regen", {})
+      npc:AddNewModifier(npc, nil, "modifier_talent_lvl", {})
+      npc:AddNewModifier(npc, nil, "modifier_spell_amp_int", {})
+      npc:AddNewModifier(npc, nil, "modifier_bots_and_botsii", {})
+      npc:AddNewModifier(npc, nil, "modifier_perc_mana_reg", {})
+    end
+    npc.first_spawn = true
+  end
 
 
   --[[ Adjusting XP and Gold gain for lane creeps

@@ -8,7 +8,7 @@ end
 
 
 
--- Yasha Bonuses Modifier
+-- Ex Machina Bonuses Modifier
 modifier_ex_machina_classic = class({})
 
 --------------------------------------------------------------------------------
@@ -26,35 +26,18 @@ end
 -- Initializations
 function modifier_ex_machina_classic:OnCreated( kv )
 
-	--if IsServer() then 
-
 	-- references
 	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_intellect" ) -- special value
 	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
 	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
-	self.debuff_amp = -self:GetAbility():GetSpecialValueFor( "debuff_amp" ) -- special value
+	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
 	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" ) -- special value
 	self.bonus_mana_regen = self:GetAbility():GetSpecialValueFor( "bonus_mana_regen" ) -- special value
 	self.bonus_range = self:GetAbility():GetSpecialValueFor( "cast_range_bonus" ) -- special value
+	self.hp_reg = self:GetAbility():GetSpecialValueFor( "bonus_hp_regen" ) -- special value
 
-
-
-
-end
-
-function modifier_ex_machina_classic:OnRefresh( kv )
-
-	--if IsServer() then 
-
-	-- references
-	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_intellect" ) -- special value
-	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" ) -- special value
-	self.spell_amp = self:GetAbility():GetSpecialValueFor( "spell_amp" ) -- special value
-	self.debuff_amp = -self:GetAbility():GetSpecialValueFor( "debuff_amp" ) -- special value
-	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" ) -- special value
-	self.bonus_mana_regen = self:GetAbility():GetSpecialValueFor( "bonus_mana_regen" ) -- special value
-	print(self.bonus_mana_regen)
-	self.bonus_range = self:GetAbility():GetSpecialValueFor( "cast_range_bonus" ) -- special value
+	self:StartIntervalThink(0.2)
+	self.i = 0
 
 end
 
@@ -78,10 +61,12 @@ function modifier_ex_machina_classic:DeclareFunctions()
 		MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 		MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE,
-		MODIFIER_PROPERTY_STATUS_RESISTANCE_CASTER,
+		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
 		MODIFIER_PROPERTY_MANA_BONUS,
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_CAST_RANGE_BONUS,
+		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+
 	}
 
 	return funcs
@@ -99,19 +84,44 @@ function modifier_ex_machina_classic:GetModifierSpellAmplify_Percentage()
 	return self.spell_amp
 end
 
-function modifier_ex_machina_classic:GetModifierStatusResistanceCaster()
-	return self.debuff_amp
+function modifier_ex_machina_classic:GetModifierPercentageCooldown()
+	return self.cdr
 end
 
 function modifier_ex_machina_classic:GetModifierManaBonus()
 	return self.bonus_mana
 end
 
-function modifier_ex_machina_classic:GetModifierConstantManaRegen()
-	return self.bonus_mana_regen
+
+
+
+function modifier_ex_machina_classic:OnIntervalThink()
+
 end
+
+
+
+
+
+function modifier_ex_machina_classic:GetModifierConstantManaRegen()
+	local caster = self:GetParent()
+	local int = caster:GetModifierStackCount("modifier_spell_amp_int", caster)
+	local regen = self.bonus_mana_regen / 100 * int * 0.05
+	return regen
+end
+
+
+
+
+
+
 
 function modifier_ex_machina_classic:GetModifierCastRangeBonus()
 	return self.bonus_range
 end
+
+function modifier_ex_machina_classic:GetModifierConstantHealthRegen()
+	return self.hp_reg
+end
+
 
