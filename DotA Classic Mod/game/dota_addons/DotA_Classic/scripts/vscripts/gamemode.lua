@@ -1,79 +1,143 @@
+-- This is the primary barebones gamemode script and should be used to assist in initializing your game mode
+BAREBONES_VERSION = "1.00"
+
+-- Set this to true if you want to see a complete debug output of all events/processes done by barebones
+-- You can also change the cvar 'barebones_spew' at any time to 1 or 0 for output/no output
+BAREBONES_DEBUG_SPEW = false 
+
 if GameMode == nil then
-	_G.GameMode = class({})
+    DebugPrint( '[BAREBONES] creating barebones game mode' )
+    _G.GameMode = class({})
 end
 
--- clientside KV loading
-require('addon_init')
-
-if IsInToolsMode() then -- might lag a bit and backend to get errors not working yet
-	require('internal/eventtest')
-end
-
-require('libraries/adv_log') -- be careful! this library can hide lua errors in rare cases
-
-require('settings')
 require('libraries/keyvalues')
 require('libraries/notifications')
 require('libraries/player')
 require('libraries/player_resource')
 require('libraries/timers')
 
+-- These internal libraries set up barebones's events and processes.  Feel free to inspect them/change them if you need to.
 require('internal/gamemode')
 require('internal/events')
 
-require('components/courier/init')
+-- settings.lua is where you can specify many different properties for your game mode and is one of the core barebones files.
+require('settings')
+-- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
+require('events')
 
-require('events/events')
-require('filters')
 
--- Use this function as much as possible over the regular Precache (this is Async Precache)
-function GameMode:PostLoadPrecache()
-	
+-- This is a detailed example of many of the containers.lua possibilities, but only activates if you use the provided "playground" map
+if GetMapName() == "playground" then
+  require("examples/playground")
 end
 
-function GameMode:OnFirstPlayerLoaded()
-	
-end
+--require("examples/worldpanelsExample")
 
-function GameMode:OnAllPlayersLoaded()
-	-- Setup filters
-	GameRules:GetGameModeEntity():SetHealingFilter( Dynamic_Wrap(GameMode, "HealingFilter"), self )
-	GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "OrderFilter"), self)
-	GameRules:GetGameModeEntity():SetDamageFilter(Dynamic_Wrap(GameMode, "DamageFilter"), self)
-	GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(GameMode, "GoldFilter"), self)
-	GameRules:GetGameModeEntity():SetModifyExperienceFilter(Dynamic_Wrap(GameMode, "ExperienceFilter"), self)
-	GameRules:GetGameModeEntity():SetModifierGainedFilter(Dynamic_Wrap(GameMode, "ModifierFilter"), self)
-	GameRules:GetGameModeEntity():SetItemAddedToInventoryFilter(Dynamic_Wrap(GameMode, "ItemAddedFilter"), self)
-	GameRules:GetGameModeEntity():SetBountyRunePickupFilter(Dynamic_Wrap(GameMode, "BountyRuneFilter"), self)
-	GameRules:GetGameModeEntity():SetThink("OnThink", self, 1)
-	GameRules:GetGameModeEntity():SetPauseEnabled(not IMBA_PICK_SCREEN)
-	
-	GameRules:GetGameModeEntity():SetRuneSpawnFilter(Dynamic_Wrap(GameMode, "RuneSpawnFilter"), self)
-
-	if IsInToolsMode() then
-		Convars:RegisterCommand('events_test', function() GameMode:StartEventTest() end, "events test", FCVAR_CHEAT)
-	end
-end
-
--- CAREFUL, FOR REASONS THIS FUNCTION IS ALWAYS CALLED TWICE
-function GameMode:InitGameMode()
-	self:_InitGameMode()
-end
-
--- Set up fountain regen
-function GameMode:SetupFountains()
 --[[
+  This function should be used to set up Async precache calls at the beginning of the gameplay.
 
-	local fountainEntities = Entities:FindAllByClassname("ent_dota_fountain")
-	for _, fountainEnt in pairs(fountainEntities) do
-		fountainEnt:AddNewModifier(fountainEnt, fountainEnt, "modifier_fountain_aura_lua", {})
-		fountainEnt:AddAbility("imba_fountain_danger_zone"):SetLevel(1)
+  In this function, place all of your PrecacheItemByNameAsync and PrecacheUnitByNameAsync.  These calls will be made
+  after all players have loaded in, but before they have selected their heroes. PrecacheItemByNameAsync can also
+  be used to precache dynamically-added datadriven abilities instead of items.  PrecacheUnitByNameAsync will 
+  precache the precache{} block statement of the unit and all precache{} block statements for every Ability# 
+  defined on the unit.
 
-		-- remove vanilla fountain healing
-		if fountainEnt:HasModifier("modifier_fountain_aura") then
-			fountainEnt:RemoveModifierByName("modifier_fountain_aura")
-			fountainEnt:AddNewModifier(fountainEnt, nil, "modifier_fountain_aura_lua", {})
-		end
-	end
---]]
+  This function should only be called once.  If you want to/need to precache more items/abilities/units at a later
+  time, you can call the functions individually (for example if you want to precache units in a new wave of
+  holdout).
+
+  This function should generally only be used if the Precache() function in addon_game_mode.lua is not working.
+]]
+function GameMode:PostLoadPrecache()
+  DebugPrint("[BAREBONES] Performing Post-Load precache")    
+  --PrecacheItemByNameAsync("item_example_item", function(...) end)
+  --PrecacheItemByNameAsync("example_ability", function(...) end)
+
+  --PrecacheUnitByNameAsync("npc_dota_hero_viper", function(...) end)
+  --PrecacheUnitByNameAsync("npc_dota_hero_enigma", function(...) end)
+end
+
+--[[
+  This function is called once and only once as soon as the first player (almost certain to be the server in local lobbies) loads in.
+  It can be used to initialize state that isn't initializeable in InitGameMode() but needs to be done before everyone loads in.
+]]
+function GameMode:OnFirstPlayerLoaded()
+  DebugPrint("[BAREBONES] First Player has loaded")
+end
+
+--[[
+  This function is called once and only once after all players have loaded into the game, right as the hero selection time begins.
+  It can be used to initialize non-hero player state or adjust the hero selection (i.e. force random etc)
+]]
+function GameMode:OnAllPlayersLoaded()
+  DebugPrint("[BAREBONES] All Players have loaded into the game")
+end
+
+--[[
+  This function is called once and only once for every player when they spawn into the game for the first time.  It is also called
+  if the player's hero is replaced with a new hero for any reason.  This function is useful for initializing heroes, such as adding
+  levels, changing the starting gold, removing/adding abilities, adding physics, etc.
+
+  The hero parameter is the hero entity that just spawned in
+]]
+function GameMode:OnHeroInGame(hero)
+  DebugPrint("[BAREBONES] Hero spawned in game for first time -- " .. hero:GetUnitName())
+
+  -- This line for example will set the starting gold of every hero to 500 unreliable gold
+  --hero:SetGold(500, false)
+
+  -- These lines will create an item and add it to the player, effectively ensuring they start with the item
+  local item = CreateItem("item_example_item", hero, hero)
+  hero:AddItem(item)
+
+  --[[ --These lines if uncommented will replace the W ability of any hero that loads into the game
+    --with the "example_ability" ability
+
+  local abil = hero:GetAbilityByIndex(1)
+  hero:RemoveAbility(abil:GetAbilityName())
+  hero:AddAbility("example_ability")]]
+end
+
+--[[
+  This function is called once and only once when the game completely begins (about 0:00 on the clock).  At this point,
+  gold will begin to go up in ticks if configured, creeps will spawn, towers will become damageable etc.  This function
+  is useful for starting any game logic timers/thinkers, beginning the first round, etc.
+]]
+function GameMode:OnGameInProgress()
+  DebugPrint("[BAREBONES] The game has officially begun")
+
+  Timers:CreateTimer(30, -- Start this timer 30 game-time seconds later
+    function()
+      DebugPrint("This function is called 30 seconds after the game begins, and every 30 seconds thereafter")
+      return 30.0 -- Rerun this timer every 30 game-time seconds 
+    end)
+end
+
+
+
+-- This function initializes the game mode and is called before anyone loads into the game
+-- It can be used to pre-initialize any values/tables that will be needed later
+function GameMode:InitGameMode()
+  GameMode = self
+  DebugPrint('[BAREBONES] Starting to load Barebones gamemode...')
+
+  -- Commands can be registered for debugging purposes or as functions that can be called by the custom Scaleform UI
+  Convars:RegisterCommand( "command_example", Dynamic_Wrap(GameMode, 'ExampleConsoleCommand'), "A console command example", FCVAR_CHEAT )
+
+  DebugPrint('[BAREBONES] Done loading Barebones gamemode!\n\n')
+end
+
+-- This is an example console command
+function GameMode:ExampleConsoleCommand()
+  print( '******* Example Console Command ***************' )
+  local cmdPlayer = Convars:GetCommandClient()
+  if cmdPlayer then
+    local playerID = cmdPlayer:GetPlayerID()
+    if playerID ~= nil and playerID ~= -1 then
+      -- Do something here for the player who called this command
+      PlayerResource:ReplaceHeroWith(playerID, "npc_dota_hero_viper", 1000, 1000)
+    end
+  end
+
+  print( '*********************************************' )
 end

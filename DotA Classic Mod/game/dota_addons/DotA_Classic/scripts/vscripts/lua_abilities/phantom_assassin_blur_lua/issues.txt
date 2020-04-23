@@ -1,2 +1,0 @@
-Effects
-- Buff icon did not disappear when enemies are nearby
