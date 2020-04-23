@@ -1,6 +1,6 @@
 Ordered by importance:
 
-1. Properly working hero kill and assist bounties (XP and Gold)
+1. Properly working hero kill and assist bounties (XP and Gold), no innate damage block, 5 personal courier improving over time
 2. Neutrals XP and Gold not increasing over time
 3. Runes spawning properly in 6.88 map (only 1 powerup rune), 1 bounty runes at each secret shop every 5 min
 4. Buyback +20s Deathtime Penalty properly applying to the next death and not being on cooldown as soon as the game starts
