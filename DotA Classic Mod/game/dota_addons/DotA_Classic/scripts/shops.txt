@@ -4,10 +4,12 @@
   {
 	"item"    "item_tango"
 	"item"    "item_flask"
+    "item"    "item_faerie"
     "item"    "item_faerie_fire"
     "item"    "item_courier"
 
     "item"    "item_clarity"
+    "item"    "item_mango"
     "item"    "item_enchanted_mango"
     "item"    "item_infused_raindrop"
     "item"    "item_flying_courier"
@@ -19,8 +21,8 @@
 
     "item"    "item_bottle"
     "item"    "item_tome_of_knowledge"
+    "item"    "item_repair_kit"
     "item"    "item_tpscroll"
-
   }
 
   "attributes"
@@ -54,7 +56,7 @@
     "item"    "item_helm_of_iron_will"
     "item"    "item_platemail"
 
-    "item"    "item_quelling_blade"
+    "item"    "item_qb"
     "item"    "item_blades_of_attack"
     "item"    "item_broadsword"
     "item"    "item_claymore" 
@@ -73,9 +75,10 @@
   "misc"
   {
     "item"    "item_boots_old"
+    "item"    "item_boots"    
     "item"    "item_wind_lace"
-    "item"    "item_magic_stick"
     "item"    "item_blink" 
+    "item"    "item_magic_stick"
 
     "item"    "item_cloak"
     "item"    "item_lifesteal"
@@ -107,31 +110,6 @@
   // Level 1 - Green Recipes
   "basics"
   {
-    "item"    "item_bracer"
-    "item"    "item_wraith_band"
-    "item"    "item_null_talisman"
-    "item"    "item_magic_wand"
-
-    "item"    "item_sange"
-    "item"    "item_yasha"
-    "item"    "item_kaya"
-    "item"    "item_ultimate_scepter"
-
-    "item"    "item_satanic"
-    "item"    "item_ethereal_blade"
-    "item"    "item_octarine_core"
-    "item"    "item_sphere"
-
-    "item"    "item_heart"  
-    "item"    "item_butterfly"
-    "item"    "item_sheepstick"
-    "item"    "item_skadi"
-   
-  }
-
-  // Level 2 - Blue Recipes
-  "support"
-  {
     "item"    "item_tranquil_boots"
     "item"    "item_power_treads"
     "item"    "item_phase_boots"
@@ -152,28 +130,56 @@
     "item"    "item_soul_booster"
     "item"    "item_bloodstone"
   }
+
+  // Level 2 - Blue Recipes
+  "support"
+  {
+    "item"    "item_bracer"
+    "item"    "item_wb"
+    "item"    "item_wraith_band"
+    "item"    "item_null_talisman"
+    "item"    "item_magic_wand"
+
+    "item"    "item_sange"
+    "item"    "item_yasha"
+    "item"    "item_sange_classic"
+    "item"    "item_yasha_classic"
+    "item"    "item_kaya"
+    "item"    "item_ultimate_scepter"
+
+    "item"    "item_satanic"
+    "item"    "item_ethereal_blade"
+    "item"    "item_octarine_core"
+    "item"    "item_sphere"
+
+    "item"    "item_heart"  
+    "item"    "item_butterfly"
+    "item"    "item_sheepstick"
+    "item"    "item_skadi"
+  }
         
   "magics"      
   {
-    "item"    "item_iron_talon" 
+    "item"    "item_ring_of_basilius"
     "item"    "item_ring_of_basilius_classic"
     "item"    "item_ring_of_aquila"    
     "item"    "item_vladmir"
+    "item"    "item_iron_talon"
+    "item"    "item_iron_classic"  
 
-    "item"    "item_poor_mans_shield"
     "item"    "item_buckler"
+    "item"    "item_poor_mans_shield"
     "item"    "item_vanguard"
     "item"    "item_crimson_guard"
 
-
-    "item"    "item_blade_mail"
+    "item"    "item_assault"
     "item"    "item_shivas_guard"
-    "item"    "item_assault"    
     "item"    "item_lotus_orb"
+    "item"    "item_blade_mail"
 
+    "item"    "item_armlet"
     "item"    "item_medallion_of_courage"
     "item"    "item_solar_crest"
-    "item"    "item_armlet"
 
   }
     
@@ -182,23 +188,26 @@
   {
     "item"    "item_glimmer_cape"
     "item"    "item_aether_lens"
-    "item"    "item_necronomicon"
+    "item"    "item_ex_machina_classic"
+    "item"    "item_ex_machina"
     "item"    "item_meteor_hammer"
 
     "item"    "item_hood_of_defiance"
     "item"    "item_pipe"
+    "item"    "item_holy_locket_classic"
     "item"    "item_holy_locket"
-    "item"    "item_vambrace"
-
     "item"    "item_black_king_bar"
-    "item"    "item_refresher"
-    "item"    "item_cyclone"
+
     "item"    "item_aeon_disk"
+    "item"    "item_force_staff"
+    "item"    "item_cyclone"
+    "item"    "item_refresher"
 
     "item"    "item_veil_of_discord"
     "item"    "item_rod_of_atos"
     "item"    "item_dagon"
-    
+    "item"    "item_necronomicon"
+
   }
       
   "weapons"
@@ -234,19 +243,24 @@
     "item"    "item_mjollnir"
 
     "item"    "item_heavens_halberd"
+    "item"    "item_heavens_halberd_classic"
     "item"    "item_manta"
     "item"    "item_diffusal_blade" 
     "item"    "item_rapier"
 
     "item"    "item_sange_and_yasha"
+    "item"    "item_sny_classic"
     "item"    "item_kaya_and_sange"
+    "item"    "item_kns_classic"
     "item"    "item_yasha_and_kaya"
-    "item"    "item_trident_new"
+    "item"    "item_kny_classic"
+    "item"    "item_recipe_trident"
+    "item"    "item_trident_classic"
 
-    "item"    "item_force_staff"
     "item"    "item_dragon_lance"
     "item"    "item_hurricane_pike"
-
+    "item"    "item_ballista_classic"
+    "item"    "item_ballista"
   }
 
   "sideshop1"
@@ -273,6 +287,7 @@
   {
     "item"    "item_slippers"
     "item"    "item_quelling_blade"
+    "item"    "item_qb"
     "item"    "item_stout_shield"
     "item"    "item_boots_of_elves"
 
@@ -287,4 +302,47 @@
     "item"    "item_talisman_of_evasion" 
   }
   
+  "pregame"
+    {
+
+        "item"      "item_tango"
+        "item"      "item_flask"
+        "item"      "item_clarity"
+        "item"      "item_mango"
+        "item"      "item_gauntlets"
+        "item"      "item_slippers"
+        "item"      "item_mantle"
+        "item"      "item_branches"
+        "item"      "item_magic_stick"
+        "item"      "item_boots_old"
+        "item"      "item_wind_lace"
+        "item"      "item_gloves"
+        "item"      "item_blades_of_attack"
+ 
+        "item"      "item_ward_observer"
+        "item"      "item_ward_sentry" 
+        "item"      "item_dust"
+        "item"      "item_smoke_of_deceit"
+        "item"      "item_bracer"
+        "item"      "item_wb"
+        "item"      "item_null_talisman"
+        "item"      "item_circlet"
+        "item"      "item_magic_wand"
+        "item"      "item_ring_of_protection"
+        "item"      "item_qb"
+        "item"      "item_stout_shield"
+        "item"      "item_poor_mans_shield"
+        
+
+
+        "item"      "item_faerie"
+        "item"      "item_ring_of_regen" 
+        "item"      "item_headdress"
+        "item"      "item_sobi_mask"
+        "item"      "item_ring_of_basilius_classic"
+        "item"      "item_blight_stone"
+        "item"      "item_orb_of_venom"
+       
+
+    }
 }
