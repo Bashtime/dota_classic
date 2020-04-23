@@ -23,6 +23,9 @@ Ordered by importance:
     -Neutral Stash Tab not showing
     
  7. Less important:
+ 
     -Attack Speed, Magic Resistance and Spell Amp showing where TP and Neutral slot have been.
+    
     -Kill feed showing assistants
+    
     -Kill feed showing the Amount of AoE gold being split
