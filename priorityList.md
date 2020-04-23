@@ -7,12 +7,20 @@ Ordered by importance:
 5. Neutral Camps spawning at 0:30
 
 6. Panorama:
+
     -Talent trees not showing in CenterUI and Scoreboard
+    
     -Size of centerUI (skills, portrait) 20% bigger, one size for all heroes with 6 skills
+    
     -Level circle slightly higher, Yellow bar below showing XP
+    
     -HP value showing above your own hero right above the health bar (from green to red depending on HP%)
+    
     -TP slot, neutral Slot removed, TP to normal inventory
+    
     -Attribute Bonus with 6 level only shows 4 dots
+    
+    -Neutral Stash Tab not showing
     
  7. Less important:
     -Attack Speed, Magic Resistance and Spell Amp showing where TP and Neutral slot have been.
