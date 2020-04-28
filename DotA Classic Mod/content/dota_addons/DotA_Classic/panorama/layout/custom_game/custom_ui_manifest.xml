@@ -65,7 +65,11 @@
 
 					health.style.transform = "translateY(11px)";
 					mana.style.transform = "translateY(11px)";
-				}			
+				}
+
+				var neutral_slot = Parent.FindChildTraverse("inventory_neutral_slot_container");
+				if (neutral_slot)
+					neutral_slot.style.opacity = "0";
 			}
 		}
 	</script>

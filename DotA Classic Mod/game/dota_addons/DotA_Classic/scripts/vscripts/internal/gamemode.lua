@@ -71,6 +71,8 @@ function GameMode:_InitGameMode()
   end
   DebugPrint('[BAREBONES] GameRules set')
 
+  GameRules:GetGameModeEntity():SetFreeCourierModeEnabled(b_USE_MULTIPLE_COURIERS)
+
   --InitLogFile( "log/barebones.txt","")
 
   -- Event Hooks
