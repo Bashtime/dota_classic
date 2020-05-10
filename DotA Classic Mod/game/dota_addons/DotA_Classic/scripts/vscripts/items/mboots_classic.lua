@@ -34,7 +34,7 @@
 		end
 
 		function modifierClass:GetAttributes()
-			return MODIFIER_ATTRIBUTE_MULTIPLE
+			return MODIFIER_ATTRIBUTE_NONE
 		end
 
 
@@ -165,8 +165,7 @@ end
 				function modifierClass:GetModifierMoveSpeedBonus_Constant()
 					local caster = self:GetParent()
 					if caster:HasModifier("modifier_tranquil") then return 0 end
-					if caster:HasModifier("modifier_bot") then return 0 end
-					if caster:HasModifier("modifier_botsii") then return 0 end
+					if caster:HasModifier("modifier_item_boots_of_travel") then return 0 end
 					if caster:HasModifier("modifier_greaves") then return 0 end
 					return self.bonus_ms
 				end

@@ -10,7 +10,7 @@ end
 function item_holy_locket_classic:OnCreated()
 
 	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self:GetAbility(), "modifier_regenlifesteal_increase", {duration = -1})	
+	caster:AddNewModifier(caster, self:GetAbility(), "modifier_regenlifesteal_increase", {duration = -1})
 	
 end
 
@@ -50,10 +50,40 @@ end
 ---------------------------------------
 -- Magic Wand Logic
 
-
-
 function item_holy_locket_classic:OnSpellStart(keys)
+	local caster = self:GetCaster()
+	local target = self:GetCursorTarget()
+	local charges = self:GetCurrentCharges()
+	local restore_per_charge = self:GetSpecialValueFor("restore_per_charge")
 
+	local flheal = charges * restore_per_charge
+	local flmana = flheal
+
+	if target ~= caster then 
+		flheal = flheal * 1.25
+
+		--Green and blue effect numbers ingame for ally cast
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_MANA_ADD, target, flmana, caster:GetPlayerOwner())
+		SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, target, flheal, caster:GetPlayerOwner())
+	end 
+
+	target:GiveMana(flmana)
+	target:Heal(flheal, caster)
+
+	self:SetCurrentCharges(0)
+
+	--Sound and Graphics
+	local sound_target = "DOTA_Item.MagicWand.Activate"
+	EmitSoundOn( sound_target, target )	
+
+	local particle_cast = "particles/econ/items/huskar/huskar_ti8/huskar_ti8_shoulder_heal.vpcf"
+	local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, target )
+	local effect_delay = 0.16 + 0.04 * charges
+
+	Timers:CreateTimer(effect_delay, function()
+		ParticleManager:DestroyParticle(effect_cast, false)
+		ParticleManager:ReleaseParticleIndex( effect_cast )
+	end)
 end
 
 
@@ -93,6 +123,18 @@ function modifier_regenlifesteal_increase:OnCreated( kv )
 	self.regenlifesteal_increase = self:GetAbility():GetSpecialValueFor( "regen_and_lifesteal_increase" )
 	self.heal_increase = self:GetAbility():GetSpecialValueFor( "heal_increase" ) 
 
+	if IsClient() then return end
+	local particle_cast = "particles/dev/library/base_item_attachment_magic.vpcf"
+	local particle_cast2 = "particles/econ/courier/courier_wabbit/courier_wabbit_ambient_body_magic.vpcf"
+	local particle_cast3 = "particles/econ/courier/courier_krobeling_gold/courier_krobeling_gold_ambient_magic.vpcf"
+	
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	Timers:CreateTimer(0.06, function()
+		self.effect_cast2 = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, self:GetParent() )
+	end)
+	Timers:CreateTimer(0.12, function()
+		self.effect_cast3 = ParticleManager:CreateParticle( particle_cast3, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
+	end)
 end
 
 
@@ -103,6 +145,13 @@ end
 
 function modifier_regenlifesteal_increase:OnDestroy()
 
+	if IsClient() then return end
+	ParticleManager:DestroyParticle(self.effect_cast, false)
+	ParticleManager:DestroyParticle(self.effect_cast2, false)
+	ParticleManager:DestroyParticle(self.effect_cast3, false)
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
+	ParticleManager:ReleaseParticleIndex( self.effect_cast2 )
+	ParticleManager:ReleaseParticleIndex( self.effect_cast3 )
 end
 
 --------------------------------------------------------------------------------
@@ -178,7 +227,7 @@ function modifier_holy_locket_classic_passive:OnCreated( kv )
 	self.bonus_hp = self:GetAbility():GetSpecialValueFor( "bonus_health" ) 
 	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" ) 
 	self.heal_increase = self:GetAbility():GetSpecialValueFor( "heal_increase" ) 
-	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor( "bonus_all_stats" ) 
+	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor( "bonus_all" ) 
 	self.bonus_mr = self:GetAbility():GetSpecialValueFor( "bonus_mr" ) 
 	self.status_increase = self:GetAbility():GetSpecialValueFor( "status_resistance_increase" ) 
 	self.bonus_regen = self:GetAbility():GetSpecialValueFor( "health_regen" ) 
@@ -196,7 +245,7 @@ function modifier_holy_locket_classic_passive:OnRefresh( kv )
 	self.bonus_hp = self:GetAbility():GetSpecialValueFor( "bonus_health" ) 
 	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" ) 
 	self.heal_increase = self:GetAbility():GetSpecialValueFor( "heal_increase" ) 
-	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor( "bonus_all_stats" ) 
+	self.bonus_all_stats = self:GetAbility():GetSpecialValueFor( "bonus_all" ) 
 	self.bonus_mr = self:GetAbility():GetSpecialValueFor( "bonus_mr" ) 
 	self.status_increase = self:GetAbility():GetSpecialValueFor( "status_resistance_increase" ) 
 	self.bonus_regen = self:GetAbility():GetSpecialValueFor( "health_regen" ) 

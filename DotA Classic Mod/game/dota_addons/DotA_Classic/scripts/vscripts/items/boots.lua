@@ -51,9 +51,8 @@ end
 					local caster = self:GetParent()
 					if caster:HasModifier("modifier_tranquil") then return 0 end
 					if caster:HasModifier("modifier_phase") then return 0 end
-					if caster:HasModifier("modifier_pt") then return 0 end
-					if caster:HasModifier("modifier_bot") then return 0 end
-					if caster:HasModifier("modifier_botsii") then return 0 end
+					if caster:HasModifier("modifier_item_power_treads") then return 0 end
+					if caster:HasModifier("modifier_item_boots_of_travel") then return 0 end
 					if caster:HasModifier("modifier_mboots") then return 0 end
 					if caster:HasModifier("modifier_greaves") then return 0 end
 					return self.bonus_ms

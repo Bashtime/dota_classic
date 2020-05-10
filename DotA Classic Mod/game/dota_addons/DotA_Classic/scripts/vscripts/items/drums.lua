@@ -99,7 +99,6 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_drums:OnCreated( kv )
-
 	-- references
 	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_as" ) -- special value
 	self.bonus_mr = self:GetAbility():GetSpecialValueFor( "bonus_mr" ) -- special value
@@ -110,7 +109,9 @@ function modifier_drums:OnCreated( kv )
 
 	local caster = self:GetParent() 
 
-	--if IsServer() then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_ancient_janggo", { duration = -1}) end
+	-- Aura Visual 
+	local particle_cast = "particles/items_fx/aura_endurance.vpcf"
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 end
 
 function modifier_drums:OnRefresh( kv )
@@ -129,10 +130,8 @@ function modifier_drums:OnRefresh( kv )
 end
 
 function modifier_drums:OnDestroy( kv )
-	local caster = self:GetParent()
-
-	--if IsServer() then caster:RemoveModifierByName("modifier_item_ancient_janggo") end
-
+	ParticleManager:DestroyParticle(self.effect_cast, true)
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
 end
 
 function modifier_drums:OnRemoved()

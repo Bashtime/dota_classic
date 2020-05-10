@@ -2,6 +2,35 @@
 
 am_blink_elf = class({})
 
+
+
+
+
+modifier_am_blink_phased = class({})
+LinkLuaModifier("modifier_am_blink_phased", "heroes/am/am_blink_elf", LUA_MODIFIER_MOTION_NONE)
+
+	-- Modifier Effects
+	function modifier_am_blink_phased:DeclareFunctions()
+
+		local funcs = {
+			MODIFIER_STATE_NO_UNIT_COLLISION,
+				}
+
+		return funcs
+	end
+
+	function modifier_am_blink_phased:CheckState()
+		local state = {
+				[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+				}
+		return state
+	end
+
+	function modifier_am_blink_phased:IsHidden()
+		return true
+	end
+
+
 --------------------------------------------------------------------------------
 -- Ability Start
 function am_blink_elf:OnSpellStart()
@@ -22,20 +51,15 @@ function am_blink_elf:OnSpellStart()
 	
 
 	-- purity of will range bonus 
-	local purity_of_will = caster:FindAbilityByName("antimage_counterspell") 
-	local purity_lvl 
+	local talent_lvl = caster:GetModifierStackCount("modifier_talent_lvl", caster) 
 
-	if purity_of_will ~= nil then
-		purity_lvl = purity_of_will:GetLevel()
-	end
-
-	if purity_lvl ~= nil then
+	if talent_lvl ~= 0 then
 		-- adapt max max_range
-		local rangebonus = self:GetLevelSpecialValueFor("bonus_range", purity_lvl)
+		local rangebonus = self:GetLevelSpecialValueFor("bonus_range", talent_lvl)
 		max_range = max_range + rangebonus
-		
 	end
 
+	-- Bonus range from Bonus Castrange effects
 	max_range = max_range + range_enhancement
 
 
@@ -47,6 +71,28 @@ function am_blink_elf:OnSpellStart()
 
 	-- teleport
 	FindClearSpaceForUnit( caster, origin + direction, true )
+
+	--Create illusions on max Talent
+	if talent_lvl == 4 then
+		CreateIllusions(
+			caster, --owner
+			caster, --hero to copy
+			{
+				outgoing_damage = 33,		--outgoing damage
+				incoming_damage = 350, 		--incoming damage
+				bounty_base = 50,			--bounty base
+				bounty_growth = 0,				--bounty growth
+				outgoing_damage_structure = 25,		--outgoing damage structure
+				outgoing_damage_roshan = 33,
+				duration = 2
+			},
+			1, --#illusions
+			caster:GetHullRadius(), --padding??
+			false,	--mixing positions?
+			true	--find clear space; why not?
+			)
+		caster:AddNewModifier(caster, self, "modifier_am_blink_phased", { duration = 0.55})
+	end
 
 	-- Play effects
 	self:PlayEffects( origin, direction )
@@ -85,33 +131,33 @@ end
 -- Purity of Will reducing cooldown
 function am_blink_elf:GetCooldown(nLevel)
 
-	if IsServer() then
-
 	local caster = self:GetCaster()
 	local lvl = self:GetLevel() - 1
+	local blink_cd = self:GetSpecialValueFor("blink_cd")
 
-	-- purity of will cooldown manipulation preparation
-	local purity_of_will = caster:FindAbilityByName("antimage_counterspell") 
-	local purity_lvl 
+	if IsServer() then
+		-- purity of will cooldown manipulation preparation
+		local purity_of_will = caster:FindAbilityByName("antimage_counterspell") 
+		local purity_lvl 
 
-	if purity_of_will ~= nil then
-		purity_lvl = purity_of_will:GetLevel()
+		if purity_of_will ~= nil then
+			purity_lvl = purity_of_will:GetLevel()
+
+			--Test succesful
+			local buff = caster:FindModifierByName("modifier_talent_lvl")
+			local charges = buff:GetStackCount()
+			if charges < purity_lvl then buff:SetStackCount(purity_lvl) end
+		end
 	end
 
-	-- calculate new cd
-	local new_cd = self.BaseClass.GetCooldown( self, lvl )
+	local flat = caster:GetModifierStackCount("modifier_talent_lvl", caster)
 
-	if purity_lvl ~= nil then
-		-- adapt cd
-		local blink_cd_red = self:GetLevelSpecialValueFor("cd_reduction", purity_lvl)
-		local new_cd = self.BaseClass.GetCooldown( self, lvl ) - blink_cd_red
+	local cooldown = blink_cd
 
-		return new_cd
-	else
-		return new_cd
-	end
+	if flat > 0 then cooldown = blink_cd - ( (flat - 1) * 0.5 ) end
+    
+    return cooldown
 
-	end
 end
 
 
@@ -135,6 +181,5 @@ function am_blink_elf:GetCastPoint()
 
 	end
 end
-
 
 

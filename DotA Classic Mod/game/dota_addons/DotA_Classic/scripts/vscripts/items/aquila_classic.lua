@@ -121,11 +121,17 @@ function modifierClass:OnCreated()
 	self.hp_reg = self:GetAbility():GetSpecialValueFor( "hp_reg" )
 	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" )	
 
-	-- Extra references
-
-	--Stuff for Visual
-	--self:SetStackCount(1)
+	-- Aura Visual 
+	local particle_cast = "particles/items4_fx/scepter_aura_ring_detail.vpcf"
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 end
+
+function modifierClass:OnDestroy()
+	ParticleManager:DestroyParticle(self.effect_cast, true)
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
+end
+
+
 
 			--------------------------------------------------------------------------------
 			-- Modifier Effects

@@ -34,17 +34,15 @@
 		end
 
 		function modifierClass:GetAttributes()
-			return MODIFIER_ATTRIBUTE_MULTIPLE
+			return MODIFIER_ATTRIBUTE_NONE
 		end
 
 
 --Casting
 function itemClass:OnSpellStart()
-
 	local dur = self:GetSpecialValueFor("phase_duration")
 	local caster = self:GetCaster()
 	caster:AddNewModifier(caster, self, buffModifierName, { duration = dur })
-
 end
 
 
@@ -154,9 +152,8 @@ end
 				function modifierClass:GetModifierMoveSpeedBonus_Constant()
 					local caster = self:GetParent()
 					if caster:HasModifier("modifier_tranquil") then return 0 end
-					if caster:HasModifier("modifier_pt") then return 0 end
-					if caster:HasModifier("modifier_bot") then return 0 end
-					if caster:HasModifier("modifier_botsii") then return 0 end
+					if caster:HasModifier("modifier_item_power_treads") then return 0 end
+					if caster:HasModifier("modifier_item_boots_of_travel") then return 0 end
 					if caster:HasModifier("modifier_mboots") then return 0 end
 					if caster:HasModifier("modifier_greaves") then return 0 end
 					return self.bonus_ms

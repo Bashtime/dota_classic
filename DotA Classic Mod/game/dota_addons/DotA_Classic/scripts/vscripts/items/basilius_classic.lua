@@ -46,11 +46,21 @@ end
 function modifier_basilius:OnCreated( kv )
 	-- references
 	self.bonus_dmg = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) -- special value
+	
+	--Aura visual
+	local particle_cast = "particles/items4_fx/scepter_aura_ring_detail.vpcf"
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )
 end
 
 function modifier_basilius:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
 end
+
+function modifier_basilius:OnDestroy()
+	ParticleManager:DestroyParticle(self.effect_cast, true)
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )
+end
+
 
 --------------------------------------------------------------------------------
 -- Modifier Effects

@@ -60,6 +60,10 @@ function modifier_vlads_classic:OnCreated( kv )
 	local caster = self:GetParent() 
 	if IsServer() then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_vladmir", { duration = -1}) end
 
+	--Aura visual
+	local particle_cast = "particles/aura_vlads_classic.vpcf"
+	self.effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN_FOLLOW, self:GetParent() )	
+
 end
 
 function modifier_vlads_classic:OnRefresh( kv )
@@ -70,18 +74,20 @@ function modifier_vlads_classic:OnRefresh( kv )
 	self.bonus_dmg = self:GetAbility():GetSpecialValueFor( "bonus_damage" ) -- special value
 
 	local caster = self:GetParent() 
-	if IsServer() then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_vladmir_aura", { duration = -1}) end
+	if IsServer() then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_vladmir", { duration = -1}) end
 
 end
 
 function modifier_vlads_classic:OnDestroy( kv )
 	local caster = self:GetParent()
-	if IsServer() then caster:RemoveModifierByName("modifier_item_vladmir_aura") end
+	if IsServer() then caster:RemoveModifierByName("modifier_item_vladmir") end
+	ParticleManager:DestroyParticle(self.effect_cast, true)
+	ParticleManager:ReleaseParticleIndex( self.effect_cast )	
 end
 
 function modifier_vlads_classic:OnRemoved()
 	local caster = self:GetParent()
-	if IsServer() then caster:RemoveModifierByName("modifier_item_vladmir_aura") end
+	if IsServer() then caster:RemoveModifierByName("modifier_item_vladmir") end
 end
 
 function modifier_vlads_classic:GetAttributes()

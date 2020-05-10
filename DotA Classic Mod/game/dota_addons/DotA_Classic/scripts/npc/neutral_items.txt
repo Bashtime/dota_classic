@@ -18,63 +18,7 @@
 			"item_ironwood_tree"			  "0"
 			"item_royal_jelly"				  "0"
 			"item_mango_tree"				  "0"
-		}
-	}
-	"2"
-	{
-		"drop_rates"
-		{
-			"20:00"
-			{
-				"0" "15"
-				"1" "15"
-				"2" "15"
-				"3" "15"
-			}
-		}
-
-		"items"
-		{
-
-		}
-	}
-	"3"
-	{
-		"drop_rates"
-		{
-			"35:00"
-			{
-				"0" "10"
-				"1" "10"
-				"2" "10"
-			}
-		}
-
-		"items"
-		{
-			"item_paladin_sword"			  "0"
-			"item_the_leveller"				  "0"
-			"item_spy_gadget"				  "0"
-
-		}
-	}
-	"4"
-	{	
-		"drop_rates"
-		{
-			"45:00"
-			{
-				"0" "10"
-				"1" "10"
-				"2" "10"
-			}
-		}
-
-		"items"
-		{
-			"item_spider_legs"				  "0"
-			"item_titan_sliver"				  "0"
-			"item_timeless_relic"			"0"
+			"item_greater_faerie_fire"		  "0"
 		}
 	}
 }

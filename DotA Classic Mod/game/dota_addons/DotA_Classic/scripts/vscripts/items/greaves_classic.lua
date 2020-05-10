@@ -51,7 +51,7 @@
 		end
 
 		function modifierClass:GetAttributes()
-			return MODIFIER_ATTRIBUTE_MULTIPLE
+			return MODIFIER_ATTRIBUTE_NONE
 		end
 
 
@@ -234,10 +234,6 @@ end
 
 
 
-
-
-
-
 -----------------------------------------
 --Passive Modifier Stuff starts here
 
@@ -309,8 +305,7 @@ end
 				function modifierClass:GetModifierMoveSpeedBonus_Constant()
 					local caster = self:GetParent()
 					if caster:HasModifier("modifier_tranquil") then return 0 end
-					if caster:HasModifier("modifier_bot") then return 0 end
-					if caster:HasModifier("modifier_botsii") then return 0 end
+					if caster:HasModifier("modifier_item_boots_of_travel") then return 0 end
 					return self.bonus_ms
 				end
 
@@ -402,8 +397,8 @@ end
 
 function buffModifierClass:OnIntervalThink()
 
+	if IsClient() then return end
 	local hero = self:GetParent()
-
 	local hp_ratio = hero:GetHealth() / hero:GetMaxHealth()
 		
 	if hp_ratio <= self.threshold then 

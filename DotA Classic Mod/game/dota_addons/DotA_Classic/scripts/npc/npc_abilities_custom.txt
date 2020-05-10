@@ -2,7 +2,6 @@
 {
 	"Version"	"1"
 
-
 	//===============================
 	// Generic: Attribute Bonus
 	//===============================
@@ -214,7 +213,7 @@
 			"03"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"bonus_range"			"0 90 140 210 300"
+				"bonus_range"			"0 80 150 240 350"
 			}
 			"04"
 			{
@@ -226,6 +225,12 @@
 				"var_type"				"FIELD_FLOAT"
 				"cp_reduction"			"0.00 0.01 0.03 0.05 0.07"
 			}
+			"06"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"blink_cd"				"12 9 7 5"
+			}
+
 		}
 	}
 
@@ -726,7 +731,7 @@
 
 		// Time		
 		//-------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"				"15 12.5 10 7.5"
+		"AbilityCooldown"				"9 8.5 8 7.5"
 
 		// Cost
 		//-------------------------------------------------------------------------------------------------------------
@@ -739,7 +744,7 @@
 			"01"
 			{
 				"var_type"					"FIELD_INTEGER"
-				"magic_resistance"			"0 0 5 15"
+				"magic_resistance"			""
 				"LinkedSpecialBonus"		"special_bonus_unique_antimage_4"
 			}
 			"02"
@@ -760,7 +765,7 @@
 			"05"
 			{
 				"var_type"					"FIELD_FLOAT"
-				"blink_bonus_range"			"90 140 210 300"
+				"blink_bonus_range"			"80 150 240 350"
 			}
 			"06"
 			{
@@ -1073,6 +1078,287 @@
 		}
 	}	
 
+
+
+
+
+	// Naix, the Lifestealer
+
+	//=================================================================================================================
+	// Naix: Feast Q
+	//=================================================================================================================
+	"naix_feast"
+	{
+		"ID"			"2000"
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/naix/naix_feast"
+		"MaxLevel"				"4"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_NONE"	
+		"AbilityTextureName"			"life_stealer_feast"		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"lifesteal"					"10 20 30 40"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Naix: Rotten Teeth (Open Wounds) W
+	//=================================================================================================================
+	"naix_rotten_teeth"
+	{
+		"ID"			"2001"
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/naix/naix_rotten_teeth"
+		"MaxLevel"				"4"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"	
+		"AbilitySound"					"Hero_LifeStealer.OpenWounds"
+		"AbilityTextureName"			"rotten_teeth"		
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ms_slow"					"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"dps"						"8 12 16 20"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"slow_duration"					"2"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"ticks_per_sec"					"2"
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Naix: Anabolic Frenzy (Rage) E
+	//=================================================================================================================
+	"naix_anabolic_frenzy"
+	{
+		"ID"			"2002"
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/naix/naix_anabolic_frenzy"
+		"MaxLevel"				"4"
+		"AbilityManaCost"		"50"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_NONE"	
+		"AbilitySound"					"Hero_LifeStealer.OpenWounds"
+		"AbilityTextureName"			"life_stealer_open_wounds"		
+
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_1"
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_as"					"10 20 30 40"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_ms"					"3 5 7 9"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_cd"					"40 30 20 10"	//hardcoded
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"active_mana_cost"			"60 50 40 30"  //hardcoded
+			}
+		}
+	}
+
+
+	//=================================================================================================================
+	// Naix: Rage R
+	//=================================================================================================================
+	"naix_rage"
+	{
+		"ID"			"2003"
+		"BaseClass"				"ability_lua"
+		"ScriptFile"			"heroes/naix/naix_rage"
+		"MaxLevel"				"3"
+		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"FightRecapLevel"				"2"
+		"RequiredLevel"        		"6"
+		"LevelsBetweenUpgrades"    	"5"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"	
+		"AbilityTextureName"			"life_stealer_rage"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilitySound"					"Hero_LifeStealer.Rage"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0"
+ 		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
+		"AbilityCastGestureSlot"		"DEFAULT"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"80 90 100"
+
+	
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"					"FIELD_FLOAT"
+				"rage_damage"					"3 5 7"
+			}
+			"02"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"rage_duration"					"8 10 12"
+			}
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_range"				"60 75 90"
+			}
+			"04"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"scaling"					"35 50 65"
+			}
+		}
+	}
+
+
+
+	//=================================================================================================================
+	// Lifestealer: Infest
+	//=================================================================================================================
+	"life_stealer_infest"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"					"5252"														// unique ID number for this ability.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_CUSTOM"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_CUSTOM"
+		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
+		"SpellImmunityType"				"SPELL_IMMUNITY_ALLIES_YES"
+		"SpellDispellableType"			"SPELL_DISPELLABLE_NO"
+		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
+		"FightRecapLevel"				"1"
+		"AbilitySound"					"Hero_LifeStealer.Infest"
+		"HasScepterUpgrade"			"1"
+		"RequiredLevel"        		"13"
+		"LevelsBetweenUpgrades"    	"4"
+		"MaxLevel"					"4"
+
+		// Casting
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastPoint"				"0.2"
+		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_6"
+
+		// Time		
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCooldown"				"80 70 60 50"
+
+		// Cost
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityManaCost"				"50"		
+		
+		// Cast Range
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"150"
+		
+		// Special
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"radius"				"700"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"				"150 275 400 525"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage_increase_pct"	"50"
+			}
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_movement_speed"	"15 20 25"
+			}
+			"05"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"400 800 1200"
+			}
+			"06"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cooldown_scepter"	"25"
+				"RequiresScepter"		"1"
+			}
+			"07"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"cast_range_scepter"	"600"
+				"RequiresScepter"		"1"
+			}
+			"08"
+			{
+				"var_type"				"FIELD_FLOAT"
+				"self_regen"	"2 3 4 5"
+			}
+		}
+	}
 
 
 

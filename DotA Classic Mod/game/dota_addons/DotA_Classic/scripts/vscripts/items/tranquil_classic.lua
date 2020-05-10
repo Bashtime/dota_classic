@@ -263,6 +263,7 @@ end
 function buffModifierClass:GetModifierMoveSpeedBonus_Constant()
 	local caster = self:GetParent()
 	if caster:HasModifier("modifier_greaves") then return -25 end
+	if caster:HasModifier("modifier_spider_legs_classic") then return -15 end
 	return self.minus_ms
 end
 

@@ -11,8 +11,8 @@ function att_bonus:OnUpgrade()
 	local current_hp_after_upgrade = caster:GetHealth()
 	local max_hp = caster:GetMaxHealth()
 	local current_hp_percentage = current_hp_after_upgrade / max_hp
-	local current_hp_before_upgrade = current_hp_percentage * (max_hp - 3 * 19)
-	local new_hp = math.min( current_hp_before_upgrade + 3 * 19 , max_hp )
+	local current_hp_before_upgrade = current_hp_percentage * (max_hp - 3 * 20)
+	local new_hp = math.min( current_hp_before_upgrade + 3 * 20 , max_hp )
 
 
 	local current_mana_after_upgrade = caster:GetMana()

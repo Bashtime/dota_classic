@@ -12,8 +12,9 @@
 		//"DOTA_Shop_Category_Upgrades"			"ITEMS"
 		
 		//--------------------
-		//Abilities
+		//	Abilities
 		//--------------------
+
 		"DOTA_Tooltip_ability_example_ability"										"Detonation"
 		"DOTA_Tooltip_ability_example_ability_Description"				"Detonator channels a charge and releases an explosion around the caster if the channel is successful, dealing damage and knocking back all enemies in range of the explosion"
 		"DOTA_Tooltip_ability_example_ability_Lore"								"What does a hero truly need? Much depends upon the hero."
@@ -27,21 +28,21 @@
     	"DOTA_Tooltip_ability_att_bonus"							"Attribute Bonus"
 		"DOTA_Tooltip_ability_att_bonus_Description"				"Passively increases strength, agility and intelligence by the same amount."
 		"DOTA_Tooltip_ability_att_bonus_Lore"						"Beloved by mages, warriors and assasins alike"
-		"DOTA_Tooltip_ability_att_bonus_Note0"						"Leveling attribute bonus will increase your current HP by 57 (from +3 Str) and current Mana by 36 (from +3 int) flat instead of keeping your HP and Mana percentage the same."
+		"DOTA_Tooltip_ability_att_bonus_Note0"						"Leveling attribute bonus will increase your current HP by 60 (from +3 Str) and current Mana by 39 (from +3 int) flat instead of keeping your HP and Mana percentage the same."
 		"DOTA_Tooltip_ability_att_bonus_plus_stats"					"STATS GAIN:"
 
 		
 		// ANTIMAGE PURITY OF WILL
 
     	"DOTA_Tooltip_ability_antimage_counterspell"				"Purity of Will"
-		"DOTA_Tooltip_ability_antimage_counterspell_Description"	"Passively improves Antimage's Mana Break, Blink and Mana Void as well as his magic resistance.\n<h1>Active: Counterspell</h1>Creates an anti-magic shell around Antimage that sends any targeted spells back towards enemies instead of affecting him.\n<h1>Level 25 Talent: Mindgames</h1> Creates an uncontrollable illusion where you blink to for 2.5 seconds."
-		"DOTA_Tooltip_ability_antimage_counterspell_Lore"						"Thou art purified! \n Antimage reminds himself of his pure will reaching a higher state of mind. His increased Purity of Will allows him to see the true path clearer."
-		"DOTA_Tooltip_ability_antimage_counterspell_duration"					"SHELL DURATION:"	
+		"DOTA_Tooltip_ability_antimage_counterspell_Description"	"Passively improves Antimage's Mana Break, Blink and Mana Void.\n<h1>Active: Counterspell</h1>Creates an anti-magic shell for %duration% seconds around Antimage that sends any targeted spells back towards enemies instead of affecting him.\n<h1>Level 25 Talent: Mindgames</h1> Creates an illusion where you blink to for 2 seconds while granting phased movement for half a second."
+		"DOTA_Tooltip_ability_antimage_counterspell_Lore"						"Thou art purified! \n Antimage reminds himself of his pure will reaching a higher state of mind. His increased Purity of Will allows him to see the true path clearer."	
 		"DOTA_Tooltip_ability_antimage_counterspell_blink_cp_red"				"BLINK CP REDUCTION:"	
 		"DOTA_Tooltip_ability_antimage_counterspell_blink_cd_red"				"BLINK CD REDUCTION:"	
 		"DOTA_Tooltip_ability_antimage_counterspell_blink_bonus_range"			"BLINK BONUS RANGE:"	
-		"DOTA_Tooltip_ability_antimage_counterspell_mana_burn_perc"				"%MAX MANA BURN:"	 		//"PERCENTAGE MAX MANA BURN: "
+		"DOTA_Tooltip_ability_antimage_counterspell_mana_burn_perc"				"%MAX MANA BURN:"	 		
 		"DOTA_Tooltip_ability_antimage_counterspell_void_cd_red"				"MANA VOID CD REDUCTION:"	
+		"DOTA_Tooltip_ability_antimage_counterspell_magic_resistance"			""
 
 		// ANTIMAGE BLINK
 
@@ -51,6 +52,7 @@
 		"DOTA_Tooltip_ability_am_blink_elf_Note1"	"Cast Point before reductions: 0.4"
 		
 		"DOTA_Tooltip_ability_am_blink_elf_blink_range"				"MAX BLINK DISTANCE:"
+		"DOTA_Tooltip_ability_am_blink_elf_blink_cd"				"COOLDOWN:"
 		"DOTA_Tooltip_ability_am_blink_elf_Lore"					"In his encounter with the Dead Gods, Magina learned the value of being elusive."
 
 
@@ -94,10 +96,50 @@
 
 
 
+		// NAIX 
+
+		"DOTA_Tooltip_ability_naix_feast"						"Feast"
+		"DOTA_Tooltip_ability_naix_feast_Description"			"N'aix restores some of his life force by eating flesh."
+		"DOTA_Tooltip_ability_naix_feast_lifesteal"				"%LIFESTEAL:"
+		"DOTA_Tooltip_ability_naix_feast_Lore"					"After escaping from his cell in Devarque, N'aix subsisted on flesh and bones of those unfortunate to cross his path."
+
+		"DOTA_Tooltip_ability_naix_rotten_teeth"				"Rotten Teeth"
+		"DOTA_Tooltip_ability_naix_rotten_teeth_Description"	"N'aix attacks sting, adding poisonous damage and significantly slowing movement speed."
+		"DOTA_Tooltip_ability_naix_rotten_teeth_ms_slow"		"%MOVE SPEED SLOW:"
+		"DOTA_Tooltip_ability_naix_rotten_teeth_dps"			"DAMAGE PER SECOND:"
+		"DOTA_Tooltip_ability_naix_rotten_teeth_slow_duration"	"DURATION:"
+		"DOTA_Tooltip_ability_naix_rotten_teeth_Lore"			"N'aix bites cause septic wounds."
+
+
+		"DOTA_Tooltip_ability_naix_anabolic_frenzy"				"Anabolic Frenzy"
+		"DOTA_Tooltip_ability_naix_anabolic_frenzy_Description"	"Increases attack speed and movement of N'aix.\<h1>nActive: Available when leveling Infest</h1>		
+		"DOTA_Tooltip_ability_naix_anabolic_frenzy_bonus_ms"	"%MOVE SPEED BONUS:"
+		"DOTA_Tooltip_ability_naix_anabolic_frenzy_bonus_as"	"%ATTACK SPEED BONUS:"	
+
+
+		"DOTA_Tooltip_ability_naix_rage"						"Rage"
+		"DOTA_Tooltip_ability_naix_rage_Description"			"Becoming Spell Immune, N'aix closes in on his prey, poison oozing from his jaws and a maddened rage in his eyes..."
+		"DOTA_Tooltip_ability_naix_rage_rage_damage"	"%ENEMY CURRENT HP AS DAMAGE:"
+		"DOTA_Tooltip_ability_naix_rage_rage_duration"	"DURATION:"
+		"DOTA_Tooltip_ability_naix_rage_Lore"			"The madness and brutality of N'aix makes him a vicious and unrelenting foe in combat."
+		"DOTA_Tooltip_ability_naix_rage_bonus_range"	"BONUS ATTACK RANGE: "
+
+
+
+
+
+
+
+
 
 		//------------------------
 		// Items
 		//------------------------
+
+		// Mango
+		"DOTA_Tooltip_ability_item_enchanted_mango"					"Very Exotic Mango"
+		"DOTA_Tooltip_ability_item_enchanted_mango_Description"		"<h1>Use: Eat this unbelievably good Mango?</h1> Could instantly restore %replenish_amount% mana or might kill you.<br><br>Hold Control to use on an allied hero or use on yourself and find out.<br><br>Range: 400\nYou're not quite sure if their consumption is the most delicious thing ever or if it might kill you! Maybe you better sell it to some crazy fool on the black market for 200 gold before there is war."		
+		"DOTA_Tooltip_ability_item_enchanted_mango_Lore"			"'Fortune favours the brave', they say. Rumours has it that this fruit charms every gambler's heart but sometimes only once."
 
 		"DOTA_Tooltip_ability_item_example_item"										"Shield Blaster"
 		"DOTA_Tooltip_ability_item_example_item_Description"							"Gives the caster a 50% damage reduction for 4 seconds while firing a projectile that deals damage 125 PURE damage to any enemy it hits."
@@ -112,24 +154,34 @@
 
     	// TRIDENT
 		"DOTA_Tooltip_ability_item_trident_classic"										"Trident"
-		"DOTA_Tooltip_ability_item_trident_classic_Description"							"<h1>Passive: Ultimate Maim</h1>Grants each attack a %maim_chance%%% chance to slow the target's movement speed by %maim_slow_movement%%% and attack speed by %maim_slow_attack%%% when used by melee heroes, or slow movement speed by %maim_slow_movement_range%%% and attack speed by %maim_slow_attack_range%%% when used by ranged heroes. The slow lasts %maim_duration% seconds.\n<h1>Passive: Arcane Punishment</h1>Each enemy attack is punished by a %frost_slow%%% attack speed slow that also reduces their HP regen and heals affecting them by %frost_heal_negation%%%.<br>The debuff lasts for %frost_slow_duration% seconds.<br><br>Affects structures as well.\nMovement speed bonuses from multiple Yasha based items do not stack."
+		"DOTA_Tooltip_ability_item_trident_classic_Description"							"<h1>Passive: Ultimate Maim</h1>Grants each attack a %maim_chance%%% chance to slow the target's movement speed by %maim_slow_movement%%% and attack speed by %maim_slow_attack%%% when used by melee heroes, or slow movement speed by %maim_slow_movement_range%%% and attack speed by %maim_slow_attack_range%%% when used by ranged heroes. The slow lasts %maim_duration% seconds.\n<h1>Passive: Arcane Punishment</h1>Each enemy attack on you is punished by a %frost_slow%%% attack speed slow that also reduces their HP regen and heals affecting them by %frost_heal_negation%%%.<br>The debuff lasts for %frost_slow_duration% seconds.<br><br>Affects structures as well.\nMovement speed bonuses from multiple Yasha based items do not stack.\nCooldown reductions stack diminishingly."
 		"DOTA_Tooltip_ability_item_trident_classic_Lore"								"Using secretive techniques the three legendary weapons have been united to bring ruin to any who oppose them."
 		"DOTA_Tooltip_ability_item_trident_classic_bonus_all_stats"							"+$all"
     	"DOTA_Tooltip_ability_item_trident_classic_bonus_attack_speed"				"+$attack"
     	"DOTA_Tooltip_ability_item_trident_classic_movement_speed_percent_bonus"	"%+$move_speed"
     	"DOTA_Tooltip_ability_item_trident_classic_bonus_damage"					"+$damage"
     	"DOTA_Tooltip_ability_item_trident_classic_manacost_reduction"				"%+Manacost and Manaloss reduction"
-    	"DOTA_Tooltip_ability_item_trident_classic_spell_amp"						"%+$spell_amp"
+    	"DOTA_Tooltip_ability_item_trident_classic_cdr"						"%+Cooldown Reduction"
 		"DOTA_Tooltip_ability_item_trident_classic_Note0"						"Maim does not pierce spell immunity.However, Arcane Punishment does pierce it."
 		"DOTA_Tooltip_ability_item_trident_classic_Note1"						"Fully stacks with the maims of all other Sange-based items."
 		"DOTA_Tooltip_ability_item_trident_classic_Note2"						"The proc chance of multiple Tridents stack, but the slow does not."
-
+		"DOTA_Tooltip_ability_item_trident_classic_bonus_range"					"+Attack Range (MELEE ONLY)"
 
     	// Basilius Classic
 		"DOTA_Tooltip_ability_item_ring_of_basilius_classic"						"Ring of Basilius"
-		"DOTA_Tooltip_ability_item_ring_of_basilius_classic_Description"			"<h1>Passive: Basilius Aura</h1> Grants %aura_mana_regen% mana regeneration and %aura_bonus_armor% armor to nearby allies.<br> <br> This aura does not stack with the aquila aura."
+		"DOTA_Tooltip_ability_item_ring_of_basilius_classic_Description"			"<h1>Basilius Aura</h1> Grants %aura_mana_regen% mana regeneration and %aura_bonus_armor% armor to nearby allies.<br><br>Radius: %radius%\n<h1>Toggle Aura On/Off</h1> Deactivate to stop affecting non-hero units.\n This aura does not stack with the aquila aura. (Aura bonuses become 0 as long as the unit is affected by Aquila Aura as well.)"
 		"DOTA_Tooltip_ability_item_ring_of_basilius_classic_Lore"						"Ring given as a reward to the greatest mages."
 		"DOTA_Tooltip_ability_item_ring_of_basilius_classic_bonus_damage"			"+$damage"
+
+
+    	// Aquila Classic
+		"DOTA_Tooltip_ability_item_aquila_classic"						"Ring of Aquila"
+		"DOTA_Tooltip_ability_item_aquila_classic_Description"			"<h1>Aquila Aura</h1> Grants %aura_mana_regen% mana regeneration and %aura_bonus_armor% armor to nearby allies.<br><br>Radius: %radius%\n<h1>Toggle: Aura</h1> Deactivate to stop affecting non-hero units.\n This aura overrides the basilius aura. See Ring of Basilius."
+		"DOTA_Tooltip_ability_item_aquila_classic_Lore"					"The ring of the fallen Warlord Aquila continues to support armies in battle. "
+		"DOTA_Tooltip_ability_item_aquila_classic_bonus_dmg"			"+$damage"
+		"DOTA_Tooltip_ability_item_aquila_classic_bonus_str"			"+$str"
+		"DOTA_Tooltip_ability_item_aquila_classic_bonus_agi"			"+$agi"
+		"DOTA_Tooltip_ability_item_aquila_classic_bonus_int"			"+$int"
 
 
 		// Ring of Aquila
@@ -141,12 +193,12 @@
 		"DOTA_Tooltip_ability_item_boots_old"						"Boots of Speed"
 		"DOTA_Tooltip_ability_item_boots_old_Description"			"Flat movement speed bonuses from multiple pairs of boots do not stack."
 		"DOTA_Tooltip_ability_item_boots_old_Lore"					"Fleet footwear, increasing movement."
-		"DOTA_Tooltip_ability_item_boots_old_bonus_move_speed"	"+$move_speed"
+		"DOTA_Tooltip_ability_item_boots_old_bonus_ms"				"+$move_speed"
 
 
 		// Diffu Blade 2
 		"DOTA_Tooltip_ability_item_diffu_blade_2"					"Diffusal Blade 2"
-		"DOTA_Tooltip_ability_item_diffu_blade_2_Description"				"<h1>Active: Purge</h1> Targets an enemy, removing buffs from the target and slowing it for %purge_slow_duration% seconds.<br><br> If the target is a non-hero summon or illusion, purge also deals %playerunit_percentage_damage%%% of their max HP as pure damage. <br><br>Can also target allies or self to remove debuffs. <br><br>Range: %cast_range%\n<h1>Passive: Manabreak</h1>Each attack burns %feedback_mana_burn% mana from the target, and deals %damage_per_burn% physical damage per burned mana. <br><br>Burns %feedback_mana_burn_illusion_melee% mana per attack from melee illusions and %feedback_mana_burn_illusion_ranged% mana per attack from ranged illusions. <br><br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>"
+		"DOTA_Tooltip_ability_item_diffu_blade_2_Description"				"<h1>Active: Purge</h1> Targets an enemy, removing buffs from the target and slowing it for %purge_slow_duration% seconds.<br><br> If the target is a non-hero summon or illusion, purge also deals %playerunit_percentage_damage%%% of their max HP as pure damage. <br><br>Can also target allies or self to remove debuffs. <br><br>Range: %cast_range%\n<h1>Passive: Manabreak</h1>Each attack burns %feedback_mana_burn% mana from the target, and deals %damage_per_burn% physical damage per burned mana. <br><br>Burns %feedback_mana_burn_illusion_melee% mana per attack from melee illusions and %feedback_mana_burn_illusion_ranged% mana per attack from ranged illusions. <br><br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>""
 		"DOTA_Tooltip_ability_item_diffu_blade_2_Note0"						"Diffu's Manabreak does not stack with itself or Diffusal Blade 1."
 		"DOTA_Tooltip_ability_item_diffu_blade_2_Note1"						"Non-hero units get rooted from purge for the first %purge_root_duration% seconds."
 		"DOTA_Tooltip_ability_item_diffu_blade_2_Lore"						"An enchanted blade that allows the user to cut straight into the enemy's soul."
@@ -203,11 +255,11 @@
 		// Holy Locket
 		"DOTA_Tooltip_ability_item_holy_locket_classic"						"Holy Locket"
 		"DOTA_Tooltip_ability_item_holy_locket_classic_Lore"				"A trinket imbued with great magic to perform miracles on those deemed faithful enough."		
-		"DOTA_Tooltip_ability_item_holy_locket_classic_Description"			"<h1>Active: Energy Charge</h1>Consumes all charges to instantly restore %restore_per_charge% health and mana per charge.<br><br>Starts with no charges. Gains a charge whenever a visible enemy within %charge_radius% range uses an ability. Max %max_charges% charges.\n<h1>Passive: Holy Blessing</h1> Heals you provide to yourself and allies are amplified by %heal_increase%%%. Health regeneration is also amplified by %regen_and_lifesteal_increase%%%"
+		"DOTA_Tooltip_ability_item_holy_locket_classic_Description"			"<h1>Active: Energy Charge</h1>Consumes all charges to instantly restore %restore_per_charge% health and mana per charge.<br><br>Starts with no charges. Gains a charge whenever a visible enemy within %charge_radius% range uses an ability. Max %max_charges% charges.\n<h1>Passive: Holy Blessing</h1> Heals you provide to yourself and allies are amplified by %heal_increase%%%. Your own health regeneration is also amplified by %regen_and_lifesteal_increase%%%"
 		"DOTA_Tooltip_ability_item_holy_locket_classic_bonus_health"		"+$health"
 		"DOTA_Tooltip_ability_item_holy_locket_classic_bonus_mana"		"+$mana"				
 		"DOTA_Tooltip_ability_item_holy_locket_classic_health_regen"		"+$hp_regen"
-		"DOTA_Tooltip_ability_item_holy_locket_classic_bonus_all_stats"		"+$all"
+		"DOTA_Tooltip_ability_item_holy_locket_classic_bonus_all"		"+$all"
 		"DOTA_Tooltip_ability_item_holy_locket_classic_bonus_mana"		"+$mana"
 		"DOTA_Tooltip_ability_item_holy_locket_classic_bonus_mr"		"%+Magic Resistance"
 		"DOTA_Tooltip_ability_item_holy_locket_classic_status_resistance_increase"		"%+Status Resistance"
@@ -233,21 +285,21 @@
 
 		// (Deus?) Ex Machina
 		"DOTA_Tooltip_ability_item_ex_machina_classic"						"Ex Machina"
-		"DOTA_Tooltip_ability_item_ex_machina_classic_Lore"					"'Time is relative' a revolutionary scientist declared after examining this mysterious and ancient object."
-		"DOTA_Tooltip_ability_item_ex_machina_classic_Description"			"<h1>Passive: Machine Learning</h1> Increases spell and item cast range by %cast_range_bonus% and grants +%debuff_amp%%% debuff duration amplification. (i.e many debuffs you cast on enemies are prolonged by %debuff_amp%%%.) <br><br>The bonus cast range does not stack with Aether Lens but talents and Keen Optic."
+		"DOTA_Tooltip_ability_item_ex_machina_classic_Lore"					"Scientists were buffled after examining this mysterious and ancient object."
+		"DOTA_Tooltip_ability_item_ex_machina_classic_Description"			"<h1>Passive: Aethereal Focus</h1> Increases spell and item cast range by %cast_range_bonus%.\nMultiple sources of Aethereal Focus do not stack."
 		"DOTA_Tooltip_ability_item_ex_machina_classic_bonus_mana"                      "+$mana"
-		"DOTA_Tooltip_ability_item_ex_machina_classic_bonus_mana_regen"                "+$mana_regen"
+		"DOTA_Tooltip_ability_item_ex_machina_classic_bonus_mana_regen"                "%+$mana_regen"
+		"DOTA_Tooltip_ability_item_ex_machina_classic_bonus_hp_regen"					"+$hp_regen"
+		"DOTA_Tooltip_ability_item_ex_machina_classic_cdr"  	                    "%+Cooldown Reduction"
 		"DOTA_Tooltip_ability_item_ex_machina_classic_spell_amp"  	                    "%+$spell_amp"
 		"DOTA_Tooltip_ability_item_ex_machina_classic_bonus_intellect"                      "+$int"
 		"DOTA_Tooltip_ability_item_ex_machina_classic_manacost_reduction"                "%+Manacost and Manaloss Reduction"
 		"DOTA_Tooltip_ability_item_ex_machina_classic_Note0"				"Does not increase the Area of Effect (AoE) of spells."
-		"DOTA_Tooltip_ability_item_ex_machina_classic_Note1"				"Debuff Amp has no effect on some spells because of Valve's inconsistent Spaghetti Coding of Status Resistance."
-
 
 
 		// Kaya and Sange
 		"DOTA_Tooltip_ability_item_kns_classic"										"Kaya and Sange"
-		"DOTA_Tooltip_ability_item_kns_classic_Description"					"<h1>Passive: Greater Maim</h1>Grants each attack a %maim_chance%%% chance to slow the target's movement speed by %maim_slow_movement%%% and attack speed by %maim_slow_attack%%% when used by melee heroes, or slow movement speed by %maim_slow_movement_range%%% and attack speed by %maim_slow_attack_range%%% when used by ranged heroes. The slow lasts %maim_duration% seconds."
+		"DOTA_Tooltip_ability_item_kns_classic_Description"					"<h1>Passive: Greater Maim</h1>Grants each attack a %maim_chance%%% chance to slow the target's movement speed by %maim_slow_movement%%% and attack speed by %maim_slow_attack%%% when used by melee heroes, or slow movement speed by %maim_slow_movement_range%%% and attack speed by %maim_slow_attack_range%%% when used by ranged heroes. The slow lasts %maim_duration% seconds.\nKaya-based cooldown reductions stack diminishingly."
 		"DOTA_Tooltip_ability_item_kns_classic_Note0"						"Maim does not pierce spell immunity."
 		"DOTA_Tooltip_ability_item_kns_classic_Note1"						"Fully stacks with the maims of all other Sange-based items."
 		"DOTA_Tooltip_ability_item_kns_classic_Note2"						"The proc chance of multiple Sange and Yasha stack, but the slow does not."
@@ -256,18 +308,18 @@
 		"DOTA_Tooltip_ability_item_kns_classic_bonus_strength"				"+$str"
 		"DOTA_Tooltip_ability_item_kns_classic_bonus_intellect"				"+$int"
     	"DOTA_Tooltip_ability_item_kns_classic_manacost_reduction"				"%+Manacost and Manaloss reduction"
-    	"DOTA_Tooltip_ability_item_kns_classic_spell_amp"						"%+$spell_amp"
+    	"DOTA_Tooltip_ability_item_kns_classic_cdr"						"%+Cooldown Reduction"
 
 
     	// Kaya and Yasha
  		"DOTA_Tooltip_ability_item_kny_classic"								"Yasha and Kaya"
- 		"DOTA_Tooltip_ability_item_kny_classic_Description"								"Yasha-based movement speed bonuses from multiple items do not stack."
+ 		"DOTA_Tooltip_ability_item_kny_classic_Description"								"Yasha-based movement speed bonuses from multiple items do not stack.\nKaya-based cooldown reductions stack diminishingly."
 		"DOTA_Tooltip_ability_item_kny_classic_Lore"						"Yasha and Kaya, when imbued together with faint starlight, offer their wielder an unparalleled arcane swiftness."
 		"DOTA_Tooltip_ability_item_kny_classic_bonus_attack_speed"				"%+$attack"
 		"DOTA_Tooltip_ability_item_kny_classic_bonus_agility"				"+$agi"
 		"DOTA_Tooltip_ability_item_kny_classic_bonus_intellect"				"+$int"
     	"DOTA_Tooltip_ability_item_kny_classic_manacost_reduction"				"%+Manacost and Manaloss reduction"
-    	"DOTA_Tooltip_ability_item_kny_classic_spell_amp"						"%+$spell_amp"
+    	"DOTA_Tooltip_ability_item_kny_classic_cdr"						"%+Cooldown Reduction"
   		"DOTA_Tooltip_ability_item_kny_classic_movement_speed_percent_bonus"						"%+$move_speed"      	
 
 
@@ -287,7 +339,7 @@
 
 		// Iron Talon
 		"DOTA_Tooltip_ability_item_iron_classic"								"Iron Talon"
-		"DOTA_Tooltip_ability_item_iron_classic_Description"					"<h1>Active: Chop</h1>Quells deep into the target non-hero, non-ancient enemy unit, dealing %creep_damage_pct%%% of its current health as pure damage to it. For ancients it's only %anc_pct%%%.<br><br>Can target trees, Observer Wards and Sentry Wards to instantly cut them down. Has a %alternative_cooldown% second cooldown when targeting trees or wards and a %normal_cooldown% second cooldown when targeting units.<br><br>Cast Range: %quelling_range_tooltip%\n<h1>Passive: Quell</h1>Increases attack damage against non-hero units by %damage_bonus% when used by melee heroes, or %damage_bonus_ranged% when used by ranged heroes.\n<h1>Active: Defuse Bombs</h1> Target Techies' Stasis Traps or Remote Mines to instantly destroy them."
+		"DOTA_Tooltip_ability_item_iron_classic_Description"					"<h1>Active: Chop</h1>Quells deep into the target non-hero, non-ancient enemy unit, dealing %creep_damage_pct%%% of its current health as pure damage to it. For ancients it's only %anc_pct%%%.<br><br>Can target trees, Observer Wards and Sentry Wards to instantly cut them down.<br><br>Has a %alternative_cooldown% second cooldown when targeting trees or wards and a %normal_cooldown% second cooldown when targeting units.<br><br>Cast Range: %quelling_range_tooltip%\n<h1>Passive: Quell</h1>Increases attack damage against non-hero units by %damage_bonus% when used by melee heroes, or %damage_bonus_ranged% when used by ranged heroes.\n<h1>Active: Defuse Bombs</h1> Target Techies' Stasis Traps or Remote Mines to instantly destroy them."
 		"DOTA_Tooltip_ability_item_iron_classic_Note0"						    "Stacks with the Quell of Battle Fury and Quelling Blade, but not with other Iron Talons."
 		"DOTA_Tooltip_ability_item_iron_classic_bonus_armor"					"+$armor"
 
@@ -301,20 +353,524 @@
 
 		// Ballista
 		"DOTA_Tooltip_Ability_item_ballista_classic"								"Ballista"
-		"DOTA_Tooltip_Ability_item_ballista_classic_Description"                    "<h1>Active: Hurricane Thrust</h1> When cast on an enemy, pushes the caster and the target enemy %enemy_length% range away from each other, and allows the caster to make %max_attacks% attacks against the target without range restrictions and with +%bonus_attack_speed% attack speed for up to %range_duration% seconds. The unrestricted range does not work for melee heroes.<br><br>When cast on self or an ally, pushes the target %push_length% units in the direction it is facing.<br><br>Allied Range: %tooltip_range%<br>Enemy Range: %cast_range_enemy%\n<h1>Passive: Brute Force (Ranged Only) </h1> Grants each attack a %stun_chance%%% chance on hit to stun the target briefly for %stun_duration% seconds and deal %stun_damage% bonus pure damage. Moreover, knocks back enemies %knockback_distance% distance and deals %bonus_damage% pure damage with every attack.\n<h1>Passive: Dragon's Reach (Ranged Only)</h1> Increases your hero's attack range by %base_attack_range%."
-		"DOTA_Tooltip_Ability_item_ballista_classic_Note0"                          "Double-clicking the item automatically targets self."
-		"DOTA_Tooltip_Ability_item_ballista_classic_Note1"                          "Can target self while spell immune, but not other spell immune units."
+		"DOTA_Tooltip_Ability_item_ballista_classic_Description"                    "<h1>Active: Hurricane Thrust</h1> When cast on an enemy, pushes the caster and the target enemy %enemy_length% range away from each other, and allows the caster to make %max_attacks% attacks against the target without range restrictions and with +%bonus_attack_speed% attack speed for up to %range_duration% seconds. The unrestricted range does not work for melee heroes.<br><br>When cast on self or an ally, pushes the target %push_length% units in the direction it is facing.<br><br>Allied Range: %tooltip_range%<br>Enemy Range: %cast_range_enemy%\n<h1>Passive: Brute Force (Ranged Only) </h1> Grants each attack a %stun_chance%%% chance on hit to stun the target briefly for %stun_duration% seconds and deal %stun_damage% bonus pure damage. Moreover, knocks back enemies %knockback_distance% distance and deals %bonus_damage% pure damage with every attack.<br><br>The stun pierces spell immunity, the knockback does not.\n<h1>Passive: Dragon's Reach (Ranged Only)</h1> Increases your hero's attack range by %base_attack_range%."
+		"DOTA_Tooltip_Ability_item_ballista_classic_Note1"                          "Can't target enemy spell immune units."
 		"DOTA_Tooltip_Ability_item_ballista_classic_Note2"                          "Hurricane Thrust does not interrupt the target's actions."
 		"DOTA_Tooltip_Ability_item_ballista_classic_Note3"                          "Cannot push units affected by Black Hole, Chronosphere, Duel, Flaming Lasso or Kinetic Field."
 		"DOTA_Tooltip_Ability_item_ballista_classic_Note4"                          "Can be cast on Gyrocopter's Homing Missiles."
 		"DOTA_Tooltip_Ability_item_ballista_classic_Note5"                          "Shares cooldown with Force Staff."
-		"DOTA_Tooltip_Ability_item_ballista_classic_Note6"                          "Multiple sources of Dragon's Reach do not stack."
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_intellect"                "+$int"
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_health_regen"             "+$hp_regen"
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_agility"                  "+$agi"
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_strength"                 "+$str"		
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_as_passive"                "%+$attack"
-		"DOTA_Tooltip_Ability_item_ballista_classic_projectile_speed"                "%+Faster Attack Projectiles"
+		"DOTA_Tooltip_Ability_item_ballista_classic_projectile_speed"                "+ ms faster Attack Projectiles"
+
+
+
+		// Buckler
+		"DOTA_Tooltip_ability_item_buckler_classic"									"Buckler"
+		"DOTA_Tooltip_ability_item_buckler_classic_Description"							"<h1>Active: Buckler Bonus Armor</h1> Grants %active_armor% armor to yourself and nearby allied non-player-controlled units for %active_duration% seconds.<br><br>Radius: %active_radius%\n<h1>Buckler Aura</h1> Grants %aoe_armor% armor to nearby allied player units.<br><br>Radius: %radius%\nThis aura doesn't stack with Mekansm Aura. (Aura bonuses become 0 as long as the unit is affected by Mekansm Aura as well.)"
+		"DOTA_Tooltip_ability_item_buckler_classic_Lore"								"A powerful shield that imbues the bearer with the strength of heroes past, it is capable of protecting entire armies in battle."
+		"DOTA_Tooltip_ability_item_buckler_classic_bonus_armor"							"+$armor"
+		"DOTA_Tooltip_ability_item_buckler_classic_bonus_all_stats"						"+$all"		
+
+
+		// Headdress
+		"DOTA_Tooltip_ability_item_headdress_bonus_all_stats"					"+$all"
+
+
+		// Mekansm
+		"DOTA_Tooltip_ability_item_mekansm_classic"										"Mekansm"
+		"DOTA_Tooltip_ability_item_mekansm_classic_Description"							"<h1>Active: Restore</h1>Instantly replenishes %heal_amount% health of all allied units in a %heal_radius% radius and grants %heal_armor% additional armor for %active_duration% seconds.<br><br>Restore cannot heal units that have been affected by Restore in the last 50 seconds or by Guardian Greaves in the last 36 seconds.\n<h1>Passive: Mekansm Aura</h1>Grants %aura_health_regen% health regeneration and %bonus_aoe_armor% armor to allies in a %aura_radius% radius."
+		"DOTA_Tooltip_ability_item_mekansm_classic_Lore"							    "A glowing jewel formed out of assorted parts that somehow fit together perfectly."
+		"DOTA_Tooltip_ability_item_mekansm_classic_Note0" 								"Mekansm Aura does not stack with Buckler Aura."
+		"DOTA_Tooltip_ability_item_mekansm_classic_Note1" 								"Multiple instances of Mekansm Aura do not stack."
+		"DOTA_Tooltip_ability_item_mekansm_classic_bonus_all_stats"						"+$all"
+		"DOTA_Tooltip_ability_item_mekansm_classic_bonus_armor"							"+$armor"
+
+
+		// Vladmirs
+		"DOTA_Tooltip_ability_item_vlads_classic"										"Vladmir's Offering"
+		"DOTA_Tooltip_ability_item_vlads_classic_Description"							"<h1>Active: Sacrifice</h1> Consumes %health_sacrifice% health to grant %mana_gain% additional mana for %duration% seconds.<br><br>If the mana gained cannot fit in the mana pool, it creates a buffer of mana that will be used before the default mana pool.\n<h1>Passive: Vladmir's Aura</h1>Grants %vampiric_aura%%% lifesteal, %mana_regen_aura% mana regeneration and %armor_aura% armor to nearby allies.<br><br>Radius: %aura_radius%"
+		"DOTA_Tooltip_ability_item_vlads_classic_Lore"								"An eerie mask that is haunted with the malice of a fallen vampire."
+		"DOTA_Tooltip_ability_item_vlads_classic_Note0"								"Multiple instances of Vladmir's Aura do not stack."
+		"DOTA_Tooltip_ability_item_vlads_classic_bonus_strength"					"+$str"
+		"DOTA_Tooltip_ability_item_vlads_classic_bonus_health_regen"				"+Health Regeneration"
+		"DOTA_Tooltip_ability_item_vlads_classic_bonus_damage"						"+$damage"		
+
+
+		// Drums
+		"DOTA_Tooltip_ability_item_drums"								"Drums of Endurance"
+		"DOTA_Tooltip_ability_item_drums_Description"					"<h1>Active: Endurance</h1> Grants %bonus_movement_speed_pct%%% movement speed and %bonus_attack_speed_pct%%% attack speed to allied units in a %radius% radius for %duration% seconds.<br><br>Endurance cannot be applied to units that have been affected by Endurance in the last %nospeed_duration% seconds.\n<h1>Passive: Swiftness Aura</h1>Grants %bonus_aura_movement_speed% movement speed and %attack_speed_aura%%% attack speed to nearby allies.<br><br>Radius: %radius%"
+		"DOTA_Tooltip_ability_item_drums_Note0"					"Multiple instances of Swiftness Aura do not stack."
+		"DOTA_Tooltip_ability_item_drums_Lore"						"A relic that enchants the bodies of those around it for swifter movement in times of crisis."
+		"DOTA_Tooltip_ability_item_drums_bonus_int" 					"+$int"
+		"DOTA_Tooltip_ability_item_drums_bonus_str" 					"+$str"
+		"DOTA_Tooltip_ability_item_drums_bonus_agi" 					"+$agi"
+		"DOTA_Tooltip_ability_item_drums_bonus_movement_speed" 				"+$move_speed"
+		"DOTA_Tooltip_ability_item_drums_bonus_as" 			"%+$attack"
+		"DOTA_Tooltip_ability_item_drums_bonus_mr" 			"%+Magic Resistance"
+
+
+		// Phase Boots
+		"DOTA_Tooltip_ability_item_phaseboots_classic"							"Phase Boots"
+		"DOTA_Tooltip_ability_item_phaseboots_classic_Description"						"<h1>Active: Phase</h1>MELEE: Grants %phase_ms%%% movement speed and a %bonus_turnrate%%% better turn rate.<br>RANGE: Grants %phase_ms_range%%% movement speed and a %bonus_turnrate_range%%% better turn rate.<br>Allows range and melee casters to move through units for %phase_duration% seconds.\nMovement speed bonuses from multiple pairs of boots do not stack."
+		"DOTA_Tooltip_ability_item_phaseboots_classic_Note0"							"Does not interrupt channeling spells on cast."
+		"DOTA_Tooltip_ability_item_phaseboots_classic_Lore"							"Empaphetic boots that are sometimes too scared to phase their wearer."
+		"DOTA_Tooltip_ability_item_phaseboots_classic_bonus_dmg"					"+Damage (MELEE)"
+		"DOTA_Tooltip_ability_item_phaseboots_classic_bonus_dmg_range"			"+Damage (RANGED)"
+		"DOTA_Tooltip_ability_item_phaseboots_classic_bonus_ms" 				"+$move_speed"		
+		"DOTA_Tooltip_ability_item_phaseboots_classic_bonus_armor" 				"+Armor (MELEE)"	
+		"DOTA_Tooltip_ability_item_phaseboots_classic_bonus_armor_range" 				"+Armor (RANGED)"
+
+
+		// Aether Lens
+		"DOTA_Tooltip_ability_item_aether_lens_classic"									"Aether Lens"
+		"DOTA_Tooltip_ability_item_aether_lens_classic_Description"                     "<h1>Passive: Aethereal Focus</h1> Increases spell and item cast range by %bonus_cr%.\nMultiple sources of Aethereal Focus do not stack."
+		"DOTA_Tooltip_ability_item_aether_lens_classic_Note1"                           "Does not affect the cast ranges of active attack modifier."
+		"DOTA_Tooltip_ability_item_aether_lens_classic_Note1"                           "Does not increase the area of effect of spells."
+		"DOTA_Tooltip_ability_item_aether_lens_classic_bonus_mana"                      "+$mana"
+		"DOTA_Tooltip_ability_item_aether_lens_classic_hp_reg"                			"+$hp_regen"
+		"DOTA_Tooltip_ability_item_aether_lens_classic_spell_amp"  	                    "%+$spell_amp"
+		//"DOTA_Tooltip_ability_item_aether_lens_classic_bonus_cr"               			"+$cast_range"	                     
+		"DOTA_Tooltip_ability_item_aether_lens_classic_Lore"                            "Polished with the incantation of his final breath, the gift of a dying mage to his sickly son."
+		"DOTA_Tooltip_ability_item_aether_lens_classic_Note0"				"Does not increase the Area of Effect (AoE) of spells."
+
+
+
+		// Kaya
+		"DOTA_Tooltip_ability_item_kaya_classic"							"Kaya"
+		"DOTA_Tooltip_ability_item_kaya_classic_Description"				"Kaya's cooldown reduction stacks diminishingly with itself and other cooldown reductions."
+		"DOTA_Tooltip_ability_item_kaya_classic_Lore"						"Kaya and Sange, when awash in sunlight together, become a formidable force on any battlefield."
+		"DOTA_Tooltip_ability_item_kaya_classic_bonus_intellect"				"+$int"
+    	"DOTA_Tooltip_ability_item_kaya_classic_manacost_reduction"				"%+Manacost and Manaloss reduction"
+    	"DOTA_Tooltip_ability_item_kaya_classic_cdr"						"%+Cooldown Reduction"
+
+
+		// Spell Prism
+		"DOTA_Tooltip_ability_item_spell_prism_classic"						"Spell Prism"
+		"DOTA_Tooltip_ability_item_spell_prism_classic_Description"						"Spell Prism's cooldown reduction stacks diminishingly with other cooldown reductions."
+		"DOTA_Tooltip_ability_item_spell_prism_classic_Lore"						"An enchanted gemstone capable of assisting its wearer with preparing spells."
+    	"DOTA_Tooltip_ability_item_spell_prism_classic_cdr"							"%+Cooldown Reduction"
+    	"DOTA_Tooltip_ability_item_spell_prism_classic_mana_reg"					"%+Mana Regeneration"      	
+
+
+    	// Tranquil Boots
+		"DOTA_Tooltip_ability_item_tranquil_classic"						"Tranquil Boots"
+    	"DOTA_Tooltip_ability_item_tranquil_classic_Description"					"<h1>Passive: Break</h1> Whenever you attack a hero or receive damage by an attack, you lose %minus_reg% health regen and %minus_ms% movement speed for %break_time% seconds.<br><br>Tranquil Boots are always broken on illusions.\nMovement speed bonuses from multiple pairs of boots do not stack."
+		"DOTA_Tooltip_ability_item_tranquil_classic_Lore"							"While they increase the longevity of the wearer, this boot is not particularly reliable."
+		"DOTA_Tooltip_ability_item_tranquil_classic_bonus_ms"			"+$move_speed"
+		"DOTA_Tooltip_ability_item_tranquil_classic_hp_reg"			"+$hp_regen"
+
+
+    	// Power Treads
+		"DOTA_Tooltip_ability_item_pt_classic"						"Power Treads"
+    	"DOTA_Tooltip_ability_item_pt_classic_Description"			"<h1>Active: Switch Attribute</h1>Switches between +%selected_att% Strength, +%selected_att% Agility, or +%selected_att% Intelligence.<br><br>Switching Order: Str -> Int -> Agi\nMovement speed bonuses from multiple pairs of boots do not stack."
+		"DOTA_Tooltip_ability_item_pt_classic_Lore"							"A pair of tough-skinned boots that change to meet the demands of the wearer."
+		"DOTA_Tooltip_ability_item_pt_classic_bonus_ms"			"+$move_speed"
+		"DOTA_Tooltip_ability_item_pt_classic_bonus_as"			"%+$attack"
+		"DOTA_Tooltip_ability_item_pt_classic_selected_att"		"+Selected Attribute"
+		"DOTA_Tooltip_ability_item_pt_classic_Note0"  			"Power Treads can be built using a Belt of Strength, Band of Elvenskin, or a Robe of the Magi."
+
+
+		// Arcane Boots / Mana Boots
+		"DOTA_Tooltip_ability_item_mboots_classic"								"Arcane Boots"
+		"DOTA_Tooltip_ability_item_mboots_classic_Description"					"<h1>Active: Replenish Mana</h1>Instantly replenishes %active_mana% mana to allied units in a %radius% radius around the caster.\nMovement speed bonuses from multiple pairs of boots do not stack."
+		"DOTA_Tooltip_ability_item_mboots_classic_Lore"						"Magi equipped with these boots are valued in battle."
+		"DOTA_Tooltip_ability_item_mboots_classic_Note0"							"Replenish Mana fully affects invulnerable and hidden allies."
+		"DOTA_Tooltip_ability_item_mboots_classic_Note1"							"Cannot be cast by Meepo clones."
+		"DOTA_Tooltip_ability_item_mboots_classic_bonus_ms"					"+$move_speed"
+		"DOTA_Tooltip_ability_item_mboots_classic_bonus_mana"						"+$mana"		
+
+
+		// Guardian Greaves
+		"DOTA_Tooltip_ability_item_greaves_classic"						"Guardian Greaves"
+		"DOTA_Tooltip_ability_item_greaves_classic_Description"			"<h1>Active: Mend</h1>Instantly replenishes %replenish_health% health and %replenish_mana% mana to allies in a %replenish_radius% radius around the caster, and removes most debuffs from the caster.<br><br>Moreover grants %heal_armor% armor for %active_duration% seconds.<br><br>Mend cannot heal units that are affected by the Healing Cooldown Debuff from Mekansm and Guardian Greaves.<br><br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>\n<h1>Passive: Guardian Aura</h1>Grants %aura_health_regen% health regeneration and %aura_armor% armor to allies in a %aura_radius% radius. If an allied hero's health falls below %aura_bonus_threshold%%%, they receive %aura_health_regen_bonus% health regeneration and %aura_armor_bonus% armor instead.\nMovement speed bonuses from multiple pairs of boots do not stack."
+		"DOTA_Tooltip_ability_item_greaves_classic_bonus_ms"			"+$move_speed"
+		"DOTA_Tooltip_ability_item_greaves_classic_bonus_all_stats"		"+$all"		
+		"DOTA_Tooltip_ability_item_greaves_classic_bonus_mana"				"+$mana"		
+		"DOTA_Tooltip_ability_item_greaves_classic_bonus_armor"			"+$armor"		
+
+
+		// Keen Optic
+		"DOTA_Tooltip_ability_item_keen_optic_classic"						"Keen Optic"
+		"DOTA_Tooltip_ability_item_keen_optic_classic_Description"			"<h1>Trait: Unique</h1>None of its Bonuses stacks with itself.\nCast Range bonus stacks with Aether Lens but not with Ex Machina."
+		"DOTA_Tooltip_ability_item_keen_optic_classic_bonus_cr"			"+Cast Range"
+		"DOTA_Tooltip_ability_item_keen_optic_classic_mana_reg"			"%+Mana Regeneration"		
+		"DOTA_Tooltip_ability_item_keen_optic_classic_Lore"			"Invented in the mountainous valleys of Knollen, it is a staple of any sharpshooter’s armoury."
+
+
+		// Faded Broach
+		"DOTA_Tooltip_ability_item_faded_broach_classic"						"Faded Broach"
+		"DOTA_Tooltip_ability_item_faded_broach_classic_Description"			"<h1>Trait: Unique</h1>This item is fully shareable between your allies but none of its bonuses stack with itself."
+		"DOTA_Tooltip_ability_item_faded_broach_classic_bonus_all"			"+$all"
+		"DOTA_Tooltip_ability_item_faded_broach_classic_bonus_ms"			"+$move_speed"
+		"DOTA_Tooltip_ability_item_faded_broach_classic_mana_reg"			"+Mana Regeneration"		
+		"DOTA_Tooltip_ability_item_faded_broach_classic_Lore"			"A once beautiful broach given as a gift between two who dared not speak of their love."
+
+
+		// Broom Handle
+		"DOTA_Tooltip_ability_item_broom_handle_classic"						"Broom Handle"
+		"DOTA_Tooltip_ability_item_broom_handle_classic_Description"			"<h1>Trait: Unique</h1>This item is fully shareable between your allies but none of its bonuses stack with itself.\nThe attack Range bonus doesn't stack with Trident."
+		"DOTA_Tooltip_ability_item_broom_handle_classic_bonus_range"			"+Attack Range (MELEE ONLY)"
+		"DOTA_Tooltip_ability_item_broom_handle_classic_bonus_dmg"			"+$damage"
+		"DOTA_Tooltip_ability_item_broom_handle_classic_bonus_as"			"+$attack"				
+		"DOTA_Tooltip_ability_item_broom_handle_classic_Lore"			"One should never underestimate the importance of having an improvised weapon at hand."
+
+
+		// Nether Shawl
+		"DOTA_Tooltip_ability_item_nether_shawl_classic"						"Nether Shawl"
+		"DOTA_Tooltip_ability_item_nether_shawl_classic_Description"			"<h1>Trait: Unique</h1>This item is fully shareable between your allies but none of its bonuses stack with itself.\nStatus Resistance stacks diminishingly with Holy Locket, Heaven's Halberd and Satanic."
+		"DOTA_Tooltip_ability_item_nether_shawl_classic_bonus_mr"			"%+Magic Resistance"
+		"DOTA_Tooltip_ability_item_nether_shawl_classic_status_res"			"%+Status Resistance"				
+		"DOTA_Tooltip_ability_item_nether_shawl_classic_Lore"			"Weaved from nether realm twine, it is commonly worn by magi who fear staff over sword."
+
+
+		// Grove Bow
+		"DOTA_Tooltip_ability_item_grove_bow_classic"						"Grove Bow"
+		"DOTA_Tooltip_ability_item_grove_bow_classic_Description"			"<h1>Trait: Unique</h1>This item is fully shareable between your allies but none of its bonuses stack with itself.\nThe attack Range bonus stacks with Dragon Lance and Hurricane Pike but not with Ballista."
+		"DOTA_Tooltip_ability_item_grove_bow_classic_bonus_range"			"+Attack Range (RANGED ONLY)"
+		"DOTA_Tooltip_ability_item_grove_bow_classic_projectile_speed"			"+ms faster Attack Projectiles"
+		"DOTA_Tooltip_ability_item_grove_bow_classic_bonus_as"			"+$attack"				
+		"DOTA_Tooltip_ability_item_grove_bow_classic_Lore"			"Used to protect a sacred woodland from those who would meddle in its affairs."
+
+
+
+
+		// Battlefury
+		"DOTA_Tooltip_ability_item_bfury_classic"										"Battle Fury"
+		"DOTA_Tooltip_ability_item_bfury_classic_Description"							"<h1>Active: Chop</h1>Destroys a target tree, Observer Ward, Sentry Ward, Statis Trap or Remote Mine.<br><br>Cast Range: %abilitycastrange%\n<h1>Passive: Quell</h1> Increases attack damage against non-hero units by %quelling_bonus%%% for melee heroes, and %quelling_bonus_ranged%%% for ranged. Grants %quelling_bonus_illus%% bonus damage against illusions.\n<h1>Passive: Oldschool Cleave</h1> Deals %cleave_damage_percent%%% of attack damage as pure damage in a %cleave_radius% radius circle. Its center is %cleave_radius% infront of the attacker. (Melee Only)\nBattle Fury's cleave damage can only be reduced by damage block."
+		"DOTA_Tooltip_ability_item_bfury_classic_Lore"									"The bearer of this mighty axe gains the ability to cut down swaths of enemies at once."
+		"DOTA_Tooltip_ability_item_bfury_classic_Note0"									"Cleave damage goes through spell immunity."
+		"DOTA_Tooltip_ability_item_bfury_classic_Note1"									"If multiple sources of Cleave are present, each Cleave's damage is applied separately."
+		"DOTA_Tooltip_ability_item_bfury_classic_bonus_damage"							"+$damage"
+		"DOTA_Tooltip_ability_item_bfury_classic_bonus_health_regen"					"+$hp_regen"
+		"DOTA_Tooltip_ability_item_bfury_classic_bonus_mana_regen"						"%+$mana_regen"
+
+		// Clarity
+		"DOTA_Tooltip_ability_item_clarity_Description"							"<h1>Use: Replenish</h1> Grants %mana_regen% mana regeneration to the target for %buff_duration% seconds.<br><br>If the unit is attacked by an enemy hero or Roshan, the effect is lost.<br><br>Range: %abilitycastrange%<br><br>Total Mana Restored: %total%"
+
+		// Repair Kit
+		"DOTA_Tooltip_ability_item_repair_kit_hp_regen"				""
+
+
+		// Sage's Mask
+		"DOTA_Tooltip_Ability_item_sages_mask"				"Sobi Mask"
+		"DOTA_Tooltip_ability_item_sages_mask_Lore"								"A mask commonly used by mages and warlocks for various rituals."
+		"DOTA_Tooltip_ability_item_sages_mask_mana_reg"					"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_sages_mask_Note0"				"Break-Even-Point: Provides +1 mana regen when your int is 40. (in comparison to modern Sage's Mask)"
+
+		// Void Stone
+		"DOTA_Tooltip_ability_item_void_stone_classic"						"Void Stone"
+		"DOTA_Tooltip_ability_item_void_stone_classic_Lore"								"Jewelry that was once used to channel nether realm magic, this ring pulses with energy."
+		"DOTA_Tooltip_ability_item_void_stone_classic_mana_reg"					"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_void_stone_classic_Note0"			"Break-Even-Point: Provides +2.25 mana regen when your int is 45. (in comparison to modern Void Stone)"
+
+		// Titan Sliver
+		"DOTA_Tooltip_Ability_item_titan_classic"						"Titan Sliver"
+		"DOTA_Tooltip_Ability_item_titan_classic_base_attack_damage"		"%+Base Attack Damage"
+		"DOTA_Tooltip_Ability_item_titan_classic_magic_resistance"		"%+$spell_resist"
+		"DOTA_Tooltip_Ability_item_titan_classic_status_res"		"%+$status_resist"
+		"DOTA_Tooltip_ability_item_titan_classic_Lore"					"A sliver of metal with immense power, fallen from the Titans' great forge."
+
+		// Spider Legs
+		"DOTA_Tooltip_ability_item_spider_legs_classic"							"Spider Legs"
+		"DOTA_Tooltip_ability_item_spider_legs_classic_Description"						"<h1>Active: Scurry</h1> Grants you %bonus_movement_speed_active%% bonus movement speed and free pathing for %phase_duration% seconds. Walking over trees causes them to be destroyed.\nMovement speed bonuses from multiple pairs of boots do not stack."
+		"DOTA_Tooltip_ability_item_spider_legs_classic_Note0"							"Does not interrupt channeling spells on cast."
+		"DOTA_Tooltip_ability_item_spider_legs_classic_Lore"							"Empaphetic boots that are sometimes too scared to phase their wearer."
+		"DOTA_Tooltip_ability_item_spider_legs_classic_bonus_dmg"					"+Damage"
+		"DOTA_Tooltip_ability_item_spider_legs_classic_bonus_ms" 				"+$move_speed"		
+		"DOTA_Tooltip_ability_item_spider_legs_classic_bonus_armor" 				"+Armor"	
+		"DOTA_Tooltip_ability_item_spider_legs_classic_bonus_turnrate" 				"%+Turn Rate"
+		"DOTA_Tooltip_ability_item_spider_legs_classic_Lore"							"These still twitching limbs afford their user increased mobility."
+
+
+		// Bloodthorn
+		"DOTA_Tooltip_Ability_item_bloodthorn_classic"									"Bloodthorn"
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_Description"                      "<h1>Active: Soul Rend</h1> Silences a target for %silence_duration% seconds. At the end of the silence, an additional %silence_damage_percent%%% of all damage taken during the silence will be dealt to the target as magical damage.<br><br>All attacks on the silenced target will have True Strike and %tooltip_crit_chance%%% chance to crit for %target_crit_multiplier%%% damage.<br><br>Range: %abilitycastrange%\n<h1>Passive: Critical Strike</h1>Grants each attack a %crit_chance%%% chance to deal %crit_multiplier%%% damage.\nCritical Strike does not work against buildings."
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_Note0"							"Break-Even-Point: Provides +5.5 mana regen when your int is 73. (in comparison to modern Bloodthorn)"
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_Lore"                             "A reviled blade that bites deeper with each wriggle of its victim's final throes."
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_bonus_int"                  "+$int"
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_bonus_as"               "+$attack"
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_bonus_dmg"                     "+$damage"
+		"DOTA_Tooltip_ability_item_bloodthorn_classic_mana_reg"                 "%+$mana_regen"
+
+
+		// Linkens
+		"DOTA_Tooltip_Ability_item_linkens"				"Linken's Sphere"
+		"DOTA_Tooltip_ability_item_linkens_Description"							"<h1>Passive: Spellblock</h1>Blocks most targeted spells once every %block_cooldown% seconds.\n<h1>Active: Transfer Spellblock</h1>Temporarily removes Spellblock from the item's owner and transfers it to an allied unit for %block_cooldown% seconds.<br><br>Range: %abilitycastrange%"
+		"DOTA_Tooltip_ability_item_linkens_Lore"									"This magical sphere once protected one of the most famous heroes in history."
+		"DOTA_Tooltip_ability_item_linkens_bonus_all_stats"						"+$all"
+		"DOTA_Tooltip_ability_item_linkens_bonus_health_regen"					"+$hp_regen"	
+		"DOTA_Tooltip_ability_item_linkens_mana_reg"								"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_linkens_Note0"							"Break-Even-Point: Provides +5 mana regen when your int is 66. (in comparison to modern Linken's)"
+
+
+		// Mirror Shield
+		"DOTA_Tooltip_Ability_item_mirror_classic"										"Mirror Shield"
+		"DOTA_Tooltip_ability_item_mirror_classic_Description"							"<h1>Passive: Echo Shield</h1> Block and reflect most targeted spells back to their caster once every %block_cooldown% seconds.\n<h1>Active: Transfer Echo Shield</h1>Temporarily removes Echo Shield from the item's owner and transfers it to an allied unit for %block_cooldown% seconds.<br><br>Range: %abilitycastrange%"
+		"DOTA_Tooltip_ability_item_mirror_classic_Lore"									"Legend has it that its reflections helped slaying a mortal gorgon."
+		"DOTA_Tooltip_ability_item_mirror_classic_bonus_all"						"+$all"
+		"DOTA_Tooltip_ability_item_mirror_classic_hp_reg"					"+$hp_regen"	
+		"DOTA_Tooltip_ability_item_mirror_classic_mana_reg"								"%+$mana_regen"
+
+		// Perseverance
+		"DOTA_Tooltip_ability_item_perse"									"Perseverance"
+		"DOTA_Tooltip_ability_item_perse_Description"						""
+		"DOTA_Tooltip_ability_item_perse_Lore"								"A gem that grants heart to the bearer."
+		"DOTA_Tooltip_ability_item_perse_hp_reg"							"+$hp_regen"
+		"DOTA_Tooltip_ability_item_perse_mana_reg"						"%+$mana_regen"		
+		"DOTA_Tooltip_ability_item_perse_Note0"							"Break-Even-Point: Provides +2.25 mana regen when your int is 36. (in comparison to modern Perseverance)"	
+
+		// Oblivion Staff
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic"				"Oblivion Staff"
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic_Lore"					"Deceptively hidden as an ordinary quarterstaff, it is actually very powerful, much like the Eldritch who originally possessed it."
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic_bonus_int"				"+$int"
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic_bonus_as"			"+$attack"
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic_bonus_dmg"					"+$damage"
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic_mana_reg"				"%+$mana_regen"		
+		"DOTA_Tooltip_ability_item_oblivion_staff_classic_Note0"			"Break-Even-Point: Provides +1.25 mana regen when your int is 33. (in comparison to modern Oblivion Staff)"
+
+
+		// Orchid
+		"DOTA_Tooltip_ability_item_orchid_classic"								"Orchid Malevolence"
+		"DOTA_Tooltip_ability_item_orchid_classic_Description"							"<h1>Active: Soul Burn</h1>Silences the target unit for %silence_duration% seconds. At the end of the silence, %silence_damage_percent%%% of the damage received while silenced is inflicted as bonus magical damage.<br><br>Range: %abilitycastrange%"
+		"DOTA_Tooltip_ability_item_orchid_classic_Lore"								"A garnet rod constructed from the essence of a fire demon."
+		"DOTA_Tooltip_ability_item_orchid_classic_bonus_intellect"						"+$int"
+		"DOTA_Tooltip_ability_item_orchid_classic_bonus_attack_speed"					"+$attack"
+		"DOTA_Tooltip_ability_item_orchid_classic_bonus_damage"							"+$damage"
+		"DOTA_Tooltip_ability_item_orchid_classic_mana_reg"								"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_orchid_classic_Note0"			"Break-Even-Point: Provides +5.5 mana regen when your int is 73. (in comparison to modern Orchid)"
+
+
+		// Echo Sabre
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic"							"Echo Sabre"
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_Description"			        "<h1>Passive: Echo Strike</h1> Causes melee attacks to attack twice in quick succession. The double attacks apply a dispellable %movement_slow%%% movement slow and a %attack_speed_slow%%% attack speed slow for %slow_duration% seconds on each strike."
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_Lore"			                "A deceptively swift blade imbued with resonant magic."
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_bonus_int"               "+$int"
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_bonus_str"                "+$str"
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_bonus_as"            "+$attack"
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_bonus_dmg"                  "+$damage"
+		"DOTA_Tooltip_Ability_item_echo_sabre_classic_mana_reg"              "%+$mana_regen"
+		"DOTA_Tooltip_ability_item_echo_sabre_classic_Note0"				"Break-Even-Point: Provides +1.25 mana regen when your int is 33. (in comparison to modern Echo Sabre)"
+
+
+		// Telescope
+		"DOTA_Tooltip_Ability_item_telescope"		"Telescope"
+		"DOTA_Tooltip_ability_item_telescope_Description"		"<h1>Passive: Prescient Aura</h1>Increases attack and cast range of allies by %attack_range% in a %aura_range% radius."
+		"DOTA_Tooltip_ability_item_telescope_all_stats"		"+$all"
+
+
+		// Hex
+		"DOTA_Tooltip_Ability_item_hex"				"Guinsoo's Sheepstick"
+		"DOTA_Tooltip_ability_item_hex_Description"						"<h1>Active: Hex</h1>Turns a target unit into a harmless critter for %sheep_duration% seconds. The target has a base movement speed of %sheep_movement_speed% and will be silenced, muted, and disarmed.<br>Instantly destroys illusions.<br><br>Range: %abilitycastrange%"
+		"DOTA_Tooltip_ability_item_hex_Note0"							"The target will have a base movement speed of %sheep_movement_speed%, but buffs granting maximum movement speed won't be disabled."
+		"DOTA_Tooltip_ability_item_hex_Lore"								"The most guarded relic among the cult of Vyse, Scythe of Vyse is the most coveted weapon among magi."
+		"DOTA_Tooltip_ability_item_hex_bonus_str"					"+$str"
+		"DOTA_Tooltip_ability_item_hex_bonus_agi"					"+$agi"
+		"DOTA_Tooltip_ability_item_hex_bonus_int"					"+$int"
+		"DOTA_Tooltip_ability_item_hex_mana_reg"					"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_hex_Note0"						"Break-Even-Point: Provides +9 mana regen when your int is 90. (in comparison to modern Sheepstick)"
+
+		// Euls
+		"DOTA_Tooltip_Ability_item_euls"								"Eul's Scepter of Divinity"
+		"DOTA_Tooltip_ability_item_euls_Description"							"<h1>Active: Cyclone</h1> Sweeps a target unit up into a cyclone, making them invulnerable for %cyclone_duration% seconds. Cyclone can only be cast on enemy units or yourself.<br><br>Enemy units take %tooltip_drop_damage% magical damage upon landing.<br><br>Range: %abilitycastrange%<br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>\nCyclone can purge many enemy buffs and debuffs."
+		"DOTA_Tooltip_ability_item_euls_Lore"								"A mysterious scepter passed down through the ages, its disruptive winds can be used for good or evil."
+		"DOTA_Tooltip_ability_item_euls_Note0"								"You cannot cyclone allies."
+		"DOTA_Tooltip_ability_item_euls_Note1"								"Cyclones cast on yourself pierces spell immunity."
+		"DOTA_Tooltip_ability_item_euls_bonus_int"						"+$int"
+		"DOTA_Tooltip_ability_item_euls_mana_reg"					"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_euls_bonus_ms"				"+$move_speed"
+		"DOTA_Tooltip_ability_item_euls_Note0"					"Break-Even-Point: Provides +5 mana regen when your int is 67. (in comparison to modern Euls)"
+
+		// Euls2
+		"DOTA_Tooltip_Ability_item_euls2"								"Eul's Scepter of Divinity (Ally Cast)"
+		"DOTA_Tooltip_ability_item_euls2_Description"							"<h1>Active: Cyclone</h1> Sweeps a target unit up into a cyclone, making them invulnerable for %cyclone_duration% seconds. Cyclone can be cast on yourself as well as <br>!!!allied!!! and enemy non-magic-immune units.<br><br>Enemy units take %tooltip_drop_damage% magical damage upon landing.<br><br>Range: %abilitycastrange%<br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>\nCyclone can purge many enemy buffs and debuffs."
+		"DOTA_Tooltip_ability_item_euls2_Lore"								"A mysterious scepter passed down through the ages, its disruptive winds can be used for good or evil."
+		"DOTA_Tooltip_ability_item_euls2_Note1"								"Cyclones cast on yourself pierces spell immunity."
+		"DOTA_Tooltip_ability_item_euls2_bonus_int"						"+$int"
+		"DOTA_Tooltip_ability_item_euls2_mana_reg"					"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_euls2_bonus_ms"				"+$move_speed"
+
+
+		// BKB 
+		"DOTA_Tooltip_ability_item_black_king_bar_Description"		"<h1>Active: Avatar</h1> Grants Spell Immunity (and increased Magic Resistance).  Duration and Magic Resistance decrease with each use. <br><br>Magic Resistance: %bonus_mr%%%<br>Duration: %duration% <br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>"
+
+
+		// Lotus
+		"DOTA_Tooltip_Ability_item_lotus_classic"			"Lotus Orb"
+		"DOTA_Tooltip_ability_item_lotus_classic_Description"						"<h1>Active: Echo Shell</h1>Applies a shield to the target unit for %active_duration% seconds which re-casts most targeted spells back to their caster.<br><br>The shielded unit will still take damage from the spell. <br><br>Range: %abilitycastrange%<br>Dispel Type: <span class=\"GameplayValues GameplayVariable\">Basic Dispel</span>"
+		"DOTA_Tooltip_ability_item_lotus_classic_bonus_armor"					"+$armor"
+		"DOTA_Tooltip_ability_item_lotus_classic_hp_reg"		"+$hp_regen"
+		"DOTA_Tooltip_ability_item_lotus_classic_mana_reg"		"%+$mana_regen"
+		"DOTA_Tooltip_ability_item_lotus_classic_bonus_mana"		    "+$mana"
+		"DOTA_Tooltip_ability_item_lotus_classic_Lore"						"The jewel at its center still reflects a pale image of its creator."
+		"DOTA_Tooltip_ability_item_lotus_classic_Note0"			"Break-Even-Point: Provides +4 mana regen when your int is 64. (in comparison to modern Lotus)"
+
+
+		// Bloodstone
+		"DOTA_Tooltip_Ability_item_bloodstone_classic"				"Bloodstone"
+		"DOTA_Tooltip_ability_item_bloodstone_classic_Description"						"<h1>Active: Pocket Deny</h1> Cast to kill yourself in hopeless situations and deny XP and Gold for enemies.\n <h1>Passive: Mana Regeneration Amplification</h1>Doubles your mana regeneration.\n<h1>Passive: Bloodpact</h1> Each charge provides %mp_per_charge% MP regen and %hp_per_charge% HP regen. Additionally, each charge reduces your respawn time by %respawn_time_per_charge% seconds.<br>Nearby kills provide %kill_charges% charges. Dying causes you to lose %death_charges% charges. Starts with %initial_charges_tooltip% charges."
+		"DOTA_Tooltip_ability_item_bloodstone_classic_Lore"								"The Bloodstone's bright ruby color is unmistakable on the battlefield, as the owner seems to have infinite vitality and spirit."
+		"DOTA_Tooltip_ability_item_bloodstone_classic_bonus_hp"						"+$health"
+		"DOTA_Tooltip_ability_item_bloodstone_classic_bonus_mana"						"+$mana"
+		"DOTA_Tooltip_ability_item_bloodstone_classic_hp_reg"					"+$hp_regen"
+		"DOTA_Tooltip_ability_item_bloodstone_classic_mana_reg"					"+$mana_regen"
+		"DOTA_Tooltip_ability_item_bloodstone_classic_respawn_time"					"-seconds Respawn Time"
+		"DOTA_Tooltip_ability_item_bloodstone_classic_Note0"					"Mana Regeneration Amplification doesn't stack."
+		"DOTA_Tooltip_ability_item_bloodstone_classic_Note1"					"Respawn time can't be less than 1 second."
+		"DOTA_Tooltip_ability_item_bloodstone_classic_Note1"					"Only the Bloodstone with highest charges reduces death time but all Bloodstones lose charges on death."
+
+
+
+		// Octarine Core
+		"DOTA_Tooltip_Ability_item_oc_classic"							"Octarine Core"
+		"DOTA_Tooltip_ability_item_oc_classic_Description"				"<h1>Active: Mana Battery</h1>Converts %mana_cost_percentage%%% of your max mana to health regeneration over %active_duration% seconds.\n<h1>Passive: Cooldown Reduction</h1>Reduces the cooldown time of all spells and items by %cdr%%%.\n<h1>Passive: Spell Lifesteal</h1>%hero_lifesteal%%% of spell damage dealt to enemy heroes is returned to the caster as health, regardless of spell damage type.<br><br>Lifesteal reduced to %creep_lifesteal%%% against creeps and illusions."
+		"DOTA_Tooltip_ability_item_oc_classic_bonus_int"				"+$int"
+		"DOTA_Tooltip_ability_item_oc_classic_bonus_health"				"+$health"
+		"DOTA_Tooltip_ability_item_oc_classic_bonus_mana"				"+$mana"
+		"DOTA_Tooltip_ability_item_oc_classic_Lore"						"At the core of spellcraft are spectrums only the very gifted can sense."
+		"DOTA_Tooltip_ability_item_oc_classic_manacost_reduction"		"%+Manacost and Manaloss Reduction"
+		"DOTA_Tooltip_ability_item_oc_classic_mana_reg"					"%+$mana_regen"
+
+
+		// HotD
+		"DOTA_Tooltip_ability_item_helm_of_the_dominator_bonus_dmg"     "+$damage"
+		"DOTA_Tooltip_ability_item_helm_of_the_dominator_bonus_armor"	"+$armor"		
+
+		// Pipe
+		"DOTA_Tooltip_ability_item_pipe_bonus_all_stats"	"+$all"
+
+
+		// Veil of Discord
+		"DOTA_Tooltip_ability_item_vod_classic"								"Veil of Discord"
+		"DOTA_Tooltip_ability_item_vod_classic_Description"					"<h1>Active: Magic Weakness</h1> Cast a %abilitycastrange% radius blast that causes enemies to take %spell_amp%%% increased damage from spells.<br><br>Range: %abilitycastrange%<br>Duration: %resist_debuff_duration% seconds.\n\n <h1>Passive: Brilliance Aura</h1>Grants %spell_amp_aura%%% spell amplification to allies.  <br>Radius: %radius%"
+		"DOTA_Tooltip_ability_item_vod_classic_Lore"						"The headwear of corrupt magi."
+		"DOTA_Tooltip_ability_item_vod_classic_bonus_str"					"+$str"
+		"DOTA_Tooltip_ability_item_vod_classic_bonus_agi"					"+$agi"
+		"DOTA_Tooltip_ability_item_vod_classic_bonus_int"					"+$int"
+		"DOTA_Tooltip_ability_item_vod_classic_bonus_armor"					"+$armor"
+		"DOTA_Tooltip_ability_item_vod_classic_hp_reg"					"+$hp_regen"		
+
+		"DOTA_Tooltip_modifier_vod_aura"				"Brilliance Aura"
+		"DOTA_Tooltip_modifier_vod_aura_Description"	"Granting %dMODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE%%% spell amplification to allies."
+		
+		"DOTA_Tooltip_modifier_vod_classic_debuff"				"Magic Weakness"
+		"DOTA_Tooltip_modifier_vod_classic_debuff_Description"	"Magic damage increased by %dMODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS%%%."
+
+
+		// Tome of Strength
+		"DOTA_Tooltip_Ability_item_tome_of_strength"				"Tome of Strength"
+		"DOTA_Tooltip_Ability_item_tome_of_strength_Description"	"<h1>Use: Increased Vitality</h1>Permanently grants %str_per_use% Strength per tome consumed."
+
+		"DOTA_Tooltip_modifier_update_str"					"Tome of Strength"
+		"DOTA_Tooltip_modifier_update_str_Description"		"Grants 3 Strength per Tome consumed."
+
+
+		// Tome of Agility
+		"DOTA_Tooltip_Ability_item_tome_of_agility"				"Tome of Agility"
+		"DOTA_Tooltip_Ability_item_tome_of_agility_Description"	"<h1>Use: Higher Stamina</h1>Permanently grants %agi_per_use% Agility per tome consumed."
+
+		"DOTA_Tooltip_modifier_update_agi"					"Tome of Agility"
+		"DOTA_Tooltip_modifier_update_agi_Description"		"Grants 3 Agility per Tome consumed."
+
+
+		// Tome of Intelligence
+		"DOTA_Tooltip_Ability_item_tome_of_intelligence"				"Tome of Intelligence"
+		"DOTA_Tooltip_Ability_item_tome_of_intelligence_Description"	"<h1>Use: Satisfied Curiosity</h1>Permanently grants %int_per_use% Intelligence per tome consumed."
+
+		"DOTA_Tooltip_modifier_update_int"					"Tome of Intelligence"
+		"DOTA_Tooltip_modifier_update_int_Description"		"Grants 3 Intelligence per Tome consumed."
+
+
+
+
+		//----------------------------------
+		// Oldschool names (some changed)
+		"DOTA_Tooltip_ability_item_basher"				"Cranium Skull Basher"
+		"DOTA_Tooltip_Ability_item_greater_crit"		"Buriza"
+		"DOTA_Tooltip_Ability_item_reaver"				"Messerkunz' Reaver"
+		"DOTA_Tooltip_Ability_item_invis_sword"			"Lothar's Shadow Blade"
+		"DOTA_Tooltip_Ability_item_circlet"				"Circlet of Nobility"
+		"DOTA_Tooltip_Ability_item_cloak"				"Planewalker's Cloak"
+		"DOTA_Tooltip_Ability_item_headdress"			"Headdress of Rejuvenation"
+		"DOTA_Tooltip_Ability_item_crown"				"Crown of Virtue"
+		"DOTA_Tooltip_Ability_item_lifesteal"			"Mask of Death"	
+		"DOTA_Tooltip_Ability_item_pipe"				"Khaelen's Pipe of Insight"	
+
+
+
+
+		//----------------------------------------
+		// Visible Item Modifiers (Mainly Auras)
+		//----------------------------------------
+
+		//#####################
+		//## Test
+		//#####################
+
+		"DOTA_Tooltip_modifier_ex_machina_classic"				"Test"
+		"DOTA_Tooltip_modifier_ex_machina_classic_Description"	"Mana Regen %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT%"
+
+
+
+
+
+
+		//########################
+
+
+		// Consumed Aghanims
+		"DOTA_Tooltip_modifier_item_ultimate_scepter_consumed_Description"	"Permanently granted Aghanim's Scepter hero upgrade and +7 to all attributes."
+
+
+		// Drums
+		"DOTA_Tooltip_modifier_drums_nospeed"					"Speed Cooldown"
+		"DOTA_Tooltip_modifier_drums_nospeed_Description"		"Cannot be affected by Endurance again before this buff has expired."
+		"DOTA_Tooltip_modifier_drums_aura_buff"					"Swiftness Aura"
+		"DOTA_Tooltip_modifier_drums_aura_buff_Description"		"Increases move speed by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT% and attack speed by %dMODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT%."
+
+
+		// Basilius
+		"DOTA_Tooltip_modifier_basilius_aura"					"Ring Of Basilius Aura"
+		"DOTA_Tooltip_modifier_basilius_aura_Description"		"Increases mana regeneration by %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT% and armor by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
+
+		// Aquila
+		"DOTA_Tooltip_modifier_aquila_aura"					"Ring Of Aquila Aura"
+		"DOTA_Tooltip_modifier_aquila_aura_Description"		"Increases mana regeneration by %fMODIFIER_PROPERTY_MANA_REGEN_CONSTANT% and armor by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
+
+		// Buckler
+		"DOTA_Tooltip_modifier_buckler_aura"					"Buckler Aura"
+		"DOTA_Tooltip_modifier_buckler_aura_Description"		"Increases armor by %fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
+		"DOTA_Tooltip_modifier_buckler_active"					"Buckler Bonus Armor"
+		"DOTA_Tooltip_modifier_buckler_active_Description"		"Armor increased by %fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%."
+
+
+		// Mekansm
+		"DOTA_Tooltip_modifier_mekansm_aura"					"Mekansm Aura"
+		"DOTA_Tooltip_modifier_mekansm_aura_Description"		"Increases armor by %fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% and health regeneration by %fMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT%."
+
+		"DOTA_Tooltip_modifier_mekansm_active"					"Mekansm Bonus Armor"
+		"DOTA_Tooltip_modifier_mekansm_active_Description"		"Armor increased by %fMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%"
+
+
+		// Phase Boots
+		"DOTA_Tooltip_modifier_phase_active"		"Phase Boots"
+		"DOTA_Tooltip_modifier_phase_active_Description"	"Movement Speed increased by %dMODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE%%% and allows you to move through units. Turn rate increased by %dMODIFIER_PROPERTY_TURN_RATE_PERCENTAGE%%%."
+
+
+		// Greaves
+		"DOTA_Tooltip_modifier_greaves_active"		"Guardian Greaves Bonus Armor"
+		"DOTA_Tooltip_modifier_greaves_active_Description"		"Armor increased by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS%"
+
+		"DOTA_Tooltip_modifier_greaves_aura"		"Guardian Greaves Aura"
+		"DOTA_Tooltip_modifier_greaves_aura_Description"		"Increases armor by %dMODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS% and HP regeneration by %dMODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT%"	
+
+
 
 
 
@@ -352,7 +908,7 @@
 		"DOTA_Tooltip_ability_item_repair_kit_Lore"							"What has not been completly destroyed may yet be rebuilt."
 		"DOTA_Tooltip_ability_item_nether_shawl_Lore"							"Weaved from nether realm twine, it is commonly worn by magi who fear staff over sword."
 		"DOTA_Tooltip_ability_item_the_leveller_Lore"							"This demon-forged blade renders both impregnable fortresses and ageless mountains asunder."
-
+		"DOTA_Tooltip_ability_item_desolator_2_Lore"							"Used to make an example of those who contravened the rule of a cruel king."
 
 
 

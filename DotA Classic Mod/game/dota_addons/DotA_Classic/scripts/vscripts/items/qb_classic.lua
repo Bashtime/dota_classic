@@ -57,13 +57,20 @@ function item_qb:OnSpellStart()
 
 	self.isTree = target:IsInstance(CDOTA_MapTree) --Checks if the target is a tree
 		
-
-	-- load data
-	local treekill_cd = self:GetSpecialValueFor("alternative_cooldown")
-	local pct = self:GetSpecialValueFor("creep_damage_pct")
-	local anc_pct = self:GetSpecialValueFor("anc_pct")
-	
 	if (not self.isTree) then
+
+		--Kill Temporary trees
+		local stillTree = (target:GetClassname() == "dota_temp_tree") --Checks again if it's still a tree, LOL
+		
+		if stillTree then 					
+			target:Kill()
+			
+			-- effects
+			local sound_cast = "DOTA_Item.QuellingBlade.Activate"
+			EmitSoundOn( sound_cast, target )
+
+			return
+		end
 
 		--Kill obs
 		local name = target:GetUnitName()  

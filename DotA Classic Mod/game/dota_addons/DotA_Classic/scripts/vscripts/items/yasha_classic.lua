@@ -25,28 +25,10 @@ end
 --------------------------------------------------------------------------------
 -- Initializations
 function modifier_yasha_classic:OnCreated( kv )
-
-	if IsServer() then 
-
 	-- references
 	self.bonus_agi = self:GetAbility():GetSpecialValueFor( "bonus_agility" ) -- special value
 	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_attack_speed" ) -- special value
 	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "movement_speed_percent_bonus" ) -- special value
-
-	end
-
-end
-
-function modifier_yasha_classic:OnRefresh( kv )
-
-	if IsServer() then 
-
-	-- references
-	self.bonus_agi = self:GetAbility():GetSpecialValueFor( "bonus_agility" ) -- special value
-	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_attack_speed" ) -- special value
-	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "movement_speed_percent_bonus" ) -- special value
-
-	end
 end
 
 
