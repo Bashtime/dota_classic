@@ -1,3 +1,15 @@
+Need Help with the following:
+-Locket showing Magic Stick particle effects on cast
+
+-Naix rage ultimate showing the whole rage effect particles when scaling model size
+
+-Ballista to have both active hurricane pike effects
+
+-Mirror Shield to transfer echo shell properly
+
+
+
+
 Ordered by importance:
 
 1. Properly working hero kill and assist bounties (XP and Gold), no innate damage block, 5 personal courier improving over time
