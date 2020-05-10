@@ -27,8 +27,9 @@
 		var hudElements = Parent.FindChildTraverse("HUDElements")
 
 		HidePickScreen();
+		EnableCustomUI();
 
-		var PreGame = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("PreGame")
+		var PreGame = Parent.FindChildTraverse("PreGame")
 
 		function HidePickScreen() {
 			if (!Game.GameStateIs(3)) {
@@ -42,11 +43,40 @@
 					PreGame.style.opacity = "1";				
 			}
 		}
+
+		function EnableCustomUI() {
+			if (!Game.GameStateIsAfter(5)) {
+				$.Schedule(0.25, EnableCustomUI)
+			}
+			else {
+				var team = "Radiant";
+
+				if (Game.GetLocalPlayerInfo(Players.GetLocalPlayer()).player_team_id == 3)
+					team = "Dire";
+
+				var container = Parent.FindChildTraverse("TopBar" + team + "PlayersContainer");
+
+				for (var i = 0; i < container.GetChildCount(); i++) {
+					var health = container.GetChild(i).FindChildTraverse("HealthBar");
+					var mana = container.GetChild(i).FindChildTraverse("ManaBar");
+
+					health.style.opacity = 1;
+					mana.style.opacity = 1;
+
+					health.style.transform = "translateY(11px)";
+					mana.style.transform = "translateY(11px)";
+				}
+
+				var neutral_slot = Parent.FindChildTraverse("inventory_neutral_slot_container");
+				if (neutral_slot)
+					neutral_slot.style.opacity = "0";
+			}
+		}
 	</script>
 
 	<Panel>
 		<!-- CustomUIElements go here.-->
 
-		<CustomUIElement type="GameInfo" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" />
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" />
 	</Panel>
 </root>
