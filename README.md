@@ -49,10 +49,18 @@ QoL: UI Improvements
 
 -Buyback Cost slightly increased from what it used to be (time and level-based) 
 
+-Rework all boots to give constant ms instead of percentage, recode some items (Done)
+
+-Show HP/Mana of allies all the time in the top bar instead of pressing ALT (Done)
+
+-Remove Outposts and add sideshops (6.88 map has no outposts and has sideshop, done)
+
+-Make older maps work
+
 
 **To Do:**
 
--Rework all boots to give constant ms instead of percentage, recode some items
+
 
 -Adapt assist gold gain to 6.88
 
@@ -66,9 +74,8 @@ QoL: UI Improvements
 
 -make centerBG panorama bigger
 
--Show HP/Mana of allies all the time in the top bar instead of pressing ALT
 
--Remove Outposts and add sideshops
+
 
 -Show XP in portrait all the time
 
@@ -86,7 +93,7 @@ QoL: UI Improvements
 
 -Heroes are not randomed after penalty time (solved) 
 
-  
+-Death time not shown properly below health and mana bar  
 
 
 
