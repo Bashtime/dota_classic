@@ -55,7 +55,7 @@ QoL: UI Improvements
 
 -Remove Outposts and add sideshops (6.88 map has no outposts and has sideshop, done)
 
--Make older maps work
+-6.88 map works now
 
 
 **To Do:**
@@ -79,7 +79,7 @@ QoL: UI Improvements
 
 -Show XP in portrait all the time
 
--Make older maps work, rework current map
+-rework current map
 
 -Vanilla rune system (Powerrune min 4, Bounties every 5)
 
