@@ -40,8 +40,8 @@ Neutrals.Triggers["neutralcamp_good_4"] = "medium"
 Neutrals.Triggers["neutralcamp_good_5"] = "big"
 Neutrals.Triggers["neutralcamp_good_6"] = "big"
 Neutrals.Triggers["neutralcamp_good_7"] = "medium"
-Neutrals.Triggers["neutralcamp_good_8"] = "big"
-Neutrals.Triggers["neutralcamp_good_9"] = "medium"
+-- Neutrals.Triggers["neutralcamp_good_8"] = "big"
+-- Neutrals.Triggers["neutralcamp_good_9"] = "medium"
 
 Neutrals.Triggers["neutralcamp_evil_1"] = "big"
 Neutrals.Triggers["neutralcamp_evil_2"] = "small"
@@ -50,8 +50,8 @@ Neutrals.Triggers["neutralcamp_evil_4"] = "big"
 Neutrals.Triggers["neutralcamp_evil_5"] = "big"
 Neutrals.Triggers["neutralcamp_evil_6"] = "medium"
 Neutrals.Triggers["neutralcamp_evil_7"] = "medium"
-Neutrals.Triggers["neutralcamp_evil_8"] = "ancient"
-Neutrals.Triggers["neutralcamp_evil_9"] = "big"
+-- Neutrals.Triggers["neutralcamp_evil_8"] = "ancient"
+-- Neutrals.Triggers["neutralcamp_evil_9"] = "big"
 
 Neutrals.spawn_point = {}
 
@@ -65,7 +65,6 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 --					if trigger:IsTouching(spawner) then
 					-- Not the greatest way to do it, but it works
 					if (spawner:GetAbsOrigin() - trigger:GetAbsOrigin()):Length2D() < 1000 then
-						print(trigger:GetName())
 						Neutrals.spawn_point[trigger:GetName()] = spawner:GetAbsOrigin()
 						UTIL_Remove(spawner)
 						break
@@ -89,8 +88,6 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 end, nil)
 
 function Neutrals:CheckForSpawn()
-	print("Neutrals:CheckForSpawn()")
-
 	for trigger_name, camp_size in pairs(Neutrals.Triggers) do
 		local trigger = Entities:FindByName(nil, trigger_name)
 		local length = (trigger:GetBoundingMins() - trigger:GetBoundingMaxs()):Length2D()
@@ -107,9 +104,9 @@ function Neutrals:CheckForSpawn()
 
 		local pos = Neutrals.spawn_point[trigger:GetName()]
 
-		print("Creep count in "..trigger_name..":", creeps_in_trigger)
-		print("trigger name:", trigger:GetName())
-		print("spawn pos:", pos)
+--		print("Creep count in "..trigger_name..":", creeps_in_trigger)
+--		print("trigger name:", trigger:GetName())
+--		print("spawn pos:", pos)
 
 		local pfx_name = "particles/world_environmental_fx/radiant_creep_spawn.vpcf"
 
@@ -128,7 +125,6 @@ function Neutrals:CheckForSpawn()
 end
 
 function Neutrals:Spawn(trigger, pos, camp_size)
-	print("Neutrals:Spawn()")
 	local neutrals = Neutrals.Creeps[camp_size][RandomInt(1, #Neutrals.Creeps[camp_size])]
 
 	for _, neutral in pairs(neutrals) do
