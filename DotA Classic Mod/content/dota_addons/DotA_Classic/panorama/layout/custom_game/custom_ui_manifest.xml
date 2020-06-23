@@ -68,11 +68,87 @@
 
 					health.style.zIndex = "0";
 					mana.style.zIndex = "0";
+
+					var respawn_timer = container.GetChild(i).FindChildTraverse("RespawnTimer")
+
+					respawn_timer.style.marginBottom = "81px"; // 99px
 				}
 
 				var neutral_slot = Parent.FindChildTraverse("inventory_neutral_slot_container");
 				if (neutral_slot)
 					neutral_slot.style.opacity = "0";
+
+				var XPProgress = hudElements.FindChildTraverse("XPProgress");
+				if (XPProgress)
+					XPProgress.style.opacity = "1";
+
+				DisableTalentTreeUI();
+
+//				var center_block = hudElements.FindChildTraverse("center_block");
+//				IncreaseCenterBlockSize(center_block);
+			}
+		}
+
+		function DisableTalentTreeUI() {
+			var newUI = hudElements.FindChildTraverse("center_block");
+
+			newUI.FindChildTraverse("StatBranch").style.visibility = "collapse";
+			newUI.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
+			newUI.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", function(){});
+			newUI.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
+
+			DisableTalentTreeScoreboardUI();
+		}
+
+		function DisableTalentTreeScoreboardUI() {
+			var scoreboard = hudElements.FindChildTraverse("scoreboard");
+
+			if (scoreboard.BHasClass("ScoreboardClosed")) {
+				$.Schedule(0.1, DisableTalentTreeScoreboardUI);
+				return;
+			}
+
+			var radiant_legend_tree_talent = scoreboard.FindChildTraverse("RadiantHeader").FindChildTraverse("TalentTreeLabel");
+
+			if (radiant_legend_tree_talent) {
+				radiant_legend_tree_talent.style.visibility = "collapse";
+			}
+
+			var dire_legend_tree_talent = scoreboard.FindChildTraverse("RadiantHeader").FindChildTraverse("TalentTreeLabel");
+			var talents_panels = hudElements.FindChildrenWithClassTraverse("TalentTree");
+
+			if (dire_legend_tree_talent) {
+				dire_legend_tree_talent.style.visibility = "collapse";
+			}
+
+			for (var i in talents_panels) {
+				talents_panels[i].style.visibility = "collapse";
+			}
+		}
+
+		function IncreaseCenterBlockSize(parent) {
+			$.Msg(parent)
+
+			for (var i = 0; i < parent.GetChildCount(); i++) {
+				if (parent.GetChild(i)) {
+					$.Msg("ITerate!")
+					var child_width = parent.GetChild(i).style.width;
+					var child_height = parent.GetChild(i).style.height;
+
+					if (child_width) {
+						child_width = parseInt(child_width.substring(0, child_width.length -2));
+//						$.Msg(child_width)
+						parent.GetChild(i).style.width = child_width * 1.2 + "px";
+//						$.Msg(child_width)
+					}
+
+					if (child_height) {
+						child_height = parseInt(child_height.substring(0, child_height.length -2));
+						parent.GetChild(i).style.height = child_height * 1.2 + "px";
+					}
+
+					IncreaseCenterBlockSize(parent.GetChild(i))
+				}
 			}
 		}
 	</script>
