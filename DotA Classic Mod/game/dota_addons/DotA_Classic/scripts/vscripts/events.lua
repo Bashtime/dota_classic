@@ -110,15 +110,6 @@ function GameMode:OnGameRulesStateChange()
 	end
 end
 
--- An NPC has spawned somewhere in game.  This includes heroes
-function GameMode:OnNPCSpawned(keys)
-	--DebugPrint("[BAREBONES] NPC Spawned")
-	--DebugPrintTable(keys)
-
-	local npc = EntIndexToHScript(keys.entindex)
-
-end
-
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
 -- operations here
 function GameMode:OnEntityHurt(keys)
@@ -155,8 +146,7 @@ function GameMode:OnItemPickedUp(keys)
 	local player = PlayerResource:GetPlayer(keys.PlayerID)
 	local itemname = keys.itemname
 
-	
-	
+
 end
 
 -- A player has reconnected to the game.  This function can be used to repaint Player-based particles or change
@@ -794,17 +784,47 @@ function GameMode:OnNPCSpawned(keys)
 	local npc = EntIndexToHScript(keys.entindex)
 
 	if npc.first_spawn ~= true then
+		npc.first_spawn = true
+
+		if npc:GetUnitName() == "npc_dota_courier" then
+			Timers:CreateTimer(function()
+				if GameRules:State_Get() ~= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+					return 1.0
+				end
+
+				for i = 0, 24 do
+					local ability = npc:GetAbilityByIndex(i)
+					if ability then
+						print(ability:GetAbilityName())
+					end
+				end
+
+				for i = 0, npc:GetModifierCount() - 1 do
+					local modifier = npc:GetModifierNameByIndex(i)
+
+					print(modifier)
+
+					if modifier == "modifier_courier_passive_bonus" then
+						npc:RemoveModifierByName("modifier_courier_passive_bonus")
+						npc:AddNewModifier(npc, nil, "modifier_courier_passive_bonus_688", {})
+						return nil
+					end
+				end
+
+				return 1.0
+			end)
+		end
+
 		npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
-		if npc:IsHero() then
+
+		if npc:IsRealHero() then
 			npc:AddNewModifier(npc, nil, "modifier_nerf_cancer_regen", {})
 			npc:AddNewModifier(npc, nil, "modifier_talent_lvl", {})
 			npc:AddNewModifier(npc, nil, "modifier_spell_amp_int", {})
 			npc:AddNewModifier(npc, nil, "modifier_bots_and_botsii", {})
 			npc:AddNewModifier(npc, nil, "modifier_perc_mana_reg", {})
 		end
-		npc.first_spawn = true
 	end
-
 
 	--[[ Adjusting XP and Gold gain for lane creeps
 		if npc:GetUnitName() == "npc_dota_creep_goodguys_ranged" or npc:GetUnitName() == "npc_dota_creep_badguys_ranged" then

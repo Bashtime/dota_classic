@@ -167,12 +167,6 @@ end
 function GameMode:OnNPCSpawned(keys)
   -- Apply modifiers that makes units obey our armour formula and heroes not have cancer regen
   local npc = EntIndexToHScript(keys.entindex)
-  
-  if npc.first_spawn ~= true then
-            npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
-            npc:AddNewModifier(npc, nil, "modifier_nerf_cancer_regen", {})
-            npc.first_spawn = true
-  end
 
   --[[ Adjusting XP and Gold gain for lane creeps
     if npc:GetUnitName() == "npc_dota_creep_goodguys_ranged" or npc:GetUnitName() == "npc_dota_creep_badguys_ranged" then
