@@ -18,7 +18,7 @@ end
 function modifier_courier_passive_bonus_688:DeclareFunctions() return {
 	MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	MODIFIER_PROPERTY_VISUAL_Z_DELTA,
-	MODIFIER_PROPERTY_MODEL_CHANGE,
+--	MODIFIER_PROPERTY_MODEL_CHANGE,
 } end
 
 function modifier_courier_passive_bonus_688:OnCreated()

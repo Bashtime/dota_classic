@@ -1,26 +1,2 @@
 "neutral_items" // FUCK neutral items
-{
-	"1"
-	{
-		"drop_rates"
-		{
-			"0:00"
-			{
-				"0" "7"
-				"1" "6"
-				"2" "5"
-				"3" "4"
-			}
-		}
-		
-		"items"
-		{
-			"item_ironwood_tree"			  "0"
-			"item_royal_jelly"				  "0"
-			"item_mango_tree"				  "0"
-			"item_greater_faerie_fire"		  "0"
-		}
-	}
-}
-
-
+{}

@@ -5,6 +5,25 @@ function item_qb:GetIntrinsicModifierName()
 	return "modifier_qb_passive"
 end
 
+
+-----------------------------------------------------------------
+-- Different Cast Ranges
+
+function item_qb:GetCastRange(_, hTarget)
+	--First parameter is location, I guess it might be relevant for point-target abilities
+
+	--local isTree = target:IsInstance(CDOTA_MapTree) --Checks if the target is a tree
+	if hTarget then
+		local stillTree = (hTarget:GetClassname() == "dota_temp_tree") --Checks if the target is a temporary tree
+		if not stillTree then
+			return self:GetSpecialValueFor("cast_range_ward")
+		end
+	end
+	return self:GetSpecialValueFor("quelling_range_tooltip")
+end
+
+
+
 ------------------------------------------------------------------------------
 --- Custom Filter
 

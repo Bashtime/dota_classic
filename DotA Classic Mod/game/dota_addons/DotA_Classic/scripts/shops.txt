@@ -69,8 +69,8 @@
 
     "item"    "item_gloves"
     "item"    "item_quarterstaff"
+    "item"    "item_blitz_knuckles"
     "item"    "item_hyperstone"
-    "item"    "item_the_leveller" 
   }
       
   "misc"
@@ -116,17 +116,17 @@
     "item"    "item_broom_handle_classic"
     "item"    "item_grove_bow_classic"
     "item"    "item_spy_gadget" 
-    "item"    "item_telescope" 
+    "item"    "item_telescope"
 
     "item"    "item_paladin_sword"
+    "item"    "item_the_leveller" 
     "item"    "item_titan_classic"
     "item"    "item_spider_legs_classic"
-    "item"    "item_mirror_classic"
 
+    "item"    "item_mirror_classic"
     "item"    "item_tome_of_strength"
     "item"    "item_tome_of_agility"
     "item"    "item_tome_of_intelligence"
-
   } 
   
   // Level 1 - Green Recipes
@@ -155,9 +155,11 @@
     "item"    "item_drums"
 
     "item"    "item_soul_ring"
+    "item"    "item_sr"
     "item"    "item_pers"
     "item"    "item_perse"
     "item"    "item_soul_booster"
+    "item"    "item_soulbooster"
     "item"    "item_bloodstone"
     "item"    "item_bloodstone_classic"
   }
@@ -166,9 +168,11 @@
   "support"
   {
     "item"    "item_bracer"
+    "item"    "item_bracer_classic"
     "item"    "item_wb"
     "item"    "item_wraith_band"
     "item"    "item_null_talisman"
+    "item"    "item_nt"
     "item"    "item_magic_wand"
 
     "item"    "item_sange"
@@ -186,8 +190,10 @@
     "item"    "item_sphere"
     "item"    "item_linkens"
 
-    "item"    "item_heart"  
+    "item"    "item_heart" 
+    "item"    "item_hot" 
     "item"    "item_butterfly"
+    "item"    "item_bfly"
     "item"    "item_hex"
     "item"    "item_sheepstick"
     "item"    "item_skadi"
@@ -211,6 +217,7 @@
     "item"    "item_crimson_guard"
 
     "item"    "item_assault"
+    "item"    "item_ac"
     "item"    "item_shivas_guard"
     "item"    "item_lotus_classic"
     "item"    "item_lotus_orb"

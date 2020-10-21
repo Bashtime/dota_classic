@@ -46,10 +46,6 @@ function item_diffu_blade_2:OnSpellStart()
 	-- effects
 	local sound_cast = "DOTA_Item.DiffusalBlade.Activate"
 	EmitSoundOn( sound_cast, target )
-
-
-	--Bug Fix for permanent debuff purge Icon 
-
 end
 
 
@@ -97,14 +93,15 @@ end
 -- Initializations
 function modifier_diffu_purge_active:OnCreated( kv )
 
-	if IsServer() then
+	--if IsServer() then
 
 	-- references
-	self.slow = -100
+	self.slow = {-100, -80, -60, -40, -20, 0}
 	self.victim = self:GetParent()
 	self.validtargetfordamage = ( self.victim:IsSummoned() or (self.victim:IsIllusion() or self.victim:IsDominated())) 
-	self.i = 0
+	self.i = 1
 
+  if IsServer() then
 	local damage = self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor( "playerunit_percentage_damage" ) / 100
 	local ticks = self:GetAbility():GetSpecialValueFor( "purge_rate" )
 	local duration = self:GetAbility():GetSpecialValueFor( "purge_slow_duration" )
@@ -123,20 +120,19 @@ function modifier_diffu_purge_active:OnCreated( kv )
 		if self.validtargetfordamage then
 			ApplyDamage( self.damageTable )
 		end
-	
+  
 		-- Start interval
 		self:StartIntervalThink( interval )
 		self:OnIntervalThink()
-		
-	end
+  end		
+	--end
 
 end
 
 function modifier_diffu_purge_active:OnRefresh( kv )
 	-- update value
-	self.slow = -100
-	self.i = 0
-	--self:SetStackCount(self.i)
+	self.slow = {-100, -80, -60, -40, -20, 0}
+	self.i = 1
 
 	local damage = self:GetParent():GetMaxHealth() * self:GetAbility():GetSpecialValueFor( "playerunit_percentage_damage" ) / 100
 	
@@ -151,27 +147,26 @@ function modifier_diffu_purge_active:OnRefresh( kv )
 end
 
 	function modifier_diffu_purge_active:GetModifierMoveSpeedBonus_Percentage()
-		return self.slow
+		return self.slow[self.i]
 	end
 
 	function modifier_diffu_purge_active:GetModifierAttackSpeedBonus_Constant()
-		return self.slow
+		return self.slow[self.i]
 	end
 
 --------------------------------------------------------------------------------
 -- Interval Effects
 function modifier_diffu_purge_active:OnIntervalThink()
 	local ticks = self:GetAbility():GetSpecialValueFor( "purge_rate" )
-	local decrease_over_time = 100 / ticks
+	--local decrease_over_time = 100 / ticks
 	
-	if self.slow == nil then self.slow = 0 end
+	--if self.slow == nil then self.slow = 0 end
 
-	self.slow = -100 + (decrease_over_time * self.i)
+	--self.slow = -100 + (decrease_over_time * self.i)
 	self.i = self.i + 1
 	--self:SetStackCount(self.i)
 
-	if self.i > ticks then self:Destroy() end
-
+	if self.i > (ticks + 1) then self:Destroy() end
 end
 
 --------------------------------------------------------------------------------
@@ -191,6 +186,7 @@ function modifier_diffu_purge_active:CheckState()
 			return state
 		end
 end
+
 
 --------------------------------------------------------------------------------
 -- Graphics & Animations
@@ -216,6 +212,17 @@ modifier_diffu_purge_passive = class({})
 
 --------------------------------------------------------------------------------
 -- Classifications
+
+	modifier_diffu_purge_passive = class({})
+	local modifierClass = modifier_diffu_purge_passive
+	local modifierName = 'modifier_diffu_purge_passive'
+
+	--Feedback Modifier Aura hack
+	modifier_diffu_manaburn = class({})
+	local buffModifierClass = modifier_diffu_manaburn
+	local buffModifierName = 'modifier_diffu_manaburn'
+	LinkLuaModifier(buffModifierName, "items/diffu_blade_2", LUA_MODIFIER_MOTION_NONE)	
+
 function modifier_diffu_purge_passive:IsHidden()
 	return true
 end
@@ -224,35 +231,52 @@ function modifier_diffu_purge_passive:IsPurgable()
 	return false
 end
 
+function modifier_diffu_purge_passive:GetAttributes()
+	return MODIFIER_ATTRIBUTE_MULTIPLE
+end
+
+
+			--Optional Aura Settings
+			function modifierClass:IsAura()
+    			return true
+			end
+
+			function modifierClass:IsAuraActiveOnDeath()
+    			return false
+			end
+				--Who is affected ?
+				function modifierClass:GetAuraSearchTeam()
+    				return DOTA_UNIT_TARGET_TEAM_FRIENDLY
+				end
+
+				function modifierClass:GetAuraSearchType()
+					return DOTA_UNIT_TARGET_HERO
+				end
+
+				function modifierClass:GetAuraSearchFlags()
+    				return DOTA_UNIT_TARGET_FLAG_NONE
+				end
+
+			function modifierClass:GetAuraRadius()
+				return 1
+			end
+
+			function modifierClass:GetModifierAura()
+    			return buffModifierName
+			end	
+
+			function buffModifierClass:IsHidden()
+				return true
+			end
+
+
+
 
 --------------------------------------------------------------------------------
--- Initializations
-function modifier_diffu_purge_passive:OnCreated( kv )
-	-- references
-	self.mana_break = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn" ) -- special value
-	self.mana_damage_pct = self:GetAbility():GetSpecialValueFor( "damage_per_burn" ) -- special value
-	self.burn_melee_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_melee" ) -- special value
-	self.burn_ranged_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_ranged" ) -- special value
-end
+--Stacking Modifier Effects
 
-function modifier_diffu_purge_passive:OnRefresh( kv )
-	-- references
-	self.mana_break = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn" ) -- special value
-	self.mana_damage_pct = self:GetAbility():GetSpecialValueFor( "damage_per_burn" ) -- special value
-	self.burn_melee_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_melee" ) -- special value
-	self.burn_ranged_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_ranged" ) -- special value
-end
-
-function modifier_diffu_purge_passive:OnDestroy( kv )
-
-end
-
-
---------------------------------------------------------------------------------
--- Modifier Effects
 function modifier_diffu_purge_passive:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
 		MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
 		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
 	}
@@ -260,7 +284,46 @@ function modifier_diffu_purge_passive:DeclareFunctions()
 	return funcs
 end
 
-function modifier_diffu_purge_passive:GetModifierProcAttack_BonusDamage_Physical( params )
+function modifier_diffu_purge_passive:GetModifierBonusStats_Agility(params)
+	return self:GetAbility():GetSpecialValueFor("bonus_agility");
+end
+
+function modifier_diffu_purge_passive:GetModifierBonusStats_Intellect(params)
+	return self:GetAbility():GetSpecialValueFor("bonus_intellect");
+end
+
+
+
+
+------------------------------------------
+--Feedback Mechanic
+
+--------------------------------------------------------------------------------
+-- Initializations
+function buffModifierClass:OnCreated( kv )
+	-- references
+	self.mana_break = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn" ) -- special value
+	self.mana_damage_pct = self:GetAbility():GetSpecialValueFor( "damage_per_burn" ) -- special value
+	self.burn_melee_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_melee" ) -- special value
+	self.burn_ranged_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_ranged" ) -- special value
+end
+
+function buffModifierClass:OnRefresh( kv )
+	-- references
+	self.mana_break = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn" ) -- special value
+	self.mana_damage_pct = self:GetAbility():GetSpecialValueFor( "damage_per_burn" ) -- special value
+	self.burn_melee_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_melee" ) -- special value
+	self.burn_ranged_illu = self:GetAbility():GetSpecialValueFor( "feedback_mana_burn_illusion_ranged" ) -- special value
+end
+
+function buffModifierClass:DeclareFunctions()
+	local funcs = {
+		MODIFIER_PROPERTY_PROCATTACK_BONUS_DAMAGE_PHYSICAL,
+	}
+	return funcs
+end
+
+function buffModifierClass:GetModifierProcAttack_BonusDamage_Physical( params )
 
 	if IsServer() then
 		
@@ -278,15 +341,23 @@ function modifier_diffu_purge_passive:GetModifierProcAttack_BonusDamage_Physical
 		if result == UF_SUCCESS then
 
 			local mana_burn =  math.min( target:GetMana(), self.mana_break )
+			if attacker:HasModifier("modifier_item_diffusal_blade") then
+				mana_burn = math.min( target:GetMana(), 10 )
+			end
 
 			if attacker:IsIllusion() then
 
 				if attacker:IsRangedAttacker() then
 					mana_burn =  math.min( target:GetMana(), self.burn_ranged_illu )
+					if attacker:HasModifier("modifier_item_diffusal_blade") then
+						mana_burn = math.min( target:GetMana(), 2 )
+					end
 				else
 					mana_burn =  math.min( target:GetMana(), self.burn_melee_illu )
+					if attacker:HasModifier("modifier_item_diffusal_blade") then
+						mana_burn = math.min( target:GetMana(), 4 )
+					end					
 				end
-
 			end
 
 			target:ReduceMana( mana_burn )
@@ -311,15 +382,7 @@ function modifier_diffu_purge_passive:GetModifierProcAttack_BonusDamage_Physical
 	end
 end
 
-function modifier_diffu_purge_passive:GetModifierBonusStats_Agility(params)
-	return self:GetAbility():GetSpecialValueFor("bonus_agility");
-end
-
-function modifier_diffu_purge_passive:GetModifierBonusStats_Intellect(params)
-	return self:GetAbility():GetSpecialValueFor("bonus_intellect");
-end
-
-function modifier_diffu_purge_passive:PlayEffects( target )
+function buffModifierClass:PlayEffects( target )
 	-- Get Resources
 	local particle_cast = "particles/generic_gameplay/generic_manaburn.vpcf"
 	local sound_cast = "Hero_Antimage.ManaBreak"

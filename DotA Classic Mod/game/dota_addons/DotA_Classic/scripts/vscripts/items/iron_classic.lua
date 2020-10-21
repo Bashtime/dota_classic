@@ -13,6 +13,20 @@ function item_iron_classic:OnCreated()
 end
 
 
+function item_iron_classic:GetCastRange(_, hTarget)
+	--First parameter is location, I guess it might be relevant for point-target abilities
+
+	--local isTree = target:IsInstance(CDOTA_MapTree) --Checks if the target is a tree
+	if hTarget then
+		local stillTree = (hTarget:GetClassname() == "dota_temp_tree") --Checks if the target is a temporary tree
+		if not stillTree then
+			return self:GetSpecialValueFor("cast_range_ward")
+		end
+	end
+	return self:GetSpecialValueFor("quelling_range_tooltip")
+end
+
+
 ------------------------------------------------------------------------------
 --- Custom Filter
 

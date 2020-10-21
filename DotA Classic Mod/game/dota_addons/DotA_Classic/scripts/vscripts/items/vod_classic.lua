@@ -196,6 +196,17 @@ function debuffModClass:GetEffectAttachType()
 end
 
 
+--[[function jimmys_clone_man_1:GetModifierIncomingDamage_Percentage( params )
+    if params.target == self:GetParent() then  
+        ApplyDamage({damage = params.damage, damage_type = params.damage_type, ability = self:GetAbility(), attacker = params.attacker, victim = self:GetCaster(), damage_flags = DOTA_DAMAGE_FLAG_REFLECTION})
+        return -100
+    end
+    return
+end]]
+
+
+
+
 -----------------------------------------
 --Passive Modifier Stuff starts here
 

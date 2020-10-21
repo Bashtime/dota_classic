@@ -175,26 +175,194 @@ end
 
 -- An ability was used by a player
 function GameMode:OnAbilityUsed(keys)
-	--DebugPrint('[BAREBONES] AbilityUsed')
-	--DebugPrintTable(keys)
+  DebugPrint('[BAREBONES] AbilityUsed')
+  DebugPrintTable(keys)
 
-	local player = PlayerResource:GetPlayer(keys.PlayerID)
-	local abilityname = keys.abilityname
-	local hero = player:GetAssignedHero() 
+  local hero = EntIndexToHScript(keys.caster_entindex)
+  local player = PlayerResource:GetPlayer(keys.PlayerID)
+  local abilityname = keys.abilityname
+
+  --Adding decreasing MR to BKB
+  if abilityname == "item_black_king_bar" then 
+    if not hero:HasModifier("modifier_bkb_mr") then
+      hero:AddNewModifier(hero, item_black_king_bar, "modifier_bkb_mr", { duration = -1})
+      hero:SetModifierStackCount("modifier_bkb_mr", hero, 10)
+    else
+      local stack_count = hero:GetModifierStackCount("modifier_bkb_mr", hero)
+      if stack_count > 5 then hero:SetModifierStackCount("modifier_bkb_mr", hero, stack_count - 1) end
+    end
+  end
 
 
-	--Surprise MFer, Exoctic Mango not as innocuous as you thought
-	if abilityname == "item_enchanted_mango" then
-		if RandomInt(1, 100)<=3 then hero:Kill(nil,hero) end
-	end
-end
+  --Surprise MFer, Exoctic Mango not as innocuous as you thought
+  if abilityname == "item_enchanted_mango" then
+    if RandomInt(1, 10000) <= MANGOCHANCE then 
+      hero:Kill(nil,hero)
+      MANGOCHANCE = CVALUE_MANGO
+    else
+      MANGOCHANCE = MANGOCHANCE + CVALUE_MANGO
+    end
+  end
+
+
+  --Holy Locket Charge Mechanic
+
+  -- Find Heroes around the caster
+  local enemies = FindUnitsInRadius(
+    hero:GetTeamNumber(), -- int, your team number
+    hero:GetOrigin(), -- point, center point
+    nil,  -- handle, cacheUnit. (not known)
+    1200, -- float, radius. or use FIND_UNITS_EVERYWHERE
+    DOTA_UNIT_TARGET_TEAM_ENEMY,  -- int, team filter
+    DOTA_UNIT_TARGET_HERO, -- int, type filter
+    DOTA_UNIT_TARGET_FLAG_NONE,  -- int, flag filter
+    0,  -- int, order filter
+    false -- bool, can grow cache
+    )
+
+  for _,enemy in pairs(enemies) do 
+
+    if enemy:HasModifier("modifier_holy_locket_classic_passive") then
+      --Check if Locket carrier can see the caster 
+      local result = UnitFilter(
+          hero, -- Target Filter
+          DOTA_UNIT_TARGET_TEAM_ENEMY,  -- Team Filter
+          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, -- Unit Filter
+          DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,  -- Unit Flag
+          enemy:GetTeamNumber()  -- Team reference
+          )
+
+      if result == UF_SUCCESS then
+
+        local bAddCharges = true --Checks if charges are allowed to be added
+
+        --Check if Wands or Sticks are not full yet
+        for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+
+          local item = enemy:GetItemInSlot(i)
+
+          if item then
+
+            if (item:GetName() == "item_magic_stick") and (item:GetCurrentCharges() < 10) then
+              --print("Stick has" ..item:GetCurrentCharges())
+              bAddCharges = false
+              break
+            end
+
+            if (item:GetName() == "item_magic_wand") and (item:GetCurrentCharges() < 20 ) then
+              --print("Wand has" ..item:GetCurrentCharges())
+              bAddCharges = false
+              break
+            end
+
+          end --the item exists
+        end --loop end
+
+        
+        for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+          local item = enemy:GetItemInSlot(i)
+
+          if item then
+          --Only add charges to the first Locket
+            if (item:GetName() == "item_holy_locket_classic") and bAddCharges then
+              local k = item:GetCurrentCharges()
+
+              if k<20 then
+                item:SetCurrentCharges(k+1)
+                break
+              end
+            end
+          end
+        end
+      end
+    end --if-end for locket carriers 
+  end --loop end every found hero around the caster]]
+end --function end
 
 -- A non-player entity (necro-book, chen creep, etc) used an ability
 function GameMode:OnNonPlayerUsedAbility(keys)
-	--DebugPrint('[BAREBONES] OnNonPlayerUsedAbility')
-	--DebugPrintTable(keys)
+  DebugPrint('[BAREBONES] OnNonPlayerUsedAbility')
+  DebugPrintTable(keys)
 
-	local abilityname = keys.abilityname
+  local abilityname =  keys.abilityname
+  local hero = EntIndexToHScript(keys.caster_entindex)
+
+  for k,v in pairs(keys) do
+    print(k,v)
+  end
+
+  --Holy Locket Charge Mechanic
+
+  --Find Heroes around the caster
+  local enemies = FindUnitsInRadius(
+    hero:GetTeamNumber(), -- int, your team number
+    hero:GetOrigin(), -- point, center point
+    nil,  -- handle, cacheUnit. (not known)
+    1200, -- float, radius. or use FIND_UNITS_EVERYWHERE
+    DOTA_UNIT_TARGET_TEAM_ENEMY,  -- int, team filter
+    DOTA_UNIT_TARGET_HERO, -- int, type filter
+    DOTA_UNIT_TARGET_FLAG_NONE,  -- int, flag filter
+    0,  -- int, order filter
+    false -- bool, can grow cache
+    )
+
+  for _,enemy in pairs(enemies) do 
+
+    if enemy:HasModifier("modifier_holy_locket_classic_passive") then
+      --Check if Locket carrier can see the caster 
+      local result = UnitFilter(
+          hero, -- Target Filter
+          DOTA_UNIT_TARGET_TEAM_ENEMY,  -- Team Filter
+          DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, -- Unit Filter
+          DOTA_UNIT_TARGET_FLAG_FOW_VISIBLE,  -- Unit Flag
+          enemy:GetTeamNumber()  -- Team reference
+          )
+
+      if result == UF_SUCCESS then
+
+        local bAddCharges = true --Checks if charges are allowed to be added
+
+        --Check if Wands or Sticks are not full yet
+        for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+
+          local item = enemy:GetItemInSlot(i)
+
+          if item then
+
+            if (item:GetName() == "item_magic_stick") and (item:GetCurrentCharges() < 10) then
+              --print("Stick has" ..item:GetCurrentCharges())
+              bAddCharges = false
+              break
+            end
+
+            if (item:GetName() == "item_magic_wand") and (item:GetCurrentCharges() < 20 ) then
+              --print("Wand has" ..item:GetCurrentCharges())
+              bAddCharges = false
+              break
+            end
+
+          end --the item exists
+        end --loop end
+
+        
+        for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
+          local item = enemy:GetItemInSlot(i)
+
+          if item then
+          --Only add charges to the first Locket
+            if (item:GetName() == "item_holy_locket_classic") and bAddCharges then
+              local k = item:GetCurrentCharges()
+
+              if k<20 then
+                item:SetCurrentCharges(k+1)
+                break
+              end
+            end
+          end
+        end
+      end
+    end --if-end for locket carriers 
+  end --loop end every found hero around the caster]]
 end
 
 -- A player changed their name
@@ -208,14 +376,25 @@ end
 
 -- A player leveled up an ability
 function GameMode:OnPlayerLearnedAbility( keys)
-	--DebugPrint('[BAREBONES] OnPlayerLearnedAbility')
-	--DebugPrintTable(keys)
+  local player = EntIndexToHScript(keys.player)
+  local abilityname = keys.abilityname
+  local hero
 
-	local player = EntIndexToHScript(keys.player)
-	local abilityname = keys.abilityname
-	local hero
-	local playerID
+  --AM leveling his vanilla-skill talent
+  if abilityname == "antimage_counterspell" then
+    hero = player:GetAssignedHero()
+    local stack_count = hero:GetModifierStackCount("modifier_talent_lvl", hero)
+    print(hero)
+    print(stack_count)
+    hero:SetModifierStackCount("modifier_talent_lvl", hero, stack_count + 1)
+  end
 
+  --Lifestealer leveling his vanilla-skill talent
+  if abilityname == "life_stealer_infest" then
+    hero = player:GetAssignedHero()
+    local stack_count = hero:GetModifierStackCount("modifier_talent_lvl", hero)
+    hero:SetModifierStackCount("modifier_talent_lvl", hero, stack_count + 1)
+  end  
 end
 
 -- A channelled ability finished by either completing or being interrupted

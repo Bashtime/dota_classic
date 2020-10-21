@@ -32,6 +32,9 @@ function modifierClass:OnCreated( kv )
 	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" ) -- special value
 	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
 
+
+
+
 	--self:StartIntervalThink(0.2)
 
 end
@@ -54,11 +57,36 @@ function modifierClass:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,		
 	}
 
 	return funcs
 end
 
+
+			--Spell lifesteal mechanic
+			function modifierClass:OnTakeDamage( params )
+
+				local attacker = self:GetParent()
+				local target = params.unit
+
+				if params.attacker == attacker 
+					and params.damage_category == DOTA_DAMAGE_CATEGORY_SPELL
+				then
+					local particle_cast = "particles/items3_fx/octarine_core_lifesteal.vpcf"
+					local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_OVERHEAD_FOLLOW, attacker )
+					ParticleManager:ReleaseParticleIndex( effect_cast )
+
+					local flHeal = params.damage * self:GetAbility():GetSpecialValueFor( "creep_lifesteal" ) / 100
+
+					if target:IsRealHero() then
+						flHeal = params.damage * self:GetAbility():GetSpecialValueFor( "hero_lifesteal" ) / 100
+					end
+
+					attacker:Heal(flHeal, attacker)
+					SendOverheadEventMessage(nil, OVERHEAD_ALERT_HEAL, attacker, flHeal, nil)
+				end
+			end 
 
 
 
