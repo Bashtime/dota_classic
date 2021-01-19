@@ -26,6 +26,7 @@ require('settings')
 -- events.lua is where you can specify the actions to be taken when any event occurs and is one of the core barebones files.
 require('events')
 
+require('components/gold/init')
 require('components/neutral_creeps/init')
 require('components/runes/init')
 

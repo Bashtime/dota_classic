@@ -15,8 +15,10 @@ function GameMode:_InitGameMode()
 	GameRules:SetPreGameTime( PRE_GAME_TIME)
 	GameRules:SetPostGameTime( POST_GAME_TIME )
 	GameRules:SetTreeRegrowTime( TREE_REGROW_TIME )
+	GameRules:GetGameModeEntity():SetUseDefaultDOTARuneSpawnLogic(false)
+	GameRules:SetRuneSpawnTime(0)
 	GameRules:GetGameModeEntity():SetBountyRuneSpawnInterval(BOUNTY_RUNE_SPAWN_TIME)
-	GameRules:SetRuneSpawnTime(RUNE_SPAWN_TIME)
+	GameRules:GetGameModeEntity():SetPowerRuneSpawnInterval(120.0)
 	GameRules:SetStrategyTime(0.0)
 	GameRules:SetShowcaseTime(0.0)
 	GameRules:GetGameModeEntity():SetTPScrollSlotItemOverride( "item_courier" )
@@ -171,6 +173,7 @@ function GameMode:_InitGameMode()
         end
       end
       
+      GameRules:GetGameModeEntity():SetModifyGoldFilter(Dynamic_Wrap(GameMode, "GoldFilter"), self)
 
       --[[this event is broken in dota, so calling it from here instead
       if item.OnItemEquipped ~= nil then

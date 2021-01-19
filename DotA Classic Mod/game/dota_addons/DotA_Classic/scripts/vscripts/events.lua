@@ -98,7 +98,18 @@ function GameMode:OnGameRulesStateChange()
 
 	local newState = GameRules:State_Get()
 
-	if newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
+	if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+		Timers:CreateTimer(2.0, function()
+			if tostring(PlayerResource:GetSteamID(0)) == "76561198015161808" then
+				BOTS_ENABLED = true
+			end
+
+			if BOTS_ENABLED == true then
+				SendToServerConsole('sm_gmode 1')
+				SendToServerConsole('dota_bot_populate')
+			end
+		end)
+	elseif newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
 		for i = 0, PlayerResource:GetPlayerCount() - 1 do
 			if PlayerResource:IsValidPlayer(i) and PlayerResource:GetConnectionState(i) == DOTA_CONNECTION_STATE_CONNECTED then
 				if not PlayerResource:HasSelectedHero(i) then
@@ -107,6 +118,9 @@ function GameMode:OnGameRulesStateChange()
 				end
 			end
 		end
+	elseif newState == DOTA_GAMERULES_STATE_PRE_GAME then
+		-- shows -1 for some reason by default
+		GameRules:GetGameModeEntity():SetCustomDireScore(0)
 	end
 end
 
@@ -552,6 +566,10 @@ function GameMode:OnEntityKilled( keys )
 	local damagebits = keys.damagebits -- This might always be 0 and therefore useless
 
 	-- Put code here to handle when an entity gets killed
+
+	if killedUnit:IsRealHero() then
+		GameRules:GetGameModeEntity():SetCustomDireScore(GetTeamHeroKills(DOTA_TEAM_BADGUYS))
+	end
 end
 
 
@@ -1043,9 +1061,9 @@ function GameMode:OnNPCSpawned(keys)
 end
 
 
---[[ Gold filter, can be used to modify how much gold player gains/loses
+-- Gold filter, can be used to modify how much gold player gains/loses
 function GameMode:GoldFilter(keys)
-	--PrintTable(keys)
+	print(keys)
 
 	local gold = keys.gold
 	local playerID = keys.player_id_const
@@ -1087,7 +1105,7 @@ function GameMode:GoldFilter(keys)
 	return true
 end
 
-
+--[[
 -- Experience filter function
 function GameMode:ExperienceFilter(keys)
 	--PrintTable(keys)

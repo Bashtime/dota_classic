@@ -22,12 +22,13 @@
 		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "The Sentinel";		// BF0824 Hex for name color only
 		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_BADGUYS] = "The Scourge";		// 298C17 Hex for name color only
 -->
-		// fix for battlepass button being in middle of the way of clock time until
+
 		var Parent = $.GetContextPanel().GetParent().GetParent()
 		var hudElements = Parent.FindChildTraverse("HUDElements")
 
 		HidePickScreen();
 		EnableCustomUI();
+		HidePickScreenTalent();
 
 		var PreGame = Parent.FindChildTraverse("PreGame")
 
@@ -44,11 +45,34 @@
 			}
 		}
 
+		function HidePickScreenTalent() {
+			if (Game.GameStateIs(4))
+				return;
+
+			if (!Game.GameStateIs(3)) {
+				$.Schedule(0.03, HidePickScreenTalent)
+			}
+			else {
+				var HeroInspect = Parent.FindChildTraverse("HeroInspect");
+				var HeroSelectionTalents = HeroInspect.FindChildrenWithClassTraverse("StatBranch")[0];
+				var HeroSelectionAghanim = HeroInspect.FindChildrenWithClassTraverse("ScepterDetails")[0];
+
+				if (HeroSelectionTalents) {
+					HeroSelectionTalents.style.visibility = "collapse";
+				}
+
+				if (HeroSelectionAghanim) {
+					HeroSelectionAghanim.style.visibility = "collapse";
+				}
+
+				$.Schedule(0.03, HidePickScreenTalent);
+			}
+		}
+
 		function EnableCustomUI() {
 			if (!Game.GameStateIsAfter(5)) {
 				$.Schedule(0.25, EnableCustomUI)
-			}
-			else {
+			} else {
 				var team = "Radiant";
 
 				if (Game.GetLocalPlayerInfo(Players.GetLocalPlayer()).player_team_id == 3)
@@ -78,9 +102,18 @@
 				if (neutral_slot)
 					neutral_slot.style.opacity = "0";
 
+				var aghs_container = Parent.FindChildTraverse("AghsStatusContainer");
+				if (aghs_container)
+					aghs_container.style.opacity = "0";
+
 				var XPProgress = hudElements.FindChildTraverse("XPProgress");
 				if (XPProgress)
 					XPProgress.style.opacity = "1";
+
+				var NeutralsAll = hudElements.FindChildrenWithClassTraverse("NeutralItemsToggleButton");
+				$.Msg(NeutralsAll);
+				if (NeutralsAll && NeutralsAll[0])
+					NeutralsAll[0].style.visibility = "collapse";
 
 				DisableTalentTreeUI();
 

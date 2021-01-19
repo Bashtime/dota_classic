@@ -8,6 +8,7 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 			bounty_rune_spawner:SetModel("models/props_gameplay/rune_point001.vmdl")
 		end
 	elseif GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		print(BOUNTY_RUNE_SPAWN_TIME)
 		-- May or may not be laggy at some point, worth a check
 		Timers:CreateTimer(function()
 			--check if there are runes to remove
@@ -32,12 +33,29 @@ ListenToGameEvent('game_rules_state_change', function(keys)
 			end
 		end)
 
+		Timers:CreateTimer(240, function()
+			for _, rune_location in pairs(Entities:FindAllByName("dota_item_rune_spawner_bounty")) do
+				for _, ent in pairs(Entities:FindAllInSphere(rune_location:GetAbsOrigin(), 100)) do
+					if ent:GetClassname() == "dota_item_rune" then
+						UTIL_Remove(ent)
+					end
+				end
+			end
+
+			return 240.0
+		end)
+
 		Timers:CreateTimer(function()
 			for i = 1, #BOUNTY_RUNE_POSITIONS do
 				local pos = BOUNTY_RUNE_POSITIONS[i]
 
 				for i = 1, 2 do
 					AddFOWViewer(i, pos, 30.0, FrameTime(), true)
+					for k, v in pairs(Entities:FindAllInSphere(pos, 100)) do
+						if v then
+							print(v:GetName(), v:GetClassname())
+						end
+					end
 				end
 			end
 

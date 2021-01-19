@@ -52,7 +52,8 @@ BOUNTY_RUNE_POSITIONS[2] = Vector(3300, 250, 512)
 
 
 TELEPORT_SCROLL_ON_START = false         -- Should the heroes have a teleport scroll in their inventory right at the start of the game?
-
+BOTS_ENABLED = false
+DISABLE_ALL_GOLD_FROM_HERO_KILLS = true
 
 MAX_LEVEL = 25                         
 USE_CUSTOM_XP_VALUES = true             
@@ -189,3 +190,4 @@ STRATEGY_TIME = 5.0
 b_USE_MULTIPLE_COURIERS = true
 TOWER_SUICIDE_ADDITIONAL_DEATH_TIME_EARLY_GAME = 10.0
 MANGOCHANCE = 1
+CVALUE_MANGO = 10 -- arbitrary value because it was missing
