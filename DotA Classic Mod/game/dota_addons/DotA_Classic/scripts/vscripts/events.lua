@@ -992,14 +992,14 @@ function GameMode:OnNPCSpawned(keys)
 				for i = 0, 24 do
 					local ability = npc:GetAbilityByIndex(i)
 					if ability then
-						print(ability:GetAbilityName())
+--						print(ability:GetAbilityName())
 					end
 				end
 
 				for i = 0, npc:GetModifierCount() - 1 do
 					local modifier = npc:GetModifierNameByIndex(i)
 
-					print(modifier)
+--					print(modifier)
 
 					if modifier == "modifier_courier_passive_bonus" then
 						npc:RemoveModifierByName("modifier_courier_passive_bonus")
