@@ -20,7 +20,8 @@ Tiny:	Rock-solid design
 Venge:	Road of Revenge
 WR:	Easy Breezy
 Zeus:	On Cloud Nine
-Kunkka:	Drunken Sailer
+Kunkka:	Drunken Sailor
+
 Lina:	Heat Wave
 Lich:	Biting Cold
 Lion:	Devil's Advocate
@@ -28,7 +29,6 @@ Rhasta:	Ancestral Worship
 Sladar:	Guardian of the Deeps
 Tide:	Uncharted Waters
 Wd:	Black Magic	
-
 Riki:	Invisible Talent
 Enigma:	Riddle of Life
 Tinker:	Think Tank
@@ -120,4 +120,6 @@ Willow:	The biggest oversight
 Grim:	Happy little accident
 Inai:	
 Mars:	Gladiator
+Hoodwink:
+Dawnbreaker:
 
