@@ -21,7 +21,6 @@ Venge:	Road of Revenge
 WR:	Easy Breezy
 Zeus:	On Cloud Nine
 Kunkka:	Drunken Sailor
-
 Lina:	Heat Wave
 Lich:	Biting Cold
 Lion:	Devil's Advocate
@@ -34,7 +33,7 @@ Enigma:	Riddle of Life
 Tinker:	Think Tank
 Sniper:	6.83 PTSD
 Necro:	Pope of Pestilence
-WL:	Black Grimoire		
+WL:	Black Grimoire	
 BM:	Unleash the Beast
 QoP:	Safe Word
 Veno:	Concentrated Toxins
@@ -56,6 +55,7 @@ Ds:	Universal Power
 Clinkz:	Burnout
 Omni:	Omniscience
 Ench:	Charming Smile
+
 Husk:	Ultimate Sacrifice
 NS:	Light Nihilation
 Brood:	Spider Senses
@@ -112,7 +112,6 @@ Oracle:	Orakyle
 WW:	Winter is coming!
 ArcW:	Harmonization
 
-	
 MK:				//Adaptations and new heroes from here
 Pango:	
 Granny:	

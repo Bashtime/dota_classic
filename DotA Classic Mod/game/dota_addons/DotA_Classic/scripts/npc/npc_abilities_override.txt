@@ -293,7 +293,33 @@
   "item_bracer"  "REMOVE"
   "item_null_talisman"  "REMOVE"
 
+  "item_recipe_orb_of_corrosion" "REMOVE"
+  "item_orb_of_corrosion" "REMOVE"
+  
+  "item_fluffy_hat" "REMOVE"
 
+  "item_recipe_helm_of_the_overlord" "REMOVE"
+  "item_helm_of_the_overlord" "REMOVE"
 
+  "item_recipe_falcon_blade" "REMOVE"
+  "item_falcon_blade" "REMOVE"
 
+  "item_aghanims_shard" "REMOVE"
+
+  "item_recipe_mage_slayer" "REMOVE"
+  "item_mage_slayer" "REMOVE"
+
+  "item_recipe_wind_waker" "REMOVE"
+  "item_wind_waker" "REMOVE"
+
+	"item_recipe_eternal_shroud" "REMOVE"
+	"item_eternal_shroud" "REMOVE"
+
+	"item_recipe_overwhelming_blink" "REMOVE"
+	"item_recipe_swift_blink" "REMOVE"
+	"item_recipe_arcane_blink" "REMOVE"
+
+	"item_overwhelming_blink" "REMOVE"
+	"item_swift_blink" "REMOVE"
+	"item_arcane_blink" "REMOVE"
 }

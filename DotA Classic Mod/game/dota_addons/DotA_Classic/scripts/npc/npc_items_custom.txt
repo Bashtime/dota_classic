@@ -2876,7 +2876,7 @@
 		"ItemResult"					"item_vlads_classic"
 		"ItemRequirements"
 		{
-			"01"						"item_soul_ring;item_ring_of_basilius_classic;item_lifesteal"
+			"01"						"item_sr;item_ring_of_basilius_classic;item_lifesteal"
 		}
 	}	
 
@@ -6540,7 +6540,7 @@
 
 
 	// Next items: Mirror active, Ballista active (50%)		Next IDs: 1427
-	// Reworks: Silver Edge, Blade Mail, Meme Hammer, Carapace of Qaldin (negative Spell Amp Aura, bm + Crown + Recipe)
+	// Reworks: Silver Edge, Blade Mail, Meme Hammer, Carapace of Qaldin (negative Spell Amp Aura, mini radiance burn, bm + Crown + Recipe)
 
 	//=================================================================================================================
 	// Recipe: Heart
@@ -8224,7 +8224,8 @@
 		"ItemQuality"					"component"
 		"ItemAliases"					"rot"
 		"ShouldBeInitiallySuggested"	"1"
-
+		"ItemPurchasable"				"1"
+      		"IsObsolete"                    "0"
 		// Sound
 		//-------------------------------------------------------------------------------------------------------------			
 		"UIPickupSound"					"Item.PickUpRingShop"
@@ -11424,7 +11425,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"105"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"Model"							"models/props_gameplay/recipe.vmdl"
-		
+		"ItemPurchasable"				"1"
+        	"IsObsolete"                    "0"		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
 		"ItemCost"						"1300"	
@@ -11445,6 +11447,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"191"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ItemPurchasable"				"1"
+        	"IsObsolete"                    "0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -11467,6 +11471,8 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"192"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ItemPurchasable"				"1"
+        	"IsObsolete"                    "0"
 		
 		// Item Info
 		//-------------------------------------------------------------------------------------------------------------
@@ -11493,6 +11499,8 @@
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"106"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ItemPurchasable"				"1"
+        	"IsObsolete"                    "0"
 
 		// Stats
 		//-------------------------------------------------------------------------------------------------------------
@@ -11603,6 +11611,9 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"193"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ItemPurchasable"				"1"
+        	"IsObsolete"                    "0"
+
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
 		// Stats
@@ -11714,6 +11725,9 @@
 		// General
 		//-------------------------------------------------------------------------------------------------------------
 		"ID"							"194"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"ItemPurchasable"				"1"
+        	"IsObsolete"                    "0"
+
 		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 
 		// Stats

@@ -1014,12 +1014,27 @@ function GameMode:OnNPCSpawned(keys)
 
 		npc:AddNewModifier(npc, nil, "modifier_common_custom_armor", {})
 
-		if npc:IsRealHero() then
+		if npc:IsHero() then
 			npc:AddNewModifier(npc, nil, "modifier_nerf_cancer_regen", {})
 			npc:AddNewModifier(npc, nil, "modifier_talent_lvl", {})
 			npc:AddNewModifier(npc, nil, "modifier_spell_amp_int", {})
 			npc:AddNewModifier(npc, nil, "modifier_bots_and_botsii", {})
 			npc:AddNewModifier(npc, nil, "modifier_perc_mana_reg", {})
+			npc:AddNewModifier(npc, nil, "modifier_aura_cosmetics", {})
+
+			local particle_cast = {}
+       particle_cast[0] = "particles/scepter_aura_blue.vpcf"
+       particle_cast[1] = "particles/scepter_aura_teal.vpcf"
+       particle_cast[2] = "particles/scepter_aura_purple.vpcf"
+       particle_cast[3] = "particles/scepter_aura_yellow.vpcf"
+       particle_cast[4] = "particles/scepter_aura_orange.vpcf"
+       particle_cast[5] = "particles/scepter_aura_pink.vpcf"
+       particle_cast[6] = "particles/scepter_aura_olive.vpcf"
+       particle_cast[7] = "particles/scepter_aura_lightblue.vpcf"
+       particle_cast[8] = "particles/scepter_aura_darkgreen.vpcf"
+       particle_cast[9] = "particles/scepter_aura_brown.vpcf"
+
+      local playercolor_ring = ParticleManager:CreateParticle( particle_cast[npc:GetPlayerID()], PATTACH_ABSORIGIN_FOLLOW, npc )
 		end
 	end
 
