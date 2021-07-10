@@ -254,8 +254,12 @@
     "item"    "item_vod_classic"
     "item"    "item_veil_of_discord"
     "item"    "item_rod_of_atos"
+    "item"    "item_gungir"
     "item"    "item_dagon"
     "item"    "item_necronomicon"
+
+    "item"    "item_witch_blade"
+
 
   }
       
