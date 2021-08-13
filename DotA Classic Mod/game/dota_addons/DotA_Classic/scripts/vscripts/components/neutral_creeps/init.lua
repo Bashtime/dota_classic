@@ -34,12 +34,12 @@ Neutrals.Creeps["ancient"][4] = {"npc_dota_neutral_prowler_shaman", "npc_dota_ne
 
 Neutrals.Triggers = {}
 Neutrals.Triggers["neutralcamp_good_1"] = "small"
-Neutrals.Triggers["neutralcamp_good_2"] = "ancient"
+Neutrals.Triggers["neutralcamp_good_2"] = "big"
 Neutrals.Triggers["neutralcamp_good_3"] = "medium"
 Neutrals.Triggers["neutralcamp_good_4"] = "medium"
 Neutrals.Triggers["neutralcamp_good_5"] = "big"
-Neutrals.Triggers["neutralcamp_good_6"] = "big"
-Neutrals.Triggers["neutralcamp_good_7"] = "medium"
+Neutrals.Triggers["neutralcamp_good_6"] = "ancient"
+Neutrals.Triggers["neutralcamp_good_7"] = "big"
 -- Neutrals.Triggers["neutralcamp_good_8"] = "big"
 -- Neutrals.Triggers["neutralcamp_good_9"] = "medium"
 

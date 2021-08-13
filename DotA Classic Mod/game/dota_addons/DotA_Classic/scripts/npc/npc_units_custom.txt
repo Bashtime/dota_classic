@@ -1300,7 +1300,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -1333,7 +1333,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1392,7 +1392,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower45"
         "MinimapIconSize"           "320"
@@ -1425,7 +1425,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1484,7 +1484,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -1517,7 +1517,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1576,7 +1576,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -1609,7 +1609,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1668,7 +1668,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower45"
         "MinimapIconSize"           "320"
@@ -1701,7 +1701,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1761,7 +1761,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -1794,7 +1794,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1854,7 +1854,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -1887,7 +1887,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -1921,7 +1921,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2000"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.2"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -1978,7 +1978,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -2012,7 +2012,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2000"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.2"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -2070,7 +2070,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_good.vpcf"     // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/events/ti9/rock_golem_tower/radiant_tower_attack.vpcf"     // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -2104,7 +2104,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2000"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.2"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -2130,7 +2130,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/tower_good.vmdl"// Model.
+        "Model"                     "models/props_structures/tower_good3.vmdl"// Model.
         "SoundSet"                  "Tower.Water"                   // Name of sound set.
         "MinimapIcon"               "minimap_tower45"
         "MinimapIconSize"           "320"
@@ -2197,7 +2197,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2100"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.33"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -2222,7 +2222,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -2314,7 +2314,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower45"
         "MinimapIconSize"           "320"
@@ -2405,7 +2405,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -2497,7 +2497,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -2589,7 +2589,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower45"
         "MinimapIconSize"           "320"
@@ -2681,7 +2681,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -2773,7 +2773,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -2840,7 +2840,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2000"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.2"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -2865,7 +2865,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower45"
         "MinimapIconSize"           "320"
@@ -2932,7 +2932,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2000"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.2"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -2957,7 +2957,7 @@
         // General
         //
         "BaseClass"                 "npc_dota_tower"    // Class of entity of link to.
-        "Model"                     "models/props_structures/dire_tower002.vmdl"// Model.
+        "Model"                     "models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl"// Model.
         "SoundSet"                  "Tower.Fire"                    // Name of sound set.
         "MinimapIcon"               "minimap_tower90"
         "MinimapIconSize"           "320"
@@ -3024,7 +3024,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2000"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.2"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -3082,7 +3082,7 @@
         "AttackAnimationPoint"      "0.6"       // Normalized time in animation cycle to attack.
         "AttackAcquisitionRange"    "700"       // Range within a target can be acquired.
         "AttackRange"               "700"       // Range within a target can be attacked.
-        "ProjectileModel"           "particles/base_attacks/ranged_tower_bad.vpcf"      // Particle system model for projectile.
+        "ProjectileModel"           "particles/econ/world/towers/ti10_dire_tower/ti10_dire_tower_attack.vpcf"      // Particle system model for projectile.
         "ProjectileSpeed"           "750"       // Speed of projectile.
 
         // Attributes
@@ -3116,7 +3116,7 @@
         // Status
         //----------------------------------------------------------------
         "StatusHealth"              "2100"      // Base health.
-        "StatusHealthRegen"         "0"         // Health regeneration rate.
+        "StatusHealthRegen"         "0.33"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
 
@@ -9656,7 +9656,7 @@
     
         // Status
         //----------------------------------------------------------------
-        "StatusHealth"              "8"     // Base health.
+        "StatusHealth"              "200"     // Base health.
         "StatusHealthRegen"         "0"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.
@@ -9705,7 +9705,7 @@
     
         // Status
         //----------------------------------------------------------------
-        "StatusHealth"              "8"     // Base health.
+        "StatusHealth"              "200"     // Base health.
         "StatusHealthRegen"         "0"         // Health regeneration rate.
         "StatusMana"                "0"         // Base mana.
         "StatusManaRegen"           "0"         // Mana regeneration rate.

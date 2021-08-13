@@ -251,16 +251,14 @@
     "item"    "item_euls"
     "item"    "item_refresher"
 
-    "item"    "item_vod_classic"
-    "item"    "item_veil_of_discord"
+    "item"    "item_dagon"
     "item"    "item_rod_of_atos"
     "item"    "item_gungir"
-    "item"    "item_dagon"
     "item"    "item_necronomicon"
 
+    "item"    "item_vod_classic"
+    "item"    "item_veil_of_discord"
     "item"    "item_witch_blade"
-
-
   }
       
   "weapons"
@@ -288,6 +286,7 @@
     "item"    "item_radiance"
     "item"    "item_monkey_king_bar"
 
+    "item"    "item_orb_of_corrosion"
   }
     
   // Level 4 - Orange / Orb / Artifacts       

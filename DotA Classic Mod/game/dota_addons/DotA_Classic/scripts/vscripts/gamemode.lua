@@ -96,7 +96,7 @@ end
 
 
 -------------------------------------------------------------
---Bonus Gold for Randoming and Free TPs removed at GameStart
+--Bonus Gold for Randoming and 3 Free TPs removed at GameStart
 
 function GameMode:OnHeroInGame(hero)
 	local playerID = hero:GetPlayerID()    
@@ -108,6 +108,9 @@ function GameMode:OnHeroInGame(hero)
 	Timers:CreateTimer(0.1, function()
 		local tp = hero:FindItemInInventory("item_tpscroll")
 		hero:RemoveItem(tp)
+		local new_item = CreateItem("item_tp", hero, hero)
+        hero:AddItem(new_item)
+        new_item:StartCooldown(10.0)
 	end)
 end
 
@@ -115,14 +118,13 @@ end
 -- Timer updating BBcost and adds Gold, to make 0.7 ticks become 0.6 ticks
 
 function GameMode:OnGameInProgress()
---[[
-	-- A timer running every 4 seconds that starts after the Pregame, respects pauses
+--
+	-- Periodic gold gain throughout the game
 	Timers:CreateTimer(PRE_GAME_TIME, function()
-		--Add additional Gold so it's 1 gold / 0.6 seconds over all, update buybackcost every 4 seconds
 		for i=0,9 do
 			PlayerResource:ModifyGold(i,1,false,DOTA_ModifyGold_GameTick)
 
-			local lvl = PlayerResource:GetLevel(i)
+			--[[local lvl = PlayerResource:GetLevel(i)
 			local time = GameRules:GetGameTime()
 
 			if lvl ~= nil then
@@ -131,12 +133,23 @@ function GameMode:OnGameInProgress()
 						
 				local bbcost = bb_base + bb_timecost
 				PlayerResource:SetCustomBuybackCost(i,bbcost)
-			end
+			end]]
+		end 
+
+		return 0.545 --Tick Rate
+	end)
+
+	-- Periodic Lategame GPM increase
+	Timers:CreateTimer(PRE_GAME_TIME+2520.0, function()
+		--Additional 15 GPM after 42 min
+		for i=0,9 do
+			PlayerResource:ModifyGold(i,1,false,DOTA_ModifyGold_GameTick)
+
 		end 
 
 		return 4.0
 	end)
---]]
+--
 end
 
 --------------------------------------------------------------------------

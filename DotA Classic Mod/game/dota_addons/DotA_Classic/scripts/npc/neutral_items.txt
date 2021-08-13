@@ -4,16 +4,14 @@
 	{
 		"drop_rates"
 		{
-			"0:00"
+			"3:00"
 			{
 				"0" "10"
-				"1" "9"
 			}
 		}
 		
 		"items"
 		{
-			"item_ironwood_tree"			  "0"
 			"item_mango_tree"				  "0"
 		}
 	}
@@ -21,30 +19,34 @@
 	{
 		"drop_rates"
 		{
-			"4:00"
+			"6:00"
 			{
-				"0" "8"
+				"0" "9"
+				"1" "7"
 			}
 		}
 		
 		"items"
 		{
 			"item_greater_faerie_fire"		  "0"
+			"item_fluffy_hat"			  "0"
 		}
 	}
 	"3"
 	{
 		"drop_rates"
 		{
-			"8:00"
+			"9:00"
 			{
 				"0" "7"
+				"1" "7"
 			}
 		}
 		
 		"items"
 		{
 			"item_royal_jelly"				  "0"
+			"item_ironwood_tree"			  "0"
 		}
 	}
 }

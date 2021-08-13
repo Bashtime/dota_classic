@@ -293,10 +293,10 @@
   "item_bracer"  "REMOVE"
   "item_null_talisman"  "REMOVE"
 
-  "item_recipe_orb_of_corrosion" "REMOVE"
-  "item_orb_of_corrosion" "REMOVE"
+ // "item_recipe_orb_of_corrosion" "REMOVE"
+ // "item_orb_of_corrosion" "REMOVE"
   
-  "item_fluffy_hat" "REMOVE"
+ // "item_fluffy_hat" "REMOVE"
 
   "item_recipe_helm_of_the_overlord" "REMOVE"
   "item_helm_of_the_overlord" "REMOVE"

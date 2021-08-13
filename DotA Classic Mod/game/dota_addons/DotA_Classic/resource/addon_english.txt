@@ -419,7 +419,7 @@
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_agility"                  "+$agi"
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_strength"                 "+$str"		
 		"DOTA_Tooltip_Ability_item_ballista_classic_bonus_as_passive"                "%+$attack"
-		"DOTA_Tooltip_Ability_item_ballista_classic_projectile_speed"                "+ ms faster Attack Projectiles"
+		"DOTA_Tooltip_Ability_item_ballista_classic_projectile_speed"                "+Projectile Speed"
 
 
 
@@ -601,7 +601,7 @@
 		"DOTA_Tooltip_ability_item_grove_bow_classic"						"Grove Bow"
 		"DOTA_Tooltip_ability_item_grove_bow_classic_Description"			"<h1>Trait: Unique</h1>This item is fully shareable between your allies but none of its bonuses stack with itself.\nThe attack Range bonus stacks with Dragon Lance and Hurricane Pike but not with Ballista."
 		"DOTA_Tooltip_ability_item_grove_bow_classic_bonus_range"			"+Attack Range (RANGED ONLY)"
-		"DOTA_Tooltip_ability_item_grove_bow_classic_projectile_speed"			"+ms faster Attack Projectiles"
+		"DOTA_Tooltip_ability_item_grove_bow_classic_projectile_speed"			"+ Projectile Speed"
 		"DOTA_Tooltip_ability_item_grove_bow_classic_bonus_as"			"+$attack"				
 		"DOTA_Tooltip_ability_item_grove_bow_classic_Lore"			"Used to protect a sacred woodland from those who would meddle in its affairs."
 

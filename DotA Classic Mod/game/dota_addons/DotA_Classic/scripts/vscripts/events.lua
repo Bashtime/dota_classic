@@ -100,7 +100,7 @@ function GameMode:OnGameRulesStateChange()
 
 	if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 		Timers:CreateTimer(2.0, function()
-			if tostring(PlayerResource:GetSteamID(0)) == "76561198015161808" then
+			if tostring(PlayerResource:GetSteamID(0)) == "76561198015161808" or tostring(PlayerResource:GetSteamID(0)) == "76561198047612370" then
 				BOTS_ENABLED = true
 			end
 
@@ -121,7 +121,46 @@ function GameMode:OnGameRulesStateChange()
 	elseif newState == DOTA_GAMERULES_STATE_PRE_GAME then
 		-- shows -1 for some reason by default
 		GameRules:GetGameModeEntity():SetCustomDireScore(0)
-	end
+	end 
+	end 
+	
+	--Change Tower Models
+	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+		direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+                  Vector(0, 0, 0),
+                  nil,
+                  FIND_UNITS_EVERYWHERE,
+                  DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                  DOTA_UNIT_TARGET_ALL,
+                  DOTA_UNIT_TARGET_FLAG_NONE,
+                  FIND_ANY_ORDER,
+                  false)
+
+		-- Change Tower Models for dire
+			for _,unit in pairs(direUnits) do
+				if unit:IsTower() then 
+					unit:SetModel("models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl")
+					unit:SetOriginalModel("models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl")
+				end 
+			end
+
+		radiantUnits = FindUnitsInRadius(DOTA_TEAM_GOODGUYS,
+                  Vector(0, 0, 0),
+                  nil,
+                  FIND_UNITS_EVERYWHERE,
+                  DOTA_UNIT_TARGET_TEAM_FRIENDLY,
+                  DOTA_UNIT_TARGET_ALL,
+                  DOTA_UNIT_TARGET_FLAG_NONE,
+                  FIND_ANY_ORDER,
+                  false)
+
+		-- Change Tower Models for radiant
+			for _,unit in pairs(radiantUnits) do
+				if unit:IsTower() then 
+					unit:SetModel("models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl")
+					unit:SetOriginalModel("models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl")
+				end 
+			end
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
@@ -1035,6 +1074,14 @@ function GameMode:OnNPCSpawned(keys)
        particle_cast[9] = "particles/scepter_aura_brown.vpcf"
 
       local playercolor_ring = ParticleManager:CreateParticle( particle_cast[npc:GetPlayerID()], PATTACH_ABSORIGIN_FOLLOW, npc )
+		end
+
+		if (npc:IsTower() and npc:GetTeamNumber() == DOTA_TEAM_GOODGUYS) then 
+			self:GetParent():SetModel("models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl")
+			self:GetParent():SetOriginalModel("models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl")
+		elseif (npc:IsTower() and npc:GetTeamNumber() == DOTA_TEAM_BADGUYS) then 
+			self:GetParent():SetModel("models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl")
+			self:GetParent():SetOriginalModel("models/items/world/towers/ti10_dire_tower/ti10_dire_tower.vmdl")		
 		end
 	end
 

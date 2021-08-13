@@ -1020,8 +1020,120 @@
 	}
 
 
+	//=================================================================================================================
+	// Fluffy Hat
+	//=================================================================================================================
+	"item_fluffy_hat"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"593"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"100"
+		"ItemShopTags"					"health_pool"
+		"ItemQuality"					"secret_shop"
+		"ItemAliases"					"flf;fluffy hat;hat;fh"
+		"ItemPurchasable"				"1"
+		//"SecretShop"					"1"
+		//"SideShop"						"1"
+
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"bonus_health"			"100"
+			}
+		}
+	}
 
 
+	//=================================================================================================================
+	// Recipe: Orb of Corrosion
+	//=================================================================================================================
+	"item_recipe_orb_of_corrosion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"640"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"Model"							"models/props_gameplay/recipe.vmdl"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"325"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_orb_of_corrosion"
+		"ItemRequirements"
+		{
+			"01"						"item_orb_of_venom;item_blight_stone;item_fluffy_hat"
+		}
+	}
+	
+	
+
+	//=================================================================================================================
+	// Orb of Corrosion
+	//=================================================================================================================
+	"item_orb_of_corrosion"
+	{
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"ID"							"569"														// unique ID number for this item.  Do not change this once established or it will invalidate collected stats.
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+		"ItemCost"						"925"
+		"ItemShopTags"					"hard_to_tag"
+		"ItemQuality"					"rare"
+		"ItemAliases"					"ooc;orb of corrosion;corosion;corossion"
+		"ShouldBeInitiallySuggested"	"1"
+
+		"Model"							"models/props_gameplay/neutral_box.vmdl"
+		
+		// Special	
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"armor"			"3"
+			}
+			"02"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_melee"			"13"
+			}
+			"03"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"slow_range"			"6"
+			}			
+			"04"
+			{
+				"var_type"				"FIELD_INTEGER"
+				"damage"			"5"
+			}			
+			"05"
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration"			"3"
+			}			
+			"06"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"health_bonus"			"125"
+			}			
+		}
+	}
 
 	//=================================================================================================================
 	// Stout Shield
@@ -2534,7 +2646,7 @@
 			"02"
 			{
 				"var_type"				"FIELD_INTEGER"
-				"damage_bonus_ranged"	"7"
+				"damage_bonus_ranged"	"8"
 			}
 			"03"
 			{
@@ -4478,7 +4590,7 @@
 		"ShouldBeSuggested"				"1"
 		"SecretShop"					"1"
 		"SideShop"						"1"	
-
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -4842,6 +4954,7 @@
 		"ItemQuality"					"common"
 		"ItemAliases"					"perseverance"
 		"ItemDisassembleRule"			"DOTA_ITEM_DISASSEMBLE_ALWAYS"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -8187,6 +8300,7 @@
 		"ItemAliases"					"ror"
 		"ShouldBeInitiallySuggested"	"1"
 		"SideShop"						"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
 		// Sound
 		//-------------------------------------------------------------------------------------------------------------			
@@ -8650,6 +8764,7 @@
 		"ItemInitialCharges"			"1"
 		"IsTempestDoubleClonable"		"1"
 		"ShouldBeInitiallySuggested"	"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -9174,6 +9289,7 @@
 		"ItemInitialCharges"			"3"
 		"IsTempestDoubleClonable"		"0"
 		"ShouldBeInitiallySuggested"	"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------
@@ -9653,6 +9769,7 @@
 		"ItemAliases"					"roh;ring of health"
 		"SecretShop"					"1"
 		"SideShop"						"1"		
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 		
 		// Sound
 		//-------------------------------------------------------------------------------------------------------------			
@@ -9690,6 +9807,7 @@
 		"ItemAliases"					"void stone"
 		"SecretShop"					"1"		
 		"SideShop"						"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE"
 
 		// Special	
 		//-------------------------------------------------------------------------------------------------------------

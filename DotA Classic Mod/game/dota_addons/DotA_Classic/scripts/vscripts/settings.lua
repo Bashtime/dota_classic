@@ -89,7 +89,8 @@ end
 CUSTOM_BUYBACK_COOLDOWN_TIME = 360.0
 MAX_RESPAWN_TIME = 140
 
-
+MANGOCHANCE = 42
+CVALUE_MANGO = 42
 
 ENABLE_FIRST_BLOOD = true               -- Should we enable first blood for the first kill in this game?
 HIDE_KILL_BANNERS = false               -- Should we hide the kill banners that show when a player is killed?
@@ -108,11 +109,11 @@ MINIMUM_ATTACK_SPEED = 20               -- What should we use for the minimum at
 
 GAME_END_DELAY = -1                     -- How long should we wait after the game winner is set to display the victory banner and End Screen?  Use -1 to keep the default (about 10 seconds)
 VICTORY_MESSAGE_DURATION = 3            -- How long should we wait after the victory message displays to show the End Screen?  Use 
-STARTING_GOLD = 625                     -- How much starting gold should we give to each player?
+STARTING_GOLD = 675                     -- How much starting gold should we give to each player?
 DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle from naturally occurring? (Manual adjustment still possible)
 DISABLE_KILLING_SPREE_ANNOUNCER = false -- Shuold we disable the killing spree announcer?
 DISABLE_STICKY_ITEM = false             -- Should we disable the sticky item button in the quick buy area?
-SKIP_TEAM_SETUP = false                 -- Should we skip the team setup entirely?
+SKIP_TEAM_SETUP = true                 -- Should we skip the team setup entirely?
 ENABLE_AUTO_LAUNCH = true               -- Should we automatically have the game complete team setup after AUTO_LAUNCH_DELAY seconds?
 AUTO_LAUNCH_DELAY = 10.0                  -- How long should the default team selection launch timer be?  The default for custom games is 30.  Setting to 0 will skip team selection.
 LOCK_TEAM_SETUP = false                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
@@ -169,7 +170,8 @@ SKILL_POINTS_AT_EVERY_LEVEL = true			-- Should there be more than 20 skill point
 HERO_KILL_GOLD_PER_STREAK = 125				-- Gold you gain for killing heroes with streaks >3 
 HERO_KILL_GOLD_PER_LEVEL = 9				-- IceFrog called this VictimLevel
 
-
+b_USE_MULTIPLE_COURIERS = true
+TOWER_SUICIDE_ADDITIONAL_DEATH_TIME_EARLY_GAME = 10.0
 
 --Test XP_PER_LEVEL_TABLE for fast leveling and more gold
 for i=2,MAX_LEVEL do
@@ -177,18 +179,13 @@ for i=2,MAX_LEVEL do
 end
 
 
+--For Testing Purposes
 
-
-STARTING_GOLD = 20000
+STARTING_GOLD = 40000
 UNIVERSAL_SHOP_MODE = true
-HERO_SELECTION_TIME = 30.0              -- How long should we let people select their hero?
+HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
 SELECT_PENALTY_TIME = 0.0
 PRE_GAME_TIME = 4.0                    -- How long after people select their heroes should the horn blow and the game start?
 TIME_BEFORE_FORCED_RANDOM = 10
 PENALTY_TIME = 5.0
 STRATEGY_TIME = 5.0
-b_USE_MULTIPLE_COURIERS = true
-TOWER_SUICIDE_ADDITIONAL_DEATH_TIME_EARLY_GAME = 10.0
-
-MANGOCHANCE = 45
-CVALUE_MANGO = 45
