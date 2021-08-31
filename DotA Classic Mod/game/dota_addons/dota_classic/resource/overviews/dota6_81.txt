@@ -1,0 +1,8 @@
+dota6_81
+{
+	material materials/overviews/dota6_81.vmat
+	pos_x -8704
+	pos_y 9344
+	scale 17.750
+}
+

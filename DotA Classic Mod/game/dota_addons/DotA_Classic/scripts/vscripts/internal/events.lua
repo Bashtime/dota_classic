@@ -147,7 +147,7 @@ function GameMode:OnPlayerLevelUp(keys)
       		hero:SetMaximumGoldBounty(gold_bounty)
     	end]]
 
-    	-- Add a skill point when a hero levels
+    	--[[ Add a skill point when a hero levels OUTDATED
     	if SKILL_POINTS_AT_EVERY_LEVEL then
       		local levels_without_ability_point = {17, 19, 21, 22, 23, 24} -- on this levels you should get a skill point
       			for i = 1, #levels_without_ability_point do
@@ -157,6 +157,7 @@ function GameMode:OnPlayerLevelUp(keys)
         			end
       			end
     	end
+      ]]
     end
 end
 

@@ -34,8 +34,9 @@
 		"Ability7"					""										// Ability 7 - Extra.
 		"Ability8"					""										// Ability 8 - Extra.
 		"Ability9"					""
+		"Ability25"					""										// Removes Valves Attribute Bonus
 
-		"AbilityTalentStart"		"25"
+		"AbilityTalentStart"		"26"
 
 		// Armor
 		//-------------------------------------------------------------------------------------------------------------

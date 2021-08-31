@@ -31,9 +31,7 @@ function modifierClass:OnCreated( kv )
 	-- references
 	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" ) -- special value
 	self.cdr = self:GetAbility():GetSpecialValueFor( "cdr" ) -- special value
-
-
-
+	self.manacost_reduction = self:GetAbility():GetSpecialValueFor( "manacost_reduction" )
 
 	--self:StartIntervalThink(0.2)
 
@@ -57,6 +55,7 @@ function modifierClass:DeclareFunctions()
 	local funcs = {
 		MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
 		MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
+		MODIFIER_PROPERTY_MANACOST_PERCENTAGE,
 		MODIFIER_EVENT_ON_TAKEDAMAGE,		
 	}
 
@@ -103,8 +102,11 @@ function modifierClass:GetModifierConstantManaRegen()
 	return regen
 end
 
-
+function modifierClass:GetModifierPercentageManacost()
+	return self.manacost_reduction
+end
 
 function modifierClass:GetModifierPercentageCooldown()
 	return self.cdr
 end
+

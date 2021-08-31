@@ -9,6 +9,14 @@
 	local modifierName = 'modifier_orchid_classic'
 	LinkLuaModifier(modifierName, "items/orchid_classic", LUA_MODIFIER_MOTION_NONE)
 
+	--Active Item Modifier
+	modifier_orchid_classic_debuff = class({})
+	local modifierBuff = modifier_orchid_classic_debuff
+	local buffName = 'modifier_orchid_classic_debuff'
+	LinkLuaModifier(buffName, "items/orchid_classic", LUA_MODIFIER_MOTION_NONE)
+
+	modifier_orchid_dispel_check = class({})
+	LinkLuaModifier("modifier_orchid_dispel_check", "items/orchid_classic", LUA_MODIFIER_MOTION_NONE)
 
 		--Usual Settings
 		function itemClass:GetIntrinsicModifierName()
@@ -34,18 +42,135 @@
 
 --Casting
 function itemClass:OnSpellStart()
-	local dur = self:GetSpecialValueFor("silence_duration")
+	
 	local caster = self:GetCaster()
 	local target = self:GetCursorTarget()
+	self.dur = self:GetSpecialValueFor("silence_duration") * (1 - target:GetStatusResistance())
 
-	-- cancel if linken
-	if target:TriggerSpellAbsorb( self ) then return end
+	-- If the target possesses a ready Linken's Sphere, do nothing
+	if target:GetTeam() ~= self:GetCaster():GetTeam() then
+		if target:TriggerSpellAbsorb(self) then
+			return nil
+		end
+	end
 
-	target:AddNewModifier(caster, self, "modifier_bloodthorn_debuff", { duration = dur })
+	-- If the target is magic immune (Lotus Orb/Anti Mage), do nothing
+	if target:IsMagicImmune() then
+		return nil
+	end
 
-	-- effects
-	local sound_cast = "DOTA_Item.Orchid.Activate"
-	EmitSoundOn( sound_cast, target )	
+	-- Play the cast sound
+	target:EmitSound("DOTA_Item.Orchid.Activate")
+
+	-- Apply the Orchid debuff
+	target:AddNewModifier(caster, self, buffName , {duration = self.dur})
+	target:AddNewModifier(caster, self, "modifier_orchid_dispel_check" , {duration = self.dur - 0.05})
+	
+end
+
+
+---------------------------------------------------------
+--	Orchid active Check for Dispels
+---------------------------------------------------------
+
+function modifier_orchid_dispel_check:IsHidden() return true end
+function modifier_orchid_dispel_check:IsDebuff() return true end
+function modifier_orchid_dispel_check:IsPurgable() return false end
+
+
+---------------------------------------------------------
+--	Orchid active debuff
+---------------------------------------------------------
+
+function modifierBuff:IsHidden() return false end
+function modifierBuff:IsDebuff() return true end
+function modifierBuff:IsPurgable() return true end
+
+-- Modifier particle
+function modifierBuff:GetEffectName()
+	return "particles/items2_fx/orchid.vpcf"
+end
+
+function modifierBuff:GetEffectAttachType()
+	return PATTACH_OVERHEAD_FOLLOW
+end
+
+-- Reset damage storage tracking, track debuff parameters to prevent errors if the item is unequipped
+function modifierBuff:OnCreated()
+	if IsServer() then
+        if not self:GetAbility() then self:Destroy() end
+    end
+
+	if IsServer() then
+		local owner = self:GetParent()
+		owner.orchid_damage_storage = owner.orchid_damage_storage or 0
+		self.damage_factor = self:GetAbility():GetSpecialValueFor("silence_damage_percent")
+	end
+end
+
+-- Declare modifier events/properties
+function modifierBuff:DeclareFunctions()
+	return {
+		MODIFIER_EVENT_ON_TAKEDAMAGE
+	}
+end
+
+-- Declare modifier states
+function modifierBuff:CheckState()
+	return {
+		[MODIFIER_STATE_SILENCED] = true
+	}
+end
+
+-- Track damage taken
+function modifierBuff:OnTakeDamage(keys)
+	if IsServer() then
+		local owner = self:GetParent()
+		local target = keys.unit
+
+		-- If this unit is the one suffering damage, store it
+		if owner == target then
+			owner.orchid_damage_storage = owner.orchid_damage_storage + keys.damage
+		end
+	end
+end
+
+-- When the debuff ends, deal damage
+function modifierBuff:OnDestroy()
+	if IsServer() then
+
+		-- Parameters
+		local owner = self:GetParent()
+		local ability = self:GetAbility()
+		local caster = ability:GetCaster()
+
+		-- If dispelled, the Dispel Check Modifier didn't expire before.
+		if owner:HasModifier( "modifier_orchid_dispel_check" ) then 
+			-- Clear damage taken variable
+			self:GetParent().orchid_damage_storage = nil
+			return
+		end
+		
+		--if modifierBuff:GetElapsedTime() == modifierBuff:GetAbility().dur then
+
+			-- If damage was taken, play the effect and damage the owner
+			if owner.orchid_damage_storage > 0 then
+
+				-- Calculate and deal damage
+				local damage = owner.orchid_damage_storage * self.damage_factor * 0.01
+				ApplyDamage({attacker = caster, victim = owner, ability = ability, damage = damage, damage_type = DAMAGE_TYPE_MAGICAL})
+
+				-- Fire damage particle
+				local orchid_end_pfx = ParticleManager:CreateParticle("particles/items2_fx/orchid_pop.vpcf", PATTACH_OVERHEAD_FOLLOW, owner)
+				ParticleManager:SetParticleControl(orchid_end_pfx, 0, owner:GetAbsOrigin())
+				ParticleManager:SetParticleControl(orchid_end_pfx, 1, Vector(100, 0, 0))
+				ParticleManager:ReleaseParticleIndex(orchid_end_pfx)
+			end
+		--end
+
+		-- Clear damage taken variable
+		self:GetParent().orchid_damage_storage = nil
+	end
 end
 
 
@@ -71,7 +196,6 @@ function modifierClass:OnCreated()
 
 	self.hp_reg = self:GetAbility():GetSpecialValueFor( "hp_reg" )
 	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" )	
-
 
 end
 

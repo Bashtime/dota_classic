@@ -116,7 +116,7 @@ end
 					--The Usual Modifiers
 					MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 					MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-					MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+					MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 					MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 					MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 					MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
@@ -149,13 +149,16 @@ end
 					return self.bonus_armor
 				end
 
-				function modifierClass:GetModifierMoveSpeedBonus_Constant()
+				function modifierClass:GetModifierMoveSpeedBonus_Special_Boots()
+					--Useless now
+					--[[
 					local caster = self:GetParent()
 					if caster:HasModifier("modifier_tranquil") then return 0 end
 					if caster:HasModifier("modifier_item_power_treads") then return 0 end
 					if caster:HasModifier("modifier_item_boots_of_travel") then return 0 end
 					if caster:HasModifier("modifier_mboots") then return 0 end
 					if caster:HasModifier("modifier_greaves") then return 0 end
+					]]
 					return self.bonus_ms
 				end
 

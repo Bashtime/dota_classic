@@ -146,8 +146,9 @@ function GameMode:_InitGameMode()
         unit:RemoveItem(item)
         local new_item = CreateItem("item_tp", unit, unit)
         unit:AddItem(new_item)
+
         if unit.bFirstTP == nil then
-          new_item:EndCooldown()
+          --new_item:EndCooldown()
           unit.bFirstTP = false
         end
         return true
@@ -255,7 +256,10 @@ function GameMode:_CaptureGameMode()
 
 		mode:SetDaynightCycleDisabled( DISABLE_DAY_NIGHT_CYCLE )
 		mode:SetKillingSpreeAnnouncerDisabled( DISABLE_KILLING_SPREE_ANNOUNCER )
-		mode:SetStickyItemDisabled( DISABLE_STICKY_ITEM )
+		--mode:SetStickyItemDisabled( DISABLE_STICKY_ITEM )
+		mode:SetDefaultStickyItem("item_tp")
+		mode:SetCustomBackpackSwapCooldown(BACKPACK_SWAPCD)
+		mode:SetCustomBackpackCooldownPercent(BACKPACK_CD_PERC)
 
 		self:OnFirstPlayerLoaded()
 	end

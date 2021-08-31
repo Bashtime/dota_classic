@@ -47,13 +47,29 @@ END_GAME_ON_KILLS = false
 BOUNTY_RUNE_SPAWN_TIME = 60.0 * 5 -- 5 minutes
 
 BOUNTY_RUNE_POSITIONS = {}
-BOUNTY_RUNE_POSITIONS[1] = Vector(-4300, 820, 512)
-BOUNTY_RUNE_POSITIONS[2] = Vector(3300, 250, 512)
-
+BOUNTY_RUNE_POSITIONS[1] = Vector(-4400, 1120, 400) 
+BOUNTY_RUNE_POSITIONS[2] = Vector(3345, 366, 400)
 
 TELEPORT_SCROLL_ON_START = false         -- Should the heroes have a teleport scroll in their inventory right at the start of the game?
 BOTS_ENABLED = false
 DISABLE_ALL_GOLD_FROM_HERO_KILLS = true
+
+BACKPACK_SWAPCD = 3.5
+BACKPACK_CD_PERC = 0.9
+
+
+-- 6.88 Kill and AOE Gold XP
+KILLGOLD_BASE = 200
+KILLGOLD_LVL_MULT = 9
+
+MAX_STREAKBONUS = 1250
+BONUS_PER_KILL = 125
+
+AOE_GOLD_BASE = {0,125,40,10,6}
+AOE_GOLD_LVL_MULT = {0,12,10,6,6}
+
+AOE_XP_BASE = {90,60,30,20,15}
+AOE_XP_LVL_MULT = {20,15,7,5,4}
 
 MAX_LEVEL = 25                         
 USE_CUSTOM_XP_VALUES = true             
@@ -114,9 +130,9 @@ DISABLE_DAY_NIGHT_CYCLE = false         -- Should we disable the day night cycle
 DISABLE_KILLING_SPREE_ANNOUNCER = false -- Shuold we disable the killing spree announcer?
 DISABLE_STICKY_ITEM = false             -- Should we disable the sticky item button in the quick buy area?
 SKIP_TEAM_SETUP = true                 -- Should we skip the team setup entirely?
-ENABLE_AUTO_LAUNCH = true               -- Should we automatically have the game complete team setup after AUTO_LAUNCH_DELAY seconds?
-AUTO_LAUNCH_DELAY = 10.0                  -- How long should the default team selection launch timer be?  The default for custom games is 30.  Setting to 0 will skip team selection.
-LOCK_TEAM_SETUP = false                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
+ENABLE_AUTO_LAUNCH = false               -- Should we automatically have the game complete team setup after AUTO_LAUNCH_DELAY seconds?
+AUTO_LAUNCH_DELAY = 15.0                  -- How long should the default team selection launch timer be?  The default for custom games is 30.  Setting to 0 will skip team selection.
+LOCK_TEAM_SETUP = true                 -- Should we lock the teams initially?  Note that the host can still unlock the teams 
 
 
 
@@ -180,12 +196,11 @@ end
 
 
 --For Testing Purposes
-
-STARTING_GOLD = 40000
+STARTING_GOLD = 32000
 UNIVERSAL_SHOP_MODE = true
 HERO_SELECTION_TIME = 15.0              -- How long should we let people select their hero?
 SELECT_PENALTY_TIME = 0.0
-PRE_GAME_TIME = 4.0                    -- How long after people select their heroes should the horn blow and the game start?
+PRE_GAME_TIME = 5.0                    -- How long after people select their heroes should the horn blow and the game start?
 TIME_BEFORE_FORCED_RANDOM = 10
 PENALTY_TIME = 5.0
-STRATEGY_TIME = 5.0
+STRATEGY_TIME = 15.0

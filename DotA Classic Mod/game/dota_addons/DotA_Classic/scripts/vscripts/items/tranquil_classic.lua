@@ -52,7 +52,9 @@
 function modifierClass:OnAttackLanded( keys )
 
 	if not IsServer() then return end
-	local break_time = self:GetAbility():GetSpecialValueFor("break_time")
+	--local break_time = self:GetAbility():GetSpecialValueFor("break_time") 
+	local item = self:GetAbility()
+	local break_time = item:GetEffectiveCooldown(item:GetLevel())
 	local attacker = keys.attacker
 	local target = keys.target
 	local caster = self:GetParent()
@@ -65,14 +67,10 @@ function modifierClass:OnAttackLanded( keys )
 		end
 	end
 
-
 	if target == self:GetParent() then
 		target:AddNewModifier(target, self:GetAbility(), buffModifierName, { duration = break_time })
 		self:GetAbility():StartCooldown(break_time)
 	end
-
-
-
 
 end
 
@@ -111,8 +109,11 @@ function modifierClass:OnCreated()
 
 	self.hp_reg = self:GetAbility():GetSpecialValueFor( "hp_reg" )
 	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" )	
-
+	self.caster = self:GetParent()
 	local caster = self:GetParent()
+
+	self.minus_ms = self:GetAbility():GetSpecialValueFor( "minus_ms" )
+	self.minus_reg = self:GetAbility():GetSpecialValueFor( "minus_reg" )
 	--
 	if caster:IsIllusion() then caster:AddNewModifier(caster, self:GetAbility(), buffModifierName, {duration = -1}) end
 
@@ -142,7 +143,7 @@ end
 					--The Usual Modifiers
 					MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 					MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-					MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+					MODIFIER_PROPERTY_MOVESPEED_BONUS_UNIQUE,
 					MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
 					MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
 
@@ -174,11 +175,20 @@ end
 					return self.bonus_armor
 				end
 
-				function modifierClass:GetModifierMoveSpeedBonus_Constant()
+				function modifierClass:GetModifierMoveSpeedBonus_Special_Boots()
+					--[[
 					local caster = self:GetParent()
 					if caster:HasModifier("modifier_bot") then return 0 end
 					if caster:HasModifier("modifier_botsii") then return 0 end
-					return self.bonus_ms
+					if caster:HasModifier("modifier_item_power_treads") then return self.bonus_ms - 50 end
+					if caster:HasModifier("modifier_treads_of_ermacor") then return self.bonus_ms - 65 end
+					if caster:HasModifier("modifier_spider_legs_classic") then return self.bonus_ms - 70 end
+					]]
+					if self.caster:HasModifier( buffModifierName ) or not self:GetAbility():IsCooldownReady() then 
+						return self.bonus_ms - self.minus_ms 
+					else 		
+						return self.bonus_ms
+					end
 				end		
 
 				function modifierClass:GetModifierAttackSpeedBonus_Constant()
@@ -216,7 +226,11 @@ end
 				end
 
 				function modifierClass:GetModifierConstantHealthRegen()
-					return self.hp_reg
+					if self.caster:HasModifier( buffModifierName ) or not self:GetAbility():IsCooldownReady() then 
+						return self.hp_reg - self.minus_reg 
+					else 		
+						return self.hp_reg
+					end
 				end
 
 				function modifierClass:GetModifierConstantManaRegen()
@@ -231,8 +245,7 @@ end
 function buffModifierClass:OnCreated()
 	--References
 	local caster = self:GetParent()
-	self.minus_ms = -self:GetAbility():GetSpecialValueFor( "minus_ms" )
-	self.minus_reg = -self:GetAbility():GetSpecialValueFor( "minus_reg" )
+
 end
 
 		function buffModifierClass:IsHidden()
@@ -240,7 +253,7 @@ end
 		end
 
 		function buffModifierClass:IsPurgable()
-			return true
+			return false
 		end
 
 		function buffModifierClass:RemoveOnDeath()
@@ -250,12 +263,13 @@ end
 
 function buffModifierClass:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-		MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
+		--MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
+		--MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
 	}
 	return funcs
 end
 
+--[[
 function buffModifierClass:GetModifierConstantHealthRegen()
 	return self.minus_reg
 end
@@ -264,6 +278,9 @@ function buffModifierClass:GetModifierMoveSpeedBonus_Constant()
 	local caster = self:GetParent()
 	if caster:HasModifier("modifier_greaves") then return -25 end
 	if caster:HasModifier("modifier_spider_legs_classic") then return -15 end
+	if caster:HasModifier("modifier_item_power_treads") then return -35 end
+	if caster:HasModifier("modifier_item_treads_of_ermacor") then return -20 end
+	
 	return self.minus_ms
 end
-
+]]

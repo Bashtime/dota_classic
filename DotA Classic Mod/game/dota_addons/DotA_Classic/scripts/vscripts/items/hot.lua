@@ -57,13 +57,15 @@ function modifierClass:OnCreated()
 	self.hp_reg_perc = self:GetAbility():GetSpecialValueFor( "health_regen_rate" )
 	self.hp_reg_amp = self:GetAbility():GetSpecialValueFor( "hp_regen_amp" )	
 	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" )
-	self:StartIntervalThink(0.08)	
+	self:StartIntervalThink(0.1)	
 end
 
 
 function modifierClass:OnIntervalThink()
-	local cd = self:GetAbility():GetCooldownTime()
-	if cd == 0 then self:SetStackCount(0) end
+	if self:GetAbility():IsCooldownReady() then self:SetStackCount(0) end
+	--Both Methods work but produce nil values in console
+	--local cd = self:GetAbility():GetCooldownTime()
+	--if cd == 0 then self:SetStackCount(0) end
 end
 
 
@@ -184,7 +186,7 @@ function modifierClass:OnTakeDamage( params )
 		
 		local victim = self:GetParent()
 
-		if params.unit == victim 
+		if params.unit == victim and params.attacker ~= victim
 			and (params.attacker:IsHero() or params.attacker:GetUnitName() == "npc_dota_roshan")
 		then
 			if victim:IsRangedAttacker() then

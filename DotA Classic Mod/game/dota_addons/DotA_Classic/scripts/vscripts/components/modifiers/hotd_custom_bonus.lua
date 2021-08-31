@@ -33,18 +33,17 @@ end
 	end
 
 function modifier_hotd_custom_bonus:OnCreated()
-	self:StartIntervalThink(0.2)
+	self:StartIntervalThink(0.5)
 	self.dmg = 9
 	self.armor = 5
 end
-
 
 function modifier_hotd_custom_bonus:OnIntervalThink()
 	local caster = self:GetParent()
 	local k = 0
 
 	if not IsServer() then return end   
-	for i=0, 5 do
+	for i=DOTA_ITEM_SLOT_1, DOTA_ITEM_SLOT_6 do
         local item = caster:GetItemInSlot(i)
 
         if item then
@@ -55,17 +54,19 @@ function modifier_hotd_custom_bonus:OnIntervalThink()
     end
 
     if k ~= self:GetStackCount() then self:SetStackCount(k) end
+	--self:StartIntervalThink(0.2)
 end
-
 
 function modifier_hotd_custom_bonus:GetModifierPreAttack_BonusDamage()
 	local stacks = self:GetStackCount()
 	return self.dmg * stacks
 end
 
+--[[
 function modifier_hotd_custom_bonus:GetModifierPhysicalArmorBonus()
 	local stacks = self:GetStackCount()
 	return self.armor * stacks
 end
+]]
 
 

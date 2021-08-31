@@ -15,8 +15,6 @@ function abilityClass:GetIntrinsicModifierName()
 end
 
 
-
-
 --Change Behavior when getting talent levels
 function abilityClass:GetBehavior()
 	local caster = self:GetCaster()

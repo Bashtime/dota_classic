@@ -23,6 +23,17 @@
 		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_BADGUYS] = "The Scourge";		// 298C17 Hex for name color only
 -->
 
+<!--		var ponel = $.GetContextPanel().FindChildTraverse("SearchResults");
+		var penel = $.GetContextPanel().FindChildTraverse("SearchResultsContents");
+		var panel = $.GetContextPanel().FindChildTraverse("SearchResult0");
+		$.Msg(ponel);
+		$.Msg(penel);
+		$.Msg(panel); 
+		panel.html = "true";
+-->		
+		var NoNeutralsTab = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("shop").FindChildTraverse("Main").FindChildTraverse("HeightLimiter").FindChildTraverse("GridMainShop").FindChildTraverse("GridShopHeaders").FindChildTraverse("GridMainTabs");
+		NoNeutralsTab.FindChildTraverse("GridNeutralsTab").style.visibility = "collapse"; 
+
 		var Parent = $.GetContextPanel().GetParent().GetParent()
 		var hudElements = Parent.FindChildTraverse("HUDElements")
 

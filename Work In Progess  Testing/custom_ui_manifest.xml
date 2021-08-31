@@ -1,0 +1,194 @@
+<root> 
+	<scripts>
+	</scripts>
+
+	<script>
+		GameEvents.Subscribe("CreateIngameErrorMessage", function(data) 
+		{
+			GameEvents.SendEventClientSide("dota_hud_error_message", 
+			{
+				"splitscreenplayer": 0,
+				"reason": data.reason || 80,
+				"message": data.message
+			})
+		})
+<!--
+		GameUI.CustomUIConfig().team_colors = {}
+		GameUI.CustomUIConfig().team_names = {}
+
+		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "#08640E;"; // Format this later using rgbtohex lib, and taking team color in settings.lua
+		GameUI.CustomUIConfig().team_colors[DOTATeam_t.DOTA_TEAM_BADGUYS ] = "#640808;"; // Format this later using rgbtohex lib, and taking team color in settings.lua
+
+		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "The Sentinel";		// BF0824 Hex for name color only
+		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_BADGUYS] = "The Scourge";		// 298C17 Hex for name color only
+-->
+
+		var Parent = $.GetContextPanel().GetParent().GetParent()
+		var hudElements = Parent.FindChildTraverse("HUDElements")
+
+		HidePickScreen();
+		EnableCustomUI();
+		HidePickScreenTalent();
+
+		var PreGame = Parent.FindChildTraverse("PreGame")
+
+		function HidePickScreen() {
+			if (!Game.GameStateIs(3)) {
+				if (PreGame)
+					PreGame.style.opacity = "0";
+
+				$.Schedule(0.25, HidePickScreen)
+			}
+			else {
+				if (PreGame)
+					PreGame.style.opacity = "1";				
+			}
+		}
+
+		function HidePickScreenTalent() {
+			if (Game.GameStateIs(4))
+				return;
+
+			if (!Game.GameStateIs(3)) {
+				$.Schedule(0.03, HidePickScreenTalent)
+			}
+			else {
+				var HeroInspect = Parent.FindChildTraverse("HeroInspect");
+				var HeroSelectionTalents = HeroInspect.FindChildrenWithClassTraverse("StatBranch")[0];
+				var HeroSelectionAghanim = HeroInspect.FindChildrenWithClassTraverse("ScepterDetails")[0];
+
+				if (HeroSelectionTalents) {
+					HeroSelectionTalents.style.visibility = "collapse";
+				}
+
+				if (HeroSelectionAghanim) {
+					HeroSelectionAghanim.style.visibility = "collapse";
+				}
+
+				$.Schedule(0.03, HidePickScreenTalent);
+			}
+		}
+
+		function EnableCustomUI() {
+			if (!Game.GameStateIsAfter(5)) {
+				$.Schedule(0.25, EnableCustomUI)
+			} else {
+				var team = "Radiant";
+
+				if (Game.GetLocalPlayerInfo(Players.GetLocalPlayer()).player_team_id == 3)
+					team = "Dire";
+
+				var container = Parent.FindChildTraverse("TopBar" + team + "PlayersContainer");
+
+				for (var i = 0; i < container.GetChildCount(); i++) {
+					var health = container.GetChild(i).FindChildTraverse("HealthBar");
+					var mana = container.GetChild(i).FindChildTraverse("ManaBar");
+
+					health.style.opacity = 1;
+					mana.style.opacity = 1;
+
+					health.style.transform = "translateY(11px)";
+					mana.style.transform = "translateY(11px)";
+
+					health.style.zIndex = "0";
+					mana.style.zIndex = "0";
+
+					var respawn_timer = container.GetChild(i).FindChildTraverse("RespawnTimer")
+
+					respawn_timer.style.marginBottom = "81px"; // 99px
+				}
+
+				var neutral_slot = Parent.FindChildTraverse("inventory_neutral_slot_container");
+				if (neutral_slot)
+					neutral_slot.style.opacity = "0";
+
+				var aghs_container = Parent.FindChildTraverse("AghsStatusContainer");
+				if (aghs_container)
+					aghs_container.style.opacity = "0";
+
+				var XPProgress = hudElements.FindChildTraverse("XPProgress");
+				if (XPProgress)
+					XPProgress.style.opacity = "1";
+
+				var NeutralsAll = hudElements.FindChildrenWithClassTraverse("NeutralItemsToggleButton");
+				$.Msg(NeutralsAll);
+				if (NeutralsAll && NeutralsAll[0])
+					NeutralsAll[0].style.visibility = "collapse";
+
+				DisableTalentTreeUI();
+
+//				var center_block = hudElements.FindChildTraverse("center_block");
+//				IncreaseCenterBlockSize(center_block);
+			}
+		}
+
+		function DisableTalentTreeUI() {
+			var newUI = hudElements.FindChildTraverse("center_block");
+
+			newUI.FindChildTraverse("StatBranch").style.visibility = "collapse";
+			newUI.FindChildTraverse("StatBranch").SetPanelEvent("onmouseover", function(){});
+			newUI.FindChildTraverse("StatBranch").SetPanelEvent("onactivate", function(){});
+			newUI.FindChildTraverse("level_stats_frame").style.visibility = "collapse";
+
+			DisableTalentTreeScoreboardUI();
+		}
+
+		function DisableTalentTreeScoreboardUI() {
+			var scoreboard = hudElements.FindChildTraverse("scoreboard");
+
+			if (scoreboard.BHasClass("ScoreboardClosed")) {
+				$.Schedule(0.1, DisableTalentTreeScoreboardUI);
+				return;
+			}
+
+			var radiant_legend_tree_talent = scoreboard.FindChildTraverse("RadiantHeader").FindChildTraverse("TalentTreeLabel");
+
+			if (radiant_legend_tree_talent) {
+				radiant_legend_tree_talent.style.visibility = "collapse";
+			}
+
+			var dire_legend_tree_talent = scoreboard.FindChildTraverse("RadiantHeader").FindChildTraverse("TalentTreeLabel");
+			var talents_panels = hudElements.FindChildrenWithClassTraverse("TalentTree");
+
+			if (dire_legend_tree_talent) {
+				dire_legend_tree_talent.style.visibility = "collapse";
+			}
+
+			for (var i in talents_panels) {
+				talents_panels[i].style.visibility = "collapse";
+			}
+		}
+
+		function IncreaseCenterBlockSize(parent) {
+			$.Msg(parent)
+
+			for (var i = 0; i < parent.GetChildCount(); i++) {
+				if (parent.GetChild(i)) {
+					$.Msg("ITerate!")
+					var child_width = parent.GetChild(i).style.width;
+					var child_height = parent.GetChild(i).style.height;
+
+					if (child_width) {
+						child_width = parseInt(child_width.substring(0, child_width.length -2));
+//						$.Msg(child_width)
+						parent.GetChild(i).style.width = child_width * 1.2 + "px";
+//						$.Msg(child_width)
+					}
+
+					if (child_height) {
+						child_height = parseInt(child_height.substring(0, child_height.length -2));
+						parent.GetChild(i).style.height = child_height * 1.2 + "px";
+					}
+
+					IncreaseCenterBlockSize(parent.GetChild(i))
+				}
+			}
+		}
+	</script>
+
+	<Panel>
+		<!-- CustomUIElements go here.-->
+
+		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/barebones_notifications.xml" />
+	</Panel>
+</root>

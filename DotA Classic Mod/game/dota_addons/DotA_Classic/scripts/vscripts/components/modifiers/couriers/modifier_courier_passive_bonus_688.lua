@@ -18,8 +18,8 @@ end
 function modifier_courier_passive_bonus_688:DeclareFunctions() return {
 	MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
 	MODIFIER_PROPERTY_VISUAL_Z_DELTA,
-	MODIFIER_PROPERTY_HEALTH_BONUS,
 	MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT,
+	MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 --	MODIFIER_PROPERTY_MODEL_CHANGE,
 } end
 
@@ -27,7 +27,7 @@ function modifier_courier_passive_bonus_688:OnCreated()
 	self.base_movespeed = 230
 	self.bonus_movespeed_per_min = 15
 	self.max_movespeed = 425
-	self.hp_bonus = 80
+	self.hp_bonus = 100
 
 	self.interval = {}
 	self.interval[0] = 210 -- 3:30 (Flying Courier)
@@ -49,11 +49,14 @@ function modifier_courier_passive_bonus_688:OnIntervalThink()
 		print("Flying Courier!")
 		self:GetParent():SetModel("models/props_gameplay/donkey_wings.vmdl")
 		self:GetParent():SetOriginalModel("models/props_gameplay/donkey_wings.vmdl")
-		self:GetParent():SetHealth(110)
+		self:GetParent():SetBaseMaxHealth(100)
+		self.hp_bonus = 25
 	end
 
 	if self:GetStackCount() == 2 then
 		print("Burst Courier!")
+		self.hp_bonus = 50
+		self:GetParent():SetBaseMaxHealth(125)
 		if self:GetParent():FindAbilityByName("courier_burst") then
 			self:GetParent():FindAbilityByName("courier_burst"):SetLevel(1)
 		end
@@ -61,6 +64,8 @@ function modifier_courier_passive_bonus_688:OnIntervalThink()
 
 	if self:GetStackCount() == 3 then
 		print("Shield Courier!")
+		self:GetParent():SetBaseMaxHealth(150)
+		self.hp_bonus = 75
 		if self:GetParent():FindAbilityByName("courier_shield") then
 			self:GetParent():FindAbilityByName("courier_shield"):SetLevel(1)
 		end
@@ -80,14 +85,6 @@ function modifier_courier_passive_bonus_688:GetModifierMoveSpeedBonus_Constant()
 	return new_speed
 end
 
-function modifier_courier_passive_bonus_688:GetModifierHealthBonus()
-	if self:GetStackCount() >= 1 then
-		print("Bonus HP")
-		return self.hp_bonus
-	end
-
-	return 0
-end
 
 function modifier_courier_passive_bonus_688:GetVisualZDelta()
 	if self:GetStackCount() >= 1 then
@@ -99,9 +96,7 @@ end
 
 function modifier_courier_passive_bonus_688:GetModifierIgnoreMovespeedLimit()
 	if self:GetParent():HasModifier("modifier_courier_burst") then
-		print("true")
 		return 1
-
 	end
 
 	return 0
@@ -120,6 +115,8 @@ function modifier_courier_bottle_slow:RemoveOnDeath() return false end
 function modifier_courier_bottle_slow:DeclareFunctions() return {
 	MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
 } end
+
+function modifier_courier_bottle_slow:GetModifierExtraHealthBonus() return self.hp_bonus end
 
 function modifier_courier_bottle_slow:OnInventoryContentsChanged()
 	if not IsServer() then return end

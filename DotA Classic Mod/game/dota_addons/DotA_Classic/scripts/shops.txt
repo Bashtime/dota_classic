@@ -2,8 +2,9 @@
 {
   "consumables"
   {
-	"item"    "item_tango"
-	"item"    "item_flask"
+	  "item"    "item_tango"
+	  "item"	  "item_tango_classic"
+	  "item"    "item_flask"
     "item"    "item_faerie"
     "item"    "item_faerie_fire"
     "item"    "item_courier"
@@ -71,6 +72,9 @@
     "item"    "item_quarterstaff"
     "item"    "item_blitz_knuckles"
     "item"    "item_hyperstone"
+
+    "item"    "item_broom_handle_classic"
+    "item"    "item_grove_bow_classic"
   }
       
   "misc"
@@ -94,6 +98,12 @@
     "item"    "item_shadow_amulet"
     "item"    "item_spell_prism"
     "item"    "item_spell_prism_classic"
+    "item"    "item_illusion_cape"
+    // "item"    "item_chipped_vest"
+    "item"    "item_cloak_of_flames"
+    "item"    "item_cof_classic"
+
+    "item"    "item_faded_broach_classic"  
     "item"    "item_keen_optic_classic"
     "item"    "item_nether_shawl_classic"
   } 
@@ -112,18 +122,27 @@
     "item"    "item_vitality_booster"
     "item"    "item_energy_booster"
 
-    "item"    "item_faded_broach_classic"    
-    "item"    "item_broom_handle_classic"
-    "item"    "item_grove_bow_classic"
-    "item"    "item_spy_gadget" 
-    "item"    "item_telescope"
+    // "item"    "item_spy_gadget" 
+    // "item"    "item_telescope"
+    // "item"    "item_paladin_sword"
+    // "item"    "item_the_leveller" 
+    // "item"    "item_titan_classic"    
 
-    "item"    "item_paladin_sword"
-    "item"    "item_the_leveller" 
-    "item"    "item_titan_classic"
+    "item"    "item_treads_of_ermacor"
     "item"    "item_spider_legs_classic"
+    "item"    "item_striders_classic"
+    "item"    "item_greaves_classic"     
 
+
+    "item"    "item_glimmer_cape"
+    "item"    "item_crimson_guard"
     "item"    "item_mirror_classic"
+    "item"    "item_desolator_2"    
+
+    "item"    "item_lotus_classic"
+    "item"    "item_holy_aeon_disk"    
+    "item"    "item_ballista_classic"
+    "item"    "item_ballista"    
     "item"    "item_tome_of_strength"
     "item"    "item_tome_of_agility"
     "item"    "item_tome_of_intelligence"
@@ -140,28 +159,34 @@
     "item"    "item_phaseboots_classic"
     "item"    "item_travel_boots"
 
+    "item"    "item_mboots_classic"
+    "item"    "item_sr"    
     "item"    "item_headdress"
+    "item"    "item_headdress_classic"    
     "item"    "item_mekansm"
     "item"    "item_mekansm_classic"
     "item"    "item_arcane_boots"
-    "item"    "item_mboots_classic"
-    "item"    "item_greaves_classic"    
+
+   
     "item"    "item_guardian_greaves"
 
-    "item"    "item_helm_of_the_dominator"
+    "item"    "item_drums"
+    "item"    "item_orb_of_corrosion"
     "item"    "item_urn_of_shadows"
+    "item"    "item_urn"
     "item"    "item_spirit_vessel"
     "item"    "item_ancient_janggo"
-    "item"    "item_drums"
+
 
     "item"    "item_soul_ring"
-    "item"    "item_sr"
+
     "item"    "item_pers"
     "item"    "item_perse"
     "item"    "item_soul_booster"
     "item"    "item_soulbooster"
     "item"    "item_bloodstone"
     "item"    "item_bloodstone_classic"
+    "item"    "item_oc_classic"    
   }
 
   // Level 2 - Blue Recipes
@@ -186,7 +211,7 @@
     "item"    "item_satanic"
     "item"    "item_ethereal_blade"
     "item"    "item_octarine_core"
-    "item"    "item_oc_classic"
+    "item"    "item_shivas_guard"
     "item"    "item_sphere"
     "item"    "item_linkens"
 
@@ -207,65 +232,78 @@
     "item"    "item_aquila_classic"    
     "item"    "item_vladmir"
     "item"    "item_vlads_classic"
+    "item"    "item_helm_of_the_dominator"    
     "item"    "item_iron_talon"
     "item"    "item_iron_classic"  
 
     "item"    "item_buckler"
-    "item"    "item_buckler_classic"
+
     "item"    "item_poor_mans_shield"
     "item"    "item_vanguard"
-    "item"    "item_crimson_guard"
 
+    "item"    "item_moc"
+    "item"    "item_solar_crest"
+
+    "item"    "item_buckler_classic"
     "item"    "item_assault"
     "item"    "item_ac"
-    "item"    "item_shivas_guard"
-    "item"    "item_lotus_classic"
+
+
     "item"    "item_lotus_orb"
     "item"    "item_blade_mail"
+    "item"    "item_blademail"
 
-    "item"    "item_armlet"
     "item"    "item_medallion_of_courage"
-    "item"    "item_solar_crest"
+
+    "item"    "item_coq"
+    "item"    "item_armlet"
 
   }
     
   // Level 3 - Purple Recipes 
   "defense"
   {
-    "item"    "item_glimmer_cape"
+
+
+    "item"    "item_necronomicon"       
     "item"    "item_aether_lens"
     "item"    "item_aether_lens_classic"    
     "item"    "item_ex_machina_classic"
     "item"    "item_ex_machina"
     "item"    "item_meteor_hammer"
+    "item"    "item_meme_hammer"
 
+    "item"    "item_vod_classic" 
     "item"    "item_hood_of_defiance"
     "item"    "item_pipe"
-    "item"    "item_holy_locket_classic"
-    "item"    "item_holy_locket"
+  //  "item"    "item_holy_locket_classic"
+  //  "item"    "item_holy_locket"
     "item"    "item_black_king_bar"
-
     "item"    "item_aeon_disk"
+
+
     "item"    "item_force_staff"
+    "item"    "item_fs_classic"    
     "item"    "item_cyclone"
     "item"    "item_euls"
-    "item"    "item_refresher"
-
+ 
+    "item"    "item_veil_of_discord"
     "item"    "item_dagon"
     "item"    "item_rod_of_atos"
+    "item"    "item_atos"
     "item"    "item_gungir"
-    "item"    "item_necronomicon"
-
-    "item"    "item_vod_classic"
-    "item"    "item_veil_of_discord"
+   "item"    "item_refresher"
     "item"    "item_witch_blade"
   }
       
   "weapons"
   {
     "item"    "item_invis_sword" 
+    "item"    "item_shadow_blade" 
     "item"    "item_silver_edge"
+    "item"    "item_silver_edge_classic"
     "item"    "item_nullifier"
+    "item"    "item_nullifier_classic"
     "item"    "item_moon_shard"
 
     "item"    "item_orchid"
@@ -275,18 +313,16 @@
     "item"    "item_lesser_crit"    
     "item"    "item_greater_crit"  
 
+    "item"    "item_mom"
     "item"    "item_basher"
     "item"    "item_abyssal_blade"   
-    "item"    "item_desolator"
-    "item"    "item_desolator_2"  
+    "item"    "item_abyssal_classic"
+    "item"    "item_desolator"  
 
-    "item"    "item_hand_of_midas"
-    "item"    "item_bfury"
-    "item"    "item_bfury_classic"
-    "item"    "item_radiance"
-    "item"    "item_monkey_king_bar"
+    "item"    "item_dragon_lance"
+    "item"    "item_hurricane_pike"
 
-    "item"    "item_orb_of_corrosion"
+
   }
     
   // Level 4 - Orange / Orb / Artifacts       
@@ -315,10 +351,12 @@
     "item"    "item_trident_classic"
 
     "item"    "item_mask_of_madness" 
-    "item"    "item_dragon_lance"
-    "item"    "item_hurricane_pike"
-    "item"    "item_ballista_classic"
-    "item"    "item_ballista"
+    "item"    "item_hand_of_midas"
+    "item"    "item_bfury"
+    "item"    "item_bfury_classic"
+    "item"    "item_radiance"
+    "item"    "item_monkey_king_bar"
+
   }
 
   "sideshop1"
@@ -326,6 +364,7 @@
     "item"    "item_tpscroll"
     "item"    "item_magic_stick"
     "item"    "item_sobi_mask"
+    "item"    "item_sages_mask"
     "item"    "item_ring_of_regen"
 
     "item"    "item_orb_of_venom"
@@ -333,7 +372,7 @@
     "item"    "item_cloak"
     "item"    "item_ring_of_health"
 
-    "item"    "item_void_stone"     
+    "item"    "item_void_stone_classic"     
     "item"    "item_lifesteal"
     "item"    "item_helm_of_iron_will"
     "item"    "item_energy_booster"
@@ -362,7 +401,7 @@
   
   "pregame"
     {
-
+        "item"      "item_tango_classic"
         "item"      "item_tango"
         "item"      "item_flask"
         "item"      "item_clarity"
@@ -395,8 +434,8 @@
 
         "item"      "item_faerie"
         "item"      "item_ring_of_regen" 
-        "item"      "item_headdress"
-        "item"      "item_sobi_mask"
+        "item"      "item_headdress_classic"
+        "item"      "item_sages_mask"
         "item"      "item_ring_of_basilius_classic"
         "item"      "item_blight_stone"
         "item"      "item_orb_of_venom"

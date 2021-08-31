@@ -2,6 +2,7 @@ item_ballista_classic = class({})
 
 LinkLuaModifier("modifier_ballista_classic_passive","items/ballista_classic", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_generic_stunned","items/ballista_classic", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ballista_classic_motion","items/ballista_classic", LUA_MODIFIER_MOTION_NONE)
 
 function item_ballista_classic:GetIntrinsicModifierName()
 	return "modifier_ballista_classic_passive"
@@ -40,9 +41,13 @@ function modifier_ballista_classic_passive:OnCreated( kv )
 	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_as_passive" ) -- special value
 	self.speed = self:GetAbility():GetSpecialValueFor( "projectile_speed" ) -- special value
 
-	local caster = self:GetParent() 
-	if (IsServer() and caster:IsRangedAttacker()) then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_ballista", { duration = -1}) end 
-	
+	self.chance = 16 --Pseudo Random Value for 35% chance
+	self.cvalue = 16 --Pseudo Random Value for 35% chance
+
+	self.knockback_duration = self:GetAbility():GetSpecialValueFor( "knockback_duration" ) -- special value
+
+	--local caster = self:GetParent() 
+	--if (IsServer() and caster:IsRangedAttacker()) then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_ballista", { duration = -1}) end 
 end
 
 function modifier_ballista_classic_passive:OnRefresh( kv )
@@ -59,23 +64,13 @@ function modifier_ballista_classic_passive:OnRefresh( kv )
 	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_as_passive" ) -- special value
 	self.speed = self:GetAbility():GetSpecialValueFor( "projectile_speed" ) -- special value
 
-	local caster = self:GetParent() 
-	if (IsServer() and caster:IsRangedAttacker()) then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_ballista", { duration = -1}) end 
+	--local caster = self:GetParent() 
+	--if (IsServer() and caster:IsRangedAttacker()) then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_ballista", { duration = -1}) end 
 
 end
 
 function modifier_ballista_classic_passive:GetAttributes()
 	return MODIFIER_ATTRIBUTE_MULTIPLE
-end
-
-function modifier_ballista_classic_passive:OnDestroy( kv )
-	local caster = self:GetParent()
-	if IsServer() then caster:RemoveModifierByName("modifier_item_ballista") end
-end
-
-function modifier_ballista_classic_passive:OnRemoved()
-	local caster = self:GetParent()
-	if IsServer() then caster:RemoveModifierByName("modifier_item_ballista") end
 end
 
 --------------------------------------------------------------------------------
@@ -137,8 +132,7 @@ function modifier_ballista_classic_passive:GetModifierProcAttack_BonusDamage_Pur
 
 		local attacker = self:GetParent()
 		local target = params.target
-		local stun_success = RandomInt(1, 100)
-
+				
 		local result = UnitFilter(
 			target,	-- Target Filter
 			DOTA_UNIT_TARGET_TEAM_ENEMY,	-- Team Filter
@@ -148,22 +142,90 @@ function modifier_ballista_classic_passive:GetModifierProcAttack_BonusDamage_Pur
 		)
 	
 		if result == UF_SUCCESS then
-			if (stun_success <= self.stun_chance and ( not attacker:IsIllusion() )) then
-				
-				if attacker:IsRangedAttacker() then
-					target:AddNewModifier(attacker, self:GetAbility(), "modifier_generic_stunned", { duration = self.stun_duration})
+			if self.chance > RandomInt(1, 100) and (not attacker:IsIllusion()) and attacker:IsRangedAttacker() then
+				target:AddNewModifier(attacker, self:GetAbility(), "modifier_generic_stunned", { duration = self.stun_duration})
 
 					-- effects
 					local sound_cast = "Hero_Sniper.AssassinateDamage"
 					EmitSoundOn( sound_cast, target )
 					SendOverheadEventMessage(nil, OVERHEAD_ALERT_BONUS_SPELL_DAMAGE, target, self.stun_damage, nil)
+				
+				if not target:IsMagicImmune() then
+				target:AddNewModifier(attacker, self:GetAbility(), "modifier_ballista_classic_motion", {duration = self.knockback_duration})
+				end 
 
-					return self.stun_damage
-				end
+				self.chance = self.cvalue
+				return self.stun_damage	
 			end
+			self.chance = self.chance + self.cvalue
+			return 0
 		end
 
 	return 0
+end
+
+------------------------------
+-- PASSIVE KNOCKBACK MODIFIER
+------------------------------
+modifier_ballista_classic_motion = class({})
+
+function modifier_ballista_classic_motion:IsDebuff() return true end
+function modifier_ballista_classic_motion:IsHidden() return true end
+-- function modifier_ballista_classic_motion:IsPurgable() return false end
+function modifier_ballista_classic_motion:IsStunDebuff() return false end
+function modifier_ballista_classic_motion:IsMotionController()  return true end
+function modifier_ballista_classic_motion:GetMotionControllerPriority()  return DOTA_MOTION_CONTROLLER_PRIORITY_MEDIUM end
+
+function modifier_ballista_classic_motion:OnCreated()
+	if IsServer() then
+        if not self:GetAbility() then self:Destroy() end
+    end
+
+	if not IsServer() then return end
+	if self:GetParent():HasModifier("modifier_legion_commander_duel") or self:GetParent():HasModifier("modifier_enigma_black_hole_pull") or self:GetParent():HasModifier("modifier_faceless_void_chronosphere_freeze") then
+		self:Destroy()
+		return
+	end
+
+	self.knockback_distance = self:GetAbility():GetSpecialValueFor( "knockback_distance" ) -- special value
+	self.pfx = ParticleManager:CreateParticle("particles/items_fx/force_staff.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+	self:StartIntervalThink(FrameTime())
+
+	self.angle = (self:GetParent():GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Normalized()
+	self.distance = self.knockback_distance / ( self:GetDuration() / FrameTime())
+end
+
+function modifier_ballista_classic_motion:OnDestroy()
+	if not IsServer() then return end
+	ParticleManager:DestroyParticle(self.pfx, false)
+	ParticleManager:ReleaseParticleIndex(self.pfx)
+	self:GetParent():FadeGesture(ACT_DOTA_FLAIL)
+	ResolveNPCPositions(self:GetParent():GetAbsOrigin(), 128)
+end
+
+function modifier_ballista_classic_motion:OnIntervalThink()
+	--[[ Remove force if conflicting
+	if not self:CheckMotionControllers() then
+		self:Destroy()
+		return
+	end]]
+	self:HorizontalMotion(self:GetParent(), FrameTime())
+end
+
+function modifier_ballista_classic_motion:HorizontalMotion(unit, time)
+	if not IsServer() then return end
+	
+	-- Mars' Arena of Blood exception
+	if self:GetParent():HasModifier("modifier_mars_arena_of_blood_leash") and self:GetParent():FindModifierByName("modifier_mars_arena_of_blood_leash"):GetAuraOwner() and (self:GetParent():GetAbsOrigin() - self:GetParent():FindModifierByName("modifier_mars_arena_of_blood_leash"):GetAuraOwner():GetAbsOrigin()):Length2D() >= self:GetParent():FindModifierByName("modifier_mars_arena_of_blood_leash"):GetAbility():GetSpecialValueFor("radius") - self:GetParent():FindModifierByName("modifier_mars_arena_of_blood_leash"):GetAbility():GetSpecialValueFor("width") then
+		self:Destroy()
+		return
+	end
+	
+	local pos = unit:GetAbsOrigin()
+	GridNav:DestroyTreesAroundPoint(pos, 100, false)
+	local pos_p = self.angle * self.distance
+	local next_pos = GetGroundPosition(pos + pos_p,unit)
+	unit:SetAbsOrigin(next_pos)
 end
 
 

@@ -2,11 +2,11 @@
 {
 	"Unassigned"      								"Unassigned Team"
 	"Spectator"       								"Spectator Team"
-	"Neutrals"        								"Neutral Team"
+	"Neutrals"        								"Neutrals"
 	"NoTeam"          								"No Team"
 
-//	"DOTA_GoodGuys"   								"Teal Tiger"
-//	"DOTA_BadGuys"    								"Yellow Monkey"
+	"DOTA_GoodGuys"   								"The Sentinel"
+	"DOTA_BadGuys"    								"The Scourge"
 	
 	"addonname"										"Barebones"
 }

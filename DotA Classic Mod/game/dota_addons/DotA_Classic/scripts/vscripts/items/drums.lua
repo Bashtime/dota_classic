@@ -105,7 +105,8 @@ function modifier_drums:OnCreated( kv )
 	self.bonus_str = self:GetAbility():GetSpecialValueFor( "bonus_str" ) -- special value
 	self.bonus_agi = self:GetAbility():GetSpecialValueFor( "bonus_agi" ) -- special value
 	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_mr" ) -- special value
-	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "bonus_movement_speed" ) -- special value		
+	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "bonus_movement_speed" ) -- special value	
+	self.hp_reg = self:GetAbility():GetSpecialValueFor( "hp_reg" ) -- special value		
 
 	local caster = self:GetParent() 
 
@@ -115,18 +116,7 @@ function modifier_drums:OnCreated( kv )
 end
 
 function modifier_drums:OnRefresh( kv )
-
-	-- references
-	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_as" ) -- special value
-	self.bonus_mr = self:GetAbility():GetSpecialValueFor( "bonus_mr" ) -- special value
-	self.bonus_str = self:GetAbility():GetSpecialValueFor( "bonus_str" ) -- special value
-	self.bonus_agi = self:GetAbility():GetSpecialValueFor( "bonus_agi" ) -- special value
-	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_int" ) -- special value
-	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "bonus_movement_speed" ) -- special value	
-
-	local caster = self:GetParent() 
-
-	--if IsServer() then caster:AddNewModifier(caster, self:GetAbility(), "modifier_item_ancient_janggo", { duration = -1}) end
+	self:OnCreated()
 end
 
 function modifier_drums:OnDestroy( kv )

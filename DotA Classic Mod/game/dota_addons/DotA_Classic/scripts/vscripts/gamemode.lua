@@ -110,7 +110,7 @@ function GameMode:OnHeroInGame(hero)
 		hero:RemoveItem(tp)
 		local new_item = CreateItem("item_tp", hero, hero)
         hero:AddItem(new_item)
-        new_item:StartCooldown(10.0)
+        new_item:EndCooldown()
 	end)
 end
 

@@ -100,14 +100,14 @@ function GameMode:OnGameRulesStateChange()
 
 	if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
 		Timers:CreateTimer(2.0, function()
-			if tostring(PlayerResource:GetSteamID(0)) == "76561198015161808" or tostring(PlayerResource:GetSteamID(0)) == "76561198047612370" then
+			--[[if tostring(PlayerResource:GetSteamID(0)) == "76561198015161808" or tostring(PlayerResource:GetSteamID(0)) == "76561198047612370" then
 				BOTS_ENABLED = true
 			end
 
 			if BOTS_ENABLED == true then
 				SendToServerConsole('sm_gmode 1')
 				SendToServerConsole('dota_bot_populate')
-			end
+			end ]]
 		end)
 	elseif newState == DOTA_GAMERULES_STATE_STRATEGY_TIME then
 		for i = 0, PlayerResource:GetPlayerCount() - 1 do
@@ -126,7 +126,7 @@ function GameMode:OnGameRulesStateChange()
 	
 	--Change Tower Models
 	if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-		direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
+		--[[direUnits = FindUnitsInRadius(DOTA_TEAM_BADGUYS,
                   Vector(0, 0, 0),
                   nil,
                   FIND_UNITS_EVERYWHERE,
@@ -161,6 +161,8 @@ function GameMode:OnGameRulesStateChange()
 					unit:SetOriginalModel("models/props_structures/rock_golem/tower_radiant_rock_golem.vmdl")
 				end 
 			end
+		]]
+	--end
 end
 
 -- An entity somewhere has been hurt.  This event fires very often with many units so don't do too many expensive
@@ -340,9 +342,11 @@ function GameMode:OnNonPlayerUsedAbility(keys)
   local abilityname =  keys.abilityname
   local hero = EntIndexToHScript(keys.caster_entindex)
 
-  for k,v in pairs(keys) do
+  --[[
+	  for k,v in pairs(keys) do
     print(k,v)
   end
+
 
   --Holy Locket Charge Mechanic
 
@@ -491,7 +495,7 @@ function GameMode:OnPlayerLevelUp(keys)
 			hero:SetMaximumGoldBounty(gold_bounty)
 		end
 
-		-- Add a skill point when a hero levels
+		--[[ Add a skill point when a hero levels OUTDATED
 		if SKILL_POINTS_AT_EVERY_LEVEL then
 			local levels_without_ability_point = {17, 19, 21, 22, 23, 24} -- on this levels you should get a skill point
 			for i = 1, #levels_without_ability_point do
@@ -501,6 +505,7 @@ function GameMode:OnPlayerLevelUp(keys)
 				end
 			end
 		end
+		]]
 	end
 end
 
@@ -754,7 +759,7 @@ function GameMode:OnEntityKilled(keys)
 				--Modify Gold after Death
 				killed_unit:ModifyGold(-deathcost, false, DOTA_ModifyGold_Death)
 
-		-- Hero gold bounty update for the killer
+		--[[ Hero gold bounty update for the killer
 		if USE_CUSTOM_HERO_GOLD_BOUNTY then
 			if killer_unit:IsRealHero() then
 				-- Get his killing streak
@@ -773,7 +778,7 @@ function GameMode:OnEntityKilled(keys)
 				killer_unit:SetMaximumGoldBounty(gold_bounty)
 			end
 		end
-
+		]]
 		-- Hero Respawn time configuration
 		if ENABLE_HERO_RESPAWN then
 			local killed_unit_level = killed_unit:GetLevel()
@@ -825,10 +830,7 @@ function GameMode:OnEntityKilled(keys)
 			if (killer_unit:IsTower() ) and (not (killer_unit:IsNeutralUnitType() or killer_unit:IsAncient())) then
 			-- Put stuff here that you want to happen if a hero is killed by a creep, tower or fountain.
 				if respawn_time < 25 then 
-					respawn_time = respawn_time + 5
-				else if respawn_time < 28 then 
 					respawn_time = respawn_time + 3.8
-						end
 				end
 			end
 
@@ -841,10 +843,6 @@ function GameMode:OnEntityKilled(keys)
 				--DebugPrint("Reducing respawn time of "..killed_unit:GetUnitName().." because it was too long.")
 				respawn_time = MAX_RESPAWN_TIME
 			end
-
-
-
-
 
 
 			if not killed_unit:IsReincarnating() then
@@ -866,9 +864,6 @@ function GameMode:OnEntityKilled(keys)
 			PlayerResource:SetCustomBuybackCost(killed_unit:GetPlayerID(), bbcost)
 		end
 
-
-
-
 		-- Killer is not a real hero but it killed a hero
 		if killer_unit:IsTower() or killer_unit:IsCreep() then
 			-- Put stuff here that you want to happen if a hero is killed by a creep, tower or fountain.
@@ -879,11 +874,11 @@ function GameMode:OnEntityKilled(keys)
 		end
 
 
-		-- When team hero kill limit is reached declare the winner
+		--[[ When team hero kill limit is reached declare the winner
 		if END_GAME_ON_KILLS and GetTeamHeroKills(killer_unit:GetTeam()) >= KILLS_TO_END_GAME_FOR_TEAM then
 			GameRules:SetGameWinner(killer_unit:GetTeam())
 		end
-
+		]]
 		-- Setting top bar values
 		if SHOW_KILLS_ON_TOPBAR then
 			GameRules:GetGameModeEntity():SetTopBarTeamValue(DOTA_TEAM_BADGUYS, GetTeamHeroKills(DOTA_TEAM_BADGUYS))
@@ -1043,6 +1038,8 @@ function GameMode:OnNPCSpawned(keys)
 					if modifier == "modifier_courier_passive_bonus" then
 						npc:RemoveModifierByName("modifier_courier_passive_bonus")
 						npc:AddNewModifier(npc, nil, "modifier_courier_passive_bonus_688", {})
+						--npc:AddNewModifier(npc, nil, "modifier_courier_hp_armor", {})
+						
 						return nil
 					end
 				end
@@ -1060,6 +1057,7 @@ function GameMode:OnNPCSpawned(keys)
 			npc:AddNewModifier(npc, nil, "modifier_bots_and_botsii", {})
 			npc:AddNewModifier(npc, nil, "modifier_perc_mana_reg", {})
 			npc:AddNewModifier(npc, nil, "modifier_aura_cosmetics", {})
+			npc:AddNewModifier(npc, nil, "modifier_hotd_custom_bonus", {})
 
 			local particle_cast = {}
        particle_cast[0] = "particles/scepter_aura_blue.vpcf"
@@ -1119,13 +1117,12 @@ function GameMode:OnNPCSpawned(keys)
 			npc:SetMaximumGoldBounty(gold_max)
 
 		end]]
-
 end
 
 
 -- Gold filter, can be used to modify how much gold player gains/loses
 function GameMode:GoldFilter(keys)
-	print(keys)
+	--print(keys)
 
 	local gold = keys.gold
 	local playerID = keys.player_id_const

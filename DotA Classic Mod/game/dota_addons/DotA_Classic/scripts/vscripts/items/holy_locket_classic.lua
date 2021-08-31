@@ -3,6 +3,7 @@ item_holy_locket_classic = class({})
 LinkLuaModifier("modifier_holy_locket_classic_passive","items/holy_locket_classic", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_regenlifesteal_increase","items/holy_locket_classic", LUA_MODIFIER_MOTION_NONE)
 
+
 function item_holy_locket_classic:GetIntrinsicModifierName()
 	return "modifier_holy_locket_classic_passive"
 end
@@ -231,12 +232,32 @@ function modifier_holy_locket_classic_passive:OnCreated( kv )
 	self.bonus_mr = self:GetAbility():GetSpecialValueFor( "bonus_mr" ) 
 	self.status_increase = self:GetAbility():GetSpecialValueFor( "status_resistance_increase" ) 
 	self.bonus_regen = self:GetAbility():GetSpecialValueFor( "health_regen" ) 
+	self.auto_recharge = self:GetAbility():GetSpecialValueFor( "auto_recharge" ) 
 
 	if IsServer() then
 		local caster = self:GetCaster()
 		caster:AddNewModifier(caster, self:GetAbility(), "modifier_regenlifesteal_increase", {duration = -1})	
 	end
 
+	self:StartIntervalThink(self.auto_recharge) 
+end
+
+function modifier_holy_locket_classic_passive:OnIntervalThink()
+	--if not IsServer() then end
+    for i=0, 5 do
+        local item = self:GetParent():GetItemInSlot(i)
+
+        if item then
+            if (item:GetName() == "item_holy_locket_classic") then
+              local k = item:GetCurrentCharges()
+              if k<20 then
+                item:SetCurrentCharges(k+1)
+              end
+            end
+        end
+    end
+
+	self:StartIntervalThink(self.auto_recharge)    
 end
 
 function modifier_holy_locket_classic_passive:OnRefresh( kv )

@@ -1,258 +1,135 @@
+LinkLuaModifier("modifier_blademail", "items/blademail", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_blademail_active", "items/blademail", LUA_MODIFIER_MOTION_NONE)
 
-	item_blademail = class({})
-	local itemClass = item_blademail
+item_blademail				= class({})
+modifier_blademail			= class({})
+modifier_blademail_active	= class({})
 
-	--Active Bonuses Modifier
-	modifier_bm_active = class({})
-	local buffModifierClass = modifier_bm_active
-	local buffModifierName = 'modifier_bm_active'
-	LinkLuaModifier(buffModifierName, "items/blademail", LUA_MODIFIER_MOTION_NONE)	
+---------------------
+-- BLADE MAIL BASE --
+---------------------
 
-	--Passive instrinsic Bonus Modifier
-	modifier_bm = class({})
-	local modifierClass = modifier_bm
-	local modifierName = 'modifier_bm'
-	LinkLuaModifier(modifierName, "items/blademail", LUA_MODIFIER_MOTION_NONE)
-
-
-		--Usual Settings
-		function itemClass:GetIntrinsicModifierName()
-			return modifierName
-		end
-
-		function modifierClass:IsHidden()
-			return true
-		end
-
-		function modifierClass:IsPurgable()
-			return false
-		end
-
-		function modifierClass:RemoveOnDeath()
-    		return false
-		end
-
-		function modifierClass:GetAttributes()
-			return MODIFIER_ATTRIBUTE_MULTIPLE
-		end
-
-
---Casting
-function itemClass:OnSpellStart()
-	local dur = self:GetSpecialValueFor("reflect_duration")
-	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self, buffModifierName, { duration = dur })
+function item_blademail:OnSpellStart()
+	self:GetCaster():EmitSound("DOTA_Item.BladeMail.Activate")
+	self:GetCaster():AddNewModifier(self:GetCaster(), self, "modifier_blademail_active", {duration = self:GetSpecialValueFor("duration")})
 end
 
-
-function buffModifierClass:PlayEffects( caster )
-
-		-- Get Resources
-		local particle_cast = "particles/econ/events/ti8/phase_boots_ti8.vpcf"
-		local sound_cast = "DOTA_Item.Butterfly"
-
-		-- Create Particle
-		local effect_cast = ParticleManager:CreateParticle( particle_cast, PATTACH_ABSORIGIN, caster )
-		-- ParticleManager:SetParticleControl( effect_cast, 0, vControlVector )
-		ParticleManager:ReleaseParticleIndex( effect_cast )
-		-- Create Sound
-		EmitSoundOn( sound_cast, caster )
+function item_blademail:GetIntrinsicModifierName()
+	return "modifier_blademail"
 end
 
---Visuals
+---------------------------------
+-- BLADE MAIL PASSIVE MODIFIER --
+---------------------------------
 
---------------------------------------------------------------------------------
--- Graphics & Animations
-function buffModifierClass:GetEffectName()
-	return "particles/econ/events/ti8/phase_boots_ti8.vpcf"
+function modifier_blademail:IsHidden()		return true end
+function modifier_blademail:IsPurgable()		return false end
+function modifier_blademail:RemoveOnDeath()	return false end
+function modifier_blademail:GetAttributes()	return MODIFIER_ATTRIBUTE_MULTIPLE end
+
+function modifier_blademail:OnCreated()
+	if IsServer() then
+		if not self:GetAbility() then self:Destroy() end
+	end
+
+	self.bonus_damage		= self:GetAbility():GetSpecialValueFor("bonus_dmg")
+	self.bonus_armor		= self:GetAbility():GetSpecialValueFor("bonus_armor")
+	self.bonus_intellect	= self:GetAbility():GetSpecialValueFor("bonus_int")
+
+	self.return_damage = self:GetAbility():GetSpecialValueFor("passive_return_dmg")
+	self.return_damage_pct = self:GetAbility():GetSpecialValueFor("passive_return_pct")
 end
 
-function buffModifierClass:GetEffectAttachType()
-	return PATTACH_ABSORIGIN_FOLLOW
-end
-
-
-
------------------------------------------
---Passive Modifier Stuff starts here
-
-function modifierClass:OnCreated()
-
-	local caster = self:GetParent() 
-
-	-- common references (Worst Case: Some Nil-values)
-	self.bonus_dmg = self:GetAbility():GetSpecialValueFor( "bonus_dmg" )
-	self.bonus_armor = self:GetAbility():GetSpecialValueFor( "bonus_armor" )
-	self.bonus_ms = self:GetAbility():GetSpecialValueFor( "bonus_ms" )
-	self.bonus_as = self:GetAbility():GetSpecialValueFor( "bonus_as" )
-	self.bonus_mr = self:GetAbility():GetSpecialValueFor( "bonus_mr" )
-
-	self.bonus_str = self:GetAbility():GetSpecialValueFor( "bonus_str" )
-	self.bonus_agi = self:GetAbility():GetSpecialValueFor( "bonus_agi" )
-	self.bonus_int = self:GetAbility():GetSpecialValueFor( "bonus_int" )
-
-	self.bonus_hp = self:GetAbility():GetSpecialValueFor( "bonus_hp" )
-	self.bonus_mana = self:GetAbility():GetSpecialValueFor( "bonus_mana" )
-
-	self.hp_reg = self:GetAbility():GetSpecialValueFor( "fixed_health_regen" )
-	self.hp_reg_perc = self:GetAbility():GetSpecialValueFor( "health_regen_rate" )
-	self.hp_reg_amp = self:GetAbility():GetSpecialValueFor( "hp_regen_amp" )	
-	self.mana_reg = self:GetAbility():GetSpecialValueFor( "mana_reg" )
-
-	self.evasion = self:GetAbility():GetSpecialValueFor( "bonus_evasion" )
-end
-
-
-
-
-			--------------------------------------------------------------------------------
-			-- Modifier Effects
-			function modifierClass:DeclareFunctions()
-
-				local funcs = {
-
-					--The Usual Modifiers
-					MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
-					MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
-					MODIFIER_PROPERTY_MOVESPEED_BONUS_CONSTANT,
-					MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-					MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
-					MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
-
-					MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
-					MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
-					MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
-
-					MODIFIER_PROPERTY_HEALTH_BONUS,
-					MODIFIER_PROPERTY_MANA_BONUS,
-					MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT,
-					MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE,					
-					MODIFIER_PROPERTY_MANA_REGEN_CONSTANT,
-
-					--Add more stuff below
-					MODIFIER_PROPERTY_HP_REGEN_AMPLIFY_PERCENTAGE,
-					MODIFIER_PROPERTY_HEAL_AMPLIFY_PERCENTAGE_TARGET,
-					MODIFIER_EVENT_ON_TAKEDAMAGE,
-					MODIFIER_PROPERTY_EVASION_CONSTANT,
-					MODIFIER_PROPERTY_SPELL_AMPLIFY_PERCENTAGE
-				}
-
-				return funcs
-			end
-
-			function modifierClass:GetModifierEvasion_Constant()
-				local caster = self:GetParent()
-				if caster:HasModifier(buffModifierName) then return end			
-				return self.evasion
-			end
-
-				--DMG; ARMOR; MS; AS; MR
-				function modifierClass:GetModifierPreAttack_BonusDamage()
-					return self.bonus_dmg
-				end
-
-				function modifierClass:GetModifierPhysicalArmorBonus()
-					return self.bonus_armor
-				end
-
-				function modifierClass:GetModifierMoveSpeedBonus_Constant()
-					return self.bonus_ms
-				end
-
-				function modifierClass:GetModifierAttackSpeedBonus_Constant()
-					return self.bonus_as
-				end
-
-				function modifierClass:GetModifierMagicalResistanceBonus()
-					return self.bonus_mr
-				end
-
-
-
-				--STR; AGI; INT
-				function modifierClass:GetModifierBonusStats_Strength()
-					return self.bonus_str
-				end
-
-				function modifierClass:GetModifierBonusStats_Agility()
-					return self.bonus_agi
-				end
-
-				function modifierClass:GetModifierBonusStats_Intellect()
-					return self.bonus_int
-				end
-
-
-
-				--HP; MANA; REG
-				function modifierClass:GetModifierHealthBonus()
-					return self.bonus_hp
-				end
-
-				function modifierClass:GetModifierManaBonus()
-					return self.bonus_mana
-				end
-
-				function modifierClass:GetModifierConstantHealthRegen()
-					return self.hp_reg
-				end
-
-				function modifierClass:GetModifierConstantManaRegen()
-					local caster = self:GetParent()
-					local int = caster:GetModifierStackCount("modifier_spell_amp_int", caster)
-					local regen = self.mana_reg / 100 * int * 0.05
-					return regen
-				end
-
-				function modifierClass:GetModifierHealthRegenPercentage()
-					local k = self:GetStackCount()
-					if k == 0 then
-						return self.hp_reg_perc
-					end
-					return
-				end				
-
-
-				function modifierClass:GetModifierSpellAmplify_Percentage()
-					return self.spell_amp
-				end
-
-
-
---#########################
---## Active modifier here
---#########################
-
-function buffModifierClass:OnCreated()
-	--References
-	local caster = self:GetParent()
-	self.phase_ms = self:GetAbility():GetSpecialValueFor( "bonus_ms" )
-
-		--effects
-	self:PlayEffects( caster )
-end
-
-		function buffModifierClass:IsHidden()
-			return false
-		end
-
-		function buffModifierClass:IsPurgable()
-			return false
-		end
-
-		function buffModifierClass:RemoveOnDeath()
-    		return true
-		end
-
-
-function buffModifierClass:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+function modifier_blademail:DeclareFunctions()
+	local decFuncs = {
+		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
+		MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
+		MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+		MODIFIER_EVENT_ON_TAKEDAMAGE,
 	}
-	return funcs
+	return decFuncs
 end
 
-function buffModifierClass:GetModifierMoveSpeedBonus_Percentage()
-	return self.phase_ms
+function modifier_blademail:GetModifierPreAttack_BonusDamage()
+	return self.bonus_damage
 end
 
+function modifier_blademail:GetModifierPhysicalArmorBonus()
+	return self.bonus_armor
+end
+
+function modifier_blademail:GetModifierBonusStats_Intellect()
+	return self.bonus_intellect
+end
+
+function modifier_blademail:OnTakeDamage(params)
+	if not IsServer() then return end
+
+	if params.unit == self:GetParent() and not params.attacker:IsBuilding() and params.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= DOTA_DAMAGE_FLAG_HPLOSS and bit.band(params.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ~= DOTA_DAMAGE_FLAG_REFLECTION and params.damage_type == 1 then
+		local returndamage = self.return_damage + (params.damage / 100 * self.return_damage_pct)
+		ApplyDamage({
+			victim = params.attacker,
+			attacker = params.unit,
+			damage = returndamage,
+			damage_type = DAMAGE_TYPE_PHYSICAL,
+			damage_flags	= DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+		})
+	end
+end
+
+--------------------------------
+-- BLADE MAIL ACTIVE MODIFIER --
+--------------------------------
+
+function modifier_blademail_active:IsPurgable() return false end
+
+function modifier_blademail_active:GetEffectName()
+	return "particles/items_fx/blademail.vpcf"
+end
+
+function modifier_blademail_active:GetStatusEffectName()
+	return "particles/status_fx/status_effect_blademail.vpcf"
+end
+
+function modifier_blademail_active:DeclareFunctions()
+	local decFuncs = {MODIFIER_EVENT_ON_TAKEDAMAGE}
+	return decFuncs
+end
+
+function modifier_blademail_active:OnCreated()
+	if IsServer() then
+		if not self:GetAbility() then self:Destroy() end
+	end
+end
+
+function modifier_blademail_active:OnDestroy()
+	if not IsServer() then return end	
+	self:GetParent():EmitSound("DOTA_Item.BladeMail.Deactivate")
+end
+
+function modifier_blademail_active:OnTakeDamage(keys)
+	if not IsServer() then return end
+	
+	local attacker = keys.attacker
+	local target = keys.unit
+	local original_damage = keys.original_damage
+	local damage_type = keys.damage_type
+	local damage_flags = keys.damage_flags
+
+	if keys.unit == self:GetParent() and not keys.attacker:IsBuilding() and keys.attacker:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_HPLOSS) ~= DOTA_DAMAGE_FLAG_HPLOSS and bit.band(keys.damage_flags, DOTA_DAMAGE_FLAG_REFLECTION) ~= DOTA_DAMAGE_FLAG_REFLECTION then	
+		if not keys.unit:IsOther() then
+			EmitSoundOnClient("DOTA_Item.BladeMail.Damage", keys.attacker:GetPlayerOwner())
+		
+			local damageTable = {
+				victim			= keys.attacker,
+				damage			= keys.original_damage,
+				damage_type		= keys.damage_type,
+				damage_flags	= DOTA_DAMAGE_FLAG_REFLECTION + DOTA_DAMAGE_FLAG_NO_SPELL_LIFESTEAL + DOTA_DAMAGE_FLAG_NO_SPELL_AMPLIFICATION,
+				attacker		= self:GetParent(),
+				ability			= self:GetAbility()
+			}
+			
+			local reflectDamage = ApplyDamage(damageTable)
+		end
+	end
+end
