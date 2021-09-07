@@ -18,7 +18,7 @@ QoL: UI Improvements
 
   20 HP / str   0.05 Hp / sec / str (6.88: 0.03/sec and 20 HP)  default base reg: 0.15 (6.88: 0.25)   Base HP: 180 (6.88: 200)
   
-  13 mana / int (6.88: 12 mana)  0.05 Mana / sec / int (6.88: 0.04)  Base Mana: 50 (6.88: 75)
+  13 mana / int (6.88: 12 mana)  0.05 Mana / sec / int (6.88: 0.04)  Base Mana: 39 (6.88: 75)
   
   mana regen items reverted to % based on int.
   
@@ -88,6 +88,8 @@ QoL: UI Improvements
 -Heroes are not randomed after penalty time (solved) 
 
 -Death time not shown properly below health and mana bar (solved)
+
+-Merging removed some important stuff and caused errors
 
 
 
