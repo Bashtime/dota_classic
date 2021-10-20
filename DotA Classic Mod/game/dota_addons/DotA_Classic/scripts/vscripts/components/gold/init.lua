@@ -110,15 +110,18 @@ function GoldSystem:OnHeroDeath(killer, victim)
 			end
 		end
 
-		print(base_aoe_gold)
+		print("Base AoE gold:", base_aoe_gold)
 		--print(networth_bonus)
-		print(aoe_gold_for_player)
 
-		print(base_gold_bounty)
-		print(level_bonus)
-		print(streak_bonus)
-		print(kill_gold)
-		print(aoe_gold_for_player)
+		print("Base gold bounty:", base_gold_bounty)
+		print("Level bonus:", level_bonus)
+		print("Streak bonus:", streak_bonus)
+		print("Kill Gold:", kill_gold)
+		print("AoE gold for player:", aoe_gold_for_player)
+
+		GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("set_hero_kill_gold_text"), function()
+			CustomGameEventManager:Send_ServerToAllClients("set_hero_kill_gold", {gold = kill_gold})
+		end, 0.1)
 
 --		CombatEvents("kill", "hero_kill", victim, killer, kill_gold + aoe_gold_for_player)
 	else

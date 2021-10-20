@@ -5,7 +5,10 @@
 	{		
 		"game_mode_15"				"DotA Classic"
 		"addon_game_name"			"DotA Classic"
-		
+
+		"DOTA_GoodGuys"			"The Sentinel"
+		"DOTA_BadGuys"			"The Scourge"
+
 		//"DOTA_Basics"							"ABILITIES"
 		//"DOTA_Upgrades"						"ITEMS"
 		//"DOTA_Shop_Category_Basics"			"ABILITIES"

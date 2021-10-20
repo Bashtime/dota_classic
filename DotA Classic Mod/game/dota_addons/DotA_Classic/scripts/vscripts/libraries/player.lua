@@ -1045,3 +1045,14 @@ function CDOTA_BaseNPC:Custom_IsUnderForcedMovement()
 	
 	return bForcedMovement
 end
+
+-- Sets a creature's max health to [health]
+function CDOTA_BaseNPC:SetCreatureHealth(health, update_current_health)
+
+	self:SetBaseMaxHealth(health)
+	self:SetMaxHealth(health)
+
+	if update_current_health then
+		self:SetHealth(health)
+	end
+end

@@ -39,6 +39,7 @@ function modifier_courier_passive_bonus_688:OnCreated()
 	self.base_model = self:GetParent():GetModelName()
 	self:GetParent():SetBaseMoveSpeed(self.base_movespeed)
 	self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_courier_bottle_slow", {})
+	self:GetParent():AddNewModifier(self:GetParent(), self:GetAbility(), "modifier_courier_passive_bonus_health_688", {})
 	self:StartIntervalThink(self.interval[self:GetStackCount()])
 end
 
@@ -162,5 +163,41 @@ function modifier_courier_bottle_slow:OnIntervalThink()
 	end
 
 	self:StartIntervalThink(0.3)
-end	
+end
 
+LinkLuaModifier("modifier_courier_passive_bonus_health_688", "components/modifiers/couriers/modifier_courier_passive_bonus_688", LUA_MODIFIER_MOTION_NONE)
+
+modifier_courier_passive_bonus_health_688 = modifier_courier_passive_bonus_health_688 or class({})
+
+function modifier_courier_passive_bonus_health_688:IsHidden() return not IsInToolsMode() end
+function modifier_courier_passive_bonus_health_688:IsPurgable() return false end
+function modifier_courier_passive_bonus_health_688:IsPurgeException() return false end
+function modifier_courier_passive_bonus_health_688:RemoveOnDeath() return false end
+
+function modifier_courier_passive_bonus_health_688:OnCreated()
+	if not IsServer() then return end
+
+	self.game_started = false
+	self.tick_time = 60.0
+	self.health_bonus = 10
+
+	local current_time = GameRules:GetDOTATime(false, false)
+	local minutes = math.floor(current_time / self.tick_time)
+	local delay = current_time - (self.tick_time * minutes)
+
+	print(60.0 - delay)
+
+	self:StartIntervalThink(60 - delay)
+end
+
+function modifier_courier_passive_bonus_health_688:OnIntervalThink()
+	print("Tick now!")
+
+	if self.game_started == false then
+		self.game_started = true
+		self:StartIntervalThink(self.tick_time)
+	end
+
+	local new_health = self:GetParent():GetMaxHealth() + self.health_bonus
+	self:GetParent():SetCreatureHealth(new_health, true)
+end

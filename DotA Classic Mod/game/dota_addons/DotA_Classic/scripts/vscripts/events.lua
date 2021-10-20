@@ -509,8 +509,6 @@ function GameMode:OnPlayerLevelUp(keys)
 	end
 end
 
-
-
 -- A player last hit a creep, a tower, or a hero
 function GameMode:OnLastHit(keys)
 	--DebugPrint('[BAREBONES] OnLastHit')

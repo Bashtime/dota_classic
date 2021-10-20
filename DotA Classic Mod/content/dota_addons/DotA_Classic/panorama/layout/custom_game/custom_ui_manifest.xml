@@ -1,5 +1,6 @@
 <root> 
 	<scripts>
+		<include src="file://{resources}/scripts/custom_game/combat_events_vanilla.js" />
 	</scripts>
 
 	<script>
@@ -12,7 +13,8 @@
 				"message": data.message
 			})
 		})
-<!--
+
+/*
 		GameUI.CustomUIConfig().team_colors = {}
 		GameUI.CustomUIConfig().team_names = {}
 
@@ -21,16 +23,16 @@
 
 		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_GOODGUYS] = "The Sentinel";		// BF0824 Hex for name color only
 		GameUI.CustomUIConfig().team_names[DOTATeam_t.DOTA_TEAM_BADGUYS] = "The Scourge";		// 298C17 Hex for name color only
--->
 
-<!--		var ponel = $.GetContextPanel().FindChildTraverse("SearchResults");
+		var ponel = $.GetContextPanel().FindChildTraverse("SearchResults");
 		var penel = $.GetContextPanel().FindChildTraverse("SearchResultsContents");
 		var panel = $.GetContextPanel().FindChildTraverse("SearchResult0");
 		$.Msg(ponel);
 		$.Msg(penel);
 		$.Msg(panel); 
 		panel.html = "true";
--->		
+*/
+
 		var NoNeutralsTab = $.GetContextPanel().GetParent().GetParent().FindChildTraverse("HUDElements").FindChildTraverse("shop").FindChildTraverse("Main").FindChildTraverse("HeightLimiter").FindChildTraverse("GridMainShop").FindChildTraverse("GridShopHeaders").FindChildTraverse("GridMainTabs");
 		NoNeutralsTab.FindChildTraverse("GridNeutralsTab").style.visibility = "collapse"; 
 
@@ -130,6 +132,21 @@
 
 //				var center_block = hudElements.FindChildTraverse("center_block");
 //				IncreaseCenterBlockSize(center_block);
+
+/*
+				var SearchResultsContents = hudElements.FindChildTraverse("SearchResultsContents");
+
+				if (SearchResultsContents) {
+					for (let index = 0; index < SearchResultsContents.GetChildCount(); index++) {
+						const element = SearchResultsContents.GetChild(index);
+
+						if (element) {
+							$.Msg(element.FindChildTraverse("ItemName"))
+							element.FindChildTraverse("ItemName").html = true;
+						}						
+					}
+				}
+*/
 			}
 		}
 
